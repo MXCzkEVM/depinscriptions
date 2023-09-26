@@ -9,7 +9,7 @@ const LayoutNavbar: React.FC = () => {
   return (
     <div className="mb-8">
       <Navbar fluid={true} rounded={true}>
-        <Navbar.Brand href="https://flowbite.com/">
+        <Navbar.Brand href="https://doc.mxc.com/">
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
             MXC zkEVM
           </span>
