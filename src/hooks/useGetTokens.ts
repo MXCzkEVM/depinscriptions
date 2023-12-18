@@ -1,4 +1,4 @@
-import ERC20_FACTORY, { FACTORY_ABI_FULL } from '@utils/contracts/erc20factory'
+import ERC20_FACTORY, { FACTORY_ABI_FULL } from '@config/abis/erc20factory'
 import { ethers } from 'ethers'
 import { useContractRead } from 'wagmi'
 

@@ -13,7 +13,7 @@ import useDebounce from '@hooks/useDebounce'
 import Papa from 'papaparse'
 import { sumBigNumbers, AIRDROP_CONTRACT_ADDRESS, BN_ZERO } from '@utils/constants'
 import { useGetTokens } from '@hooks/useGetTokens'
-import { AIRDROP_ABI } from '@utils/contracts/airdrop'
+import { AIRDROP_ABI } from '@config/abis/airdrop'
 
 type AirdropCalldata = [`0x${string}`[], BigNumber[]]
 

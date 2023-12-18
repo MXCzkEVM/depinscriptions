@@ -7,7 +7,7 @@ import {
 } from 'wagmi'
 
 import { toast } from 'react-hot-toast'
-import ERC20_FACTORY, { createABI } from '@utils/contracts/erc20factory'
+import ERC20_FACTORY, { createABI } from '@config/abis/erc20factory'
 const DEFAULT_SUPPLY = `1000000000000000000000000`
 
 const useDeployErc20 = (name: string, symbol: string, supply: any) => {

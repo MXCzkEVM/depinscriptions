@@ -269,7 +269,7 @@ export const FACTORY_ABI_FULL = [
   },
 ] as const
 
-const erc20factory = {
+const ERC20_FACTORY = {
   address: ethers.utils.getAddress(
     `0x2b8546F1E9B59eF499Acb6969D8B455DeAC6CE1B`,
   ),
@@ -501,4 +501,4 @@ const erc20factory = {
   ],
 }
 
-export default erc20factory
+export default ERC20_FACTORY

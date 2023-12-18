@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.17;
 
-import {ERC20Impl} from "./ERC20Impl.sol";
-import {IERC20Factory, IERC20FactoryEvents} from "./interface/IERC20Factory.sol";
-import {IOwnableEvents} from "./lib/Ownable.sol";
-import {IERC20Events} from "./interface/IERC20.sol";
-import {Clones} from "./lib/Clones.sol";
+import {ERC20Impl} from './ERC20Impl.sol';
+import {IERC20Factory, IERC20FactoryEvents} from './interface/IERC20Factory.sol';
+import {IOwnableEvents} from './lib/Ownable.sol';
+import {IERC20Events} from './interface/IERC20.sol';
+import {Clones} from './lib/Clones.sol';
 
 interface IERC20 {
     function initialize(
@@ -33,7 +33,7 @@ contract ERC20Factory is
     address public immutable implementation;
 
     /// @notice Registry of user -> deployed erc20 contracts
-    /// @dev Used on the frontend to retrieve a list of deployed ERC20's 
+    /// @dev Used on the frontend to retrieve a list of deployed ERC20's
     mapping(address => address[]) public erc20s;
 
     constructor() {
@@ -75,25 +75,18 @@ contract ERC20Factory is
         emit ERC20Deployed(erc20Clone, name_, symbol_, owner);
     }
 
-    function getERC20s(address owner)
-        external
-        view
-        returns (address[] memory)
-    {
+    function getERC20s(address owner) external view returns (address[] memory) {
         address[] memory tokens = erc20s[owner];
         return tokens;
     }
 
-
     /// @notice predict the deterministic address of the ERC20 clone
     /// @param implementation_ the address of the erc20 implementation
     /// @param salt the salt used to generate the deterministic address
-    function predictDeterministicAddress(address implementation_, bytes32 salt)
-        external
-        view
-        override
-        returns (address)
-    {
+    function predictDeterministicAddress(
+        address implementation_,
+        bytes32 salt
+    ) external view override returns (address) {
         return
             Clones.predictDeterministicAddress(
                 implementation_,
