@@ -5,7 +5,6 @@ import { useRouter } from 'next/router'
 
 const LayoutNavbar: React.FC = () => {
   const router = useRouter()
-
   return (
     <div className="mb-8">
       <Navbar fluid={true} rounded={true}>

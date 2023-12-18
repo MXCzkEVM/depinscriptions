@@ -5,14 +5,14 @@ import type { AppProps } from 'next/app'
 import { NextPage } from 'next'
 import NextHead from 'next/head'
 import { ReactElement, ReactNode } from 'react'
-import React from 'react'
+import React, { Fragment } from 'react'
 import { useAccount, WagmiConfig } from 'wagmi'
 import { chains, client } from '@utils/wagmi'
-import { Inter } from '@next/font/google'
-const inter = Inter()
+import { Inter } from 'next/font/google'
+const inter = Inter({ subsets: ['latin'] })
 
-export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
-  getLayout?: (page: ReactElement) => ReactNode
+export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
+  layout?: (page: ReactElement) => ReactNode
 }
 
 type AppPropsWithLayout = AppProps & {
@@ -42,13 +42,13 @@ const PleaseConnectWallet = (): React.ReactElement => {
 
 // If wallet is connected -> display app
 // Else -> display connect prompt
-export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const [mounted, setMounted] = React.useState(false)
-  React.useEffect(() => setMounted(true), [])
   const { isConnected } = useAccount()
 
-  const getLayout = Component.getLayout ?? ((page) => page)
+  const layout = Component.layout ?? ((page) => page)
 
+  React.useEffect(() => setMounted(true), [])
   return (
     <>
       <div className={inter.className}>
@@ -56,9 +56,10 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
           <RainbowKitProvider chains={chains}>
             <NextHead>
               <title>MXC zkEVM ERC20</title>
+              <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
             </NextHead>
             {isConnected ? (
-              <>{mounted && getLayout(<Component {...pageProps} />)}</>
+              <>{mounted && layout(<Component {...pageProps} />)}</>
             ) : (
               <>
                 <PleaseConnectWallet />
