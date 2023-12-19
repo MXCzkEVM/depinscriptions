@@ -9,8 +9,9 @@ import React from 'react'
 import { useAccount, WagmiConfig } from 'wagmi'
 import { chains, client } from '@utils/wagmi'
 import { Inter } from 'next/font/google'
-import {useTranslation} from 'react-i18next'
-import '@plugins/i18n'
+import { useTranslation, I18nextProvider } from 'react-i18next'
+import i18n from '@plugins/i18n'
+import NoSSR from '@components/NoSSR'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -62,13 +63,17 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
               <title>MXC zkEVM ERC20</title>
               <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
             </NextHead>
-            {isConnected ? (
-              <>{mounted && layout(<Component {...pageProps} />)}</>
-            ) : (
-              <>
-                <PleaseConnectWallet />
-              </>
-            )}
+            <NoSSR>
+              <I18nextProvider i18n={i18n}>
+                {isConnected ? (
+                  <>{mounted && layout(<Component {...pageProps} />)}</>
+                ) : (
+                  <>
+                    <PleaseConnectWallet />
+                  </>
+                )}
+              </I18nextProvider>
+            </NoSSR>
           </RainbowKitProvider>
         </WagmiConfig>
       </div>

@@ -32,8 +32,8 @@ export const LOCALE_RESOURCES: Resource = {
   "ru": { translation: ru },
   "tr": { translation: tr },
   "vi": { translation: vi },
-  "zh-hans": { translation: zhHans },
-  "zh-hant": { translation: zhHant }
+  "zh-CN": { translation: zhHans },
+  "zh-TW": { translation: zhHant }
 }
 
 export const LOCALE_BROWSER_MAPPINGS: Record<string, string> = {
@@ -46,8 +46,6 @@ export const LOCALE_BROWSER_MAPPINGS: Record<string, string> = {
   'nl-NL': 'nl',
   'tr': 'tr',
   'tr-TR': 'tr',
-  'zh-CN': 'zh-hans',
-  'zh-TW': 'zh-hant',
   'ko': 'ko',
   'ko-KR': 'ko',
   'ro': 'ro',
@@ -76,8 +74,8 @@ export const LOCALE_TEXTS: Record<string, string> = {
   de: "Deutsch",
   nl: "Nederlands",
   tr: "Türkçe",
-  'zh-hans': "简体中文",
-  'zh-hant': "繁体中文",
+  'zh-CN': "简体中文",
+  'zh-TW': "繁体中文",
   ko: "한국어",
   ro: "Română",
   es: "Español",
