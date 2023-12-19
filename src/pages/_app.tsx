@@ -12,7 +12,14 @@ import { Inter } from 'next/font/google'
 import { useTranslation, I18nextProvider } from 'react-i18next'
 import i18n from '@plugins/i18n'
 import NoSSR from '@components/NoSSR'
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 const inter = Inter({ subsets: ['latin'] })
 
 export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
@@ -64,15 +71,18 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
               <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
             </NextHead>
             <NoSSR>
-              <I18nextProvider i18n={i18n}>
-                {isConnected ? (
-                  <>{mounted && layout(<Component {...pageProps} />)}</>
-                ) : (
-                  <>
-                    <PleaseConnectWallet />
-                  </>
-                )}
-              </I18nextProvider>
+              <ThemeProvider theme={darkTheme}>
+                <I18nextProvider i18n={i18n}>
+                  {isConnected ? (
+                    <>{mounted && layout(<Component {...pageProps} />)}</>
+                  ) : (
+                    <>
+                      <PleaseConnectWallet />
+                    </>
+                  )}
+                </I18nextProvider>
+              </ThemeProvider>
+
             </NoSSR>
           </RainbowKitProvider>
         </WagmiConfig>

@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next'
 import { Refresh } from '@ricons/ionicons5'
 import { inscriptions } from '@config/mocks'
 import Scription from '@components/Scription'
-
 const Page: NextPageWithLayout = () => {
   const { t } = useTranslation()
   return <>

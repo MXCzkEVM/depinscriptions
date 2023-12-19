@@ -12,7 +12,7 @@ function LocaleButton() {
   }
   function renderTrigger() {
     return (
-      <button className='cursor-pointer inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 md:hidden'>
+      <button className='cursor-pointer inline-flex items-center rounded-lg p-2 text-sm text-[hsla(0,0%,100%,.6)] focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 md:hidden'>
         <Icon size={24}>
           <Language />
         </Icon>

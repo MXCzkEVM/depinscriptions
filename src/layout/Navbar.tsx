@@ -8,7 +8,7 @@ import LocaleButton from './components/LocaleButton'
 const LayoutNavbar: React.FC = () => {
   const router = useRouter()
   return (
-    <Navbar className='relative top-0 bg-transparent' fluid={true} rounded={true}>
+    <Navbar className='relative top-0 dark:bg-transparent' fluid={true} rounded={true}>
       <Navbar.Brand href="https://doc.mxc.com/">
         <img src="https://nft.mxc.com/mxc-logo.svg" alt="" />
       </Navbar.Brand>
@@ -16,14 +16,14 @@ const LayoutNavbar: React.FC = () => {
         <div className='scale-90'>
           <ConnectButton />
         </div>
-        <Navbar.Toggle />
+        <Navbar.Toggle className='text-[hsla(0,0%,100%,.6)] hover:bg-transparent' />
         <LocaleButton />
       </div>
       <div className='hidden md:block flex-1'></div>
       <Navbar.Collapse>
-        <div className='cursor-pointer text-[hsla(0,0%,100%,.6)] hover:text-white' onClick={() => router.push(`/`)}>Home</div>
-        <div className='cursor-pointer text-[hsla(0,0%,100%,.6)] hover:text-white' onClick={() => router.push(`/tokens`)}>Tokens</div>
-        <div className='cursor-pointer text-[hsla(0,0%,100%,.6)] hover:text-white' onClick={() => router.push(`/personal`)}>Personal</div>
+        <div className='cursor-pointer p-2 md:p-0 text-[hsla(0,0%,100%,.6)] hover:text-white' onClick={() => router.push(`/`)}>Home</div>
+        <div className='cursor-pointer p-2 md:p-0 text-[hsla(0,0%,100%,.6)] hover:text-white' onClick={() => router.push(`/tokens`)}>Tokens</div>
+        <div className='cursor-pointer p-2 md:p-0 text-[hsla(0,0%,100%,.6)] hover:text-white' onClick={() => router.push(`/personal`)}>Personal</div>
       </Navbar.Collapse>
     </Navbar>
   )
