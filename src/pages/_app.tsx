@@ -13,11 +13,15 @@ import { useTranslation, I18nextProvider } from 'react-i18next'
 import i18n from '@plugins/i18n'
 import NoSSR from '@components/NoSSR'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
+    primary: {
+      main: '#6300ff'
+    },
+    secondary: {
+      main: '#fff'
+    }
   },
 });
 const inter = Inter({ subsets: ['latin'] })
