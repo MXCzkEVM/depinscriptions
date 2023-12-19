@@ -1,6 +1,5 @@
 import React from 'react'
 import { Toaster } from 'react-hot-toast'
-import FooterComponent from './Footer'
 import Navbar from './Navbar'
 import NoSSR from '@components/NoSSR'
 
@@ -18,7 +17,6 @@ const Layout: React.FC<Props> = ({ children }: Props) => {
         {children}
       </div>
       <Toaster position="top-right" />
-      <FooterComponent />
     </>
   )
 }

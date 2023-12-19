@@ -10,3 +10,8 @@
 .icon svg:not([fill]) {
   fill: currentColor
 }
+
+body {
+  background: rgb(42, 15, 105);
+  color: #fff
+}
