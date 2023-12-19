@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Tick {
+  tick        String      @unique @id
+  minted      BigInt      @default(0)
+  total       BigInt      @default(0)
+  holders     BigInt      @default(0)
+  creator     String
+  limit       BigInt
+  json        String
+  lastTime    DateTime    @updatedAt
+  deployTime  DateTime
+}
+
+model Holder {
+  id          Int         @default(autoincrement()) @id
+  tick        String
+  value       BigInt
+  owner       String
+}
+
+model Transaction {
+  hash        String    @id
+  tick        String
+  from        String
+  to          String
+  vin         String
+  vout        String
+  time        DateTime
+}
