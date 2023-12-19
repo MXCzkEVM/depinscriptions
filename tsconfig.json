@@ -18,6 +18,7 @@
     "noImplicitAny": false,
     "paths": {
       "@components/*": ["./components/*"],
+      "@layout/*": ["./layout/*"],
       "@pages/*": ["./pages/*"],
       "@config/*": ["./config/*"],
       "@styles/*": ["./styles/*"],

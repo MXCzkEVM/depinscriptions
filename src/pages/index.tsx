@@ -1,15 +1,11 @@
 import { Card } from 'flowbite-react'
 import { NextPageWithLayout } from './_app'
-import Layout from '@components/Layout'
+import Layout from '@layout/Layout'
 import { ReactElement } from 'react'
 
 const Page: NextPageWithLayout = () => {
   return (
-    <>
-      <div className="mx-auto w-3/5">
-        <Card>Create an ERC20 token on zkEVM</Card>
-      </div>
-    </>
+    <Card>Create an ERC20 token on zkEVM</Card>
   )
 }
 

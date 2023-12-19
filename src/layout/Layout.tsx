@@ -1,4 +1,3 @@
-import { ConnectButton } from '@rainbow-me/rainbowkit'
 import React from 'react'
 import { Toaster } from 'react-hot-toast'
 import FooterComponent from './Footer'
@@ -12,7 +11,9 @@ const Layout: React.FC<Props> = ({ children }: Props) => {
   return (
     <>
       <Navbar />
-      {children}
+      <div className='max-w-7xl mx-auto px-4 sm:px-6 md:px-8'>
+        {children}
+      </div>
       <Toaster position="top-right" />
       <FooterComponent />
     </>
