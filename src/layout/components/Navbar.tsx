@@ -3,7 +3,7 @@ import { Navbar } from 'flowbite-react'
 import React from 'react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useRouter } from 'next/router'
-import LocaleButton from './components/LocaleButton'
+import LocaleButton from './LocaleButton'
 
 const LayoutNavbar: React.FC = () => {
   const router = useRouter()

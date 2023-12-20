@@ -1,7 +1,7 @@
 import React from 'react'
 import { Toaster } from 'react-hot-toast'
-import Navbar from './Navbar'
-import NoSSR from '@components/NoSSR'
+import Navbar from './components/Navbar'
+import { NoSSR } from '@/components'
 
 type Props = {
   children: React.ReactNode

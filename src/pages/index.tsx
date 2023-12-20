@@ -1,12 +1,12 @@
-import Icon from '@components/Icon'
-import { NextPageWithLayout } from './_app'
-import Layout from '@layout/Layout'
+import {Icon} from '@/components'
+import { Layout } from '@/layout'
 import { ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Refresh } from '@ricons/ionicons5'
-import { inscriptions } from '@config/mocks'
-import Scription from '@components/Scription'
-const Page: NextPageWithLayout = () => {
+import { MOCK_INSCRIPTIONS } from '@/config'
+import { Scription } from '@/components'
+
+function Page() {
   const { t } = useTranslation()
   return <>
     <div className='flex justify-between mt-[30px]'>
@@ -19,7 +19,7 @@ const Page: NextPageWithLayout = () => {
       </div>
     </div>
     <div className='grid mp:grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-[1.25rem] mt-[2rem]'>
-      {inscriptions.map(item => <Scription key={item.id} data={item} />)}
+      {MOCK_INSCRIPTIONS.map(item => <Scription key={item.id} data={item} />)}
     </div>
   </>
 }

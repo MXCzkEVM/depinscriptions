@@ -1,8 +1,8 @@
 import { Dropdown } from 'flowbite-react';
 import { Language } from '@ricons/ionicons5'
-import { LOCALE_TEXTS } from '@config/i18n';
-import i18n from '@plugins/i18n';
-import Icon from '@components/Icon';
+import { LOCALE_TEXTS } from '@/config';
+import { i18n } from '@/plugins';
+import { Icon } from '@/components';
 
 const locales = Object.keys(LOCALE_TEXTS).map(key => ({ value: key, label: LOCALE_TEXTS[key] }))
 
@@ -21,7 +21,7 @@ function LocaleButton() {
   }
 
   return <>
-   <Dropdown label="Language" renderTrigger={() => renderTrigger()}>
+    <Dropdown label="Language" renderTrigger={() => renderTrigger()}>
       {locales.map(({ label, value }) => (
         <Dropdown.Item key={value} onClick={() => changeLocal(value)} >
           {label}

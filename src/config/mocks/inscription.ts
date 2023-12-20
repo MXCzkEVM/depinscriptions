@@ -1,4 +1,4 @@
-export const inscriptions = [
+export const MOCK_INSCRIPTIONS = [
   {
       "id": "0xb14e21e21eb53f2db8a829b8df0bfa5aa45d920cc849149e63bb1556707c929d",
       "number": "69656016",

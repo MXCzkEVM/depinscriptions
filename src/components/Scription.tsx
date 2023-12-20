@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 function Scription(props: { data: any }) {
-  return <div className='flex rounded-lg shadow-md dark:border-gray-700 dark:bg-gray-800 flex-col hover:border-purple-500 cursor-pointer overflow-hidden hover'>
-    <div className="p-4 overflow-x-hidden overflow-y-auto flex-1 bg-[rgb(39,42,48)]">
+  return <div  className='flex rounded-lg shadow-md dark:border-gray-700 dark:bg-gray-800 flex-col hover:border-purple-500 cursor-pointer overflow-hidden hover'>
+    <div className="p-4 overflow-x-hidden overflow-y-auto flex-1 bg-[rgb(39,42,48)]" style={{background: 'rgb(22 21 21 / 20%)'}}>
       <pre className="text-sm break-all whitespace-pre-wrap">
         {JSON.stringify(JSON.parse(props.data.content), null, 2)}
       </pre>
