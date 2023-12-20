@@ -7,6 +7,7 @@ import { Card } from '@mui/material'
 import { MOCK_TOKENS } from '@/config'
 import { LinearProgressWithLabel } from '@/components';
 import dayjs from 'dayjs'
+import { useRouter } from 'next/router';
 
 const columns: GridColDef[] = [
   { field: 'tick', headerName: 'Token', minWidth: 120, flex: 1 },
@@ -31,20 +32,20 @@ const columns: GridColDef[] = [
       return (
         <div className='flex justify-between w-full'>
           <span>{params.row.trxs}</span>
-          <div>》</div>
         </div>
       )
     },
   },
 ];
 
-
 // Retrieve tokens deployed by a user
 function Page() {
+  const router = useRouter()
   const [value, setValue] = React.useState(0);
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
+  
   return (
     <>
       <div className="mx-auto mt-9 mb-14 w-full text-center">
@@ -80,7 +81,7 @@ function Page() {
             getRowId={(row) => row.tick}
             columns={columns}
             hideFooterSelectedRowCount
-            onRowClick={() => {console.log('----')}}
+            onRowClick={({row}) => router.push(`/tokens/detail?token=${row.tick}`)}
           />
         </CardContent>
       </Card>
