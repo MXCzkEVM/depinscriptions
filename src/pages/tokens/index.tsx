@@ -5,13 +5,37 @@ import React from 'react'
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { Card } from '@mui/material'
 import { MOCK_TOKENS } from '@/config'
+import { LinearProgressWithLabel } from '@/components';
+import dayjs from 'dayjs'
 
 const columns: GridColDef[] = [
-  { field: 'tick', headerName: 'Token', minWidth: 120 },
-  { field: 'createdAt', headerName: 'Deploy Time', minWidth: 180 },
-  { field: 'progress', headerName: 'Progress', minWidth: 210 },
-  { field: 'holders', headerName: 'Holder', minWidth: 150 },
-  { field: 'trxs', headerName: 'Transactions', minWidth: 180 },
+  { field: 'tick', headerName: 'Token', minWidth: 120, flex: 1 },
+  {
+    field: 'createdAt', headerName: 'Deploy Time', minWidth: 180, flex: 1,
+    renderCell(params) {
+      return dayjs(params.row.createdAt).format('YYYY-MM-DD HH:mm:ss')
+    },
+  },
+  {
+    field: 'minted', headerName: 'Progress', minWidth: 210, flex: 1,
+    renderCell() {
+      return <div className='w-full mr-6'>
+        <LinearProgressWithLabel value={100} />
+      </div>
+    },
+  },
+  { field: 'holder', headerName: 'Holder', minWidth: 150, flex: 1 },
+  {
+    field: 'trxs', headerName: 'Transactions', minWidth: 180, flex: 1,
+    renderCell(params) {
+      return (
+        <div className='flex justify-between w-full'>
+          <span>{params.row.trxs}</span>
+          <div>》</div>
+        </div>
+      )
+    },
+  },
 ];
 
 
@@ -51,16 +75,12 @@ function Page() {
             <TextField className='hidden md:block' color='secondary' size="small" variant="outlined" placeholder='Ava' />
           </div>
           <DataGrid
-            className='border-none'
+            className='border-none data-grid-with-row-pointer'
             rows={MOCK_TOKENS}
             getRowId={(row) => row.tick}
             columns={columns}
-            initialState={{
-              pagination: {
-                paginationModel: { page: 0, pageSize: 15 },
-              },
-            }}
             hideFooterSelectedRowCount
+            onRowClick={() => {console.log('----')}}
           />
         </CardContent>
       </Card>

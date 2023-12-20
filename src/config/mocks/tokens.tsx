@@ -2,12 +2,10 @@ export const MOCK_TOKENS = [
   {
     "tick": "avav",
     "number": "22126343",
-    "precision": 0,
-    "max": "1463636349000000",
+    "total": "1463636349000000",
     "limit": "69696969",
     "minted": "1463636349000000",
-    "holders": 50516,
-    "progress": 1000000,
+    "holder": 50516,
     "trxs": 21099075,
     "createdAt": 1700888064,
     "completedAt": 1702782070
@@ -15,12 +13,10 @@ export const MOCK_TOKENS = [
   {
     "tick": "dino",
     "number": "26179229",
-    "precision": 0,
-    "max": "2100000000000000",
+    "total": "2100000000000000",
     "limit": "100000000",
     "minted": "1194720944651456",
-    "holders": 41306,
-    "progress": -2055,
+    "holder": 41306,
     "trxs": 11984858,
     "createdAt": 1702042349,
     "completedAt": 0
@@ -28,12 +24,10 @@ export const MOCK_TOKENS = [
   {
     "tick": "aval",
     "number": "191987",
-    "precision": 0,
-    "max": "2100000000000000",
+    "total": "2100000000000000",
     "limit": "100000000",
     "minted": "2100000000000000",
-    "holders": 22916,
-    "progress": 1000000,
+    "holder": 22916,
     "trxs": 21001444,
     "createdAt": 1700325965,
     "completedAt": 1700727864
@@ -41,12 +35,10 @@ export const MOCK_TOKENS = [
   {
     "tick": "BEEG",
     "number": "59894737",
-    "precision": 0,
-    "max": "1000000000",
+    "total": "1000000000",
     "limit": "1000",
     "minted": "1000000000",
-    "holders": 12253,
-    "progress": 1000000,
+    "holder": 12253,
     "trxs": 1018160,
     "createdAt": 1702846912,
     "completedAt": 1702863540
@@ -54,12 +46,10 @@ export const MOCK_TOKENS = [
   {
     "tick": "asct",
     "number": "22668540",
-    "precision": 0,
-    "max": "21000000",
+    "total": "21000000",
     "limit": "2",
     "minted": "21000000",
-    "holders": 9492,
-    "progress": 1000000,
+    "holder": 9492,
     "trxs": 10580599,
     "createdAt": 1701910048,
     "completedAt": 1702196919
@@ -67,12 +57,10 @@ export const MOCK_TOKENS = [
   {
     "tick": "HCTs",
     "number": "63488050",
-    "precision": 0,
-    "max": "210000000",
+    "total": "210000000",
     "limit": "1000",
     "minted": "210000000",
-    "holders": 4207,
-    "progress": 1000000,
+    "holder": 4207,
     "trxs": 214667,
     "createdAt": 1702900906,
     "completedAt": 1702906358
@@ -80,12 +68,10 @@ export const MOCK_TOKENS = [
   {
     "tick": "Tduck",
     "number": "45659830",
-    "precision": 0,
-    "max": "210000000",
+    "total": "210000000",
     "limit": "1000",
     "minted": "210000000",
-    "holders": 3092,
-    "progress": 1000000,
+    "holder": 3092,
     "trxs": 212097,
     "createdAt": 1702620600,
     "completedAt": 1702869585
@@ -93,12 +79,10 @@ export const MOCK_TOKENS = [
   {
     "tick": "ascv",
     "number": "36234231",
-    "precision": 0,
-    "max": "100000000",
+    "total": "100000000",
     "limit": "100000000",
     "minted": "100000000",
-    "holders": 1893,
-    "progress": 1000000,
+    "holder": 1893,
     "trxs": 16910,
     "createdAt": 1702455024,
     "completedAt": 1702455225
@@ -106,12 +90,10 @@ export const MOCK_TOKENS = [
   {
     "tick": "avas",
     "number": "1",
-    "precision": 0,
-    "max": "21000000",
+    "total": "21000000",
     "limit": "1000",
     "minted": "21000000",
-    "holders": 1565,
-    "progress": 1000000,
+    "holder": 1565,
     "trxs": 40494,
     "createdAt": 1687969025,
     "completedAt": 1700286769
@@ -119,12 +101,10 @@ export const MOCK_TOKENS = [
   {
     "tick": "bull",
     "number": "22595911",
-    "precision": 0,
-    "max": "2100000000000000",
+    "total": "2100000000000000",
     "limit": "100000000",
     "minted": "5826400005000",
-    "holders": 1426,
-    "progress": 2774,
+    "holder": 1426,
     "trxs": 58387,
     "createdAt": 1701537487,
     "completedAt": 0
@@ -132,12 +112,10 @@ export const MOCK_TOKENS = [
   {
     "tick": "BTC",
     "number": "161207",
-    "precision": 0,
-    "max": "21000000",
+    "total": "21000000",
     "limit": "100",
     "minted": "21000000",
-    "holders": 1081,
-    "progress": 1000000,
+    "holder": 1081,
     "trxs": 211609,
     "createdAt": 1700293534,
     "completedAt": 1702308104
@@ -145,12 +123,10 @@ export const MOCK_TOKENS = [
   {
     "tick": "beec",
     "number": "61735060",
-    "precision": 0,
-    "max": "21000000",
+    "total": "21000000",
     "limit": "1000",
     "minted": "21000000",
-    "holders": 997,
-    "progress": 1000000,
+    "holder": 997,
     "trxs": 21285,
     "createdAt": 1702874393,
     "completedAt": 1702911355
@@ -158,12 +134,10 @@ export const MOCK_TOKENS = [
   {
     "tick": "atxs",
     "number": "34875831",
-    "precision": 0,
-    "max": "10000",
+    "total": "10000",
     "limit": "1",
     "minted": "10000",
-    "holders": 928,
-    "progress": 1000000,
+    "holder": 928,
     "trxs": 12488,
     "createdAt": 1702413734,
     "completedAt": 1702414291
@@ -171,12 +145,10 @@ export const MOCK_TOKENS = [
   {
     "tick": "BEEs",
     "number": "65451686",
-    "precision": 0,
-    "max": "21000000",
+    "total": "21000000",
     "limit": "1000",
     "minted": "21000000",
-    "holders": 924,
-    "progress": 1000000,
+    "holder": 924,
     "trxs": 21462,
     "createdAt": 1702932299,
     "completedAt": 1702935743
@@ -184,12 +156,10 @@ export const MOCK_TOKENS = [
   {
     "tick": "spacex",
     "number": "260681",
-    "precision": 0,
-    "max": "21000000",
+    "total": "21000000",
     "limit": "1000",
     "minted": "21000000",
-    "holders": 897,
-    "progress": 1000000,
+    "holder": 897,
     "trxs": 21398,
     "createdAt": 1700353563,
     "completedAt": 1702874533

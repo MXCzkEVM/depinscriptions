@@ -1,6 +1,6 @@
 import i18n, { InitOptions } from "i18next"
 import LanguageDetector from 'i18next-browser-languagedetector'
-import { LOCALE_BROWSER_MAPPINGS, LOCALE_RESOURCES } from "@config/i18n";
+import { LOCALE_BROWSER_MAPPINGS, LOCALE_RESOURCES } from "@/config";
 
 const languageDetector = new LanguageDetector();
 

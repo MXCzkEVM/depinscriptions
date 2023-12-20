@@ -11,7 +11,7 @@ function PleaseConnectWallet() {
             {t('Please connect your wallet')}
           </h2>
           <p className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
-            {t('A better way to mxc20 tokens')}
+            {t('A better way to msc20 tokens')}
           </p>
           <div className="flex flex-col items-center mt-6 text-lg leading-8 text-white">
             <ConnectButton />

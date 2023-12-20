@@ -15,3 +15,7 @@ body {
   background: rgb(42, 15, 105);
   color: #fff
 }
+
+.data-grid-with-row-pointer .MuiDataGrid-row {
+  cursor: pointer;
+}
