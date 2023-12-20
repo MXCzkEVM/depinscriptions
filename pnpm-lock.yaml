@@ -17,12 +17,18 @@ importers:
       '@hairy/utils':
         specifier: ^0.6.4
         version: 0.6.4
+      '@mui/lab':
+        specifier: 5.0.0-alpha.157
+        version: 5.0.0-alpha.157(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@mui/material@5.15.1)(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)
       '@mui/material':
         specifier: ^5.15.1
         version: 5.15.1(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-data-grid':
         specifier: ^6.18.5
         version: 6.18.5(@mui/material@5.15.1)(@mui/system@5.15.1)(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)
+      '@overlays/react':
+        specifier: ^0.4.3
+        version: 0.4.3(react-dom@18.2.0)(react@18.2.0)
       '@rainbow-me/rainbowkit':
         specifier: ^0.8.1
         version: 0.8.1(@types/react@18.2.45)(ethers@5.7.2)(react-dom@18.2.0)(react@18.2.0)(wagmi@0.10.15)
@@ -2078,6 +2084,39 @@ packages:
     resolution: {integrity: sha512-y/nUEsWHyBzaKYp9zLtqJKrLod/zMNEWpMj488FuQY9QTmqBiyUhI2uh7PVaLqLewXRtdmG6JV0b6T5exyuYRw==}
     dev: false
 
+  /@mui/lab@5.0.0-alpha.157(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@mui/material@5.15.1)(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-gY7UM2kNSxiVLfsm0o6HG2G5rM2Vr47prJhDCazY+VG/NOSRc8CG7la6dpL9WDTJhotEZdWwfj1FOUxTonmuQA==}
+    engines: {node: '>=12.0.0'}
+    peerDependencies:
+      '@emotion/react': ^11.5.0
+      '@emotion/styled': ^11.3.0
+      '@mui/material': '>=5.10.11'
+      '@types/react': ^17.0.0 || ^18.0.0
+      react: ^17.0.0 || ^18.0.0
+      react-dom: ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      '@emotion/react':
+        optional: true
+      '@emotion/styled':
+        optional: true
+      '@types/react':
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.23.6
+      '@emotion/react': 11.11.1(@types/react@18.2.45)(react@18.2.0)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.1)(@types/react@18.2.45)(react@18.2.0)
+      '@mui/base': 5.0.0-beta.28(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)
+      '@mui/material': 5.15.1(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)
+      '@mui/system': 5.15.1(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@types/react@18.2.45)(react@18.2.0)
+      '@mui/types': 7.2.11(@types/react@18.2.45)
+      '@mui/utils': 5.15.1(@types/react@18.2.45)(react@18.2.0)
+      '@types/react': 18.2.45
+      clsx: 2.0.0
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
   /@mui/material@5.15.1(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-WA5DVyvacxDakVyAhNqu/rRT28ppuuUFFw1bLpmRzrCJ4uw/zLTATcd4WB3YbB+7MdZNEGG/SJNWTDLEIyn3xQ==}
     engines: {node: '>=12.0.0'}
@@ -2792,6 +2831,22 @@ packages:
   /@opentelemetry/semantic-conventions@1.19.0:
     resolution: {integrity: sha512-14jRpC8f5c0gPSwoZ7SbEJni1PqI+AhAE8m1bMz6v+RPM4OlP1PT2UHBJj5Qh/ALLPjhVU/aZUK3YyjTUqqQVg==}
     engines: {node: '>=14'}
+    dev: false
+
+  /@overlays/core@0.4.3:
+    resolution: {integrity: sha512-zV7w5wOVsOCrGaK3I1b5l+ONrKJJWEngugtbYkNS309JO0XwLSaqPS3dItB/yGjiLQMkjjC0tWkqOpHh8liGHg==}
+    dev: false
+
+  /@overlays/react@0.4.3(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-P4JYEKJOt1+N1I0XGmp99J05kmIVF3+txfDwMhCogYIbxzQ9B7ny2dmryw5Qc6Tilu/Dj/SgqMbdyQdrVaa4aQ==}
+    peerDependencies:
+      react: '>=18'
+      react-dom: '>=18'
+    dependencies:
+      '@overlays/core': 0.4.3
+      pascal-case: 3.1.2
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /@parcel/watcher-android-arm64@2.3.0:

@@ -19,3 +19,6 @@ body {
 .data-grid-with-row-pointer .MuiDataGrid-row {
   cursor: pointer;
 }
+.Mui-focused:after {
+  display: none !important
+}

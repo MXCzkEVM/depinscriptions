@@ -1,13 +1,15 @@
 import { Layout } from "@/layout"
 import { ReactElement, useState } from "react"
 import { } from '@hairy/utils'
-import { useRouterParams } from "@/hooks"
+import { useRouterParams, useSendSatsTransaction } from "@/hooks"
 import { FieldCol, Icon, LinearProgressWithLabel } from "@/components"
 import { ArrowBackSharp } from "@ricons/ionicons5"
 import { Button, Card, CardContent, Divider, Tab, Tabs } from "@mui/material"
 import { DataGrid, GridColDef } from "@mui/x-data-grid"
 import { MOCK_HOLDERS } from "@/config"
 import { useRouter } from "next/router"
+import { LoadingButton } from "@mui/lab"
+import { useAccount } from "wagmi"
 
 function Page() {
   const router = useRouter()
@@ -19,7 +21,7 @@ function Page() {
 
   const columns: GridColDef[] = [
     {
-      field: 'rank', headerName: 'Rank', minWidth: 120, renderCell(params) {
+      field: 'rank', headerName: 'Rank', minWidth: 120, renderCell() {
         return 1
       },
     },
@@ -27,7 +29,7 @@ function Page() {
       field: 'address', headerName: 'Address', minWidth: 180, flex: 1,
     },
     {
-      field: 'percentage', headerName: 'Percentage',  flex: 1,
+      field: 'percentage', headerName: 'Percentage', flex: 1,
       renderCell() {
         return <div className='w-[122px] mr-6'>
           <LinearProgressWithLabel value={100} />
@@ -36,6 +38,28 @@ function Page() {
     },
     { field: 'value', headerName: 'Value', minWidth: 150 },
   ];
+  const { address } = useAccount()
+  const { isLoading, sendTransaction } = useSendSatsTransaction({
+    data: {
+      tick: token,
+      p: "msc-20",
+      op: "mint",
+      amt: '2',
+      hex: '#fff'
+    },
+    onSuccess(data) {
+      const resolved = {
+        hash: data.hash,
+        json: data.json,
+        op: 'mint',
+        tick: token,
+        from: address,
+        to: address,
+      }
+      console.log(resolved)
+    },
+  })
+
   return <>
     <div className="flex items-center mt-[3.125rem] mb-[2.25rem] gap-2 cursor-pointer" onClick={() => router.replace('/tokens')}>
       <Icon>
@@ -53,7 +77,9 @@ function Page() {
       <CardContent>
         <div className="mb-3 flex justify-between">
           <span className="text-xl font-bold">Overview</span>
-          <Button variant="contained">Mint Directly</Button>
+          <LoadingButton loading={isLoading} variant="contained" onClick={() => sendTransaction?.()}>
+            Mint Directly
+          </LoadingButton>
         </div>
         <Divider />
         <FieldCol label="Scription ID">

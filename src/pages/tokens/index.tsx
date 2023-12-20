@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Layout } from '@/layout'
 import { Button, CardContent, Tab, Tabs, TextField, Typography } from '@mui/material'
 import { ReactElement } from 'react'
@@ -8,6 +9,8 @@ import { MOCK_TOKENS } from '@/config'
 import { LinearProgressWithLabel } from '@/components';
 import dayjs from 'dayjs'
 import { useRouter } from 'next/router';
+import {useInjectHolder} from '@overlays/react'
+import DeployDialog from '@/components/DeployDialog';
 
 const columns: GridColDef[] = [
   { field: 'tick', headerName: 'Token', minWidth: 120, flex: 1 },
@@ -45,9 +48,16 @@ function Page() {
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
+
+  const [holder, openDeployDialog] = useInjectHolder<unknown, any>(DeployDialog)
   
+  async function deploy() {
+    const resolved = await openDeployDialog()
+    console.log(resolved)
+  }
   return (
-    <>
+    <> 
+      {holder}
       <div className="mx-auto mt-9 mb-14 w-full text-center">
         <span className="md:text-3xl text-center mt-[41px] mp:mb-[18px] select-none text-[#6300ff]"> Check out mxc-20 balance of the address. </span>
       </div>
@@ -59,7 +69,7 @@ function Page() {
         <Typography variant='h6' component="span">
           The full list of tokens
         </Typography>
-        <Button type="button" variant='contained'>Deploy</Button>
+        <Button onClick={deploy} type="button" variant='contained'>Deploy</Button>
       </div>
       <Card style={{ background: 'rgb(22 21 21 / 20%)' }}>
         <CardContent>

@@ -18,7 +18,7 @@ model Tick {
   holders     BigInt      @default(0)
   creator     String
   limit       BigInt
-  json        String
+  deployHash  String      @unique
   lastTime    DateTime    @updatedAt
   deployTime  DateTime
 }
@@ -30,12 +30,12 @@ model Holder {
   owner       String
 }
 
-model Transaction {
+model Inscription {
   hash        String    @id
+  op          String
   tick        String
+  json        String
   from        String
   to          String
-  vin         String
-  vout        String
-  time        DateTime
+  time        DateTime @default(now())
 }
