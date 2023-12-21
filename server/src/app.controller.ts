@@ -1,8 +1,8 @@
-import { Body, Controller, Get, Post } from '@nestjs/common'
-import type { Inscription, Prisma } from '@prisma/client'
-import type { InscriptionService } from './services/inscription.service'
-import type { HolderService } from './services/holder.service'
-import type { TickService } from './services/tick.service'
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { InscriptionService } from './services/inscription.service';
+import { Inscription, Prisma } from '@prisma/client';
+import { HolderService } from './services/holder.service';
+import { TickService } from './services/tick.service';
 
 @Controller()
 export class AppController {
@@ -16,14 +16,14 @@ export class AppController {
   async selectInscriptions(): Promise<Inscription[]> {
     return this.inscriptionService.inscriptions({
       orderBy: { number: 'asc' },
-    })
+    });
   }
 
   @Post('inscription')
   async createInscription(
     @Body() data: Omit<Prisma.InscriptionCreateInput, 'time'>,
   ) {
-    const inscription = JSON.parse(data.json)
+    const inscription = JSON.parse(data.json);
     if (inscription.op === 'deploy') {
       await this.tickService.createTick({
         creator: data.from,
@@ -31,7 +31,7 @@ export class AppController {
         deployTime: new Date(),
         limit: inscription.lim,
         tick: data.tick,
-      })
+      });
     }
     if (inscription.op === 'mint') {
       // this.holderService.
