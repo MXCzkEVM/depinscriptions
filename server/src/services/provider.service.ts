@@ -1,19 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import {
-  BlockTag,
-  JsonRpcProvider,
-  Block,
-  TransactionResponse,
-  FetchRequest,
-} from 'ethers';
+import { BlockTag, JsonRpcProvider, Block, TransactionResponse } from 'ethers';
 import { arange } from '@hairy/utils';
-import { ethersGetUrl } from 'src/utils/fetch-request';
 
 export interface BlockWithTransactions extends Omit<Block, 'transactions'> {
   transactions: Array<TransactionResponse>;
 }
-FetchRequest.registerGetUrl(ethersGetUrl);
 @Injectable()
 export class jsonProviderService {
   private provider: JsonRpcProvider;
