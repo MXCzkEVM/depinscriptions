@@ -26,16 +26,17 @@ model Tick {
 model Holder {
   id          Int         @default(autoincrement()) @id
   tick        String
-  value       BigInt
   owner       String
+  value       BigInt
 }
 
 model Inscription {
-  hash        String    @id
+  number      Int       @default(autoincrement()) @id
+  hash        String    @unique
   op          String
   tick        String
   json        String
   from        String
   to          String
-  time        DateTime @default(now())
+  time        DateTime  @default(now())
 }

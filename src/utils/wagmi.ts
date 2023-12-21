@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { createClient } from 'wagmi'
+import { goerli } from 'wagmi/chains'
 import { configureChains } from '@wagmi/core'
 import { jsonRpcProvider } from '@wagmi/core/providers/jsonRpc'
 import { Chain, InjectedConnector } from '@wagmi/core'
@@ -45,7 +46,8 @@ const defaultChains: Chain[] = [
       etherscan: { name: 'etherscan', url: 'https://wannsee-explorer.mxc.com' },
       default: { name: 'etherscan', url: 'https://wannsee-explorer.mxc.com' },
     },
-  }
+  },
+  goerli
 ]
 
 const providers = [
