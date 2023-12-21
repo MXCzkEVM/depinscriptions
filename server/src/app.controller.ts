@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common'
+import { Body, Controller, Get, Post } from '@nestjs/common'
 import { Inscription, Prisma } from '@prisma/client'
 import { InscriptionService } from './services/inscription.service'
 import { HolderService } from './services/holder.service'
