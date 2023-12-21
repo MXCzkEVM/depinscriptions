@@ -1,5 +1,5 @@
-import { Layout } from "@/layout"
-import { ReactElement } from "react"
+import type { ReactElement } from 'react'
+import { Layout } from '@/layout'
 
 function Page() {
   return <>131231</>

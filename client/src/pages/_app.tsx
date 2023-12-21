@@ -3,15 +3,14 @@ import '@/styles/globals.css'
 import { RainbowKitProvider } from '@rainbow-me/rainbowkit'
 import NextHead from 'next/head'
 import React from 'react'
-import { useAccount, WagmiConfig } from 'wagmi'
-import { chains, client } from '@/utils/wagmi'
+import { WagmiConfig, useAccount } from 'wagmi'
 import { I18nextProvider } from 'react-i18next'
+import { ThemeProvider } from '@mui/material/styles'
+import { chains, client } from '@/utils/wagmi'
 import { i18n } from '@/plugins'
 import { MountsProvider, NoSSR, PleaseConnectWallet } from '@/components'
-import { ThemeProvider } from '@mui/material/styles';
-import { AppPropsWithLayout } from '@/types'
+import type { AppPropsWithLayout } from '@/types'
 import { darkTheme, fontInter } from '@/config'
-
 
 // If wallet is connected -> display app
 // Else -> display connect prompt
@@ -19,9 +18,9 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const [mounted, setMounted] = React.useState(false)
   const { isConnected } = useAccount()
 
-  const layout = Component.layout ?? ((page) => page)
+  const layout = Component.layout ?? (page => page)
   React.useEffect(() => setMounted(true), [])
-  
+
   return (
     <>
       <div className={fontInter.className}>
@@ -34,15 +33,18 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
           { component: RainbowKitProvider, props: { chains } },
           { component: ThemeProvider, props: { theme: darkTheme } },
           { component: NoSSR },
-          { component: I18nextProvider, props: { i18n } }
-        ]}>
-          {isConnected ? (
-            <>{mounted && layout(<Component {...pageProps} />)}</>
-          ) : (
-            <>
-              <PleaseConnectWallet />
-            </>
-          )}
+          { component: I18nextProvider, props: { i18n } },
+        ]}
+        >
+          {isConnected
+            ? (
+              <>{mounted && layout(<Component {...pageProps} />)}</>
+              )
+            : (
+              <>
+                <PleaseConnectWallet />
+              </>
+              )}
         </MountsProvider>
       </div>
     </>

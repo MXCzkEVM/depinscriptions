@@ -1,31 +1,32 @@
-import { Dialog, Button, DialogActions, DialogContent, DialogContentText, DialogTitle, Input, Select, MenuItem, FormControl, InputLabel } from "@mui/material"
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, Input, InputLabel, MenuItem, Select } from '@mui/material'
 import { useOverlay } from '@overlays/react'
-import { DetailedHTMLProps, HTMLAttributes, useState } from "react"
-import { LoadingButton } from '@mui/lab';
+import type { DetailedHTMLProps, HTMLAttributes } from 'react'
+import { useState } from 'react'
+import { LoadingButton } from '@mui/lab'
 import { } from '@rainbow-me/rainbowkit'
-import { useSendSatsTransaction } from "@/hooks";
+import { useSendSatsTransaction } from '@/hooks'
 
 function DeployDialog() {
   const { visible, resolve, reject } = useOverlay({
-    duration: 500
+    duration: 500,
   })
-  const [country, setCountry] = useState('');
-  const [total, setTotal] = useState('');
-  const [limit, setLimit] = useState('');
+  const [country, setCountry] = useState('')
+  const [total, setTotal] = useState('')
+  const [limit, setLimit] = useState('')
 
   const [errors, setErrors] = useState({
-    tick: "",
-    total: "",
-    limit: ""
+    tick: '',
+    total: '',
+    limit: '',
   })
 
   const { sendTransaction, isLoading } = useSendSatsTransaction({
     data: {
-      p: "msc-20",
-      op: "mint",
+      p: 'msc-20',
+      op: 'mint',
       tick: country,
       max: total,
-      lim: limit
+      lim: limit,
     },
     onSuccess(data) {
       resolve({
@@ -39,7 +40,7 @@ function DeployDialog() {
   })
 
   async function onResolve() {
-    const helpers = { tick: "", total: "", limit: "" }
+    const helpers = { tick: '', total: '', limit: '' }
     if (!country)
       helpers.tick = 'Please select country and region'
     if (!total || +total <= 0)
@@ -79,7 +80,7 @@ function DeployDialog() {
                 labelId="country"
                 id="country"
                 placeholder="Country and Region"
-                onChange={(event) => setCountry(event.target.value)}
+                onChange={event => setCountry(event.target.value)}
                 value={country}
               >
                 <MenuItem value="">
@@ -94,9 +95,9 @@ function DeployDialog() {
           <Field label="Total Supply">
             <Input
               error={!!errors.total}
-              onChange={(event) => setTotal(event.target.value)}
+              onChange={event => setTotal(event.target.value)}
               value={total}
-              inputProps={{ min: "0" }}
+              inputProps={{ min: '0' }}
               type="number"
               className="w-full"
             />
@@ -104,9 +105,9 @@ function DeployDialog() {
           <Field label="Limit Per Mint">
             <Input
               error={!!errors.limit}
-              onChange={(event) => setLimit(event.target.value)}
+              onChange={event => setLimit(event.target.value)}
               value={limit}
-              inputProps={{ min: "0" }}
+              inputProps={{ min: '0' }}
               type="number"
               className="w-full"
             />
@@ -123,7 +124,7 @@ function DeployDialog() {
 
 function Field(props: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> & { label: string }) {
   return (
-    <div {...props} className={"flex items-center " + props.className}>
+    <div {...props} className={`flex items-center ${props.className}`}>
       <div className="w-[160px] text-white">{props.label}</div>
       <div className="flex-1">{props.children}</div>
     </div>

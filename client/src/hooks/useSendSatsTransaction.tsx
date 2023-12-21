@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { SendTransactionArgs, SendTransactionResult } from "@wagmi/core"
-import { toUtf8Bytes } from "ethers/lib/utils.js"
-import { useMemo, useState } from "react"
-import { useAccount, usePrepareSendTransaction, useSendTransaction } from "wagmi"
+import type { SendTransactionArgs, SendTransactionResult } from '@wagmi/core'
+import { toUtf8Bytes } from 'ethers/lib/utils.js'
+import { useMemo, useState } from 'react'
+import { useAccount, usePrepareSendTransaction, useSendTransaction } from 'wagmi'
 
 export interface UseSendSatsTransactionOptions {
   from?: string
@@ -28,7 +27,7 @@ export function useSendSatsTransaction(options: UseSendSatsTransactionOptions = 
     onError: (error, variables, context) => {
       options.onError?.(error, variables, context)
       setIsLoading(false)
-    }
+    },
   })
 
   async function onResolvedData(data: SendTransactionResult) {
@@ -39,20 +38,20 @@ export function useSendSatsTransaction(options: UseSendSatsTransactionOptions = 
     }
     options.onSuccess?.({
       hash: receipt.transactionHash,
-      json: json
+      json,
     })
   }
 
   const _sendTransaction: typeof sendTransaction = sendTransaction
     ? (...args: any) => {
-      setIsLoading(true)
-      sendTransaction(...args)
-    }
+        setIsLoading(true)
+        sendTransaction(...args)
+      }
     : undefined
 
   return {
     sendTransaction: _sendTransaction,
     isLoading,
-    address
+    address,
   }
 }

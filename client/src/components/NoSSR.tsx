@@ -1,5 +1,6 @@
-import dynamic from "next/dynamic"
-import React, { PropsWithChildren } from "react"
+import dynamic from 'next/dynamic'
+import type { PropsWithChildren } from 'react'
+import React from 'react'
 
 const _NoSSR = (props: PropsWithChildren) => <React.Fragment>{props.children}</React.Fragment>
 

@@ -1,17 +1,11 @@
-export const DEFAULT_SUPPLY = `1000000000000000000000000`
-
 import { BigNumber, ethers } from 'ethers'
 
-export const txLink = (hash: string) =>
-  `<a target="_blank" href=\`\${https://wannsee-explorer.mxc.com/tx/\${hash}\`>txn</a>`
+export const DEFAULT_SUPPLY = `1000000000000000000000000`
 
-export const sumBigNumbers = (numbers: BigNumber[]): BigNumber => {
+export function sumBigNumbers(numbers: BigNumber[]): BigNumber {
   let sum = BigNumber.from(0)
-  for (const number of numbers) {
+  for (const number of numbers)
     sum = sum.add(number)
-  }
-
-  console.log(`sum`, sum.toString())
   return sum
 }
 

@@ -1,5 +1,5 @@
-import { ConnectButton } from "@rainbow-me/rainbowkit"
-import { useTranslation } from "react-i18next"
+import { ConnectButton } from '@rainbow-me/rainbowkit'
+import { useTranslation } from 'react-i18next'
 
 function PleaseConnectWallet() {
   const { t } = useTranslation()

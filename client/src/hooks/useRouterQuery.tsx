@@ -1,4 +1,4 @@
-import { useRouter } from "next/router"
+import { useRouter } from 'next/router'
 
 export function useRouterQuery(key: string) {
   const router = useRouter()

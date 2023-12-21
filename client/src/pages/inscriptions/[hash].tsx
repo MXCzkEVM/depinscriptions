@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-empty-function */
-import { FieldCol } from "@/components"
-import { Layout } from "@/layout"
-import { Card, CardContent } from "@mui/material"
-import { DataGrid, GridColDef } from "@mui/x-data-grid"
-import { ReactElement } from "react"
+import { Card, CardContent } from '@mui/material'
+import type { GridColDef } from '@mui/x-data-grid'
+import { DataGrid } from '@mui/x-data-grid'
+import type { ReactElement } from 'react'
+import { Layout } from '@/layout'
+import { FieldCol } from '@/components'
 
 function Page() {
   const text = `  {
@@ -19,9 +18,9 @@ function Page() {
     { field: 'from', headerName: 'From', minWidth: 120, flex: 1 },
     { field: 'to', headerName: 'To', minWidth: 120, flex: 1 },
     { field: 'time', headerName: 'Time', minWidth: 180, flex: 1 },
-  ];
+  ]
   const rows = [
-    { event: 'Mint', from: "0x647b...c740", to: "0x647b...c740", time: "2023/12/20 17:15:35" },
+    { event: 'Mint', from: '0x647b...c740', to: '0x647b...c740', time: '2023/12/20 17:15:35' },
   ]
 
   return (
@@ -76,12 +75,12 @@ function Page() {
             Activity
           </div>
           <DataGrid
-            className='border-none'
+            className="border-none"
             rows={rows}
-            getRowId={(row) => row.from}
+            getRowId={row => row.from}
             columns={columns}
             hideFooterSelectedRowCount
-            slots={{pagination: (): any => {}}}
+            slots={{ pagination: (): any => {} }}
           />
         </CardContent>
       </Card>

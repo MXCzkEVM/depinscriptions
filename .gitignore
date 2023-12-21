@@ -15,6 +15,7 @@ node_modules
 .next
 out
 dist
+cache
 
 # production
 

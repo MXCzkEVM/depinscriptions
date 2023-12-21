@@ -1,10 +1,10 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { createClient } from 'wagmi'
 import { goerli } from 'wagmi/chains'
-import { configureChains } from '@wagmi/core'
+import type { Chain } from '@wagmi/core'
+import { InjectedConnector, configureChains } from '@wagmi/core'
 import { jsonRpcProvider } from '@wagmi/core/providers/jsonRpc'
-import { Chain, InjectedConnector } from '@wagmi/core'
-import { connectorsForWallets, } from '@rainbow-me/rainbowkit'
+
+import { connectorsForWallets } from '@rainbow-me/rainbowkit'
 import { metaMaskWallet } from '@rainbow-me/rainbowkit/wallets'
 
 /*
@@ -47,7 +47,7 @@ const defaultChains: Chain[] = [
       default: { name: 'etherscan', url: 'https://wannsee-explorer.mxc.com' },
     },
   },
-  goerli
+  goerli,
 ]
 
 const providers = [
@@ -58,24 +58,25 @@ const providers = [
   }),
 ]
 
-// @ts-ignore
 const { chains, provider, webSocketProvider } = configureChains(defaultChains, providers)
 
-const AXSWallet = ({ chains }) => ({
-  id: 'axs',
-  name: 'AXS Wallet',
-  iconUrl: '/AxsWallet.png',
-  iconBackground: '#FFFFFF',
-  description: 'AXS wallet web3 provider.',
-  createConnector: () => {
-    const connector = new InjectedConnector({
-      chains
-    })
-    return {
-      connector,
-    }
-  },
-})
+function AXSWallet({ chains }) {
+  return {
+    id: 'axs',
+    name: 'AXS Wallet',
+    iconUrl: '/AxsWallet.png',
+    iconBackground: '#FFFFFF',
+    description: 'AXS wallet web3 provider.',
+    createConnector: () => {
+      const connector = new InjectedConnector({
+        chains,
+      })
+      return {
+        connector,
+      }
+    },
+  }
+}
 
 const connectors = connectorsForWallets([
   {
@@ -87,10 +88,9 @@ const connectors = connectorsForWallets([
   },
 ])
 
-
 export const client = createClient({
   logger: {
-    warn: (message) => console.warn(message),
+    warn: message => console.warn(message),
   },
   // autoConnect: true,
   connectors,

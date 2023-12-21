@@ -1,4 +1,5 @@
-import { Box, LinearProgress, LinearProgressProps, Typography } from "@mui/material";
+import type { LinearProgressProps } from '@mui/material'
+import { Box, LinearProgress, Typography } from '@mui/material'
 
 function LinearProgressWithLabel(props: LinearProgressProps & { value: number, height?: string }) {
   return (
@@ -10,7 +11,7 @@ function LinearProgressWithLabel(props: LinearProgressProps & { value: number, h
         <Typography variant="body2" color="text.secondary">{`${Math.round(props.value)}%`}</Typography>
       </Box>
     </Box>
-  );
+  )
 }
 
 export default LinearProgressWithLabel

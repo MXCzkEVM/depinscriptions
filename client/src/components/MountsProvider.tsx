@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { ComponentClass, FC, PropsWithChildren } from 'react'
 import React, { useMemo } from 'react'
 
 export interface ComponentMeta {
-  component: FC<any> |  ComponentClass<any>
+  component: FC<any> | ComponentClass<any>
   props?: any
 }
 export interface MountsProviderProps {

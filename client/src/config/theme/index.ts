@@ -1,15 +1,15 @@
-import { createTheme } from "@mui/material";
-import { Inter } from "next/font/google";
+import { createTheme } from '@mui/material'
+import { Inter } from 'next/font/google'
 
 export const darkTheme = createTheme({
   palette: {
     mode: 'dark',
     primary: {
-      main: '#6300ff'
+      main: '#6300ff',
     },
     secondary: {
-      main: '#fff'
-    }
+      main: '#fff',
+    },
   },
 })
 
