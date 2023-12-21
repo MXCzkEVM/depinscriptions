@@ -7,5 +7,6 @@ export default antfu({
   rules: {
     'ts/no-require-imports': 'off',
     'no-console': 'off',
+    'ts/consistent-type-imports': 'off',
   },
 })

@@ -1,18 +1,18 @@
-import { Prisma } from '@prisma/client';
-import { PrismaService } from './prisma.service';
+import { Prisma } from '@prisma/client'
+import { PrismaService } from './prisma.service'
 
 export class InscriptionService {
   constructor(private prisma: PrismaService) {}
 
   async inscription(where: Prisma.InscriptionWhereUniqueInput) {
-    this.prisma.inscription.findUnique({ where });
+    this.prisma.inscription.findUnique({ where })
   }
 
   async inscriptions(params: Prisma.InscriptionFindManyArgs) {
-    return this.prisma.inscription.findMany(params);
+    return this.prisma.inscription.findMany(params)
   }
 
   async recordInscription(data: Prisma.InscriptionCreateInput) {
-    return this.prisma.inscription.create({ data });
+    return this.prisma.inscription.create({ data })
   }
 }
