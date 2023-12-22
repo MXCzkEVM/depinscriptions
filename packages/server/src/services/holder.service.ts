@@ -1,13 +1,18 @@
 import { Prisma } from '@prisma/client'
 import { Injectable } from '@nestjs/common'
 import { PrismaService } from './prisma.service'
+import { TickService } from './tick.service'
 
+export interface QueryHolderParams {
+  tick: string
+  owner: string
+}
 @Injectable()
 export class HolderService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService, private tickService: TickService) { }
 
-  async holder(where: Prisma.HolderWhereUniqueInput) {
-    this.prisma.holder.findUnique({ where })
+  async holder(params: Prisma.HolderFindFirstArgs) {
+    return this.prisma.holder.findFirst(params)
   }
 
   async holders(params: Prisma.HolderFindManyArgs) {
@@ -18,9 +23,57 @@ export class HolderService {
     return this.prisma.holder.create({ data })
   }
 
-  async someHolder(params: { tick: string, owner: string }) {
-    this.prisma.holder.count({
-      where: { ...params },
+  async someHolder(params: QueryHolderParams) {
+    const count = await this.prisma.holder.count({
+      where: params,
     })
+    return count !== 0
+  }
+
+  async updateHolder(where: QueryHolderParams, data: Prisma.HolderUpdateInput) {
+    return this.prisma.holder.updateMany({
+      where,
+      data,
+    })
+  }
+
+  async incrementHolderValue(params: QueryHolderParams, data: { value: number | string, number: number }) {
+    const isExist = await this.someHolder(params)
+    if (!isExist) {
+      await this.createHolder({
+        owner: params.owner,
+        tick: params.tick,
+        number: data.number,
+        value: BigInt(data.value),
+      })
+      await this.tickService.updateTick(params.tick, {
+        holders: { increment: 1 },
+      })
+    }
+    else {
+      await this.updateHolder(
+        { owner: params.owner, tick: params.tick },
+        { value: { increment: BigInt(data.value) } },
+      )
+    }
+  }
+
+  async decrementHolderValue(params: QueryHolderParams, data: { value: number | string }) {
+    const holder = await this.holder({ where: params })
+    if (!holder)
+      throw new Error(`Holder Error: ${params.owner.slice(0, 12)} does not hold ${params.tick}`)
+
+    if (BigInt(data.value) > holder.value)
+      throw new Error(`Holder Error: Deducting ${params.tick} greater than holder balance`)
+
+    if (BigInt(data.value) - holder.value === BigInt(0)) {
+      await this.prisma.holder.delete({ where: { id: holder.id } })
+    }
+    else {
+      this.updateHolder(
+        { owner: params.owner, tick: params.tick },
+        { value: { decrement: BigInt(data.value) } },
+      )
+    }
   }
 }

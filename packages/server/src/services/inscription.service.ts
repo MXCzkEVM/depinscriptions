@@ -7,11 +7,16 @@ export class InscriptionService {
   constructor(private prisma: PrismaService) {}
 
   async inscription(where: Prisma.InscriptionWhereUniqueInput) {
-    this.prisma.inscription.findUnique({ where })
+    return this.prisma.inscription.findUnique({ where })
   }
 
   async inscriptions(params: Prisma.InscriptionFindManyArgs) {
     return this.prisma.inscription.findMany(params)
+  }
+
+  async someInscription(hash: string) {
+    const count = await this.prisma.inscription.count({ where: { hash } })
+    return count !== 0
   }
 
   async recordInscription(data: Prisma.InscriptionCreateInput) {

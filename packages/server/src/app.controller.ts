@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common'
+import { Body, Controller, Get, Param, Post, Query, Request } from '@nestjs/common'
 import { Inscription, Prisma } from '@prisma/client'
 import { InscriptionService } from './services/inscription.service'
 import { HolderService } from './services/holder.service'
@@ -13,31 +13,55 @@ export class AppController {
   ) {}
 
   @Get('inscription')
-  async selectInscriptions(): Promise<Inscription[]> {
+  async getInscriptions(): Promise<Inscription[]> {
     return this.inscriptionService.inscriptions({
       orderBy: { number: 'asc' },
     })
   }
 
-  @Post('inscription')
-  async createInscription(
-    @Body() data: Omit<Prisma.InscriptionCreateInput, 'time'>,
+  @Get('inscription/:hash')
+  async getInscription(@Param('hash') hash: string) {
+    const inscription = await this.inscriptionService.inscription({ hash })
+    const tick = await this.tickService.tick({ tick: inscription.tick })
+
+    return {
+      hash: inscription.hash,
+      creator: inscription.from,
+      owner: inscription.to,
+      from: inscription.from,
+      to: inscription.to,
+      number: tick.number,
+      supply: tick.total,
+      time: inscription.time,
+      json: inscription.json,
+    }
+  }
+
+  @Get('holder')
+  async getHoldersByAddress(@Query('address') address: string) {
+    return this.holderService.holders({
+      where: { owner: address },
+    })
+  }
+
+  @Get('token')
+  async getTicks(
+    @Query('keyword') keyword = '',
+    // 1:all, 2:in-progress, 3:completed
+    @Query('type') type = 3,
+    @Query('page') page = 1,
+    @Query('limit') limit = 15,
   ) {
-    const inscription = JSON.parse(data.json)
-    if (inscription.op === 'deploy') {
-      await this.tickService.createTick({
-        creator: data.from,
-        deployHash: data.hash,
-        deployTime: new Date(),
-        limit: inscription.lim,
-        tick: data.tick,
-      })
+    const orders: Record<number, Prisma.TickOrderByWithRelationInput> = {
+      1: { lastTime: 'asc' },
+      2: { completedTime: { nulls: 'first', sort: 'asc' } },
+      3: { completedTime: { nulls: 'last', sort: 'asc' } },
     }
-    if (inscription.op === 'mint') {
-      // this.holderService.
-    }
-    if (inscription.op === 'transfer') {
-      // TODO
-    }
+    return this.tickService.ticks({
+      orderBy: orders[type],
+      skip: (page - 1) * limit,
+      take: limit,
+      where: keyword ? { tick: { contains: keyword } } : undefined,
+    })
   }
 }

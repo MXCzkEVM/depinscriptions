@@ -12,20 +12,24 @@ generator client {
 }
 
 model Tick {
-  tick        String      @unique @id
-  minted      BigInt      @default(0)
-  total       BigInt      @default(0)
-  holders     BigInt      @default(0)
-  creator     String
-  limit       BigInt
-  deployHash  String      @unique
-  lastTime    DateTime    @updatedAt
-  deployTime  DateTime
+  number        Int         @default(autoincrement()) @id
+  tick          String      @unique
+  minted        BigInt      @default(0)
+  total         BigInt      @default(0)
+  holders       BigInt      @default(0)
+  creator       String
+  limit         BigInt
+  deployHash    String      @unique
+  deployTime    DateTime
+  lastTime      DateTime    @updatedAt
+  completedTime DateTime?
+  trxs          BigInt      @default(0)
 }
 
 model Holder {
   id          Int         @default(autoincrement()) @id
   tick        String
+  number      BigInt
   owner       String
   value       BigInt
 }

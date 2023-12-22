@@ -14,7 +14,7 @@ import { jsonProviderService } from './services/provider.service'
   controllers: [AppController],
   providers: [
     PrismaService,
-    TasksService,
+    // TasksService,
     HolderService,
     InscriptionService,
     TickService,

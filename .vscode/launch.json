@@ -5,10 +5,10 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "command": "pnpm start",
-      "name": "Run npm start",
+      "command": "pnpm dev:server",
+      "name": "Run npm server",
       "request": "launch",
-      "cwd": "${workspaceFolder}/server",
+      "cwd": "${workspaceFolder}",
       "type": "node-terminal"
     },
     {
