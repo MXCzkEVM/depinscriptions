@@ -75,6 +75,7 @@ export class TasksService {
       end,
     )
     // const transactions = [
+    //   mint
     //   await this.provider.getTransaction(
     //     '0x28a46a361072b179415971d01e0c7cc3ee95b9914722527369d656add25c2da0',
     //   ),
@@ -184,7 +185,7 @@ export class TasksService {
     )
     await this.holderService.incrementHolderValue(
       { owner: transaction.to, tick: inscription.tick },
-      { value: inscription.amt },
+      { value: inscription.amt, number: tick.number },
     )
   }
 }

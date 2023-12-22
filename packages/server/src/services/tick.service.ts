@@ -24,4 +24,28 @@ export class TickService {
       data,
     })
   }
+
+  async getTickByMarket(page: number, limit: number) {
+    const result = await this.prisma.$queryRaw<{ a }>`
+      SELECT
+          Tick.tick,
+          MIN(Order.price) as floorPrice,
+          SUM(CASE WHEN Order.createdAt > CURRENT_TIMESTAMP - INTERVAL '24 HOURS' THEN Order.amount ELSE 0 END) as "volume",
+          COUNT(CASE WHEN Order.createdAt > CURRENT_TIMESTAMP - INTERVAL '24 HOURS' THEN Order.id ELSE NULL END) as "sales",
+          COUNT(distinct Holder.owner) as owners,
+          SUM(Order.amount) as totalVolume,
+          COUNT(Order.id) as totalSales,
+          (COUNT(Order.id) - COUNT(CASE WHEN Order.status = 1 THEN Order.id ELSE NULL END)) as Listed
+      FROM 
+          Tick
+      LEFT JOIN Holder ON Tick.tick = Holder.tick
+      LEFT JOIN Order  ON Tick.tick = Order.tick
+      GROUP BY 
+          Tick.tick
+      ORDER BY "volume" DESC
+      LIMIT ${limit} OFFSET ${(page - 1) * limit};
+    `
+
+    return result
+  }
 }

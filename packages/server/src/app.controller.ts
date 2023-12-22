@@ -64,4 +64,12 @@ export class AppController {
       where: keyword ? { tick: { contains: keyword } } : undefined,
     })
   }
+
+  @Get('market')
+  async getMarkets(
+    @Query('page') page = 1,
+    @Query('limit') limit = 15,
+  ) {
+    return this.tickService.getTickByMarket(page, limit)
+  }
 }

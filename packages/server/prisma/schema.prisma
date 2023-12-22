@@ -34,6 +34,19 @@ model Holder {
   value       BigInt
 }
 
+model Order {
+  number    Int       @default(autoincrement()) @id
+  hash      String    @unique
+  tick      String
+  maker     String
+  amount    BigInt
+  price     BigInt
+  // 0: listing | 1: sold | 2: cancelled
+  status    Int
+  time      DateTime    @default(now())
+  lastTime  DateTime    @updatedAt
+}
+
 model Inscription {
   number      Int       @default(autoincrement()) @id
   hash        String    @unique
