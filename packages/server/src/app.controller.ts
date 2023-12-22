@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Param, Post, Query, Request } from '@nestjs/common'
-import { Inscription, Prisma } from '@prisma/client'
+import { Holder, Inscription, Prisma, Tick } from '@prisma/client'
 import { InscriptionService } from './services/inscription.service'
 import { HolderService } from './services/holder.service'
 import { TickService } from './services/tick.service'
@@ -20,7 +20,7 @@ export class AppController {
   }
 
   @Get('inscription/:hash')
-  async getInscription(@Param('hash') hash: string) {
+  async getInscription(@Param('hash') hash: string): Promise<any> {
     const inscription = await this.inscriptionService.inscription({ hash })
     const tick = await this.tickService.tick({ tick: inscription.tick })
 
@@ -38,7 +38,7 @@ export class AppController {
   }
 
   @Get('holder')
-  async getHoldersByAddress(@Query('address') address: string) {
+  async getHoldersByAddress(@Query('address') address: string): Promise<Holder[]> {
     return this.holderService.holders({
       where: { owner: address },
     })
@@ -51,7 +51,7 @@ export class AppController {
     @Query('type') type = 3,
     @Query('page') page = 1,
     @Query('limit') limit = 15,
-  ) {
+  ): Promise<Tick[]> {
     const orders: Record<number, Prisma.TickOrderByWithRelationInput> = {
       1: { lastTime: 'asc' },
       2: { completedTime: { nulls: 'first', sort: 'asc' } },
