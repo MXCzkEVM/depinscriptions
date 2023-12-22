@@ -31,7 +31,7 @@ export class TasksService {
     private holderService: HolderService,
     private tickService: TickService,
     private inscriptionService: InscriptionService,
-  ) {}
+  ) { }
 
   private readonly logger = new Logger(TasksService.name)
 
@@ -45,10 +45,10 @@ export class TasksService {
   }
 
   async nextBlocks(start: number, end: number) {
-    const blocks = await this.provider.getBlockByArangeWithTransactions(
-      start,
-      end,
-    )
+    // const blocks = await this.provider.getBlockByArangeWithTransactions(
+    //   start,
+    //   end,
+    // )
     const transactions = [
       await this.provider.getTransaction(
         '0x28a46a361072b179415971d01e0c7cc3ee95b9914722527369d656add25c2da0',
@@ -65,23 +65,27 @@ export class TasksService {
         const json = toUtf8String(transaction.data)
         const inscription = JSON.parse(json) as ScanJSONType
 
-        await this.inscriptionService.recordInscription({
-          from: transaction.from,
-          to: transaction.to,
-          hash: transaction.hash,
-          op: inscription.op,
-          tick: inscription.tick,
-          json,
-        })
+        this.logger.log(`transaction data: ${transaction.data}`)
+        this.logger.log(`inscription json: ${json}`)
 
-        if (inscription.op === 'deploy')
-          continue
+        try {
+          await this.inscriptionService.recordInscription({
+            from: transaction.from,
+            to: transaction.to,
+            hash: transaction.hash,
+            op: inscription.op,
+            tick: String(inscription.tick),
+            json,
+          })
+          if (inscription.op === 'deploy')
+            continue
 
-        if (inscription.op === 'mint')
-          continue
-
-        this.logger.debug(`transaction data: ${transaction.data}`)
-        this.logger.debug(`inscription json: ${json}`)
+          if (inscription.op === 'mint')
+            continue
+        }
+        catch (error) {
+          this.logger.warn('The current hash already exists, skipping record')
+        }
       }
     }
   }
