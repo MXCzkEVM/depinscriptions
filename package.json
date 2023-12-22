@@ -8,7 +8,7 @@
     "preview:server": "npm -C packages/server run start:prod",
     "build:client": "npm -C packages/client run build",
     "build:server": "npm -C packages/server run build",
-    "build:preview:server": "npm run build:server && npm run preview:server",
+    "start:prod": "npm run build:server && npm run preview:server",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
