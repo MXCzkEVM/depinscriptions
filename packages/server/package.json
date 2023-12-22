@@ -6,7 +6,8 @@
   "author": "",
   "license": "UNLICENSED",
   "scripts": {
-    "build": "nest build",
+    "build": "nest build && npm run build:prisma",
+    "build:prisma": "prisma db push && prisma generate",
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",

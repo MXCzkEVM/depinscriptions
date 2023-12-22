@@ -8,9 +8,7 @@
     "preview:server": "npm -C packages/server run start:prod",
     "build:client": "npm -C packages/client run build",
     "build:server": "npm -C packages/server run build",
-    "build:prisma-generate": "npm -C packages/server run prisma generate",
-    "build:prisma-init": "npm -C packages/server run prisma dev",
-    "build-preview-server": "npm run build:server && npm run preview:server",
+    "build:preview:server": "npm run build:server && npm run preview:server",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
