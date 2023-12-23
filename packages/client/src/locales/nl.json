@@ -4,5 +4,16 @@
   "Refresh": "Vernieuwen",
   "A better way to msc20 tokens": "Een betere manier om msc20-tokens te maken",
   "No data found": "Geen data gevonden",
-  "Activity": "Activiteit"
+  "Activity": "Activiteit",
+  "All": "Alle",
+  "In-Progress": "Bezig",
+  "Completed": "Voltooid",
+  "Check out msc-20 balance of the address": "Bekijk het msc-20-saldo van het adres.",
+  "Token List Desc": "Herken alle bewerkingen, inclusief DEPLOY, MINT en TRANSFER.",
+  "The full list of tokens": "De volledige lijst met tokens",
+  "Deploy": "Aanwenden",
+  "Deploy Time": "Tijd implementeren",
+  "Progress": "Voortgang",
+  "Holders": "uitstel",
+  "Transactions": "Transacties"
 }

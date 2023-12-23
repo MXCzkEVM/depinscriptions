@@ -4,5 +4,16 @@
   "Refresh": "リフレッシュ",
   "A better way to msc20 tokens": "msc20トークンを入手するためのより良い方法",
   "No data found": "何もデータが見つかりませんでした",
-  "Activity": "活動"
+  "Activity": "活動",
+  "All": "全て",
+  "In-Progress": "進行中",
+  "Completed": "完了",
+  "Check out msc-20 balance of the address": "アドレスのmsc-20バランスを確認してください。",
+  "Token List Desc": "DEPLOY、MINT、TRANSFER を含むすべての操作を認識します。",
+  "The full list of tokens": "トークンの完全なリスト",
+  "Deploy": "展開する",
+  "Deploy Time": "デプロイ時間",
+  "Progress": "スケジュール",
+  "Holders": "ホルダー",
+  "Transactions": "トランザクション数"
 }

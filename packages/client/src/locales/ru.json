@@ -4,5 +4,16 @@
   "Refresh": "Обновить",
   "A better way to msc20 tokens": "Лучший способ получить токены msc20",
   "No data found": "Данные не найдены",
-  "Activity": "Активность"
+  "Activity": "Активность",
+  "All": "Все",
+  "In-Progress": "В ходе выполнения",
+  "Completed": "Завершенный",
+  "Check out msc-20 balance of the address": "Проверьте баланс адреса mxc-20.",
+  "Token List Desc": "Распознавайте все операции, включая РАЗВЕРТЫВАНИЕ, ОТМЕЧЕНИЕ и ПЕРЕДАЧУ.",
+  "The full list of tokens": "Полный список токенов",
+  "Deploy": "Развертывать",
+  "Deploy Time": "Время развертывания",
+  "Progress": "Прогресс",
+  "Holders": "держать",
+  "Transactions": "Транзакции"
 }

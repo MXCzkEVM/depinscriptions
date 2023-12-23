@@ -4,5 +4,16 @@
   "Refresh": "Menyegarkan",
   "A better way to msc20 tokens": "Cara yang lebih baik untuk mendapatkan token msc20",
   "No data found": "Tidak ada data ditemukan",
-  "Activity": "Aktivitas"
+  "Activity": "Aktivitas",
+  "All": "Semua",
+  "In-Progress": "Sedang berlangsung",
+  "Completed": "Lengkap",
+  "Check out msc-20 balance of the address": "Periksa saldo msc-20 alamat.",
+  "Token List Desc": "Kenali semua operasi termasuk DEPLOY, MINT dan TRANSFER.",
+  "The full list of tokens": "Daftar lengkap token",
+  "Deploy": "Menyebarkan",
+  "Deploy Time": "Waktu Penerapan",
+  "Progress": "Kemajuan",
+  "Holders": "memegang",
+  "Transactions": "Transaksi"
 }

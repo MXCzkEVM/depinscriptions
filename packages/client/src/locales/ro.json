@@ -4,5 +4,16 @@
   "Refresh": "Reîmprospăta",
   "A better way to msc20 tokens": "O modalitate mai bună de a jetoane msc20",
   "No data found": "Nu s-au gasit date",
-  "Activity": "Activitate"
+  "Activity": "Activitate",
+  "All": "Toate",
+  "In-Progress": "În curs",
+  "Completed": "Efectuat",
+  "Check out msc-20 balance of the address": "Verificați soldul msc-20 al adresei.",
+  "Token List Desc": "Recunoașteți toate operațiunile, inclusiv DEPLOY, MINT și TRANSFER.",
+  "The full list of tokens": "Lista completă de jetoane",
+  "Deploy": "Implementează",
+  "Deploy Time": "Timp de implementare",
+  "Progress": "Progres",
+  "Holders": "tine",
+  "Transactions": "Tranzacții"
 }

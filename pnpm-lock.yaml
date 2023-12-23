@@ -71,6 +71,9 @@ importers:
       '@wagmi/core':
         specifier: ^0.8.11
         version: 0.8.19(@coinbase/wallet-sdk@3.7.2)(@types/react@18.2.45)(@walletconnect/ethereum-provider@1.8.0)(ethers@5.7.2)(react@18.2.0)(typescript@4.9.5)
+      bignumber.js:
+        specifier: ^9.1.2
+        version: 9.1.2
       dayjs:
         specifier: ^1.11.10
         version: 1.11.10
@@ -5771,6 +5774,10 @@ packages:
     requiresBuild: true
     dependencies:
       bindings: 1.5.0
+    dev: false
+
+  /bignumber.js@9.1.2:
+    resolution: {integrity: sha512-2/mKyZH9K85bzOEfhXDBFZTGd1CTs+5IHpeFQo9luiBG7hghdC851Pj2WAhb6E3R6b9tZj/XKhbg4fum+Kepug==}
     dev: false
 
   /binary-extensions@2.2.0:

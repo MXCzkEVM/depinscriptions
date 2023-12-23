@@ -8,5 +8,16 @@
   "Refresh": "Yenile",
   "A better way to msc20 tokens": "Msc20 jetonlarına ulaşmanın daha iyi bir yolu",
   "No data found": "Veri bulunamadı",
-  "Activity": "Aktivite"
+  "Activity": "Aktivite",
+  "All": "Tüm",
+  "In-Progress": "Devam etmekte",
+  "Completed": "Tamamlanmış",
+  "Check out msc-20 balance of the address": "Adresin msc-20 bakiyesini kontrol edin.",
+  "Token List Desc": "DEPLOY, MINT ve TRANSFER dahil tüm işlemleri tanır.",
+  "The full list of tokens": "Jetonların tam listesi",
+  "Deploy": "Dağıtmak",
+  "Deploy Time": "Dağıtım Süresi",
+  "Progress": "İlerlemek",
+  "Holders": "tutmak",
+  "Transactions": "İşlem sayısı"
 }

@@ -30,7 +30,7 @@ function Page() {
     return <Empty loading={loading} />
 
   const rows = [
-    { 
+    {
       event: 'Mint',
       from: cover(data.from, [6, 3, 4]),
       to: cover(data.to, [6, 3, 4]),

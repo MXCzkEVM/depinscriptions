@@ -4,5 +4,16 @@
   "Refresh": "Làm cho khỏe lại",
   "A better way to msc20 tokens": "Một cách tốt hơn để sử dụng mã thông báo msc20",
   "No data found": "Không tìm thấy dữ liệu nào",
-  "Activity": "Hoạt động"
+  "Activity": "Hoạt động",
+  "All": "Tất cả",
+  "In-Progress": "Trong tiến trình",
+  "Completed": "Hoàn thành",
+  "Check out msc-20 balance of the address": "Kiểm tra số dư msc-20 của địa chỉ.",
+  "Token List Desc": "Nhận biết tất cả các hoạt động bao gồm TRIỂN KHAI, MINT và CHUYỂN GIAO.",
+  "The full list of tokens": "Danh sách đầy đủ các token",
+  "Deploy": "Triển khai",
+  "Deploy Time": "Thời gian triển khai",
+  "Progress": "Tiến triển",
+  "Holders": "giữ",
+  "Transactions": "Số lượng giao dịch"
 }

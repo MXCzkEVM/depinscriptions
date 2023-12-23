@@ -67,7 +67,7 @@ const connectors = connectorsForWallets([
   },
 ])
 
-export const client = createClient({
+const client = createClient({
   logger: {
     warn: message => console.warn(message),
   },
@@ -77,4 +77,4 @@ export const client = createClient({
   webSocketProvider,
 })
 
-export { chains }
+export { chains, client }

@@ -1,8 +1,13 @@
 import type { ReactElement } from 'react'
 import { Layout } from '@/layout'
+import { FieldTickInput } from '@/components'
+import { useRouter } from 'next/router'
 
 function Page() {
-  return <>131231</>
+  const router = useRouter()
+  return <>
+    <FieldTickInput onSearch={(addr) => router.push(`/tokens/query?address=${addr}`)} />
+  </>
 }
 
 Page.layout = function (page: ReactElement) {

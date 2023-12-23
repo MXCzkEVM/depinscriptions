@@ -25,7 +25,7 @@ export class TickService {
     })
   }
 
-  async getTickCount(params: Prisma.TickCountArgs) {
+  async getTickCount(params?: Prisma.TickCountArgs) {
     return this.prisma.tick.count(params)
   }
 

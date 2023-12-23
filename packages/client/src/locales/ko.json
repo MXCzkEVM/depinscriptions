@@ -4,5 +4,16 @@
   "Refresh": "새로 고치다",
   "A better way to msc20 tokens": "msc20 토큰을 사용하는 더 좋은 방법",
   "No data found": "데이터가 없습니다",
-  "Activity": "활동"
+  "Activity": "활동",
+  "All": "모두",
+  "In-Progress": "진행 중",
+  "Completed": "완전한",
+  "Check out msc-20 balance of the address": "msc-20 주소의 잔액을 확인해보세요.",
+  "Token List Desc": "DEPLOY, MINT 및 TRANSFER를 포함한 모든 작업을 인식합니다.",
+  "The full list of tokens": "토큰의 전체 목록",
+  "Deploy": "배포",
+  "Deploy Time": "배포 시간",
+  "Progress": "진전",
+  "Holders": "잡고 있다",
+  "Transactions": "거래수"
 }

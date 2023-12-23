@@ -1,110 +1,127 @@
 import { Button, Card, CardContent, Tab, Tabs, TextField, Typography } from '@mui/material'
-import type { ReactElement } from 'react'
-import React from 'react'
+import type { ReactElement, SyntheticEvent } from 'react'
+import React, { useEffect, useState } from 'react'
 import type { GridColDef } from '@mui/x-data-grid'
 import { DataGrid } from '@mui/x-data-grid'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/router'
 import { useInjectHolder } from '@overlays/react'
-import { LinearProgressWithLabel } from '@/components'
-import { MOCK_TOKENS } from '@/config'
+import { Icon, LinearProgressWithLabel, DeployDialog, Condition, Empty, FieldTickInput } from '@/components'
 import { Layout } from '@/layout'
-import DeployDialog from '@/components/DeployDialog'
+import { useTranslation } from 'react-i18next'
+import { Search } from '@ricons/ionicons5'
+import { TickDto } from '@/api/index.type'
+import { percentage } from '@/utils'
+import { useAsyncFn, useMount } from 'react-use'
+import { getToken } from '@/api'
 
-const columns: GridColDef[] = [
-  { field: 'tick', headerName: 'Token', minWidth: 120, flex: 1 },
-  {
-    field: 'createdAt',
-    headerName: 'Deploy Time',
-    minWidth: 180,
-    flex: 1,
-    renderCell(params) {
-      return dayjs(params.row.createdAt).format('YYYY-MM-DD HH:mm:ss')
-    },
-  },
-  {
-    field: 'minted',
-    headerName: 'Progress',
-    minWidth: 210,
-    flex: 1,
-    renderCell() {
-      return (
-        <div className="w-full mr-6">
-          <LinearProgressWithLabel value={100} />
-        </div>
-      )
-    },
-  },
-  { field: 'holder', headerName: 'Holder', minWidth: 150, flex: 1 },
-  {
-    field: 'trxs',
-    headerName: 'Transactions',
-    minWidth: 180,
-    flex: 1,
-    renderCell(params) {
-      return (
-        <div className="flex justify-between w-full">
-          <span>{params.row.trxs}</span>
-        </div>
-      )
-    },
-  },
-]
 
 // Retrieve tokens deployed by a user
 function Page() {
   const router = useRouter()
-  const [value, setValue] = React.useState(0)
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue)
-  }
+  const { t } = useTranslation()
+  const [type, setType] = useState(1)
+  const [keyword, setKeyword] = useState('')
+  const [page, setPage] = useState(1)
+  const [holder, deploy] = useInjectHolder<unknown, any>(DeployDialog)
+  const [ticks, setTicks] = useState<TickDto[]>([])
+  const [total, setTotal] = useState(0)
 
-  const [holder, openDeployDialog] = useInjectHolder<unknown, any>(DeployDialog)
+  const columns: GridColDef<TickDto>[] = [
+    { field: 'tick', headerName: 'Token', minWidth: 120, flex: 1 },
+    {
+      field: 'deployTime',
+      headerName: t('Deploy Time'),
+      minWidth: 180,
+      flex: 1,
+      renderCell(params) {
+        return dayjs(params.row.deployTime).format('YYYY-MM-DD HH:mm:ss')
+      },
+    },
+    {
+      field: 'minted',
+      headerName: t('Progress'),
+      minWidth: 210,
+      flex: 1,
+      renderCell(params) {
+        return (
+          <div className="w-full mr-6">
+            <LinearProgressWithLabel value={percentage(params.row.total, params.row.minted)} />
+          </div>
+        )
+      },
+    },
+    { field: 'holders', headerName: t('Holders'), minWidth: 150, flex: 1 },
+    {
+      field: 'trxs',
+      headerName: t('Transactions'),
+      minWidth: 180,
+      flex: 1,
+      renderCell(params) {
+        return (
+          <div className="flex justify-between w-full">
+            <span>{params.row.trxs}</span>
+          </div>
+        )
+      },
+    },
+  ]
 
-  async function deploy() {
-    const resolved = await openDeployDialog()
-    console.log(resolved)
-  }
+  const [state, fetchTicks] = useAsyncFn(async (page: number) => {
+    const { data, total } = await getToken({ keyword, page, type, limit: 15 })
+    setTotal(total)
+    setTicks(data)
+  })
+
+  useMount(() => fetchTicks(1))
+  useEffect(() => { fetchTicks(page) }, [type])
+
   return (
     <>
-      {holder}
-      <div className="mx-auto mt-9 mb-14 w-full text-center">
-        <span className="md:text-3xl text-center mt-[41px] mp:mb-[18px] select-none text-[#6300ff]"> Check out mxc-20 balance of the address. </span>
-      </div>
-      <div className="flex justify-center">
-        <TextField className="md:w-[672px] w-full" color="secondary" size="small" variant="outlined" placeholder="0x...5e0d7A" />
-      </div>
-      <div className="text-center my-10 select-none"> Recognize all operations including DEPLOY, MINT and TRANSFER. </div>
+      <FieldTickInput onSearch={(addr) => router.push(`/tokens/query?address=${addr}`)} />
       <div className="mb-4 flex justify-between">
         <Typography variant="h6" component="span">
-          The full list of tokens
+          {t('The full list of tokens')}
         </Typography>
-        <Button onClick={deploy} type="button" variant="contained">Deploy</Button>
+        <Button onClick={deploy} type="button" variant="contained">{t('Deploy')}</Button>
       </div>
       <Card style={{ background: 'rgb(22 21 21 / 20%)' }}>
         <CardContent>
           <div className="mb-4 flex justify-between items-center">
             <Tabs
               variant="standard"
-              onChange={handleChange}
-              value={value}
+              onChange={(event, value) => setType(value)}
+              value={type}
             >
-              <Tab disableRipple label="All" />
-              <Tab disableRipple label="In-Progress" />
-              <Tab disableRipple label="Completed" />
+              <Tab disableRipple value={1} label={t('All')} />
+              <Tab disableRipple value={2} label={t('In-Progress')} />
+              <Tab disableRipple value={3} label={t('Completed')} />
             </Tabs>
-            <TextField className="hidden md:block" color="secondary" size="small" variant="outlined" placeholder="Ava" />
+            <div className='relative'>
+              <TextField value={keyword} onChange={(event) => setKeyword(event.target.value)} className="hidden md:block" color="secondary" size="small" variant="outlined" placeholder="Token" />
+              <Icon className='absolute right-2 top-2 cursor-pointer' onClick={() => fetchTicks(1)}>
+                <Search />
+              </Icon>
+            </div>
           </div>
-          <DataGrid
-            className="border-none data-grid-with-row-pointer"
-            rows={MOCK_TOKENS}
-            getRowId={row => row.tick}
-            columns={columns}
-            hideFooterSelectedRowCount
-            onRowClick={({ row }) => router.push(`/tokens/detail?token=${row.tick}`)}
-          />
+          <Condition is={ticks.length} else={<Empty loading={state.loading} />}>
+            <DataGrid
+              paginationMode="server"
+              className="border-none data-grid-with-row-pointer"
+              rows={ticks}
+              rowCount={Math.floor(total / 15)}
+              getRowId={row => row.tick}
+              columns={columns}
+              hideFooterSelectedRowCount
+              paginationModel={{ page, pageSize: 15 }}
+              onPaginationModelChange={(model) => setPage(model.page)}
+              onRowClick={({ row }) => router.push(`/tokens/detail?token=${row.tick}`)}
+            />
+          </Condition>
+
         </CardContent>
       </Card>
+      {holder}
     </>
   )
 }

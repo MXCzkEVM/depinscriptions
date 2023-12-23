@@ -4,5 +4,16 @@
   "Refresh": "重新整理",
   "A better way to msc20 tokens": "取得 msc20 代幣的更好方式",
   "No data found": "沒有找到數據",
-  "Activity": "活動"
+  "Activity": "活動",
+  "All": "全部",
+  "In-Progress": "進行中",
+  "Completed": "完成",
+  "Check out msc-20 balance of the address": "查看該位址的msc-20餘額。",
+  "Token List Desc": "識別所有操作，包括部署、鑄造和傳輸。",
+  "The full list of tokens": "代幣的完整列表",
+  "Deploy": "部署",
+  "Deploy Time": "部署時間",
+  "Progress": "進度",
+  "Holders": "持有",
+  "Transactions": "交易數量"
 }

@@ -4,5 +4,16 @@
   "Refresh": "Rafraîchir",
   "A better way to msc20 tokens": "Une meilleure façon d'accéder aux jetons MSC20",
   "No data found": "Aucune donnée disponible",
-  "Activity": "Activité"
+  "Activity": "Activité",
+  "All": "Tous",
+  "In-Progress": "En cours",
+  "Completed": "Complété",
+  "Check out msc-20 balance of the address": "Consultez le solde msc-20 de l'adresse.",
+  "Token List Desc": "Reconnaître toutes les opérations, y compris DEPLOY, MINT et TRANSFER.",
+  "The full list of tokens": "La liste complète des jetons",
+  "Deploy": "Déployer",
+  "Deploy Time": "Temps de déploiement",
+  "Progress": "Progrès",
+  "Holders": "prise",
+  "Transactions": "Transactions"
 }

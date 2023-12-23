@@ -13,7 +13,6 @@ function Page() {
   const [inscriptions, setInscriptions] = useState<InscriptionDto[]>([])
   const [fetched, setFetched] = useState(false)
 
-
   const [state, fetchInscriptions] = useAsyncFn(async (page: number) => {
     if (fetched)
       return

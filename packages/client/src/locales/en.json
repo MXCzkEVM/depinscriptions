@@ -4,5 +4,16 @@
   "Refresh": "Refresh",
   "A better way to msc20 tokens": "A better way to msc20 tokens",
   "No data found": "No data found",
-  "Activity": "Activity"
+  "Activity": "Activity",
+  "All": "All",
+  "In-Progress": "In-Progress",
+  "Completed": "Completed",
+  "Check out msc-20 balance of the address": "Check out msc-20 balance of the address.",
+  "Token List Desc": "Recognize all operations including DEPLOY, MINT and TRANSFER.",
+  "The full list of tokens": "The full list of tokens",
+  "Deploy": "Deploy",
+  "Deploy Time": "Deploy Time",
+  "Progress": "Progress",
+  "Holders": "Holders",
+  "Transactions": "Transactions"
 }
