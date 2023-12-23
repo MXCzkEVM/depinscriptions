@@ -1,9 +1,11 @@
 {
   "i18n-ally.localesPaths": [
-    "client/src/locales",
-    "client/src/config/i18n"
+    "packages/client/src/locales"
   ],
   "i18n-ally.keystyle": "nested",
+  "i18n-ally.sourceLanguage": "en",
+  "i18n-ally.displayLanguage": "en",
+  "i18n-ally.enabledFrameworks": ["react-i18next"],
   // Enable the ESlint flat config support
   "eslint.experimental.useFlatConfig": true,
 

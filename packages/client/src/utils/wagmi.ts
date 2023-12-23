@@ -7,27 +7,6 @@ import { jsonRpcProvider } from '@wagmi/core/providers/jsonRpc'
 import { connectorsForWallets } from '@rainbow-me/rainbowkit'
 import { metaMaskWallet } from '@rainbow-me/rainbowkit/wallets'
 
-/*
-export const zkevm = {
-    id: 18686,
-    name: 'MXC zkEVM',
-    network: 'MXC zkEVM',
-    nativeCurrency: {
-        decimals: 18,
-        name: 'MXC Token',
-        symbol: 'MXC',
-    },
-    rpcUrls: {
-        public: { http: ['"https://rpc.mxc.com"'] },
-        default: { http: ['"https://wrpc.mxc.com"'] },
-    },
-    blockExplorers: {
-        etherscan: { name: 'etherscan', url: 'https://explorer.mxc.com' },
-        default: { name: 'etherscan', url: 'https://explorer.mxc.com' },
-    },
-} as const satisfies Chain
-*/
-
 const defaultChains: Chain[] = [
   {
     id: 5167003,

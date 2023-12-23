@@ -3,7 +3,7 @@ import { Holder, Inscription, Prisma, Tick } from '@prisma/client'
 import { InscriptionService } from './services/inscription.service'
 import { HolderService } from './services/holder.service'
 import { TickService } from './services/tick.service'
-import { ApiConsumes, ApiExtraModels, ApiResponse, ApiTags } from '@nestjs/swagger'
+import { ApiConsumes, ApiExtraModels, ApiParam, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { HolderDto, HoldersResponseDto, InscriptionDto, InscriptionPageResponseDto, InscriptionResponseDto, TickDto, TickPageResponseDto } from 'dtos'
 
 
@@ -22,6 +22,8 @@ export class AppController {
   ) { }
 
   @Get('inscription')
+  @ApiQuery({ name: 'page', type: 'number' })
+  @ApiQuery({ name: 'limit', type: 'number', required: false })
   @ApiConsumes('application/json')
   @ApiResponse({ status: 200, type: InscriptionPageResponseDto, description: 'Inscription' })
   async getInscriptions(
@@ -34,7 +36,7 @@ export class AppController {
     const data = await this.inscriptionService.inscriptions({
       orderBy: { number: 'asc' },
       skip: (page - 1) * limit,
-      take: limit,
+      take: +limit,
     })
     return { total, data }
   }
@@ -60,6 +62,7 @@ export class AppController {
   }
 
   @Get('holder')
+  @ApiQuery({ name: 'address', type: 'string' })
   @ApiConsumes('application/json')
   @ApiResponse({ status: 200, type: HoldersResponseDto, description: 'holders' })
   async getHoldersByAddress(@Query('address') address: string) {
@@ -70,6 +73,10 @@ export class AppController {
   }
 
   @Get('token')
+  @ApiQuery({ name: 'page', type: 'number' })
+  @ApiQuery({ name: 'keyword', type: 'string' })
+  @ApiQuery({ name: 'type', type: 'number' })
+  @ApiQuery({ name: 'limit', type: 'number', required: false })
   @ApiConsumes('application/json')
   @ApiResponse({ status: 200, type: TickPageResponseDto, description: 'Ticks' })
   async getTicks(
@@ -84,14 +91,13 @@ export class AppController {
       2: { completedTime: { nulls: 'first', sort: 'asc' } },
       3: { completedTime: { nulls: 'last', sort: 'asc' } },
     }
-    const total = await this.tickService.getTickCount({
-      where: keyword ? { tick: { contains: keyword } } : undefined,
-    })
+    const where = keyword ? { tick: { contains: keyword } } : undefined
+    const total = await this.tickService.getTickCount({ where })
     const data = await this.tickService.ticks({
       orderBy: orders[type],
       skip: (page - 1) * limit,
-      take: limit,
-      where: keyword ? { tick: { contains: keyword } } : undefined,
+      take: +limit,
+      where,
     })
     return { total, data }
   }

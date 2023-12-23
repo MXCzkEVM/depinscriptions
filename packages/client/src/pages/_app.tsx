@@ -11,6 +11,9 @@ import { i18n } from '@/plugins'
 import { MountsProvider, NoSSR, PleaseConnectWallet } from '@/components'
 import type { AppPropsWithLayout } from '@/types'
 import { darkTheme, fontInter } from '@/config'
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+dayjs.extend(relativeTime)
 
 // If wallet is connected -> display app
 // Else -> display connect prompt
@@ -37,14 +40,8 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
         ]}
         >
           {isConnected
-            ? (
-              <>{mounted && layout(<Component {...pageProps} />)}</>
-              )
-            : (
-              <>
-                <PleaseConnectWallet />
-              </>
-              )}
+            ? (mounted && layout(<Component {...pageProps} />))
+            : <PleaseConnectWallet />}
         </MountsProvider>
       </div>
     </>

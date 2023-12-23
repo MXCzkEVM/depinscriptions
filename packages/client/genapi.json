@@ -4,7 +4,24 @@
     "/inscription": {
       "get": {
         "operationId": "AppController_getInscriptions",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "page",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Inscription",
@@ -85,7 +102,40 @@
     "/token": {
       "get": {
         "operationId": "AppController_getTicks",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "type",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "keyword",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Ticks",
@@ -119,8 +169,8 @@
     }
   },
   "info": {
-    "title": "",
-    "description": "",
+    "title": "geoscriptions",
+    "description": "geoscriptions api",
     "version": "1.0.0",
     "contact": {}
   },

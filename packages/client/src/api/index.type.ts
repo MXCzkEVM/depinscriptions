@@ -1,6 +1,6 @@
 /**
- * @title
- * @description
+ * @title geoscriptions
+ * @description geoscriptions api
  * @swagger 3.0.0
  * @version 1.0.0
  */
@@ -58,9 +58,19 @@ export interface TickPageResponseDto {
   total: number;
   data: TickDto[];
 }
+export interface GetInscriptionQuery {
+  limit?: number;
+  page: number;
+}
 export interface GetInscriptionHashPath {
   hash: string;
 }
 export interface GetHolderQuery {
   address: string;
+}
+export interface GetTokenQuery {
+  limit?: number;
+  type: number;
+  keyword: string;
+  page: number;
 }
