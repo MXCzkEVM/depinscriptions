@@ -41,7 +41,7 @@
     "wagmi": "~0.10.0"
   },
   "devDependencies": {
-    "@genapi/cli": "^0.5.0",
+    "@genapi/cli": "^0.5.1",
     "@genapi/swag-fetch-ts": "^1.1.0",
     "@types/node": "^17.0.31",
     "@types/react": "^18.0.9",

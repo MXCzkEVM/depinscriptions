@@ -25,6 +25,10 @@ export class TickService {
     })
   }
 
+  async getTickCount(params: Prisma.TickCountArgs) {
+    return this.prisma.tick.count(params)
+  }
+
   async getTickByMarket(page: number, limit: number) {
     const result = await this.prisma.$queryRaw<{ a }>`
       SELECT

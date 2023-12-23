@@ -127,8 +127,8 @@ importers:
         version: 0.10.15(@types/react@18.2.45)(ethers@5.7.2)(react-dom@18.2.0)(react@18.2.0)(typescript@4.9.5)
     devDependencies:
       '@genapi/cli':
-        specifier: ^0.5.0
-        version: 0.5.0
+        specifier: ^0.5.1
+        version: 0.5.1
       '@genapi/swag-fetch-ts':
         specifier: ^1.1.0
         version: 1.1.0
@@ -1756,12 +1756,12 @@ packages:
     resolution: {integrity: sha512-OfX7E2oUDYxtBvsuS4e/jSn4Q9Qb6DzgeYtsAdkPZ47znpoNsMgZw0+tVijiv3uGNR6dgNlty6r9rzIzHjtd/A==}
     dev: false
 
-  /@genapi/cli@0.5.0:
-    resolution: {integrity: sha512-NPr1e+k1p+OyvjhXpezGrqM1yUJnjyl7NWyfVTcI5VanKVhFgM9MDzXp3+lioEeNU5sXzT9VifRzx2iiDr+jig==}
+  /@genapi/cli@0.5.1:
+    resolution: {integrity: sha512-onQKATeOYZ/S+xKwMXycx4OR+gIKTEzJ9TJeyu0Qja6KUv2XBWH1B1I6xMtbtqMyjeWT/uj5ldDxqC38SD0kbA==}
     hasBin: true
     dependencies:
-      '@genapi/config': 0.5.0
-      '@genapi/core': 0.5.0
+      '@genapi/config': 0.5.1
+      '@genapi/core': 0.5.1
       cac: 6.7.14
       chalk: 5.3.0
       fs-extra: 11.2.0
@@ -1773,10 +1773,24 @@ packages:
     resolution: {integrity: sha512-AR4f5QuZjf1XHLc1JsBOdOst00mJv3sryty/pGwP0O4mpiqLGUXPplspmUgH3AoDWEcGBesu2gb27mMBxf5Qvw==}
     dev: true
 
+  /@genapi/config@0.5.1:
+    resolution: {integrity: sha512-MddOLXNpUk9h7biL3kj2XIJCBgQ1vA1Xcz413Iot+uT5YYEhl5bOtAhrBaeEJW6m+HoEothVe0yuQIb4GUxIbg==}
+    dev: true
+
   /@genapi/core@0.5.0:
     resolution: {integrity: sha512-UgYdS14n8t1NZNxnhw09Fbb/oe77FhBpJUHw6SPzQX9V24vZDbUqXUCjHU/XQ25GGj56pTvvxuXG9kdjmxZqMA==}
     dependencies:
       '@genapi/config': 0.5.0
+      jiti: 1.21.0
+      ora: 5.4.1
+      p-pipe: 3.1.0
+      unconfig: 0.3.11
+    dev: true
+
+  /@genapi/core@0.5.1:
+    resolution: {integrity: sha512-aXvjJEDYl+ZgZTVkHu8WrUFBkRwcxOztygV8w2t16XZY80nttxd17TkkMo0q7aT+3pfhxSFbEv83FUhaDHciGw==}
+    dependencies:
+      '@genapi/config': 0.5.1
       jiti: 1.21.0
       ora: 5.4.1
       p-pipe: 3.1.0
