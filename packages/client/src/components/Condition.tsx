@@ -1,14 +1,14 @@
 import type { PropsWithChildren, ReactNode } from 'react'
 
 export interface ConditionProps {
-  is: boolean | string | number | null | undefined
+  is: any
   if?: ReactNode
   else?: ReactNode
 }
 function Condition(props: PropsWithChildren<ConditionProps>) {
   return (
     <>
-      {props.is ? (props.if || props.children) : props.else}
+      {props.is ? (props.if  || props.children) : props.else}
     </>
   )
 }

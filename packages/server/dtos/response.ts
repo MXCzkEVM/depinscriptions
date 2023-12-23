@@ -51,6 +51,9 @@ export class InscriptionResponseDto {
 
   @ApiProperty()
   json: string
+
+  @ApiProperty()
+  tick: string
 }
 
 export class HoldersResponseDto {

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Query, Request } from '@nestjs/common'
+import { Body, Controller, Get, NotFoundException, Param, Post, Query, Request } from '@nestjs/common'
 import { Holder, Inscription, Prisma, Tick } from '@prisma/client'
 import { InscriptionService } from './services/inscription.service'
 import { HolderService } from './services/holder.service'
@@ -46,9 +46,17 @@ export class AppController {
   @ApiResponse({ status: 200, type: InscriptionResponseDto, description: 'Inscription' })
   async getInscription(@Param('hash') hash: string) {
     const inscription = await this.inscriptionService.inscription({ hash })
-    const tick = await this.tickService.tick({ tick: inscription.tick })
+    if (!inscription)
+      throw new NotFoundException('Inscription not found')
+    const tick = await this.tickService.tick({ tick: inscription?.tick })
+    if (!tick)
+      throw new NotFoundException(`Not relevant information found Tick [${inscription.tick}]`)
 
+    const holders = await this.holderService.holderCount({
+      where: { tick: inscription.tick }
+    })
     return {
+      tick: inscription.tick,
       hash: inscription.hash,
       creator: inscription.from,
       owner: inscription.to,
@@ -58,6 +66,7 @@ export class AppController {
       supply: tick.total,
       time: inscription.time,
       json: inscription.json,
+      holders,
     }
   }
 

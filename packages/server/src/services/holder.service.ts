@@ -30,6 +30,10 @@ export class HolderService {
     return count !== 0
   }
 
+  async holderCount(params: Prisma.HolderCountArgs) {
+    return this.prisma.holder.count(params)
+  }
+
   async updateHolder(where: QueryHolderParams, data: Prisma.HolderUpdateInput) {
     return this.prisma.holder.updateMany({
       where,

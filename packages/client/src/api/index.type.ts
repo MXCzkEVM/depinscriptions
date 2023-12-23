@@ -50,6 +50,8 @@ export interface InscriptionResponseDto {
   supply: number;
   time: string;
   json: string;
+  tick: string;
+  holders: number
 }
 export interface HoldersResponseDto {
   data: HolderDto[];
