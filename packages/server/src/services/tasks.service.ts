@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common'
 import { Interval } from '@nestjs/schedule'
-import { getIndexerLastBlock, parse, setIndexerLastBlock } from '../utils'
+import { getIndexerLastBlock, setIndexerLastBlock } from '../utils'
 import { TransactionResponse, toUtf8String } from 'ethers'
 
 import { BlockWithTransactions, jsonProviderService } from './provider.service'
@@ -8,7 +8,6 @@ import { HolderService } from './holder.service'
 import { TickService } from './tick.service'
 import { InscriptionService } from './inscription.service'
 import { HexagonService } from './hexagon.service'
-import { fromHex } from '@cosmjs/encoding'
 interface ScanDeployJSON {
   p: 'msc-20'
   op: 'deploy'
@@ -75,7 +74,7 @@ export class TasksService {
       // deploy - goerli
       // await this.provider.getTransaction('0x0d2ec860813082bbb72de4c5cb02df3a3c290cfc156b0f3835ef32fd8b4051e8'),
       // mint - goerli
-      // await this.provider.getTransaction('0x73489fa9e9c234731958dfe250c87d8ff84827851ebdc54ae60741dbb174d9d5'),
+      await this.provider.getTransaction('0x73489fa9e9c234731958dfe250c87d8ff84827851ebdc54ae60741dbb174d9d5'),
     ]
     for (const block of [{ transactions, timestamp: 1 }]) {
       for (const transaction of block.transactions) {
@@ -86,7 +85,7 @@ export class TasksService {
           continue
 
         const json = toUtf8String(transaction.data)
-        const inscription = parse(json) as ScanJSONType
+        const inscription = JSON.parse(json) as ScanJSONType
 
         this.logger.log(`transaction hash: ${transaction.hash}`)
         this.logger.log(`inscription json: ${json}`)

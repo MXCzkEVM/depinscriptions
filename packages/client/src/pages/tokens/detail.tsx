@@ -15,6 +15,8 @@ import { useTranslation } from 'react-i18next'
 import { latLngToCell } from 'h3-js'
 import { useInjectHolder } from '@overlays/react'
 import LocationModal from '@/components/LocationModal'
+import { delay } from '@hairy/utils'
+import { hexlify } from 'ethers/lib/utils.js'
 
 function Page() {
   const router = useRouter()
@@ -22,13 +24,13 @@ function Page() {
   const tokenId = useRouterParams('token', { replace: '/tokens' })
   const [tab, setTab] = useState(0)
   const hexagon = useRef('')
-
+  
   const { value: token, loading } = useAsync(() => getTokenId({ id: tokenId }))
   const { isLoading, sendTransaction } = useSendSatsTransaction({
     data: {
       p: 'msc-20',
       op: 'mint',
-      hex: hexagon.current,
+      hex: Number(`0x${hexagon.current || 0}`),
       tick: tokenId,
       amt: token?.limit || 0,
     }
@@ -50,6 +52,7 @@ function Page() {
   async function mint() {
     if (!hexagon.current)
       await authorize()
+    delay(500)
     sendTransaction?.()
   }
   return (
