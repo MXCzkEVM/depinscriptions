@@ -15,5 +15,18 @@
   "Deploy Time": "Thời gian triển khai",
   "Progress": "Tiến triển",
   "Holders": "giữ",
-  "Transactions": "Số lượng giao dịch"
+  "Transactions": "Số lượng giao dịch",
+  "Mint Directly": "đúc tiền trực tiếp",
+  "Scription ID": "ID tập lệnh",
+  "Total Supply": "Tổng cung",
+  "Minted": "đúc",
+  "Limit Per Mint": "Giới hạn mỗi lần đúc",
+  "Deploy By": "Triển khai bởi",
+  "Completed Time": "Thời gian hoàn thành",
+  "Total Transactions": "Tổng số giao dịch",
+  "Overview": "Tổng quan",
+  "We Need Your Location": "Chúng tôi cần vị trí của bạn",
+  "Need Your Location Contnet": "Để tạo GeoInscription, chúng tôi yêu cầu chi tiết vị trí của bạn. \nThông tin này sẽ được liên kết với ID lục giác MXC trong dòng chữ. \nHình lục giác đại diện cho một khu vực kỹ thuật số có bán kính 2 km. \nDữ liệu vị trí của bạn được sử dụng riêng cho mục đích này, không có dữ liệu cá nhân nào được lưu trữ trên chuỗi và dữ liệu này không chứa các yếu tố nhận dạng người dùng (UIF).",
+  "Cancel": "Hủy bỏ",
+  "Confirm": "Xác nhận"
 }

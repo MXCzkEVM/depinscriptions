@@ -1,75 +1,57 @@
 import type { ReactElement } from 'react'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ArrowBackSharp } from '@ricons/ionicons5'
-import { Card, CardContent, Divider, Tab, Tabs } from '@mui/material'
-import type { GridColDef } from '@mui/x-data-grid'
-import { DataGrid } from '@mui/x-data-grid'
+import { Card, CardContent, Divider, Skeleton, Tab, Tabs } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LoadingButton } from '@mui/lab'
-import { useAccount } from 'wagmi'
-import { MOCK_HOLDERS } from '@/config'
 import { Layout } from '@/layout'
-import { FieldCol, Icon, LinearProgressWithLabel } from '@/components'
+import { Condition, DataGridHolders, Empty, FieldCol, Icon, LinearProgressWithLabel } from '@/components'
 import { useRouterParams, useSendSatsTransaction } from '@/hooks'
+import { useAsync, useGeolocation } from 'react-use'
+import { getTokenId } from '@/api'
+import { getCurrentPosition, percentage, thousandBitSeparator } from '@/utils'
+import dayjs from 'dayjs'
+import { useTranslation } from 'react-i18next'
+import { latLngToCell } from 'h3-js'
+import { useInjectHolder } from '@overlays/react'
+import LocationModal from '@/components/LocationModal'
+import { toUtf8Bytes } from 'ethers/lib/utils.js'
 
 function Page() {
   const router = useRouter()
-  const token = useRouterParams('token', { replace: '/tokens' })
-  const [value, setValue] = useState(0)
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue)
-  }
+  const { t } = useTranslation()
+  const tokenId = useRouterParams('token', { replace: '/tokens' })
+  const [tab, setTab] = useState(0)
+  const hexagon = useRef('')
 
-  const columns: GridColDef[] = [
-    {
-      field: 'rank',
-      headerName: 'Rank',
-      minWidth: 120,
-      renderCell() {
-        return 1
-      },
-    },
-    {
-      field: 'address',
-      headerName: 'Address',
-      minWidth: 180,
-      flex: 1,
-    },
-    {
-      field: 'percentage',
-      headerName: 'Percentage',
-      flex: 1,
-      renderCell() {
-        return (
-          <div className="w-[122px] mr-6">
-            <LinearProgressWithLabel value={100} />
-          </div>
-        )
-      },
-    },
-    { field: 'value', headerName: 'Value', minWidth: 150 },
-  ]
-  const { address } = useAccount()
+  const { value: token, loading } = useAsync(() => getTokenId({ id: tokenId }))
   const { isLoading, sendTransaction } = useSendSatsTransaction({
     data: {
-      tick: token,
+      hex: hexagon.current,
+      tick: tokenId,
+      amt: String(token?.limit || 0),
       p: 'msc-20',
       op: 'mint',
-      amt: '2',
-      hex: '#fff',
-    },
-    onSuccess(data) {
-      const resolved = {
-        hash: data.hash,
-        json: data.json,
-        op: 'mint',
-        tick: token,
-        from: address,
-        to: address,
-      }
-      console.log(resolved)
-    },
+    }
   })
+
+  const [holderModal, openLocationModal] = useInjectHolder(LocationModal)
+
+  async function authorize() {
+    await openLocationModal()
+    const position = await getCurrentPosition()
+    hexagon.current = latLngToCell(
+      position.coords.latitude,
+      position.coords.longitude,
+      7
+    )
+  }
+
+  async function mint() {
+    if (!hexagon.current)
+      await authorize()
+    sendTransaction?.()
+  }
 
   return (
     <>
@@ -77,76 +59,77 @@ function Page() {
         <Icon>
           <ArrowBackSharp />
         </Icon>
-        <span className="text-2xl">{token}</span>
+        <span className="text-2xl">{tokenId}</span>
         <div className="bg-white text-xs py-[2px] px-[4px] rounded-lg bg-opacity-30">
           MSC-20
         </div>
       </div>
       <div className="mb-[1.75rem]">
-        <LinearProgressWithLabel height="8px" value={100} />
+        <LinearProgressWithLabel height="8px" value={percentage(token?.total || 0, token?.minted || 0)} />
       </div>
       <Card className="mb-6" style={{ background: 'rgb(22 21 21 / 20%)' }}>
         <CardContent>
           <div className="mb-3 flex justify-between">
-            <span className="text-xl font-bold">Overview</span>
-            <LoadingButton loading={isLoading} variant="contained" onClick={() => sendTransaction?.()}>
-              Mint Directly
+            <span className="text-xl font-bold">{t('Overview')}</span>
+            <LoadingButton disabled={!token} loading={isLoading} variant="contained" onClick={mint}>
+              {t('Mint Directly')}
             </LoadingButton>
           </div>
           <Divider />
-          <FieldCol label="Scription ID">
-            0x3fcf9252b5b0b940080f4f318208221e34691340f0a9a53d1b107b0a61b0cf10
+          <FieldCol label={t('Scription ID')} skeleton={!token}>
+            {token?.deployHash}
           </FieldCol>
-          <FieldCol label="Total Supply">
-            1463636349000000
+          <FieldCol label={t('Total Supply')} skeleton={!token}>
+            {thousandBitSeparator(token?.total)}
           </FieldCol>
-          <FieldCol label="Minted">
-            1463636349000000
+          <FieldCol label={t('Minted')} skeleton={!token}>
+            {thousandBitSeparator(token?.minted)}
           </FieldCol>
-          <FieldCol label="Limit Per Mint">
-            69696969
+          <FieldCol label={t('Limit Per Mint')} skeleton={!token}>
+            {thousandBitSeparator(token?.limit)}
           </FieldCol>
-          <FieldCol label="Decimal">
+          {/* <FieldCol label="Decimal" skeleton={!token}>
             0
+          </FieldCol> */}
+          <FieldCol label={t('Deploy By')} skeleton={!token}>
+            {token?.deployHash}
           </FieldCol>
-          <FieldCol label="Deploy By">
-            0x364af27a926c472cdaae251c8eedf6af7e39d234
+          <FieldCol label={t('Deploy Time')} skeleton={!token}>
+            {dayjs(token?.deployTime).format('YYYY/MM/DD HH:mm:ss')}
           </FieldCol>
-          <FieldCol label="Deploy Time">
-            2023/12/17 11:01:10
+          <FieldCol label={t('Completed Time')} skeleton={!token}>
+            {dayjs(token?.completedTime).format('YYYY/MM/DD HH:mm:ss')}
           </FieldCol>
-          <FieldCol label="Completed Time">
-            2023/11/25 12:54:24
+          <FieldCol label={t('Holders')} skeleton={!token}>
+            {thousandBitSeparator(token?.holders)}
           </FieldCol>
-          <FieldCol label="Holders">
-            21,105,828
-          </FieldCol>
-          <FieldCol label="Total Transactions">
-            21,105,828
-          </FieldCol>
+          {/* <FieldCol label={t('Total Transactions')} skeleton={!token}>
+            {thousandBitSeparator(token?.trxs)}
+          </FieldCol> */}
         </CardContent>
       </Card>
       <Card style={{ background: 'rgb(22 21 21 / 20%)' }}>
         <CardContent>
           <Tabs
             variant="fullWidth"
-            onChange={handleChange}
-            value={value}
+            onChange={(event, value) => setTab(value)}
+            value={tab}
           >
             <Tab disableRipple label="Holders" />
             <Tab disableRipple label="Hexagons" />
           </Tabs>
-          <DataGrid
-            className="border-none data-grid-with-row-pointer"
-            rows={MOCK_HOLDERS}
-            getRowId={row => row.address}
-            columns={columns}
-            hideFooterSelectedRowCount
-          />
+          <Condition is={token} else={<Empty loading={!token || loading} />}>
+            <DataGridHolders token={token} />
+          </Condition>
         </CardContent>
       </Card>
+      {holderModal}
     </>
   )
+}
+
+function objectToUtf8Bytes(obj?: Record<string, any>) {
+  return toUtf8Bytes(JSON.stringify(obj || {}))
 }
 
 Page.layout = function (page: ReactElement) {

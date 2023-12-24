@@ -15,5 +15,18 @@
   "Deploy Time": "Deploy Time",
   "Progress": "Progress",
   "Holders": "Holders",
-  "Transactions": "Transactions"
+  "Transactions": "Transactions",
+  "Mint Directly": "Mint Directly",
+  "Scription ID": "Scription ID",
+  "Total Supply": "Total Supply",
+  "Minted": "Minted",
+  "Limit Per Mint": "Limit Per Mint",
+  "Deploy By": "Deploy By",
+  "Completed Time": "Completed Time",
+  "Total Transactions": "Total Transactions",
+  "Overview": "Overview",
+  "We Need Your Location": "We Need Your Location",
+  "Need Your Location Contnet": "To create your GeoInscription, we require your location details. This information will be linked with an MXC Hexagon ID in the inscription. A Hexagon represents a digital area with a 2 km radius. Your location data is used exclusively for this purpose, no personal data is stored on-chain and this data contains no (UIF) user identifiable factors.",
+  "Cancel": "Cancel",
+  "Confirm": "Confirm"
 }

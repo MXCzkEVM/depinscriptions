@@ -15,5 +15,18 @@
   "Deploy Time": "Tijd implementeren",
   "Progress": "Voortgang",
   "Holders": "uitstel",
-  "Transactions": "Transacties"
+  "Transactions": "Transacties",
+  "Mint Directly": "Munt direct",
+  "Scription ID": "Scriptie-ID",
+  "Total Supply": "Totaal aanbod",
+  "Minted": "Geslagen",
+  "Limit Per Mint": "Limiet per munt",
+  "Deploy By": "Implementeren door",
+  "Completed Time": "Voltooide tijd",
+  "Total Transactions": "Totaal aantal transacties",
+  "Overview": "Overzicht",
+  "We Need Your Location": "We hebben uw locatie nodig",
+  "Need Your Location Contnet": "Voor het aanmaken van uw GeoInscription hebben wij uw locatiegegevens nodig. \nDeze informatie wordt in de inschrijving gekoppeld aan een MXC Hexagon ID. \nEen zeshoek vertegenwoordigt een digitaal gebied met een straal van 2 km. \nUw locatiegegevens worden uitsluitend voor dit doel gebruikt, er worden geen persoonlijke gegevens in de keten opgeslagen en deze gegevens bevatten geen (UIF) door de gebruiker identificeerbare factoren.",
+  "Cancel": "Annuleren",
+  "Confirm": "Bevestigen"
 }

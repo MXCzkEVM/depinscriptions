@@ -8,6 +8,7 @@ import { HolderService } from './services/holder.service'
 import { InscriptionService } from './services/inscription.service'
 import { TickService } from './services/tick.service'
 import { jsonProviderService } from './services/provider.service'
+import { HexagonService } from './services/hexagon.service'
 
 @Module({
   imports: [ConfigModule.forRoot(), ScheduleModule.forRoot()],
@@ -19,6 +20,7 @@ import { jsonProviderService } from './services/provider.service'
     InscriptionService,
     TickService,
     jsonProviderService,
+    HexagonService,
   ],
 })
 export class AppModule {}

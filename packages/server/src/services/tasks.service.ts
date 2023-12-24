@@ -7,6 +7,7 @@ import { BlockWithTransactions, jsonProviderService } from './provider.service'
 import { HolderService } from './holder.service'
 import { TickService } from './tick.service'
 import { InscriptionService } from './inscription.service'
+import { HexagonService } from './hexagon.service'
 
 interface ScanDeployJSON {
   p: 'msc-20'
@@ -27,7 +28,6 @@ interface ScanTransferJSON {
   op: 'transfer'
   tick: string
   amt: string
-  hex: string
 }
 
 type ScanJSONType = ScanDeployJSON | ScanMintJSON | ScanTransferJSON
@@ -40,6 +40,7 @@ export class TasksService {
     private holderService: HolderService,
     private tickService: TickService,
     private inscriptionService: InscriptionService,
+    private hexagonService: HexagonService
   ) { }
 
   private readonly logger = new Logger(TasksService.name)
@@ -159,6 +160,11 @@ export class TasksService {
       throw new Error(`Mint Error: Exceeded ${inscription.tick} limit number of mints by ${tick.limit}`)
     if (amount > surplus)
       throw new Error(`Mint Error: Exceeded ${inscription.tick} total number of mints by ${tick.total}`)
+
+    await this.hexagonService.incrementHexagonValue(
+      { hex: inscription.hex, tik: inscription.tick },
+      { value: inscription.amt }
+    )
 
     await this.holderService.incrementHolderValue(
       { owner: transaction.from, tick: inscription.tick },

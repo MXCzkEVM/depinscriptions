@@ -24,7 +24,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Inscription",
+            "description": "Inscriptions",
             "content": {
               "application/json": {
                 "schema": {
@@ -69,16 +69,94 @@
         ]
       }
     },
-    "/holder": {
+    "/hexagon": {
       "get": {
-        "operationId": "AppController_getHoldersByAddress",
+        "operationId": "AppController_getHexagons",
         "parameters": [
           {
-            "name": "address",
+            "name": "tick",
             "required": true,
             "in": "query",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "page",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Hexagons",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HexagonPageResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "app-controller"
+        ]
+      }
+    },
+    "/holder": {
+      "get": {
+        "operationId": "AppController_getHolders",
+        "parameters": [
+          {
+            "name": "tick",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "address",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "page",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
             }
           }
         ],
@@ -88,7 +166,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HoldersResponseDto"
+                  "$ref": "#/components/schemas/HolderPageResponseDto"
                 }
               }
             }
@@ -153,6 +231,36 @@
         ]
       }
     },
+    "/token/{id}": {
+      "get": {
+        "operationId": "AppController_getTick",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ticks",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TickDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "app-controller"
+        ]
+      }
+    },
     "/market": {
       "get": {
         "operationId": "AppController_getMarkets",
@@ -178,6 +286,25 @@
   "servers": [],
   "components": {
     "schemas": {
+      "HexagonDto": {
+        "type": "object",
+        "properties": {
+          "hex": {
+            "type": "string"
+          },
+          "tik": {
+            "type": "string"
+          },
+          "mit": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "hex",
+          "tik",
+          "mit"
+        ]
+      },
       "InscriptionDto": {
         "type": "object",
         "properties": {
@@ -353,6 +480,9 @@
           },
           "json": {
             "type": "string"
+          },
+          "tick": {
+            "type": "string"
           }
         },
         "required": [
@@ -364,12 +494,34 @@
           "number",
           "supply",
           "time",
-          "json"
+          "json",
+          "tick"
         ]
       },
-      "HoldersResponseDto": {
+      "HexagonPageResponseDto": {
         "type": "object",
         "properties": {
+          "total": {
+            "type": "number"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HexagonDto"
+            }
+          }
+        },
+        "required": [
+          "total",
+          "data"
+        ]
+      },
+      "HolderPageResponseDto": {
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "number"
+          },
           "data": {
             "type": "array",
             "items": {
@@ -378,6 +530,7 @@
           }
         },
         "required": [
+          "total",
           "data"
         ]
       },

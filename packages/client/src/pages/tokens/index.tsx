@@ -118,7 +118,6 @@ function Page() {
               onRowClick={({ row }) => router.push(`/tokens/detail?token=${row.tick}`)}
             />
           </Condition>
-
         </CardContent>
       </Card>
       {holder}

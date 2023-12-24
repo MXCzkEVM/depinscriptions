@@ -5,7 +5,7 @@ export interface ThousandBitSeparatorOptions {
   decimal?: boolean
 }
 
-export function thousandBitSeparator(target: number | string,
+export function thousandBitSeparator(target: number | string = 0,
   unit = ',',
   options: ThousandBitSeparatorOptions = {}) {
   options.integer = options.integer ?? true

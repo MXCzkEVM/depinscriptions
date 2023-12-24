@@ -1,31 +1,31 @@
 import { Body, Controller, Get, NotFoundException, Param, Post, Query, Request } from '@nestjs/common'
-import { Holder, Inscription, Prisma, Tick } from '@prisma/client'
+import { Holder, Inscription, Prisma } from '@prisma/client'
 import { InscriptionService } from './services/inscription.service'
 import { HolderService } from './services/holder.service'
 import { TickService } from './services/tick.service'
 import { ApiConsumes, ApiExtraModels, ApiParam, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger'
-import { HolderDto, HoldersResponseDto, InscriptionDto, InscriptionPageResponseDto, InscriptionResponseDto, TickDto, TickPageResponseDto } from 'dtos'
-
-
-
+import { HexagonDto, HexagonPageResponseDto, HolderDto, HolderPageResponseDto, InscriptionDto, InscriptionPageResponseDto, InscriptionResponseDto, TickDto, TickPageResponseDto } from 'dtos'
+import { HexagonService } from './services/hexagon.service'
 
 @Controller()
 @ApiTags('app-controller')
 @ApiExtraModels(TickDto)
 @ApiExtraModels(HolderDto)
 @ApiExtraModels(InscriptionDto)
+@ApiExtraModels(HexagonDto)
 export class AppController {
   constructor(
     private readonly inscriptionService: InscriptionService,
     private readonly holderService: HolderService,
     private readonly tickService: TickService,
-  ) { }
+    private readonly hexagonService: HexagonService,
+  ) {}
 
   @Get('inscription')
   @ApiQuery({ name: 'page', type: 'number' })
   @ApiQuery({ name: 'limit', type: 'number', required: false })
   @ApiConsumes('application/json')
-  @ApiResponse({ status: 200, type: InscriptionPageResponseDto, description: 'Inscription' })
+  @ApiResponse({ status: 200, type: InscriptionPageResponseDto, description: 'Inscriptions' })
   async getInscriptions(
     @Query('page') page = 1,
     @Query('limit') limit = 15,
@@ -70,16 +70,55 @@ export class AppController {
     }
   }
 
-  @Get('holder')
-  @ApiQuery({ name: 'address', type: 'string' })
-  @ApiConsumes('application/json')
-  @ApiResponse({ status: 200, type: HoldersResponseDto, description: 'holders' })
-  async getHoldersByAddress(@Query('address') address: string) {
-    const data = await this.holderService.holders({
-      where: { owner: address },
+  @Get('hexagon')
+  @ApiQuery({ name: 'page', type: 'number' })
+  @ApiQuery({ name: 'tick', type: 'string' })
+  @ApiQuery({ name: 'limit', type: 'number', required: false })
+  @ApiResponse({ status: 200, type: HexagonPageResponseDto, description: 'Hexagons' })
+  async getHexagons(
+    @Query('tick') tick?: string,
+    @Query('page') page = 1,
+    @Query('limit') limit = 15,
+  ) {
+    const total = await this.hexagonService.hexagonCount({
+      where: { tik: tick }
     })
-    return { data }
+    const data = await this.hexagonService.hexagons({
+      skip: (page - 1) * limit,
+      take: +limit,
+      where: { tik: tick }
+    })
+    return { data, total }
   }
+
+  @Get('holder')
+  @ApiQuery({ name: 'page', type: 'number' })
+  @ApiQuery({ name: 'address', type: 'string', required: false })
+  @ApiQuery({ name: 'tick', type: 'string', required: false })
+  @ApiQuery({ name: 'order', type: 'string', required: false })
+  @ApiQuery({ name: 'limit', type: 'number', required: false })
+  @ApiConsumes('application/json')
+  @ApiResponse({ status: 200, type: HolderPageResponseDto, description: 'holders' })
+  async getHolders(
+    @Query('tick') tick?: string,
+    @Query('address') address?: string,
+    @Query('order') order?: string,
+    @Query('page') page = 1,
+    @Query('limit') limit = 15,
+  ) {
+    const orderBy: Prisma.HolderOrderByWithRelationInput = {}
+    const where = { tick, owner: address }
+    order && (orderBy[order] = 'asc')
+    const total = await this.holderService.holderCount({ where })
+    const data = await this.holderService.holders({
+      skip: (page - 1) * limit,
+      take: +limit,
+      where,
+      orderBy
+    })
+    return { data, total }
+  }
+
 
   @Get('token')
   @ApiQuery({ name: 'page', type: 'number' })
@@ -109,6 +148,16 @@ export class AppController {
       where,
     })
     return { total, data }
+  }
+
+  @Get('token/:id')
+  @ApiConsumes('application/json')
+  @ApiResponse({ status: 200, type: TickDto, description: 'Ticks' })
+  async getTick(@Param('id') id: string) {
+    const data = await this.tickService.tick({ tick: id })
+    if (!data)
+      throw new NotFoundException(`Not found Tick [${id}]`)
+    return data
   }
 
   @Get('market')

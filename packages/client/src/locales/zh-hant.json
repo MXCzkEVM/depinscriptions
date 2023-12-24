@@ -15,5 +15,18 @@
   "Deploy Time": "部署時間",
   "Progress": "進度",
   "Holders": "持有",
-  "Transactions": "交易數量"
+  "Transactions": "交易數量",
+  "Mint Directly": "鑄造",
+  "Scription ID": "腳本ID",
+  "Total Supply": "總供應量",
+  "Minted": "已鑄造",
+  "Limit Per Mint": "鑄造限制",
+  "Deploy By": "部署者",
+  "Completed Time": "完成時間",
+  "Total Transactions": "總交易量",
+  "Overview": "概述",
+  "We Need Your Location": "我們需要您的位置",
+  "Need Your Location Contnet": "要建立您的 GeoInscription，我們需要您的位置詳細資訊。\n此資訊將與銘文中的 MXC Hexagon ID 連結。\n六邊形代表半徑 2 公里的數字區域。\n您的位置數據僅用於此目的，鏈上不會儲存任何個人數據，且該數據不包含 (UIF) 用戶可識別因素。",
+  "Cancel": "取消",
+  "Confirm": "確認"
 }

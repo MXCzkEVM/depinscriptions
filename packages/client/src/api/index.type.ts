@@ -5,6 +5,11 @@
  * @version 1.0.0
  */
 
+export interface HexagonDto {
+  hex: string;
+  tik: string;
+  mit: any;
+}
 export interface InscriptionDto {
   number: number;
   hash: string;
@@ -51,9 +56,13 @@ export interface InscriptionResponseDto {
   time: string;
   json: string;
   tick: string;
-  holders: number
 }
-export interface HoldersResponseDto {
+export interface HexagonPageResponseDto {
+  total: number;
+  data: HexagonDto[];
+}
+export interface HolderPageResponseDto {
+  total: number;
   data: HolderDto[];
 }
 export interface TickPageResponseDto {
@@ -67,12 +76,24 @@ export interface GetInscriptionQuery {
 export interface GetInscriptionHashPath {
   hash: string;
 }
+export interface GetHexagonQuery {
+  tick: string;
+  limit?: number;
+  page: number;
+}
 export interface GetHolderQuery {
-  address: string;
+  tick?: string;
+  address?: string;
+  order?: string;
+  limit?: number;
+  page: number;
 }
 export interface GetTokenQuery {
   limit?: number;
   type: number;
   keyword: string;
   page: number;
+}
+export interface GetTokenIdPath {
+  id: string;
 }

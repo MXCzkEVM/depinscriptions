@@ -15,5 +15,18 @@
   "Deploy Time": "Waktu Penerapan",
   "Progress": "Kemajuan",
   "Holders": "memegang",
-  "Transactions": "Transaksi"
+  "Transactions": "Transaksi",
+  "Mint Directly": "Mencetak Langsung",
+  "Scription ID": "ID Skrip",
+  "Total Supply": "Jumlah Pasokan",
+  "Minted": "dicetak",
+  "Limit Per Mint": "Batas Per Mint",
+  "Deploy By": "Terapkan Oleh",
+  "Completed Time": "Waktu Selesai",
+  "Total Transactions": "Jumlah Transaksi",
+  "Overview": "Ringkasan",
+  "We Need Your Location": "Kami Membutuhkan Lokasi Anda",
+  "Need Your Location Contnet": "Untuk membuat GeoInskripsi Anda, kami memerlukan detail lokasi Anda. \nInformasi ini akan dihubungkan dengan ID MXC Hexagon di prasasti. \nHexagon mewakili area digital dengan radius 2 km. \nData lokasi Anda digunakan secara eksklusif untuk tujuan ini, tidak ada data pribadi yang disimpan secara on-chain dan data ini tidak mengandung faktor (UIF) yang dapat diidentifikasi pengguna.",
+  "Cancel": "Membatalkan",
+  "Confirm": "Mengonfirmasi"
 }

@@ -15,5 +15,18 @@
   "Deploy Time": "Bereitstellungszeit",
   "Progress": "Fortschritt",
   "Holders": "halten",
-  "Transactions": "Transaktionen"
+  "Transactions": "Transaktionen",
+  "Mint Directly": "Direkt prägen",
+  "Scription ID": "Skript-ID",
+  "Total Supply": "Gesamtangebot",
+  "Minted": "Geprägt",
+  "Limit Per Mint": "Limit pro Münze",
+  "Deploy By": "Bereitstellen durch",
+  "Completed Time": "Abgeschlossene Zeit",
+  "Total Transactions": "Gesamttransaktionen",
+  "Overview": "Überblick",
+  "We Need Your Location": "Wir brauchen Ihren Standort",
+  "Need Your Location Contnet": "Zur Erstellung Ihrer GeoInschrift benötigen wir Ihre Standortangaben. \nDiese Informationen werden mit einer MXC-Hexagon-ID in der Beschriftung verknüpft. \nEin Sechseck stellt einen digitalen Bereich mit einem Radius von 2 km dar. \nIhre Standortdaten werden ausschließlich zu diesem Zweck verwendet, es werden keine personenbezogenen Daten in der Kette gespeichert und diese Daten enthalten keine (UIF) benutzeridentifizierbaren Faktoren.",
+  "Cancel": "Stornieren",
+  "Confirm": "Bestätigen"
 }

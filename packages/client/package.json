@@ -29,6 +29,7 @@
     "ethers": "^5.7.2",
     "flowbite": "^2.2.1",
     "flowbite-react": "^0.7.2",
+    "h3-js": "^4.1.0",
     "i18next": "^23.7.11",
     "i18next-browser-languagedetector": "^7.2.0",
     "next": "^13.0.0",
@@ -40,6 +41,7 @@
     "react-hot-toast": "^2.4.0",
     "react-i18next": "^13.5.0",
     "react-use": "^17.4.2",
+    "valtio": "^1.12.1",
     "wagmi": "~0.10.0"
   },
   "devDependencies": {

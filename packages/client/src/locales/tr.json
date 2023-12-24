@@ -19,5 +19,18 @@
   "Deploy Time": "Dağıtım Süresi",
   "Progress": "İlerlemek",
   "Holders": "tutmak",
-  "Transactions": "İşlem sayısı"
+  "Transactions": "İşlem sayısı",
+  "Mint Directly": "Doğrudan Darphane",
+  "Scription ID": "Yazı Kimliği",
+  "Total Supply": "Toplam Arz",
+  "Minted": "Darphane",
+  "Limit Per Mint": "Darphane Başına Sınır",
+  "Deploy By": "Dağıtımı Yapan:",
+  "Completed Time": "Tamamlanma Süresi",
+  "Total Transactions": "Toplam İşlemler",
+  "Overview": "Genel Bakış",
+  "We Need Your Location": "Konumunuza İhtiyacımız Var",
+  "Need Your Location Contnet": "GeoInscription'ınızı oluşturmak için konum ayrıntılarınıza ihtiyacımız var. \nBu bilgi, yazıtta bir MXC Hexagon ID'ye bağlanacaktır. \nAltıgen, 2 km yarıçaplı bir dijital alanı temsil eder. \nKonum verileriniz yalnızca bu amaç için kullanılır, zincir üzerinde hiçbir kişisel veri saklanmaz ve bu veriler hiçbir (UIF) kullanıcı tarafından tanımlanabilir faktör içermez.",
+  "Cancel": "İptal etmek",
+  "Confirm": "Onaylamak"
 }

@@ -1,6 +1,6 @@
 import { ApiProperty, getSchemaPath } from "@nestjs/swagger";
-import { Holder, Inscription, Tick } from "@prisma/client";
-import { HolderDto, InscriptionDto, TickDto } from "./source";
+import { Hexagon, Holder, Inscription, Tick } from "@prisma/client";
+import { HexagonDto, HolderDto, InscriptionDto, TickDto } from "./source";
 
 
 export class PaginationResponseDto {
@@ -22,6 +22,13 @@ export class TickPageResponseDto extends PaginationResponseDto {
     items: { $ref: getSchemaPath(TickDto) }
   })
   data: Tick[]
+}
+export class HolderPageResponseDto extends PaginationResponseDto {
+  @ApiProperty({
+    type: 'array',
+    items: { $ref: getSchemaPath(HolderDto) }
+  })
+  data: Holder[]
 }
 
 export class InscriptionResponseDto {
@@ -56,10 +63,10 @@ export class InscriptionResponseDto {
   tick: string
 }
 
-export class HoldersResponseDto {
+export class HexagonPageResponseDto extends PaginationResponseDto {
   @ApiProperty({
     type: 'array',
-    items: { $ref: getSchemaPath(HolderDto) }
+    items: { $ref: getSchemaPath(HexagonDto) }
   })
-  data: Holder[]
+  data: Hexagon[]
 }

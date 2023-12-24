@@ -34,12 +34,23 @@ export async function getInscriptionHash(paths: Types.GetInscriptionHashPath, co
  * @method get
  * @tags app-controller
  */
+export async function getHexagon(query: Types.GetHexagonQuery, config?: RequestInit) {
+  const _query_ = `?${new URLSearchParams(Object.entries(query)).toString()}`;
+  const response = await fetch(`${baseURL}/hexagon${_query_}`, {
+    ...config,
+  });
+  return response.json() as Promise<Types.HexagonPageResponseDto>;
+}
+/**
+ * @method get
+ * @tags app-controller
+ */
 export async function getHolder(query: Types.GetHolderQuery, config?: RequestInit) {
   const _query_ = `?${new URLSearchParams(Object.entries(query)).toString()}`;
   const response = await fetch(`${baseURL}/holder${_query_}`, {
     ...config,
   });
-  return response.json() as Promise<Types.HoldersResponseDto>;
+  return response.json() as Promise<Types.HolderPageResponseDto>;
 }
 /**
  * @method get
@@ -51,6 +62,16 @@ export async function getToken(query: Types.GetTokenQuery, config?: RequestInit)
     ...config,
   });
   return response.json() as Promise<Types.TickPageResponseDto>;
+}
+/**
+ * @method get
+ * @tags app-controller
+ */
+export async function getTokenId(paths: Types.GetTokenIdPath, config?: RequestInit) {
+  const response = await fetch(`${baseURL}/token/${paths.id}`, {
+    ...config,
+  });
+  return response.json() as Promise<Types.TickDto>;
 }
 /**
  * @method get

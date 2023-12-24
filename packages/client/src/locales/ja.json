@@ -15,5 +15,18 @@
   "Deploy Time": "デプロイ時間",
   "Progress": "スケジュール",
   "Holders": "ホルダー",
-  "Transactions": "トランザクション数"
+  "Transactions": "トランザクション数",
+  "Mint Directly": "直接ミントする",
+  "Scription ID": "スクリプトID",
+  "Total Supply": "総供給量",
+  "Minted": "鋳造された",
+  "Limit Per Mint": "ミントごとの制限",
+  "Deploy By": "デプロイ者",
+  "Completed Time": "完了時間",
+  "Total Transactions": "合計トランザクション数",
+  "Overview": "概要",
+  "We Need Your Location": "あなたの位置情報が必要です",
+  "Need Your Location Contnet": "GeoInscription を作成するには、位置情報の詳細が必要です。\nこの情報は、碑文内の MXC Hexagon ID にリンクされます。\n六角形は半径 2 km のデジタル エリアを表します。\nあなたの位置データはこの目的のみに使用され、個人データはオンチェーンに保存されず、このデータには（UIF）ユーザーを特定できる要素は含まれません。",
+  "Cancel": "キャンセル",
+  "Confirm": "確認する"
 }

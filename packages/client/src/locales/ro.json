@@ -15,5 +15,18 @@
   "Deploy Time": "Timp de implementare",
   "Progress": "Progres",
   "Holders": "tine",
-  "Transactions": "Tranzacții"
+  "Transactions": "Tranzacții",
+  "Mint Directly": "Mint Direct",
+  "Scription ID": "ID-ul scriptului",
+  "Total Supply": "Aprovizionare totală",
+  "Minted": "Mintuit",
+  "Limit Per Mint": "Limită Per Mint",
+  "Deploy By": "Implementează până la",
+  "Completed Time": "Timp finalizat",
+  "Total Transactions": "Total Tranzacții",
+  "Overview": "Prezentare generală",
+  "We Need Your Location": "Avem nevoie de locația dvs",
+  "Need Your Location Contnet": "Pentru a vă crea GeoInscripția, avem nevoie de detaliile locației dvs. \nAceste informații vor fi legate de un ID MXC Hexagon din inscripție. \nUn hexagon reprezintă o zonă digitală cu o rază de 2 km. \nDatele dvs. de locație sunt utilizate exclusiv în acest scop, nu sunt stocate date personale în lanț și aceste date nu conțin factori identificabili de utilizator (UIF).",
+  "Cancel": "Anulare",
+  "Confirm": "A confirma"
 }

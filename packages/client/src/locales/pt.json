@@ -15,5 +15,18 @@
   "Deploy Time": "Tempo de implantação",
   "Progress": "Progresso",
   "Holders": "segurar",
-  "Transactions": "Transações"
+  "Transactions": "Transações",
+  "Mint Directly": "Menta diretamente",
+  "Scription ID": "ID da escritura",
+  "Total Supply": "Fornecimento total",
+  "Minted": "Cunhado",
+  "Limit Per Mint": "Limite por moeda",
+  "Deploy By": "Implantar por",
+  "Completed Time": "Tempo concluído",
+  "Total Transactions": "Total de transações",
+  "Overview": "Visão geral",
+  "We Need Your Location": "Precisamos da sua localização",
+  "Need Your Location Contnet": "Para criar a sua GeoInscrição necessitamos dos dados da sua localização. \nEsta informação estará vinculada a um ID Hexagon MXC na inscrição. \nUm hexágono representa uma área digital com raio de 2 km. \nSeus dados de localização são usados ​​exclusivamente para esta finalidade, nenhum dado pessoal é armazenado na rede e esses dados não contêm fatores identificáveis ​​do usuário (UIF).",
+  "Cancel": "Cancelar",
+  "Confirm": "confirme"
 }

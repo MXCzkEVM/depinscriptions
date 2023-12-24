@@ -26,6 +26,13 @@ model Tick {
   trxs          BigInt      @default(0)
 }
 
+model Hexagon {
+  id            Int         @default(autoincrement()) @id
+  hex           String      
+  tik           String
+  mit           BigInt      @default(0)
+}
+
 model Holder {
   id          Int         @default(autoincrement()) @id
   tick        String

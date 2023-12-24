@@ -6,7 +6,7 @@ import { useAccount, usePrepareSendTransaction, useSendTransaction } from 'wagmi
 export interface UseSendSatsTransactionOptions {
   from?: string
   to?: string
-  data?: Record<string, string>
+  data?: Record<string, any>
   onSuccess?: (data: { hash: string, json: string }) => void
   onError?: (error: Error, variables?: SendTransactionArgs, context?: unknown) => void
 }
@@ -16,7 +16,7 @@ export function useSendSatsTransaction(options: UseSendSatsTransactionOptions = 
   const json = useMemo(() => JSON.stringify(options.data || {}), [options.data])
   const { config } = usePrepareSendTransaction({
     request: {
-      data: toUtf8Bytes(json),
+      data: options.data ? toUtf8Bytes(json) : undefined,
       from: options.from || address,
       to: options.to || address || '',
     },
