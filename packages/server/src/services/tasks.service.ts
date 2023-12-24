@@ -8,7 +8,7 @@ import { HolderService } from './holder.service'
 import { TickService } from './tick.service'
 import { InscriptionService } from './inscription.service'
 import { HexagonService } from './hexagon.service'
-
+import {fromHex} from '@cosmjs/encoding'
 interface ScanDeployJSON {
   p: 'msc-20'
   op: 'deploy'
@@ -73,13 +73,13 @@ export class TasksService {
     // const blocks = await this.provider.getBlockByArangeWithTransactions(start, end)
     const transactions = [
       // deploy - goerli
-      await this.provider.getTransaction('0x517e33d2b8c7acbef32544cd9d1ace86007a81622a79f0305370d015c2937b42'),
+      // await this.provider.getTransaction('0x0d2ec860813082bbb72de4c5cb02df3a3c290cfc156b0f3835ef32fd8b4051e8'),
       // mint - goerli
-      // await this.provider.getTransaction('0xc6e59be14d0ae456cbab53f3b06023b499f1f36ed2593a162c8e224d2c4e19fc'),
+      // await this.provider.getTransaction('0x73489fa9e9c234731958dfe250c87d8ff84827851ebdc54ae60741dbb174d9d5'),
     ]
     for (const block of [{ transactions, timestamp: 1 }]) {
       for (const transaction of block.transactions) {
-        if (!transaction.data.startsWith('0x7b2270223a226d73632d323022'))
+        if (!transaction.data.startsWith('0x5b703a6d73632'))
           continue
         const receipt = await transaction.wait()
         if (receipt.status !== 1)
@@ -167,6 +167,11 @@ export class TasksService {
     await this.holderService.incrementHolderValue(
       { owner: transaction.from, tick: inscription.tick },
       { value: +inscription.amt, number: tick.number },
+    )
+
+    await this.hexagonService.incrementHexagonValue(
+      { hex: inscription.hex, tik: inscription.tick },
+      { value: +inscription.amt }
     )
 
     this.logger.log(`[minted] - ${inscription.amt} ${tick.tick} were mint at ${transaction.from.slice(0, 12)}`)

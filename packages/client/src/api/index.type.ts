@@ -56,6 +56,7 @@ export interface InscriptionResponseDto {
   time: string;
   json: string;
   tick: string;
+  holders: number
 }
 export interface HexagonPageResponseDto {
   total: number;

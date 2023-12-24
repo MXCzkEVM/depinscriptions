@@ -61,6 +61,9 @@ export class InscriptionResponseDto {
 
   @ApiProperty()
   tick: string
+
+  @ApiProperty()
+  holders: number
 }
 
 export class HexagonPageResponseDto extends PaginationResponseDto {

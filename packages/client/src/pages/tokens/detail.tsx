@@ -15,7 +15,6 @@ import { useTranslation } from 'react-i18next'
 import { latLngToCell } from 'h3-js'
 import { useInjectHolder } from '@overlays/react'
 import LocationModal from '@/components/LocationModal'
-import { toUtf8Bytes } from 'ethers/lib/utils.js'
 
 function Page() {
   const router = useRouter()
@@ -98,7 +97,7 @@ function Page() {
             {dayjs(token?.deployTime).format('YYYY/MM/DD HH:mm:ss')}
           </FieldCol>
           <FieldCol label={t('Completed Time')} skeleton={!token}>
-            {dayjs(token?.completedTime).format('YYYY/MM/DD HH:mm:ss')}
+            {token?.completedTime && dayjs(token?.completedTime).format('YYYY/MM/DD HH:mm:ss') || '-'}
           </FieldCol>
           <FieldCol label={t('Holders')} skeleton={!token}>
             {thousandBitSeparator(token?.holders)}

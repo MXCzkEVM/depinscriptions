@@ -2,6 +2,7 @@ import type { SendTransactionArgs, SendTransactionResult } from '@wagmi/core'
 import { useMemo, useState } from 'react'
 import { useAccount, usePrepareSendTransaction, useSendTransaction } from 'wagmi'
 import { toUtf8 } from '@cosmjs/encoding'
+import { stringify } from '@/utils'
 export interface UseSendSatsTransactionOptions {
   from?: string
   to?: string
@@ -12,7 +13,7 @@ export interface UseSendSatsTransactionOptions {
 export function useSendSatsTransaction(options: UseSendSatsTransactionOptions = {}) {
   const { address } = useAccount()
   const [isLoading, setIsLoading] = useState(false)
-  const json = useMemo(() => JSON.stringify(options.data || {}), [options.data])
+  const json = useMemo(() => stringify(options.data || {}), [options.data])
   
   const { config } = usePrepareSendTransaction({
     request: {

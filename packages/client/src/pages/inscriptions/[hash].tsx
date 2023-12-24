@@ -3,7 +3,7 @@ import type { GridColDef } from '@mui/x-data-grid'
 import { DataGrid } from '@mui/x-data-grid'
 import type { ReactElement } from 'react'
 import { Layout } from '@/layout'
-import { Condition, Empty, FieldCol, LocationForHex } from '@/components'
+import { Condition, Empty, FieldCol, LocationForHexagon } from '@/components'
 import { useAsync } from 'react-use'
 import { useRouterQuery } from '@/hooks'
 import { getInscriptionHash } from '@/api'
@@ -64,7 +64,7 @@ function Page() {
               {dayjs(data.time).fromNow()}
             </FieldCol>
             <FieldCol dir="col" label="Location">
-              <LocationForHex hex="" />
+              <LocationForHexagon hexagon="" />
             </FieldCol>
           </div>
         </CardContent>
