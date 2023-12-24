@@ -1,22 +1,28 @@
 import type { SendTransactionArgs, SendTransactionResult } from '@wagmi/core'
 import { useMemo, useState } from 'react'
 import { useAccount, usePrepareSendTransaction, useSendTransaction } from 'wagmi'
-import { hexlify, toUtf8Bytes } from 'ethers/lib/utils.js'
+import { hexlify, toUtf8Bytes, toUtf8String } from 'ethers/lib/utils.js'
 export interface UseSendSatsTransactionOptions {
   from?: string
   to?: string
   data?: Record<string, any>
   onSuccess?: (data: { hash: string, json: string }) => void
   onError?: (error: Error, variables?: SendTransactionArgs, context?: unknown) => void
+  automatic?: boolean
 }
+
+
+export function prepareSatsJson(data?: Record<string, any>) {
+  return hexlify(toUtf8Bytes(JSON.stringify(data || {})))
+}
+
 export function useSendSatsTransaction(options: UseSendSatsTransactionOptions = {}) {
   const { address } = useAccount()
   const [isLoading, setIsLoading] = useState(false)
-  const json = useMemo(() => JSON.stringify(options.data), [options.data])
   
-  const { config } = usePrepareSendTransaction({
+  const { config, isLoading: isConfigLoading, isFetched: isConfigFetched } = usePrepareSendTransaction({
     request: {
-      data: hexlify(toUtf8Bytes(json)),
+      data: prepareSatsJson(options.data),
       from: options.from || address,
       to: options.to || address || '',
     },
@@ -38,7 +44,7 @@ export function useSendSatsTransaction(options: UseSendSatsTransactionOptions = 
     }
     options.onSuccess?.({
       hash: receipt.transactionHash,
-      json,
+      json: JSON.stringify(options.data || {}),
     })
   }
 
@@ -53,5 +59,8 @@ export function useSendSatsTransaction(options: UseSendSatsTransactionOptions = 
     sendTransaction: _sendTransaction,
     isLoading,
     address,
+    config,
+    isConfigLoading,
+    isConfigFetched
   }
 }

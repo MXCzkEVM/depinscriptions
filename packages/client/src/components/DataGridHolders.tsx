@@ -4,7 +4,7 @@ import { DataGrid, GridColDef } from "@mui/x-data-grid"
 import { useEffect, useState } from "react"
 import { useAsyncFn } from "react-use"
 import LinearProgressWithLabel from "./LinearProgressWithLabel"
-import { percentage } from "@/utils"
+import { percentage, thousandBitSeparator } from "@/utils"
 
 interface DataGridHoldersProps {
   token?: TickDto
@@ -33,12 +33,12 @@ function DataGridHolders(props: DataGridHoldersProps) {
       field: 'rank',
       headerName: 'Rank',
       minWidth: 120,
-      renderCell() {
-        return 1
+      renderCell(params) {
+        return (params.tabIndex + 1) * page
       },
     },
     {
-      field: 'address',
+      field: 'owner',
       headerName: 'Address',
       minWidth: 180,
       flex: 1,
@@ -55,7 +55,12 @@ function DataGridHolders(props: DataGridHoldersProps) {
         )
       },
     },
-    { field: 'value', headerName: 'Value', minWidth: 150 },
+    {
+      field: 'value', headerName: 'Value', minWidth: 150,
+      renderCell(params) {
+          return thousandBitSeparator(params.row.value)
+      },
+    },
   ]
 
   useEffect(() => { fetch(page) }, [page, props.token])

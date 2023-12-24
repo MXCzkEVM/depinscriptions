@@ -22,11 +22,12 @@ export function thousandBitSeparator(target: number | string = 0,
 
 export function percentage(total: string | number, count: string | number, decimal = 2) {
   if (+total === 0)
-    return 0
+    return '0.00'
   if (+count === 0)
-    return 0
-  return +new BigNumber(count || '0')
-    .div(total || '0')
-    .times(100)
-    .toFixed(decimal, BigNumber.ROUND_DOWN)
+    return '0.00'
+  const number = new BigNumber(count || '0')
+  .div(total || '0')
+  .times(100)
+  .toFixed(decimal, BigNumber.ROUND_DOWN)
+  return number as any
 }

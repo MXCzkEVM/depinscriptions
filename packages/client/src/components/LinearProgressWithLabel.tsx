@@ -8,7 +8,7 @@ function LinearProgressWithLabel(props: LinearProgressProps & { value: number, h
         <LinearProgress className="rounded" style={{ height: props.height }} variant="determinate" {...props} />
       </Box>
       <Box sx={{ minWidth: 35 }}>
-        <Typography variant="body2" color="text.secondary">{`${Math.round(props.value)}%`}</Typography>
+        <Typography variant="body2" color="text.secondary">{`${props.value}%`}</Typography>
       </Box>
     </Box>
   )

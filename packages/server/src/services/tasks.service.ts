@@ -72,13 +72,13 @@ export class TasksService {
     // const blocks = await this.provider.getBlockByArangeWithTransactions(start, end)
     const transactions = [
       // deploy - goerli
-      // await this.provider.getTransaction('0x0d2ec860813082bbb72de4c5cb02df3a3c290cfc156b0f3835ef32fd8b4051e8'),
+      // await this.provider.getTransaction('0xdd5fcc611151191dade72e36ae951ad7c253ad086d566743599ab2d322e78d0b'),
       // mint - goerli
-      await this.provider.getTransaction('0x73489fa9e9c234731958dfe250c87d8ff84827851ebdc54ae60741dbb174d9d5'),
+      await this.provider.getTransaction('0x6b64e01779e2a96c412556ed3e8a1c4ef0339c06d3a1f1c147f422fd8241de5a'),
     ]
     for (const block of [{ transactions, timestamp: 1 }]) {
       for (const transaction of block.transactions) {
-        if (!transaction.data.startsWith('0x5b703a6d73632'))
+        if (!transaction.data.startsWith('0x7b2270223a226d73632d323022'))
           continue
         const receipt = await transaction.wait()
         if (receipt.status !== 1)

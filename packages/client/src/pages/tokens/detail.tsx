@@ -1,13 +1,13 @@
 import type { ReactElement } from 'react'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ArrowBackSharp } from '@ricons/ionicons5'
-import { Card, CardContent, Divider, Skeleton, Tab, Tabs } from '@mui/material'
+import { Card, CardContent, Divider, Tab, Tabs } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LoadingButton } from '@mui/lab'
 import { Layout } from '@/layout'
 import { Condition, DataGridHolders, Empty, FieldCol, Icon, LinearProgressWithLabel } from '@/components'
 import { useRouterParams, useSendSatsTransaction } from '@/hooks'
-import { useAsync, useGeolocation } from 'react-use'
+import { useAsync } from 'react-use'
 import { getTokenId } from '@/api'
 import { getCurrentPosition, percentage, thousandBitSeparator } from '@/utils'
 import dayjs from 'dayjs'
@@ -15,22 +15,20 @@ import { useTranslation } from 'react-i18next'
 import { latLngToCell } from 'h3-js'
 import { useInjectHolder } from '@overlays/react'
 import LocationModal from '@/components/LocationModal'
-import { delay } from '@hairy/utils'
-import { hexlify } from 'ethers/lib/utils.js'
-
+import { toUtf8String } from 'ethers/lib/utils'
 function Page() {
   const router = useRouter()
   const { t } = useTranslation()
   const tokenId = useRouterParams('token', { replace: '/tokens' })
   const [tab, setTab] = useState(0)
-  const hexagon = useRef('')
-  
+  const [hexagon, setHexagon] = useState('')
+
   const { value: token, loading } = useAsync(() => getTokenId({ id: tokenId }))
-  const { isLoading, sendTransaction } = useSendSatsTransaction({
+  const { isLoading, sendTransaction, isConfigFetched } = useSendSatsTransaction({
     data: {
       p: 'msc-20',
       op: 'mint',
-      hex: Number(`0x${hexagon.current || 0}`),
+      hex: hexagon,
       tick: tokenId,
       amt: token?.limit || 0,
     }
@@ -41,20 +39,25 @@ function Page() {
   async function authorize() {
     await openLocationModal()
     const position = await getCurrentPosition()
-    hexagon.current = latLngToCell(
+    const hexagon = latLngToCell(
       position.coords.latitude,
       position.coords.longitude,
       7
     )
-
+    setHexagon(hexagon)
   }
 
   async function mint() {
-    if (!hexagon.current)
+    if (!hexagon)
       await authorize()
-    delay(500)
-    sendTransaction?.()
+    else
+      sendTransaction?.()
   }
+  useEffect(() => {
+    if (hexagon && isConfigFetched) {
+      sendTransaction?.()
+    }
+  }, [hexagon, isConfigFetched])
   return (
     <>
       <div className="flex items-center mt-[3.125rem] mb-[2.25rem] gap-2 cursor-pointer" onClick={() => router.replace('/tokens')}>
