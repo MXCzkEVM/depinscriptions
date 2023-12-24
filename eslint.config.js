@@ -1,6 +1,6 @@
-import antfu from '@antfu/eslint-config'
+const antfu = require('@antfu/eslint-config').default
 
-export default antfu({
+module.exports = antfu({
   vue: false,
   typescript: true,
   react: true,
@@ -8,5 +8,6 @@ export default antfu({
     'ts/no-require-imports': 'off',
     'no-console': 'off',
     'ts/consistent-type-imports': 'off',
+    'react-hooks/exhaustive-deps': 'off',
   },
 })

@@ -1,13 +1,14 @@
 import { Injectable, Logger } from '@nestjs/common'
 import { Interval } from '@nestjs/schedule'
-import { getIndexerLastBlock, setIndexerLastBlock } from '../utils'
 import { TransactionResponse, toUtf8String } from 'ethers'
+import { getIndexerLastBlock, setIndexerLastBlock } from '../utils'
 
 import { BlockWithTransactions, jsonProviderService } from './provider.service'
 import { HolderService } from './holder.service'
 import { TickService } from './tick.service'
 import { InscriptionService } from './inscription.service'
 import { HexagonService } from './hexagon.service'
+
 interface ScanDeployJSON {
   p: 'msc-20'
   op: 'deploy'
@@ -38,7 +39,7 @@ export class TasksService {
     private holderService: HolderService,
     private tickService: TickService,
     private inscriptionService: InscriptionService,
-    private hexagonService: HexagonService
+    private hexagonService: HexagonService,
   ) { }
 
   private readonly logger = new Logger(TasksService.name)
@@ -69,14 +70,15 @@ export class TasksService {
   }
 
   async nextBlocks(start: number, end: number) {
-    // const blocks = await this.provider.getBlockByArangeWithTransactions(start, end)
-    const transactions = [
-      // deploy - goerli
-      // await this.provider.getTransaction('0xdd5fcc611151191dade72e36ae951ad7c253ad086d566743599ab2d322e78d0b'),
-      // mint - goerli
-      await this.provider.getTransaction('0x6b64e01779e2a96c412556ed3e8a1c4ef0339c06d3a1f1c147f422fd8241de5a'),
-    ]
-    for (const block of [{ transactions, timestamp: 1 }]) {
+    const blocks = await this.provider.getBlockByArangeWithTransactions(start, end)
+    // const transactions = [
+    //   // deploy - goerli
+    //   await this.provider.getTransaction('0xdd5fcc611151191dade72e36ae951ad7c253ad086d566743599ab2d322e78d0b'),
+    //   // mint - goerli
+    //   await this.provider.getTransaction('0x6b64e01779e2a96c412556ed3e8a1c4ef0339c06d3a1f1c147f422fd8241de5a'),
+    // ]
+    // for (const block of [{ transactions, timestamp: 1 }]) {
+    for (const block of blocks) {
       for (const transaction of block.transactions) {
         if (!transaction.data.startsWith('0x7b2270223a226d73632d323022'))
           continue
@@ -160,7 +162,7 @@ export class TasksService {
 
     await this.hexagonService.incrementHexagonValue(
       { hex: inscription.hex, tik: inscription.tick },
-      { value: +inscription.amt }
+      { value: +inscription.amt },
     )
 
     await this.holderService.incrementHolderValue(
@@ -170,7 +172,7 @@ export class TasksService {
 
     await this.tickService.incrementTickMinted(
       inscription.tick,
-      { value: +inscription.amt }
+      { value: +inscription.amt },
     )
 
     this.logger.log(`[minted] - ${inscription.amt} ${tick.tick} were mint at ${transaction.from.slice(0, 12)}`)

@@ -1,4 +1,4 @@
-export const noop = ():any => {}
+export function noop(): any {}
 
 export function getCurrentPosition() {
   return new Promise<GeolocationPosition>((resolve, reject) => {

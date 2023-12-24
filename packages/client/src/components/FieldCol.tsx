@@ -19,7 +19,7 @@ function FieldCol(props: PropsWithChildren<FieldColProps>) {
       <div className="text-white">
         {
           props.skeleton
-            ? <Skeleton className='w-60' />
+            ? <Skeleton className="w-60" />
             : props.value || props.children
         }
       </div>

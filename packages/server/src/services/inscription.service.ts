@@ -13,6 +13,7 @@ export class InscriptionService {
   async inscriptions(params: Prisma.InscriptionFindManyArgs) {
     return this.prisma.inscription.findMany(params)
   }
+
   async inscriptionCount(params: Prisma.InscriptionCountArgs) {
     return this.prisma.inscription.count(params)
   }

@@ -1,7 +1,7 @@
-import { InscriptionDto } from '@/api/index.type'
-import { cover } from '@/utils'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/router'
+import { InscriptionDto } from '@/api/index.type'
+import { cover } from '@/utils'
 
 function Scription(props: { data: InscriptionDto }) {
   const router = useRouter()
@@ -15,14 +15,16 @@ function Scription(props: { data: InscriptionDto }) {
       <div className="p-4 bg-[rgb(48,52,61)]">
         <div className="flex justify-between items-center text-base mb-3">
           <span className="truncate inline-block max-w-[50%]">
-            # {props.data.number}
+            #
+            {' '}
+            {props.data.number}
           </span>
           <span className="truncate inline-block max-w-[50%]">
             {cover(props.data.from, [6, 3, 6])}
           </span>
         </div>
         <div className="text-sm">
-          <span className='mr-2'>Created</span>
+          <span className="mr-2">Created</span>
           <span>{dayjs(props.data.time).fromNow()}</span>
         </div>
       </div>

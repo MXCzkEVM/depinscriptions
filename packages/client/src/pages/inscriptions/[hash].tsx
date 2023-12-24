@@ -2,14 +2,14 @@ import { Card, CardContent } from '@mui/material'
 import type { GridColDef } from '@mui/x-data-grid'
 import { DataGrid } from '@mui/x-data-grid'
 import type { ReactElement } from 'react'
+import { useAsync } from 'react-use'
+import dayjs from 'dayjs'
+import { useTranslation } from 'react-i18next'
 import { Layout } from '@/layout'
 import { Empty, FieldCol, LocationForHexagon } from '@/components'
-import { useAsync } from 'react-use'
 import { useRouterQuery } from '@/hooks'
 import { getInscriptionHash } from '@/api'
 import { cover, noop, thousandBitSeparator } from '@/utils'
-import dayjs from 'dayjs'
-import { useTranslation } from 'react-i18next'
 
 function Page() {
   const hash = useRouterQuery('hash')
@@ -24,8 +24,6 @@ function Page() {
 
   const { value: data, loading } = useAsync(async () => getInscriptionHash({ hash }))
 
-
-
   if (!data)
     return <Empty loading={loading} />
 
@@ -34,7 +32,7 @@ function Page() {
       event: 'Mint',
       from: cover(data.from, [6, 3, 4]),
       to: cover(data.to, [6, 3, 4]),
-      time: dayjs(data.time).format('YYYY/MM/DD HH:mm:ss')
+      time: dayjs(data.time).format('YYYY/MM/DD HH:mm:ss'),
     },
   ]
 
@@ -73,7 +71,10 @@ function Page() {
         <CardContent className="p-6">
           <div className="flex items-center mb-6">
             <span className="font-bold text-2xl mr-1">{data.tick}</span>
-            <span className="text-gray-400">#{data.number}</span>
+            <span className="text-gray-400">
+              #
+              {data.number}
+            </span>
           </div>
           <div className="flex mb-8">
             <FieldCol className="flex-1" dir="col" label="Supply">

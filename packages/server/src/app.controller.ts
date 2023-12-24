@@ -1,10 +1,10 @@
-import { Body, Controller, Get, NotFoundException, Param, Post, Query, Request } from '@nestjs/common'
-import { Holder, Inscription, Prisma } from '@prisma/client'
+import { Controller, Get, NotFoundException, Param, Query } from '@nestjs/common'
+import { Prisma } from '@prisma/client'
+import { ApiConsumes, ApiExtraModels, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger'
+import { HexagonDto, HexagonPageResponseDto, HolderDto, HolderPageResponseDto, InscriptionDto, InscriptionPageResponseDto, InscriptionResponseDto, TickDto, TickPageResponseDto } from 'dtos'
 import { InscriptionService } from './services/inscription.service'
 import { HolderService } from './services/holder.service'
 import { TickService } from './services/tick.service'
-import { ApiConsumes, ApiExtraModels, ApiParam, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger'
-import { HexagonDto, HexagonPageResponseDto, HolderDto, HolderPageResponseDto, InscriptionDto, InscriptionPageResponseDto, InscriptionResponseDto, TickDto, TickPageResponseDto } from 'dtos'
 import { HexagonService } from './services/hexagon.service'
 
 @Controller()
@@ -53,7 +53,7 @@ export class AppController {
       throw new NotFoundException(`Not relevant information found Tick [${inscription.tick}]`)
 
     const holders = await this.holderService.holderCount({
-      where: { tick: inscription.tick }
+      where: { tick: inscription.tick },
     })
     return {
       tick: inscription.tick,
@@ -76,17 +76,14 @@ export class AppController {
   @ApiQuery({ name: 'limit', type: 'number', required: false })
   @ApiResponse({ status: 200, type: HexagonPageResponseDto, description: 'Hexagons' })
   async getHexagons(
-    @Query('tick') tick?: string,
-    @Query('page') page = 1,
-    @Query('limit') limit = 15,
-  ) {
+    @Query('tick') tick?: string, @Query('page') page = 1, @Query('limit') limit = 15) {
     const total = await this.hexagonService.hexagonCount({
-      where: { tik: tick }
+      where: { tik: tick },
     })
     const data = await this.hexagonService.hexagons({
       skip: (page - 1) * limit,
       take: +limit,
-      where: { tik: tick }
+      where: { tik: tick },
     })
     return { data, total }
   }
@@ -100,12 +97,7 @@ export class AppController {
   @ApiConsumes('application/json')
   @ApiResponse({ status: 200, type: HolderPageResponseDto, description: 'holders' })
   async getHolders(
-    @Query('tick') tick?: string,
-    @Query('address') address?: string,
-    @Query('order') order?: string,
-    @Query('page') page = 1,
-    @Query('limit') limit = 15,
-  ) {
+    @Query('tick') tick?: string, @Query('address') address?: string, @Query('order') order?: string, @Query('page') page = 1, @Query('limit') limit = 15) {
     const orderBy: Prisma.HolderOrderByWithRelationInput = {}
     const where = { tick, owner: address }
     order && (orderBy[order] = 'asc')
@@ -114,11 +106,10 @@ export class AppController {
       skip: (page - 1) * limit,
       take: +limit,
       where,
-      orderBy
+      orderBy,
     })
     return { data, total }
   }
-
 
   @Get('token')
   @ApiQuery({ name: 'page', type: 'number' })

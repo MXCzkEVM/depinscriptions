@@ -1,10 +1,10 @@
-import { getHolder } from "@/api"
-import { HolderDto, TickDto } from "@/api/index.type"
-import { DataGrid, GridColDef } from "@mui/x-data-grid"
-import { useEffect, useState } from "react"
-import { useAsyncFn } from "react-use"
-import LinearProgressWithLabel from "./LinearProgressWithLabel"
-import { percentage, thousandBitSeparator } from "@/utils"
+import { DataGrid, GridColDef } from '@mui/x-data-grid'
+import { useEffect, useState } from 'react'
+import { useAsyncFn } from 'react-use'
+import LinearProgressWithLabel from './LinearProgressWithLabel'
+import { HolderDto, TickDto } from '@/api/index.type'
+import { getHolder } from '@/api'
+import { percentage, thousandBitSeparator } from '@/utils'
 
 interface DataGridHoldersProps {
   token?: TickDto
@@ -22,7 +22,7 @@ function DataGridHolders(props: DataGridHoldersProps) {
       order: 'value',
       tick: props.token.tick,
       page,
-      limit: 15
+      limit: 15,
     })
     setHolders(data)
     setTotal(total)
@@ -56,27 +56,33 @@ function DataGridHolders(props: DataGridHoldersProps) {
       },
     },
     {
-      field: 'value', headerName: 'Value', minWidth: 150,
+      field: 'value',
+      headerName: 'Value',
+      minWidth: 150,
       renderCell(params) {
-          return thousandBitSeparator(params.row.value)
+        return thousandBitSeparator(params.row.value)
       },
     },
   ]
 
-  useEffect(() => { fetch(page) }, [page, props.token])
+  useEffect(() => {
+    fetch(page)
+  }, [page, props.token])
 
-  return <DataGrid
-    className="border-none data-grid-with-row-pointer"
-    hideFooterSelectedRowCount
-    paginationMode="server"
-    loading={state.loading || !props.token}
-    getRowId={row => row.id}
-    rowCount={Math.floor(total / 15)}
-    paginationModel={{ page, pageSize: 15 }}
-    onPaginationModelChange={(model) => setPage(model.page)}
-    columns={columns}
-    rows={holders}
-  />
+  return (
+    <DataGrid
+      className="border-none data-grid-with-row-pointer"
+      hideFooterSelectedRowCount
+      paginationMode="server"
+      loading={state.loading || !props.token}
+      getRowId={row => row.id}
+      rowCount={Math.floor(total / 15)}
+      paginationModel={{ page, pageSize: 15 }}
+      onPaginationModelChange={model => setPage(model.page)}
+      columns={columns}
+      rows={holders}
+    />
+  )
 }
 
 export default DataGridHolders

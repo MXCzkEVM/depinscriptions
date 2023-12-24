@@ -1,11 +1,11 @@
-import { getHexagon } from "@/api"
-import { HexagonDto, TickDto } from "@/api/index.type"
-import { DataGrid, GridColDef } from "@mui/x-data-grid"
-import { useEffect, useState } from "react"
-import { useAsyncFn } from "react-use"
-import LinearProgressWithLabel from "./LinearProgressWithLabel"
-import { percentage } from "@/utils"
-import LocationForHexagon from "./LocationForHexagon"
+import { DataGrid, GridColDef } from '@mui/x-data-grid'
+import { useEffect, useState } from 'react'
+import { useAsyncFn } from 'react-use'
+import LinearProgressWithLabel from './LinearProgressWithLabel'
+import LocationForHexagon from './LocationForHexagon'
+import { percentage } from '@/utils'
+import { HexagonDto, TickDto } from '@/api/index.type'
+import { getHexagon } from '@/api'
 
 interface DataGridHexagonsProps {
   token?: TickDto
@@ -22,7 +22,7 @@ function DataGridHexagons(props: DataGridHexagonsProps) {
     const { data, total } = await getHexagon({
       tick: props.token.tick,
       page,
-      limit: 15
+      limit: 15,
     })
     setHexagons(data)
     setTotal(total)
@@ -47,20 +47,24 @@ function DataGridHexagons(props: DataGridHexagonsProps) {
     },
   ]
 
-  useEffect(() => { fetch(page) }, [page, props.token])
+  useEffect(() => {
+    fetch(page)
+  }, [page, props.token])
 
-  return <DataGrid
-    className="border-none data-grid-with-row-pointer"
-    paginationMode="server"
-    hideFooterSelectedRowCount
-    loading={state.loading || !props.token}
-    getRowId={row => row.hex}
-    rowCount={Math.floor(total / 15)}
-    paginationModel={{ page, pageSize: 15 }}
-    onPaginationModelChange={(model) => setPage(model.page)}
-    columns={columns}
-    rows={hexagons}
-  />
+  return (
+    <DataGrid
+      className="border-none data-grid-with-row-pointer"
+      paginationMode="server"
+      hideFooterSelectedRowCount
+      loading={state.loading || !props.token}
+      getRowId={row => row.hex}
+      rowCount={Math.floor(total / 15)}
+      paginationModel={{ page, pageSize: 15 }}
+      onPaginationModelChange={model => setPage(model.page)}
+      columns={columns}
+      rows={hexagons}
+    />
+  )
 }
 
 export default DataGridHexagons

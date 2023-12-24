@@ -8,7 +8,7 @@ export interface ConditionProps {
 function Condition(props: PropsWithChildren<ConditionProps>) {
   return (
     <>
-      {props.is ? (props.if  || props.children) : props.else}
+      {props.is ? (props.if || props.children) : props.else}
     </>
   )
 }

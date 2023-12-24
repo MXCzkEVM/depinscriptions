@@ -6,95 +6,95 @@
  */
 
 export interface HexagonDto {
-  hex: string;
-  tik: string;
-  mit: any;
+  hex: string
+  tik: string
+  mit: any
 }
 export interface InscriptionDto {
-  number: number;
-  hash: string;
-  op: string;
-  tick: string;
-  json: string;
-  from: string;
-  to: string;
-  time: string;
+  number: number
+  hash: string
+  op: string
+  tick: string
+  json: string
+  from: string
+  to: string
+  time: string
 }
 export interface HolderDto {
-  id: number;
-  tick: string;
-  number: number;
-  owner: string;
-  value: number;
+  id: number
+  tick: string
+  number: number
+  owner: string
+  value: number
 }
 export interface TickDto {
-  number: number;
-  tick: string;
-  minted: number;
-  total: number;
-  holders: number;
-  creator: string;
-  limit: number;
-  deployHash: string;
-  deployTime: string;
-  lastTime: string;
-  completedTime: string;
-  trxs: number;
+  number: number
+  tick: string
+  minted: number
+  total: number
+  holders: number
+  creator: string
+  limit: number
+  deployHash: string
+  deployTime: string
+  lastTime: string
+  completedTime: string
+  trxs: number
 }
 export interface InscriptionPageResponseDto {
-  total: number;
-  data: InscriptionDto[];
+  total: number
+  data: InscriptionDto[]
 }
 export interface InscriptionResponseDto {
-  hash: string;
-  creator: string;
-  owner: string;
-  from: string;
-  to: string;
-  number: number;
-  supply: number;
-  time: string;
-  json: string;
-  tick: string;
+  hash: string
+  creator: string
+  owner: string
+  from: string
+  to: string
+  number: number
+  supply: number
+  time: string
+  json: string
+  tick: string
   holders: number
 }
 export interface HexagonPageResponseDto {
-  total: number;
-  data: HexagonDto[];
+  total: number
+  data: HexagonDto[]
 }
 export interface HolderPageResponseDto {
-  total: number;
-  data: HolderDto[];
+  total: number
+  data: HolderDto[]
 }
 export interface TickPageResponseDto {
-  total: number;
-  data: TickDto[];
+  total: number
+  data: TickDto[]
 }
 export interface GetInscriptionQuery {
-  limit?: number;
-  page: number;
+  limit?: number
+  page: number
 }
 export interface GetInscriptionHashPath {
-  hash: string;
+  hash: string
 }
 export interface GetHexagonQuery {
-  tick: string;
-  limit?: number;
-  page: number;
+  tick: string
+  limit?: number
+  page: number
 }
 export interface GetHolderQuery {
-  tick?: string;
-  address?: string;
-  order?: string;
-  limit?: number;
-  page: number;
+  tick?: string
+  address?: string
+  order?: string
+  limit?: number
+  page: number
 }
 export interface GetTokenQuery {
-  limit?: number;
-  type: number;
-  keyword: string;
-  page: number;
+  limit?: number
+  type: number
+  keyword: string
+  page: number
 }
 export interface GetTokenIdPath {
-  id: string;
+  id: string
 }

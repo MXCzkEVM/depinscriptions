@@ -6,14 +6,15 @@ import React from 'react'
 import { WagmiConfig, useAccount } from 'wagmi'
 import { I18nextProvider } from 'react-i18next'
 import { ThemeProvider } from '@mui/material/styles'
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+import { useMount } from 'react-use'
 import { chains, client } from '@/utils/wagmi'
 import { fetchResponseIntercept, i18n } from '@/plugins'
 import { MountsProvider, NoSSR, PleaseConnectWallet } from '@/components'
 import type { AppPropsWithLayout } from '@/types'
 import { darkTheme, fontInter } from '@/config'
-import dayjs from 'dayjs'
-import relativeTime from 'dayjs/plugin/relativeTime'
-import { useMount } from 'react-use'
+
 dayjs.extend(relativeTime)
 
 // If wallet is connected -> display app
@@ -26,7 +27,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   useMount(() => setMounted(true))
   useMount(() => {
     fetchResponseIntercept(async (response) => {
-      const data =  await response.clone().json()
+      const data = await response.clone().json()
       if (data.error)
         throw new Error(data.message)
       return response

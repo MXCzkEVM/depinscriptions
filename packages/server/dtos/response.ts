@@ -1,7 +1,6 @@
-import { ApiProperty, getSchemaPath } from "@nestjs/swagger";
-import { Hexagon, Holder, Inscription, Tick } from "@prisma/client";
-import { HexagonDto, HolderDto, InscriptionDto, TickDto } from "./source";
-
+import { ApiProperty, getSchemaPath } from '@nestjs/swagger'
+import { Hexagon, Holder, Inscription, Tick } from '@prisma/client'
+import { HexagonDto, HolderDto, InscriptionDto, TickDto } from './source'
 
 export class PaginationResponseDto {
   @ApiProperty()
@@ -11,7 +10,7 @@ export class PaginationResponseDto {
 export class InscriptionPageResponseDto extends PaginationResponseDto {
   @ApiProperty({
     type: 'array',
-    items: { $ref: getSchemaPath(InscriptionDto) }
+    items: { $ref: getSchemaPath(InscriptionDto) },
   })
   data: Inscription[]
 }
@@ -19,14 +18,14 @@ export class InscriptionPageResponseDto extends PaginationResponseDto {
 export class TickPageResponseDto extends PaginationResponseDto {
   @ApiProperty({
     type: 'array',
-    items: { $ref: getSchemaPath(TickDto) }
+    items: { $ref: getSchemaPath(TickDto) },
   })
   data: Tick[]
 }
 export class HolderPageResponseDto extends PaginationResponseDto {
   @ApiProperty({
     type: 'array',
-    items: { $ref: getSchemaPath(HolderDto) }
+    items: { $ref: getSchemaPath(HolderDto) },
   })
   data: Holder[]
 }
@@ -69,7 +68,7 @@ export class InscriptionResponseDto {
 export class HexagonPageResponseDto extends PaginationResponseDto {
   @ApiProperty({
     type: 'array',
-    items: { $ref: getSchemaPath(HexagonDto) }
+    items: { $ref: getSchemaPath(HexagonDto) },
   })
   data: Hexagon[]
 }

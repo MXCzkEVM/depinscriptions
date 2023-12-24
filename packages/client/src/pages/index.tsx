@@ -1,12 +1,12 @@
-import { useEffect, type ReactElement, useState } from 'react'
+import { type ReactElement, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Refresh } from '@ricons/ionicons5'
+import { useAsyncFn, useMount } from 'react-use'
 import { Layout } from '@/layout'
-import { Condition, Icon, Scription } from '@/components'
+import { Condition, Empty, Icon, Scription } from '@/components'
 import { getInscription } from '@/api'
 import { InscriptionDto } from '@/api/index.type'
-import { useMount, useAsyncFn } from 'react-use'
-import { Empty } from '@/components'
+
 function Page() {
   const { t } = useTranslation()
   const [page, setPage] = useState(1)

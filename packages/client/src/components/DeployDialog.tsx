@@ -4,9 +4,9 @@ import type { DetailedHTMLProps, HTMLAttributes } from 'react'
 import { useState } from 'react'
 import { LoadingButton } from '@mui/lab'
 import { } from '@rainbow-me/rainbowkit'
+import { useTranslation } from 'react-i18next'
 import { useSendSatsTransaction } from '@/hooks'
 import { countries } from '@/config'
-import { useTranslation } from 'react-i18next'
 
 function DeployDialog() {
   const { visible, resolve, reject } = useOverlay({
@@ -79,9 +79,9 @@ function DeployDialog() {
               >
                 {countries.map(country => (
                   <MenuItem key={country.code} value={country.code}>
-                    <div className='flex items-center'>
-                      <span className='min-w-10 mr-2'>{country.code}</span>
-                      <img className='w-6' src={country.image} />
+                    <div className="flex items-center">
+                      <span className="min-w-10 mr-2">{country.code}</span>
+                      <img className="w-6" src={country.image} />
                     </div>
                   </MenuItem>
                 ))}

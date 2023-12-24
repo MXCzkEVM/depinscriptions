@@ -1,13 +1,13 @@
 import { useEffect } from 'react'
 import { proxy, useSnapshot } from 'valtio'
-import { LocationDetail } from './LocationForHexagon.type'
-import Condition from './Condition'
 import { useAsyncFn } from 'react-use'
 import { Skeleton } from '@mui/material'
 import { cellToLatLng } from 'h3-js'
+import Condition from './Condition'
+import { LocationDetail } from './LocationForHexagon.type'
 
 const mappings = proxy<Record<string, string>>({})
-const baseURL = "https://nominatim.openstreetmap.org/reverse.php"
+const baseURL = 'https://nominatim.openstreetmap.org/reverse.php'
 
 export interface LocationForHexProps {
   hexagon?: string
@@ -19,7 +19,7 @@ function LocationForHexagon(props: LocationForHexProps) {
   const [state, fetchLocation] = useAsyncFn(async (hexagon: string) => {
     const [lat, lon] = cellToLatLng(hexagon)
     const params = { lat: String(lat), lon: String(lon), zoom: '18', format: 'jsonv2' }
-    const suffix = `?${new URLSearchParams(Object.entries(params)).toString()}`;
+    const suffix = `?${new URLSearchParams(Object.entries(params)).toString()}`
     const response = await fetch(`${baseURL}${suffix}`)
     const location = await response.json() as LocationDetail
     mappings[hexagon] = location.name
@@ -37,12 +37,13 @@ function LocationForHexagon(props: LocationForHexProps) {
 
   const name = mappingsSnapshot[props.hexagon]
 
-  return <Condition
-    is={!props.hexagon && !name && !state.loading}
-    if={name}
-    else={<Skeleton className='w-full' />}
-  />
+  return (
+    <Condition
+      is={!props.hexagon && !name && !state.loading}
+      if={name}
+      else={<Skeleton className="w-full" />}
+    />
+  )
 }
-
 
 export default LocationForHexagon

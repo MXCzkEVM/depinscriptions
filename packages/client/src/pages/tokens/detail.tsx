@@ -4,18 +4,18 @@ import { ArrowBackSharp } from '@ricons/ionicons5'
 import { Card, CardContent, Divider, Tab, Tabs } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LoadingButton } from '@mui/lab'
-import { Layout } from '@/layout'
-import { Condition, DataGridHolders, Empty, FieldCol, Icon, LinearProgressWithLabel } from '@/components'
-import { useRouterParams, useSendSatsTransaction } from '@/hooks'
 import { useAsync } from 'react-use'
-import { getTokenId } from '@/api'
-import { getCurrentPosition, percentage, thousandBitSeparator } from '@/utils'
 import dayjs from 'dayjs'
 import { useTranslation } from 'react-i18next'
 import { latLngToCell } from 'h3-js'
 import { useInjectHolder } from '@overlays/react'
+import { Layout } from '@/layout'
+import { Condition, DataGridHolders, Empty, FieldCol, Icon, LinearProgressWithLabel } from '@/components'
+import { useRouterParams, useSendSatsTransaction } from '@/hooks'
+import { getTokenId } from '@/api'
+import { getCurrentPosition, percentage, thousandBitSeparator } from '@/utils'
 import LocationModal from '@/components/LocationModal'
-import { toUtf8String } from 'ethers/lib/utils'
+
 function Page() {
   const router = useRouter()
   const { t } = useTranslation()
@@ -31,7 +31,7 @@ function Page() {
       hex: hexagon,
       tick: tokenId,
       amt: token?.limit || 0,
-    }
+    },
   })
 
   const [holderModal, openLocationModal] = useInjectHolder(LocationModal)
@@ -42,7 +42,7 @@ function Page() {
     const hexagon = latLngToCell(
       position.coords.latitude,
       position.coords.longitude,
-      7
+      7,
     )
     setHexagon(hexagon)
   }
@@ -54,9 +54,8 @@ function Page() {
       sendTransaction?.()
   }
   useEffect(() => {
-    if (hexagon && isConfigFetched) {
+    if (hexagon && isConfigFetched)
       sendTransaction?.()
-    }
   }, [hexagon, isConfigFetched])
   return (
     <>
@@ -103,7 +102,9 @@ function Page() {
             {dayjs(token?.deployTime).format('YYYY/MM/DD HH:mm:ss')}
           </FieldCol>
           <FieldCol label={t('Completed Time')} skeleton={!token}>
-            {token?.completedTime && dayjs(token?.completedTime).format('YYYY/MM/DD HH:mm:ss') || '-'}
+            {token?.completedTime
+              ? dayjs(token?.completedTime).format('YYYY/MM/DD HH:mm:ss')
+              : ''}
           </FieldCol>
           <FieldCol label={t('Holders')} skeleton={!token}>
             {thousandBitSeparator(token?.holders)}
@@ -132,7 +133,6 @@ function Page() {
     </>
   )
 }
-
 
 Page.layout = function (page: ReactElement) {
   return <Layout>{page}</Layout>

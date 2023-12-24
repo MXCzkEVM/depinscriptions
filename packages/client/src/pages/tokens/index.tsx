@@ -1,20 +1,19 @@
 import { Button, Card, CardContent, Tab, Tabs, TextField, Typography } from '@mui/material'
-import type { ReactElement, SyntheticEvent } from 'react'
+import type { ReactElement } from 'react'
 import React, { useEffect, useState } from 'react'
 import type { GridColDef } from '@mui/x-data-grid'
 import { DataGrid } from '@mui/x-data-grid'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/router'
 import { useInjectHolder } from '@overlays/react'
-import { Icon, LinearProgressWithLabel, DeployDialog, Condition, Empty, FieldTickInput } from '@/components'
-import { Layout } from '@/layout'
 import { useTranslation } from 'react-i18next'
 import { Search } from '@ricons/ionicons5'
+import { useAsyncFn, useMount } from 'react-use'
+import { Condition, DeployDialog, Empty, FieldTickInput, Icon, LinearProgressWithLabel } from '@/components'
+import { Layout } from '@/layout'
 import { TickDto } from '@/api/index.type'
 import { percentage } from '@/utils'
-import { useAsyncFn, useMount } from 'react-use'
 import { getToken } from '@/api'
-
 
 // Retrieve tokens deployed by a user
 function Page() {
@@ -78,7 +77,7 @@ function Page() {
 
   return (
     <>
-      <FieldTickInput onSearch={(addr) => router.push(`/tokens/query?address=${addr}`)} />
+      <FieldTickInput onSearch={addr => router.push(`/tokens/query?address=${addr}`)} />
       <div className="mb-4 flex justify-between">
         <Typography variant="h6" component="span">
           {t('The full list of tokens')}
@@ -97,9 +96,9 @@ function Page() {
               <Tab disableRipple value={2} label={t('In-Progress')} />
               <Tab disableRipple value={3} label={t('Completed')} />
             </Tabs>
-            <div className='relative hidden md:block'>
-              <TextField value={keyword} onChange={(event) => setKeyword(event.target.value)} color="secondary" size="small" variant="outlined" placeholder={t('Token')} />
-              <Icon className='absolute right-2 top-2 cursor-pointer' onClick={() => fetchTicks(1)}>
+            <div className="relative hidden md:block">
+              <TextField value={keyword} onChange={event => setKeyword(event.target.value)} color="secondary" size="small" variant="outlined" placeholder={t('Token')} />
+              <Icon className="absolute right-2 top-2 cursor-pointer" onClick={() => fetchTicks(1)}>
                 <Search />
               </Icon>
             </div>
@@ -114,7 +113,7 @@ function Page() {
               columns={columns}
               hideFooterSelectedRowCount
               paginationModel={{ page, pageSize: 15 }}
-              onPaginationModelChange={(model) => setPage(model.page)}
+              onPaginationModelChange={model => setPage(model.page)}
               onRowClick={({ row }) => router.push(`/tokens/detail?token=${row.tick}`)}
             />
           </Condition>

@@ -1,7 +1,8 @@
 import type { SendTransactionArgs, SendTransactionResult } from '@wagmi/core'
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import { useAccount, usePrepareSendTransaction, useSendTransaction } from 'wagmi'
-import { hexlify, toUtf8Bytes, toUtf8String } from 'ethers/lib/utils.js'
+import { hexlify, toUtf8Bytes } from 'ethers/lib/utils.js'
+
 export interface UseSendSatsTransactionOptions {
   from?: string
   to?: string
@@ -11,7 +12,6 @@ export interface UseSendSatsTransactionOptions {
   automatic?: boolean
 }
 
-
 export function prepareSatsJson(data?: Record<string, any>) {
   return hexlify(toUtf8Bytes(JSON.stringify(data || {})))
 }
@@ -19,7 +19,7 @@ export function prepareSatsJson(data?: Record<string, any>) {
 export function useSendSatsTransaction(options: UseSendSatsTransactionOptions = {}) {
   const { address } = useAccount()
   const [isLoading, setIsLoading] = useState(false)
-  
+
   const { config, isLoading: isConfigLoading, isFetched: isConfigFetched } = usePrepareSendTransaction({
     request: {
       data: prepareSatsJson(options.data),
@@ -61,6 +61,6 @@ export function useSendSatsTransaction(options: UseSendSatsTransactionOptions = 
     address,
     config,
     isConfigLoading,
-    isConfigFetched
+    isConfigFetched,
   }
 }

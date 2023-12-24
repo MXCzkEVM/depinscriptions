@@ -1,13 +1,11 @@
-import BigNumber from "bignumber.js"
+import BigNumber from 'bignumber.js'
 
 export interface ThousandBitSeparatorOptions {
   integer?: boolean
   decimal?: boolean
 }
 
-export function thousandBitSeparator(target: number | string = 0,
-  unit = ',',
-  options: ThousandBitSeparatorOptions = {}) {
+export function thousandBitSeparator(target: number | string = 0, unit = ',', options: ThousandBitSeparatorOptions = {}) {
   options.integer = options.integer ?? true
   options.decimal = options.decimal ?? false
   const exp = /(\d)(?=(\d{3})+$)/ig
@@ -26,8 +24,8 @@ export function percentage(total: string | number, count: string | number, decim
   if (+count === 0)
     return '0.00'
   const number = new BigNumber(count || '0')
-  .div(total || '0')
-  .times(100)
-  .toFixed(decimal, BigNumber.ROUND_DOWN)
+    .div(total || '0')
+    .times(100)
+    .toFixed(decimal, BigNumber.ROUND_DOWN)
   return number as any
 }
