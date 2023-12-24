@@ -4,7 +4,7 @@ import { PrismaService } from './prisma.service'
 
 @Injectable()
 export class TickService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService) { }
 
   async tick(where: Prisma.TickWhereUniqueInput) {
     return this.prisma.tick.findUnique({ where })
@@ -22,6 +22,13 @@ export class TickService {
     return this.prisma.tick.update({
       where: { tick },
       data,
+    })
+  }
+
+  async incrementTickMinted(tick: string, data: { value: number }) {
+    return this.prisma.tick.update({
+      where: { tick },
+      data: { minted: { increment: data.value } }
     })
   }
 

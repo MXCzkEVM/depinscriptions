@@ -8,7 +8,7 @@ import { HolderService } from './holder.service'
 import { TickService } from './tick.service'
 import { InscriptionService } from './inscription.service'
 import { HexagonService } from './hexagon.service'
-import {fromHex} from '@cosmjs/encoding'
+import { fromHex } from '@cosmjs/encoding'
 interface ScanDeployJSON {
   p: 'msc-20'
   op: 'deploy'
@@ -169,8 +169,8 @@ export class TasksService {
       { value: +inscription.amt, number: tick.number },
     )
 
-    await this.hexagonService.incrementHexagonValue(
-      { hex: inscription.hex, tik: inscription.tick },
+    await this.tickService.incrementTickMinted(
+      inscription.tick,
       { value: +inscription.amt }
     )
 
