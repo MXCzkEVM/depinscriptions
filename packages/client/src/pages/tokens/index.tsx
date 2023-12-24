@@ -97,8 +97,8 @@ function Page() {
               <Tab disableRipple value={2} label={t('In-Progress')} />
               <Tab disableRipple value={3} label={t('Completed')} />
             </Tabs>
-            <div className='relative'>
-              <TextField value={keyword} onChange={(event) => setKeyword(event.target.value)} className="hidden md:block" color="secondary" size="small" variant="outlined" placeholder="Token" />
+            <div className='relative hidden md:block'>
+              <TextField value={keyword} onChange={(event) => setKeyword(event.target.value)} color="secondary" size="small" variant="outlined" placeholder={t('Token')} />
               <Icon className='absolute right-2 top-2 cursor-pointer' onClick={() => fetchTicks(1)}>
                 <Search />
               </Icon>

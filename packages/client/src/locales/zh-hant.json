@@ -28,5 +28,10 @@
   "We Need Your Location": "我們需要您的位置",
   "Need Your Location Contnet": "要建立您的 GeoInscription，我們需要您的位置詳細資訊。\n此資訊將與銘文中的 MXC Hexagon ID 連結。\n六邊形代表半徑 2 公里的數字區域。\n您的位置數據僅用於此目的，鏈上不會儲存任何個人數據，且該數據不包含 (UIF) 用戶可識別因素。",
   "Cancel": "取消",
-  "Confirm": "確認"
+  "Confirm": "確認",
+  "MSC-20 Deploy": "MSC-20 部署",
+  "Country and Region": "國家及地區",
+  "Protocol": "協定",
+  "Tick": "標誌",
+  "Token": "代幣"
 }

@@ -28,5 +28,10 @@
   "We Need Your Location": "Avem nevoie de locația dvs",
   "Need Your Location Contnet": "Pentru a vă crea GeoInscripția, avem nevoie de detaliile locației dvs. \nAceste informații vor fi legate de un ID MXC Hexagon din inscripție. \nUn hexagon reprezintă o zonă digitală cu o rază de 2 km. \nDatele dvs. de locație sunt utilizate exclusiv în acest scop, nu sunt stocate date personale în lanț și aceste date nu conțin factori identificabili de utilizator (UIF).",
   "Cancel": "Anulare",
-  "Confirm": "A confirma"
+  "Confirm": "A confirma",
+  "MSC-20 Deploy": "Desfășurare MSC-20",
+  "Country and Region": "Țara și Regiunea",
+  "Protocol": "Protocol",
+  "Tick": "Bifă",
+  "Token": "Jeton"
 }

@@ -5,14 +5,17 @@ import { useState } from 'react'
 import { LoadingButton } from '@mui/lab'
 import { } from '@rainbow-me/rainbowkit'
 import { useSendSatsTransaction } from '@/hooks'
+import { countries } from '@/config'
+import { useTranslation } from 'react-i18next'
 
 function DeployDialog() {
   const { visible, resolve, reject } = useOverlay({
     duration: 500,
   })
   const [country, setCountry] = useState('')
-  const [total, setTotal] = useState('')
-  const [limit, setLimit] = useState('')
+  const [total, setTotal] = useState('21000000')
+  const [limit, setLimit] = useState('1000')
+  const { t } = useTranslation()
 
   const [errors, setErrors] = useState({
     tick: '',
@@ -21,21 +24,13 @@ function DeployDialog() {
   })
 
   const { sendTransaction, isLoading } = useSendSatsTransaction({
+    onSuccess: () => resolve(),
     data: {
       p: 'msc-20',
-      op: 'mint',
+      op: 'deploy',
       tick: country,
       max: total,
       lim: limit,
-    },
-    onSuccess(data) {
-      resolve({
-        tick: country,
-        deployHash: data.hash,
-        json: data.json,
-        total,
-        limit,
-      })
     },
   })
 
@@ -61,21 +56,20 @@ function DeployDialog() {
 
   return (
     <Dialog
+      aria-describedby="alert-dialog-slide-description"
       open={visible}
       keepMounted
       onClose={onClose}
-      aria-describedby="alert-dialog-slide-description"
-
     >
-      <DialogTitle>MSC-20 Deploy</DialogTitle>
-      <DialogContent className="w-[550px]">
+      <DialogTitle>{t('MSC-20 Deploy')}</DialogTitle>
+      <DialogContent className="max-w-[550px] md:min-w-[550px]">
         <DialogContentText className="flex flex-col gap-3" id="alert-dialog-slide-description">
-          <Field label="Protocol">
+          <Field label={t('Protocol')}>
             MSC-20
           </Field>
-          <Field label="Tick">
+          <Field label={t('Tick')}>
             <FormControl error={!!errors.tick} variant="standard" className="w-full">
-              <InputLabel id="country">Country and Region</InputLabel>
+              <InputLabel id="country">{t('Country and Region')}</InputLabel>
               <Select
                 labelId="country"
                 id="country"
@@ -83,16 +77,18 @@ function DeployDialog() {
                 onChange={event => setCountry(event.target.value)}
                 value={country}
               >
-                <MenuItem value="">
-                  None
-                </MenuItem>
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
+                {countries.map(country => (
+                  <MenuItem key={country.code} value={country.code}>
+                    <div className='flex items-center'>
+                      <span className='min-w-10 mr-2'>{country.code}</span>
+                      <img className='w-6' src={country.image} />
+                    </div>
+                  </MenuItem>
+                ))}
               </Select>
             </FormControl>
           </Field>
-          <Field label="Total Supply">
+          <Field label={t('Total Supply')}>
             <Input
               error={!!errors.total}
               onChange={event => setTotal(event.target.value)}
@@ -102,7 +98,7 @@ function DeployDialog() {
               className="w-full"
             />
           </Field>
-          <Field label="Limit Per Mint">
+          <Field label={t('Limit Per Mint')}>
             <Input
               error={!!errors.limit}
               onChange={event => setLimit(event.target.value)}
@@ -115,8 +111,8 @@ function DeployDialog() {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button color="inherit" variant="contained" onClick={onClose}>Cancel</Button>
-        <LoadingButton loading={isLoading} variant="contained" onClick={onResolve}>Deploy</LoadingButton>
+        <Button color="inherit" variant="contained" onClick={onClose}>{t('Cancel')}</Button>
+        <LoadingButton loading={isLoading} variant="contained" onClick={onResolve}>{t('Deploy')}</LoadingButton>
       </DialogActions>
     </Dialog>
   )

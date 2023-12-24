@@ -22,3 +22,5 @@ export async function getIndexerLastBlock() {
     return INDEXER_DEFAULT_LAST_BLOCK
   }
 }
+
+export * from './json'

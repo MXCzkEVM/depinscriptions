@@ -28,5 +28,10 @@
   "We Need Your Location": "Nous avons besoin de votre emplacement",
   "Need Your Location Contnet": "Pour créer votre GeoInscription, nous avons besoin des détails de votre localisation. \nCes informations seront liées à un identifiant MXC Hexagon dans l'inscription. \nUn Hexagone représente une zone numérique d'un rayon de 2 km. \nVos données de localisation sont utilisées exclusivement à cette fin, aucune donnée personnelle n'est stockée en chaîne et ces données ne contiennent aucun facteur identifiable par l'utilisateur (UIF).",
   "Cancel": "Annuler",
-  "Confirm": "Confirmer"
+  "Confirm": "Confirmer",
+  "MSC-20 Deploy": "Déploiement du MSC-20",
+  "Country and Region": "Pays et région",
+  "Protocol": "Protocole",
+  "Tick": "Cocher",
+  "Token": "Jeton"
 }

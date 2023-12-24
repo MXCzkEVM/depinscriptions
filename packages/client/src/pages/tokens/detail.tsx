@@ -27,11 +27,11 @@ function Page() {
   const { value: token, loading } = useAsync(() => getTokenId({ id: tokenId }))
   const { isLoading, sendTransaction } = useSendSatsTransaction({
     data: {
-      hex: hexagon.current,
-      tick: tokenId,
-      amt: String(token?.limit || 0),
       p: 'msc-20',
       op: 'mint',
+      hex: hexagon.current,
+      tick: tokenId,
+      amt: token?.limit || 0,
     }
   })
 
@@ -45,6 +45,7 @@ function Page() {
       position.coords.longitude,
       7
     )
+
   }
 
   async function mint() {
@@ -52,7 +53,6 @@ function Page() {
       await authorize()
     sendTransaction?.()
   }
-
   return (
     <>
       <div className="flex items-center mt-[3.125rem] mb-[2.25rem] gap-2 cursor-pointer" onClick={() => router.replace('/tokens')}>
@@ -71,7 +71,7 @@ function Page() {
         <CardContent>
           <div className="mb-3 flex justify-between">
             <span className="text-xl font-bold">{t('Overview')}</span>
-            <LoadingButton disabled={!token} loading={isLoading} variant="contained" onClick={mint}>
+            <LoadingButton loading={isLoading} variant="contained" onClick={mint}>
               {t('Mint Directly')}
             </LoadingButton>
           </div>
@@ -128,9 +128,6 @@ function Page() {
   )
 }
 
-function objectToUtf8Bytes(obj?: Record<string, any>) {
-  return toUtf8Bytes(JSON.stringify(obj || {}))
-}
 
 Page.layout = function (page: ReactElement) {
   return <Layout>{page}</Layout>

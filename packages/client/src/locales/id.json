@@ -28,5 +28,10 @@
   "We Need Your Location": "Kami Membutuhkan Lokasi Anda",
   "Need Your Location Contnet": "Untuk membuat GeoInskripsi Anda, kami memerlukan detail lokasi Anda. \nInformasi ini akan dihubungkan dengan ID MXC Hexagon di prasasti. \nHexagon mewakili area digital dengan radius 2 km. \nData lokasi Anda digunakan secara eksklusif untuk tujuan ini, tidak ada data pribadi yang disimpan secara on-chain dan data ini tidak mengandung faktor (UIF) yang dapat diidentifikasi pengguna.",
   "Cancel": "Membatalkan",
-  "Confirm": "Mengonfirmasi"
+  "Confirm": "Mengonfirmasi",
+  "MSC-20 Deploy": "Penerapan MSC-20",
+  "Country and Region": "Negara dan Wilayah",
+  "Protocol": "Protokol",
+  "Tick": "Kutu",
+  "Token": "Token"
 }

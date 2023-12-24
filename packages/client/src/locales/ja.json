@@ -28,5 +28,10 @@
   "We Need Your Location": "あなたの位置情報が必要です",
   "Need Your Location Contnet": "GeoInscription を作成するには、位置情報の詳細が必要です。\nこの情報は、碑文内の MXC Hexagon ID にリンクされます。\n六角形は半径 2 km のデジタル エリアを表します。\nあなたの位置データはこの目的のみに使用され、個人データはオンチェーンに保存されず、このデータには（UIF）ユーザーを特定できる要素は含まれません。",
   "Cancel": "キャンセル",
-  "Confirm": "確認する"
+  "Confirm": "確認する",
+  "MSC-20 Deploy": "MSC-20の展開",
+  "Country and Region": "国と地域",
+  "Protocol": "プロトコル",
+  "Tick": "カチカチ",
+  "Token": "トークン"
 }

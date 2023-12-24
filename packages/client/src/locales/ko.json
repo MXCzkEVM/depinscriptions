@@ -28,5 +28,10 @@
   "We Need Your Location": "귀하의 위치가 필요합니다",
   "Need Your Location Contnet": "GeoInscription을 만들려면 위치 정보가 필요합니다. \n이 정보는 비문의 MXC Hexagon ID와 연결됩니다. \n육각형은 반경 2km의 디지털 영역을 나타냅니다. \n귀하의 위치 데이터는 이 목적으로만 사용되며 개인 데이터는 온체인에 저장되지 않으며 이 데이터에는 (UIF) 사용자 식별 요소가 포함되어 있지 않습니다.",
   "Cancel": "취소",
-  "Confirm": "확인하다"
+  "Confirm": "확인하다",
+  "MSC-20 Deploy": "MSC-20 배포",
+  "Country and Region": "국가 및 지역",
+  "Protocol": "규약",
+  "Tick": "진드기",
+  "Token": "토큰"
 }

@@ -28,5 +28,10 @@
   "We Need Your Location": "We Need Your Location",
   "Need Your Location Contnet": "To create your GeoInscription, we require your location details. This information will be linked with an MXC Hexagon ID in the inscription. A Hexagon represents a digital area with a 2 km radius. Your location data is used exclusively for this purpose, no personal data is stored on-chain and this data contains no (UIF) user identifiable factors.",
   "Cancel": "Cancel",
-  "Confirm": "Confirm"
+  "Confirm": "Confirm",
+  "MSC-20 Deploy": "MSC-20 Deploy",
+  "Country and Region": "Country and Region",
+  "Protocol": "Protocol",
+  "Tick": "Tick",
+  "Token": "Token"
 }

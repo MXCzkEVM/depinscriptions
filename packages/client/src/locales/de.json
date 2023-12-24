@@ -28,5 +28,10 @@
   "We Need Your Location": "Wir brauchen Ihren Standort",
   "Need Your Location Contnet": "Zur Erstellung Ihrer GeoInschrift benötigen wir Ihre Standortangaben. \nDiese Informationen werden mit einer MXC-Hexagon-ID in der Beschriftung verknüpft. \nEin Sechseck stellt einen digitalen Bereich mit einem Radius von 2 km dar. \nIhre Standortdaten werden ausschließlich zu diesem Zweck verwendet, es werden keine personenbezogenen Daten in der Kette gespeichert und diese Daten enthalten keine (UIF) benutzeridentifizierbaren Faktoren.",
   "Cancel": "Stornieren",
-  "Confirm": "Bestätigen"
+  "Confirm": "Bestätigen",
+  "MSC-20 Deploy": "MSC-20-Bereitstellung",
+  "Country and Region": "Land und Region",
+  "Protocol": "Protokoll",
+  "Tick": "Tick",
+  "Token": "Zeichen"
 }

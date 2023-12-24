@@ -28,5 +28,10 @@
   "We Need Your Location": "We hebben uw locatie nodig",
   "Need Your Location Contnet": "Voor het aanmaken van uw GeoInscription hebben wij uw locatiegegevens nodig. \nDeze informatie wordt in de inschrijving gekoppeld aan een MXC Hexagon ID. \nEen zeshoek vertegenwoordigt een digitaal gebied met een straal van 2 km. \nUw locatiegegevens worden uitsluitend voor dit doel gebruikt, er worden geen persoonlijke gegevens in de keten opgeslagen en deze gegevens bevatten geen (UIF) door de gebruiker identificeerbare factoren.",
   "Cancel": "Annuleren",
-  "Confirm": "Bevestigen"
+  "Confirm": "Bevestigen",
+  "MSC-20 Deploy": "MSC-20 implementeren",
+  "Country and Region": "Land en regio",
+  "Protocol": "Protocol",
+  "Tick": "Kruis aan",
+  "Token": "Token"
 }

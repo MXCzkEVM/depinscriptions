@@ -28,5 +28,10 @@
   "We Need Your Location": "Abbiamo bisogno della tua posizione",
   "Need Your Location Contnet": "Per creare la tua GeoInscription, abbiamo bisogno dei dettagli della tua posizione. \nQueste informazioni saranno collegate a un ID esagono MXC nell'iscrizione. \nUn esagono rappresenta un'area digitale con un raggio di 2 km. \nI tuoi dati sulla posizione vengono utilizzati esclusivamente per questo scopo, nessun dato personale viene archiviato sulla catena e questi dati non contengono fattori identificabili dall'utente (UIF).",
   "Cancel": "Annulla",
-  "Confirm": "Confermare"
+  "Confirm": "Confermare",
+  "MSC-20 Deploy": "Distribuzione di MSC-20",
+  "Country and Region": "Paese e regione",
+  "Protocol": "Protocollo",
+  "Tick": "Tic tac",
+  "Token": "Gettone"
 }

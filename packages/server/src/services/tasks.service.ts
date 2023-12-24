@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common'
 import { Interval } from '@nestjs/schedule'
-import { getIndexerLastBlock, setIndexerLastBlock } from 'src/utils'
+import { getIndexerLastBlock, parse, setIndexerLastBlock } from '../utils'
 import { TransactionResponse, toUtf8String } from 'ethers'
 
 import { BlockWithTransactions, jsonProviderService } from './provider.service'
@@ -32,8 +32,7 @@ interface ScanTransferJSON {
 
 type ScanJSONType = ScanDeployJSON | ScanMintJSON | ScanTransferJSON
 
-@Injectable({
-})
+@Injectable()
 export class TasksService {
   constructor(
     private provider: jsonProviderService,
@@ -54,11 +53,11 @@ export class TasksService {
     const lastBlockNumber = await this.provider.getLastBlockNumber()
     const startBlockNumber = await getIndexerLastBlock()
     const endBlockNumber = Math.min(startBlockNumber + 10, lastBlockNumber)
-    this.logger.debug(`----start---- parse block_number: ${startBlockNumber} - ${endBlockNumber}`)
+    // this.logger.debug(`----start---- parse block_number: ${startBlockNumber} - ${endBlockNumber}`)
     try {
       await this.nextBlocks(startBlockNumber, endBlockNumber)
       await setIndexerLastBlock(endBlockNumber)
-      this.logger.debug(`-----end----- parse block_number: ${startBlockNumber} - ${endBlockNumber}`)
+      // this.logger.debug(`-----end----- parse block_number: ${startBlockNumber} - ${endBlockNumber}`)
     }
     catch (error) {
       if (error.name.startsWith('Prisma'))
@@ -71,17 +70,14 @@ export class TasksService {
   }
 
   async nextBlocks(start: number, end: number) {
-    const blocks = await this.provider.getBlockByArangeWithTransactions(
-      start,
-      end,
-    )
-    // const transactions = [
-    //   mint
-    //   await this.provider.getTransaction(
-    //     '0x28a46a361072b179415971d01e0c7cc3ee95b9914722527369d656add25c2da0',
-    //   ),
-    // ]
-    for (const block of blocks) {
+    // const blocks = await this.provider.getBlockByArangeWithTransactions(start, end)
+    const transactions = [
+      // deploy - goerli
+      await this.provider.getTransaction('0x517e33d2b8c7acbef32544cd9d1ace86007a81622a79f0305370d015c2937b42'),
+      // mint - goerli
+      // await this.provider.getTransaction('0xc6e59be14d0ae456cbab53f3b06023b499f1f36ed2593a162c8e224d2c4e19fc'),
+    ]
+    for (const block of [{ transactions, timestamp: 1 }]) {
       for (const transaction of block.transactions) {
         if (!transaction.data.startsWith('0x7b2270223a226d73632d323022'))
           continue
@@ -90,21 +86,21 @@ export class TasksService {
           continue
 
         const json = toUtf8String(transaction.data)
-        const inscription = JSON.parse(json) as ScanJSONType
+        const inscription = parse(json) as ScanJSONType
 
-        this.logger.log(`transaction data: ${transaction.data}`)
+        this.logger.log(`transaction hash: ${transaction.hash}`)
         this.logger.log(`inscription json: ${json}`)
 
         try {
-          const existInscription = this.inscriptionService.someInscription(transaction.hash)
+          const existInscription = await this.inscriptionService.someInscription(transaction.hash)
           if (existInscription)
             throw new Error(`Inscription Error: attempting to record existing inscription(${transaction.hash.slice(0, 12)})`)
           if (inscription.op === 'deploy')
-            await this.deploy(block, transaction, inscription)
+            await this.deploy(block as any, transaction, inscription)
           if (inscription.op === 'transfer')
-            await this.transfer(block, transaction, inscription)
+            await this.transfer(block as any, transaction, inscription)
           if (inscription.op === 'mint')
-            await this.mint(block, transaction, inscription)
+            await this.mint(block as any, transaction, inscription)
           await this.inscriptionService.recordInscription({
             from: transaction.from,
             to: transaction.to,
@@ -134,13 +130,16 @@ export class TasksService {
         creator: transaction.from,
         deployTime: new Date(block.timestamp * 1000),
         deployHash: transaction.hash,
+        total: +inscription.max,
         limit: +inscription.lim,
         tick: inscription.tick,
       })
+
+      this.logger.log(`[deployed] - ${inscription.tick} were deploy at ${transaction.from.slice(0, 12)}`)
     }
     catch (error) {
       if (error.code === '2002')
-        throw new Error('The current hash already exists, skipping record')
+        throw new Error('Deploy Error: The current hash already exists, skipping record')
       throw error
     }
   }
@@ -155,21 +154,22 @@ export class TasksService {
       throw new Error(`Mint Error: Attempting to mint into non-existent tick(${inscription.tick})`)
 
     const surplus = tick.total - tick.minted
-    const amount = BigInt(inscription.amt)
-    if (amount > tick.limit)
+    if (+inscription.amt > tick.limit)
       throw new Error(`Mint Error: Exceeded ${inscription.tick} limit number of mints by ${tick.limit}`)
-    if (amount > surplus)
+    if (+inscription.amt > surplus)
       throw new Error(`Mint Error: Exceeded ${inscription.tick} total number of mints by ${tick.total}`)
 
     await this.hexagonService.incrementHexagonValue(
       { hex: inscription.hex, tik: inscription.tick },
-      { value: inscription.amt }
+      { value: +inscription.amt }
     )
 
     await this.holderService.incrementHolderValue(
       { owner: transaction.from, tick: inscription.tick },
-      { value: inscription.amt, number: tick.number },
+      { value: +inscription.amt, number: tick.number },
     )
+
+    this.logger.log(`[minted] - ${inscription.amt} ${tick.tick} were mint at ${transaction.from.slice(0, 12)}`)
   }
 
   async transfer(
@@ -187,11 +187,11 @@ export class TasksService {
       throw new Error(`Transfer Error: from(${transaction.from.slice(0, 12)}) does not have a holder`)
     await this.holderService.decrementHolderValue(
       { owner: transaction.from, tick: inscription.tick },
-      { value: inscription.amt },
+      { value: +inscription.amt },
     )
     await this.holderService.incrementHolderValue(
       { owner: transaction.to, tick: inscription.tick },
-      { value: inscription.amt, number: tick.number },
+      { value: +inscription.amt, number: tick.number },
     )
   }
 }

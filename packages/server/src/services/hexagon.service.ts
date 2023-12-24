@@ -20,17 +20,17 @@ export class HexagonService {
     return this.prisma.hexagon.findMany(params)
   }
 
-  async incrementHexagonValue(params: QueryHexagonParams, data: { value: number | string }) {
+  async incrementHexagonValue(params: QueryHexagonParams, data: { value: number }) {
     const count = await this.prisma.hexagon.count({ where: params })
     if (count === 0) {
       await this.prisma.hexagon.create({
-        data: { ...params, mit: BigInt(data.value) }
+        data: { ...params, mit: data.value }
       })
     }
     else {
       await this.prisma.hexagon.updateMany({
         where: { hex: params.hex, tik: params.tik },
-        data: { mit: { increment: BigInt(data.value) } }
+        data: { mit: { increment: data.value } }
       })
     }
   }

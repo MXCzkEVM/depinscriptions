@@ -41,14 +41,14 @@ export class HolderService {
     })
   }
 
-  async incrementHolderValue(params: QueryHolderParams, data: { value: number | string, number: number }) {
+  async incrementHolderValue(params: QueryHolderParams, data: { value: number, number: number }) {
     const isExist = await this.someHolder(params)
     if (!isExist) {
       await this.createHolder({
         owner: params.owner,
         tick: params.tick,
         number: data.number,
-        value: BigInt(data.value),
+        value: +data.value,
       })
       await this.tickService.updateTick(params.tick, {
         holders: { increment: 1 },
@@ -57,26 +57,26 @@ export class HolderService {
     else {
       await this.updateHolder(
         { owner: params.owner, tick: params.tick },
-        { value: { increment: BigInt(data.value) } },
+        { value: { increment: data.value } },
       )
     }
   }
 
-  async decrementHolderValue(params: QueryHolderParams, data: { value: number | string }) {
+  async decrementHolderValue(params: QueryHolderParams, data: { value: number }) {
     const holder = await this.holder({ where: params })
     if (!holder)
       throw new Error(`Holder Error: ${params.owner.slice(0, 12)} does not hold ${params.tick}`)
 
-    if (BigInt(data.value) > holder.value)
+    if (data.value > holder.value)
       throw new Error(`Holder Error: Deducting ${params.tick} greater than holder balance`)
 
-    if (BigInt(data.value) - holder.value === BigInt(0)) {
+    if (data.value - holder.value === 0) {
       await this.prisma.holder.delete({ where: { id: holder.id } })
     }
     else {
       this.updateHolder(
         { owner: params.owner, tick: params.tick },
-        { value: { decrement: BigInt(data.value) } },
+        { value: { decrement: data.value } },
       )
     }
   }
