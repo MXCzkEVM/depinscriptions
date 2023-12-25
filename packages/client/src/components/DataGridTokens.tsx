@@ -21,13 +21,13 @@ function DataGridTokens(props: DataGridTokensProps) {
   const [state, fetch] = useAsyncFn(async (page: number) => {
     if (fetched)
       return
-    const { data } = await getHolder({ page, limit: 12, owner: props.address || '' })
+    const { data } = await getHolder({ page, limit: 24, owner: props.address || '' })
     if (page === 1)
       setTokens([...data])
     else
       setTokens([...tokens, ...data])
     setPage(page)
-    setFetched(data.length < 12)
+    setFetched(data.length < 24)
   }, [props.address])
 
   useMount(() => fetch(page))

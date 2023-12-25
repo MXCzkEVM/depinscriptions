@@ -15,7 +15,7 @@ const Layout: React.FC<Props> = ({ children }: Props) => {
           <Navbar />
         </NoSSR>
       </div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 pb-8">
         {children}
       </div>
       <Toaster position="top-right" />

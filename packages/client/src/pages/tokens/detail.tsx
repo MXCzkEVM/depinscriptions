@@ -68,7 +68,7 @@ function Page() {
           <FieldCol label={t('Completed Time')} skeleton={isPageLoading}>
             {token?.completedTime
               ? dayjs(token?.completedTime).format('YYYY/MM/DD HH:mm:ss')
-              : ''}
+              : '-'}
           </FieldCol>
           <FieldCol label={t('Holders')} skeleton={isPageLoading}>
             {thousandBitSeparator(token?.holders)}

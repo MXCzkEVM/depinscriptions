@@ -29,7 +29,7 @@ function ChainLink(props: ChainLinkProps) {
     toast.success(t('Copy Success'), { position: 'top-center' })
   }
   return (
-    <div className="flex items-center justify-center w-full">
+    <div className="flex items-center w-full">
       <Link className="truncate" color="inherit" {...props} href={href}>
         {props.children || cover(props.href, [6, 3, 4])}
       </Link>

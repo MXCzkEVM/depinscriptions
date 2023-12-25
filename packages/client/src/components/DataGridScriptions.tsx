@@ -19,13 +19,13 @@ function DataGridScriptions(props: DataGridScriptionsProps) {
   const [state, fetchInscriptions] = useAsyncFn(async (page: number) => {
     if (fetched)
       return
-    const { data } = await getInscription({ page, limit: 15, owner: props.address || '' })
+    const { data } = await getInscription({ page, limit: 24, owner: props.address || '' })
     if (page === 1)
       setInscriptions([...data])
     else
       setInscriptions(prev => [...prev, ...data])
     setPage(page)
-    setFetched(data.length < 15)
+    setFetched(data.length < 24)
   }, [props.address])
 
   useMount(() => fetchInscriptions(page))

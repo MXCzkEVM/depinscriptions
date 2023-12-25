@@ -53,19 +53,19 @@ function Page() {
       },
     },
     { field: 'holders', headerName: t('Holders'), minWidth: 150, flex: 1 },
-    {
-      field: 'trxs',
-      headerName: t('Transactions'),
-      minWidth: 180,
-      flex: 1,
-      renderCell(params) {
-        return (
-          <div className="flex justify-between w-full">
-            <span>{params.row.trxs}</span>
-          </div>
-        )
-      },
-    },
+    // {
+    //   field: 'trxs',
+    //   headerName: t('Transactions'),
+    //   minWidth: 180,
+    //   flex: 1,
+    //   renderCell(params) {
+    //     return (
+    //       <div className="flex justify-between w-full">
+    //         <span>{params.row.trxs}</span>
+    //       </div>
+    //     )
+    //   },
+    // },
   ]
 
   const [state, fetchTicks] = useAsyncFn(async (page: number) => {
