@@ -70,15 +70,15 @@ export class TasksService {
   }
 
   async nextBlocks(start: number, end: number) {
-    // const blocks = await this.provider.getBlockByArangeWithTransactions(start, end)
-    const transactions = [
-      // deploy - goerli
-      await this.provider.getTransaction('0x1c81625f7727e8825794d81adf2bc217a6d9302166df5db95df610ff1c3c0a3e'),
-      // mint - goerli
-      // await this.provider.getTransaction('0x4030a17155420be3f815c2694470be0d54bc06876d64ad70e0c884e2c3ab90a2'),
-    ]
-    for (const block of [{ transactions, timestamp: 1 }]) {
-    // for (const block of blocks) {
+    const blocks = await this.provider.getBlockByArangeWithTransactions(start, end)
+    // const transactions = [
+    //   // deploy - goerli
+    //   // await this.provider.getTransaction('0x1c81625f7727e8825794d81adf2bc217a6d9302166df5db95df610ff1c3c0a3e'),
+    //   // mint - goerli
+    //   // await this.provider.getTransaction('0xd75cfb4d592a200b25845a6861c91707a94c428499303bee964d080f28b3c926'),
+    // ]
+    // for (const block of [{ transactions, timestamp: 1 }]) {
+    for (const block of blocks) {
       for (const transaction of block.transactions) {
         if (!transaction.data.startsWith('0x7b2270223a226d73632d323022'))
           continue

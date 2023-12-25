@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { useAsyncFn, useMount } from 'react-use'
+import { LoadingButton } from '@mui/lab'
 import Condition from './Condition'
 import Empty from './Empty'
 import BoxToken from './BoxToken'
+import InfiniteScroll from './InfiniteScroll'
 import { HolderDto } from '@/api/index.type'
 import { getHolder } from '@/api'
 import { useMittOn } from '@/hooks/useMittOn'
@@ -25,17 +27,28 @@ function DataGridTokens(props: DataGridTokensProps) {
     else
       setTokens([...tokens, ...data])
     setPage(page)
-    setFetched(!data.length)
+    setFetched(data.length < 12)
   }, [props.address])
 
   useMount(() => fetch(page))
-  useMittOn('reload:page', () => fetch(page))
+  useMittOn('reload:page', () => fetch(1))
 
   return (
     <Condition is={tokens.length} else={<Empty loading={state.loading} />}>
-      <div className="grid mp:grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-[1.25rem] mt-[2rem]">
-        {tokens.map(item => <BoxToken key={item.id} data={item} />)}
-      </div>
+      <InfiniteScroll
+        loader={(
+          <div className="flex justify-center py-2">
+            <LoadingButton />
+          </div>
+        )}
+        next={() => fetch(page + 1)}
+        loaded={fetched}
+      >
+        <div className="grid mp:grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-[1.25rem] mt-[2rem]">
+          {tokens.map(item => <BoxToken key={item.id} data={item} />)}
+        </div>
+      </InfiniteScroll>
+
     </Condition>
   )
 }
