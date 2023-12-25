@@ -33,5 +33,12 @@
   "Country and Region": "Paese e regione",
   "Protocol": "Protocollo",
   "Tick": "Tic tac",
-  "Token": "Gettone"
+  "Token": "Gettone",
+  "Rank": "Rango",
+  "Address": "Indirizzo",
+  "Percentage": "Percentuale",
+  "Value": "Valore",
+  "Location": "Posizione",
+  "Hexagons": "Esagoni",
+  "Copy Success": "Copia successo"
 }

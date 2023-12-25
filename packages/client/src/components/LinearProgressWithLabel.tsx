@@ -3,7 +3,7 @@ import { Box, LinearProgress, Typography } from '@mui/material'
 
 function LinearProgressWithLabel(props: LinearProgressProps & { value: number, height?: string }) {
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+    <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
       <Box sx={{ width: '100%', mr: 1 }}>
         <LinearProgress className="rounded" style={{ height: props.height }} variant="determinate" {...props} />
       </Box>

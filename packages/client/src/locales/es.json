@@ -33,5 +33,12 @@
   "Country and Region": "País y región",
   "Protocol": "Protocolo",
   "Tick": "Garrapata",
-  "Token": "Simbólico"
+  "Token": "Simbólico",
+  "Rank": "Rango",
+  "Address": "DIRECCIÓN",
+  "Percentage": "Porcentaje",
+  "Value": "Valor",
+  "Location": "Ubicación",
+  "Hexagons": "Hexágonos",
+  "Copy Success": "Copia exitosa"
 }

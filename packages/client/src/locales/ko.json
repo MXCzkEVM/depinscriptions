@@ -33,5 +33,12 @@
   "Country and Region": "국가 및 지역",
   "Protocol": "규약",
   "Tick": "진드기",
-  "Token": "토큰"
+  "Token": "토큰",
+  "Rank": "계급",
+  "Address": "주소",
+  "Percentage": "백분율",
+  "Value": "값",
+  "Location": "위치",
+  "Hexagons": "육각형",
+  "Copy Success": "복사 성공"
 }

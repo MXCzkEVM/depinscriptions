@@ -37,5 +37,12 @@
   "Country and Region": "Ülke ve Bölge",
   "Protocol": "Protokol",
   "Tick": "Kene",
-  "Token": "Jeton"
+  "Token": "Jeton",
+  "Rank": "Rütbe",
+  "Address": "Adres",
+  "Percentage": "Yüzde",
+  "Value": "Değer",
+  "Location": "Konum",
+  "Hexagons": "Altıgenler",
+  "Copy Success": "Başarıyı Kopyala"
 }

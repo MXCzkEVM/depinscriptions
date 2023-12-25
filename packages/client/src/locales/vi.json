@@ -33,5 +33,12 @@
   "Country and Region": "Quốc gia và khu vực",
   "Protocol": "Giao thức",
   "Tick": "đánh dấu",
-  "Token": "Mã thông báo"
+  "Token": "Mã thông báo",
+  "Rank": "Thứ hạng",
+  "Address": "Địa chỉ",
+  "Percentage": "Tỷ lệ phần trăm",
+  "Value": "Giá trị",
+  "Location": "Vị trí",
+  "Hexagons": "lục giác",
+  "Copy Success": "Sao chép thành công"
 }

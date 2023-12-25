@@ -33,5 +33,12 @@
   "Country and Region": "国と地域",
   "Protocol": "プロトコル",
   "Tick": "カチカチ",
-  "Token": "トークン"
+  "Token": "トークン",
+  "Rank": "ランク",
+  "Address": "住所",
+  "Percentage": "パーセンテージ",
+  "Value": "価値",
+  "Location": "位置",
+  "Hexagons": "六角形",
+  "Copy Success": "コピー成功"
 }

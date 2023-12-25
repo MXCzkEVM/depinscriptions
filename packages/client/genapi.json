@@ -6,6 +6,14 @@
         "operationId": "AppController_getInscriptions",
         "parameters": [
           {
+            "name": "owner",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "limit",
             "required": false,
             "in": "query",
@@ -128,7 +136,7 @@
             }
           },
           {
-            "name": "address",
+            "name": "owner",
             "required": false,
             "in": "query",
             "schema": {
@@ -296,7 +304,8 @@
             "type": "string"
           },
           "mit": {
-            "type": "object"
+            "format": "int64",
+            "type": "integer"
           }
         },
         "required": [
@@ -483,6 +492,9 @@
           },
           "tick": {
             "type": "string"
+          },
+          "holders": {
+            "type": "number"
           }
         },
         "required": [
@@ -495,7 +507,8 @@
           "supply",
           "time",
           "json",
-          "tick"
+          "tick",
+          "holders"
         ]
       },
       "HexagonPageResponseDto": {

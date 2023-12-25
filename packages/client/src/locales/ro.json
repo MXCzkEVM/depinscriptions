@@ -33,5 +33,12 @@
   "Country and Region": "Țara și Regiunea",
   "Protocol": "Protocol",
   "Tick": "Bifă",
-  "Token": "Jeton"
+  "Token": "Jeton",
+  "Rank": "Rang",
+  "Address": "Abordare",
+  "Percentage": "Procent",
+  "Value": "Valoare",
+  "Location": "Locație",
+  "Hexagons": "Hexagoane",
+  "Copy Success": "Copiere cu succes"
 }

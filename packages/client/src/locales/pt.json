@@ -33,5 +33,12 @@
   "Country and Region": "País e região",
   "Protocol": "Protocolo",
   "Tick": "Marcação",
-  "Token": "Símbolo"
+  "Token": "Símbolo",
+  "Rank": "Classificação",
+  "Address": "Endereço",
+  "Percentage": "Percentagem",
+  "Value": "Valor",
+  "Location": "Localização",
+  "Hexagons": "Hexágonos",
+  "Copy Success": "Sucesso na cópia"
 }

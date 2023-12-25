@@ -33,5 +33,12 @@
   "Country and Region": "Country and Region",
   "Protocol": "Protocol",
   "Tick": "Tick",
-  "Token": "Token"
+  "Token": "Token",
+  "Rank": "Rank",
+  "Address": "Address",
+  "Percentage": "Percentage",
+  "Value": "Value",
+  "Location": "Location",
+  "Hexagons": "Hexagons",
+  "Copy Success": "Copy Success"
 }

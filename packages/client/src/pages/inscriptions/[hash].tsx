@@ -6,10 +6,10 @@ import { useAsync } from 'react-use'
 import dayjs from 'dayjs'
 import { useTranslation } from 'react-i18next'
 import { Layout } from '@/layout'
-import { Empty, FieldCol, LocationForHexagon } from '@/components'
+import { ChainLink, Condition, Empty, FieldCol, LocationForHexagon } from '@/components'
 import { useRouterQuery } from '@/hooks'
 import { getInscriptionHash } from '@/api'
-import { cover, noop, thousandBitSeparator } from '@/utils'
+import { noop, thousandBitSeparator } from '@/utils'
 
 function Page() {
   const hash = useRouterQuery('hash')
@@ -17,8 +17,24 @@ function Page() {
 
   const columns: GridColDef[] = [
     { field: 'event', headerName: 'Event', minWidth: 60, flex: 1 },
-    { field: 'from', headerName: 'From', minWidth: 120, flex: 1 },
-    { field: 'to', headerName: 'To', minWidth: 120, flex: 1 },
+    {
+      field: 'from',
+      headerName: 'From',
+      minWidth: 120,
+      flex: 1,
+      renderCell(params) {
+        return <ChainLink type="address" href={params.row.from} />
+      },
+    },
+    {
+      field: 'to',
+      headerName: 'To',
+      minWidth: 120,
+      flex: 1,
+      renderCell(params) {
+        return <ChainLink type="address" href={params.row.to} />
+      },
+    },
     { field: 'time', headerName: 'Time', minWidth: 180, flex: 1 },
   ]
 
@@ -27,11 +43,13 @@ function Page() {
   if (!data)
     return <Empty loading={loading} />
 
+  const inscription = JSON.parse(data.json)
+
   const rows = [
     {
-      event: 'Mint',
-      from: cover(data.from, [6, 3, 4]),
-      to: cover(data.to, [6, 3, 4]),
+      event: inscription.op,
+      from: data.from,
+      to: data.to,
       time: dayjs(data.time).format('YYYY/MM/DD HH:mm:ss'),
     },
   ]
@@ -42,7 +60,7 @@ function Page() {
         <CardContent className="p-6">
           <div className="h-[340px] bg-black bg-opacity-25 flex justify-center items-center mb-7">
             <pre className="text-lg">
-              {data.json}
+              {JSON.stringify(inscription, null, 2)}
             </pre>
           </div>
           <div className="grid grid-cols-2 gap-y-6">
@@ -50,10 +68,10 @@ function Page() {
               {data.number}
             </FieldCol>
             <FieldCol dir="col" label="Creator">
-              {cover(data.from, [6, 3, 4])}
+              <ChainLink type="address" href={data.from} />
             </FieldCol>
             <FieldCol dir="col" label="Owner">
-              {cover(data.from, [6, 3, 4])}
+              <ChainLink type="address" href={data.from} />
             </FieldCol>
             <FieldCol dir="col" label="Mime Type">
               text/plain
@@ -61,9 +79,11 @@ function Page() {
             <FieldCol dir="col" label="Created">
               {dayjs(data.time).fromNow()}
             </FieldCol>
-            <FieldCol dir="col" label="Location">
-              <LocationForHexagon hexagon="" />
-            </FieldCol>
+            <Condition is={inscription.hex}>
+              <FieldCol dir="col" label="Location">
+                <LocationForHexagon hexagon={inscription.hex} />
+              </FieldCol>
+            </Condition>
           </div>
         </CardContent>
       </Card>
@@ -84,7 +104,7 @@ function Page() {
               {thousandBitSeparator(data.holders)}
             </FieldCol>
             <FieldCol className="flex-1" dir="col" label="Creator">
-              {cover(data.from, [6, 3, 4])}
+              <ChainLink type="address" href={data.from} />
             </FieldCol>
           </div>
           <div className="flex items-center mb-4 font-bold text-2xl">

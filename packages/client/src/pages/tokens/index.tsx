@@ -27,7 +27,7 @@ function Page() {
   const [total, setTotal] = useState(0)
 
   const columns: GridColDef<TickDto>[] = [
-    { field: 'tick', headerName: 'Token', minWidth: 120, flex: 1 },
+    { field: 'tick', headerName: t('Token'), minWidth: 120, flex: 1 },
     {
       field: 'deployTime',
       headerName: t('Deploy Time'),
@@ -70,7 +70,7 @@ function Page() {
     const { data, total } = await getToken({ keyword, page, type, limit: 15 })
     setTotal(total)
     setTicks(data)
-  })
+  }, [total, keyword, page, type])
 
   useMount(() => fetchTicks(1))
   useEffect(() => { fetchTicks(page) }, [type])
@@ -97,7 +97,14 @@ function Page() {
               <Tab disableRipple value={3} label={t('Completed')} />
             </Tabs>
             <div className="relative hidden md:block">
-              <TextField value={keyword} onChange={event => setKeyword(event.target.value)} color="secondary" size="small" variant="outlined" placeholder={t('Token')} />
+              <TextField
+                value={keyword}
+                onChange={event => setKeyword(event.target.value)}
+                color="secondary"
+                size="small"
+                variant="outlined"
+                placeholder={t('Token')}
+              />
               <Icon className="absolute right-2 top-2 cursor-pointer" onClick={() => fetchTicks(1)}>
                 <Search />
               </Icon>

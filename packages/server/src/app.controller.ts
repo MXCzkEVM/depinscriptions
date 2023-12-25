@@ -19,22 +19,22 @@ export class AppController {
     private readonly holderService: HolderService,
     private readonly tickService: TickService,
     private readonly hexagonService: HexagonService,
-  ) {}
+  ) { }
 
   @Get('inscription')
   @ApiQuery({ name: 'page', type: 'number' })
+  @ApiQuery({ name: 'owner', type: 'string', required: false })
   @ApiQuery({ name: 'limit', type: 'number', required: false })
   @ApiConsumes('application/json')
   @ApiResponse({ status: 200, type: InscriptionPageResponseDto, description: 'Inscriptions' })
-  async getInscriptions(
-    @Query('page') page = 1,
-    @Query('limit') limit = 15,
-  ) {
+  async getInscriptions(@Query('owner') owner?: string, @Query('page') page = 1, @Query('limit') limit = 15) {
     const total = await this.inscriptionService.inscriptionCount({
       orderBy: { number: 'asc' },
+      where: owner ? { from: owner } : undefined,
     })
     const data = await this.inscriptionService.inscriptions({
       orderBy: { number: 'asc' },
+      where: owner ? { from: owner } : undefined,
       skip: (page - 1) * limit,
       take: +limit,
     })
@@ -90,16 +90,21 @@ export class AppController {
 
   @Get('holder')
   @ApiQuery({ name: 'page', type: 'number' })
-  @ApiQuery({ name: 'address', type: 'string', required: false })
+  @ApiQuery({ name: 'owner', type: 'string', required: false })
   @ApiQuery({ name: 'tick', type: 'string', required: false })
   @ApiQuery({ name: 'order', type: 'string', required: false })
   @ApiQuery({ name: 'limit', type: 'number', required: false })
   @ApiConsumes('application/json')
   @ApiResponse({ status: 200, type: HolderPageResponseDto, description: 'holders' })
   async getHolders(
-    @Query('tick') tick?: string, @Query('address') address?: string, @Query('order') order?: string, @Query('page') page = 1, @Query('limit') limit = 15) {
+    @Query('tick') tick?: string, @Query('owner') owner?: string, @Query('order') order?: string, @Query('page') page = 1, @Query('limit') limit = 15) {
     const orderBy: Prisma.HolderOrderByWithRelationInput = {}
-    const where = { tick, owner: address }
+
+    const where: Prisma.HolderWhereInput = {}
+    if (tick)
+      where.tick = tick
+    if (owner)
+      where.owner = owner
     order && (orderBy[order] = 'asc')
     const total = await this.holderService.holderCount({ where })
     const data = await this.holderService.holders({
@@ -125,15 +130,14 @@ export class AppController {
     @Query('page') page = 1,
     @Query('limit') limit = 15,
   ) {
-    const orders: Record<number, Prisma.TickOrderByWithRelationInput> = {
-      1: { lastTime: 'asc' },
-      2: { completedTime: { nulls: 'first', sort: 'asc' } },
-      3: { completedTime: { nulls: 'last', sort: 'asc' } },
-    }
-    const where = keyword ? { tick: { contains: keyword } } : undefined
+    const where: Prisma.TickWhereInput = { tick: { contains: keyword } }
+    if (+type === 2)
+      where.completedTime = null
+    if (+type === 3)
+      where.completedTime = { not: null }
     const total = await this.tickService.getTickCount({ where })
     const data = await this.tickService.ticks({
-      orderBy: orders[type],
+      orderBy: { lastTime: 'asc' },
       skip: (page - 1) * limit,
       take: +limit,
       where,

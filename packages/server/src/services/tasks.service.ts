@@ -70,15 +70,17 @@ export class TasksService {
   }
 
   async nextBlocks(start: number, end: number) {
-    const blocks = await this.provider.getBlockByArangeWithTransactions(start, end)
-    // const transactions = [
-    //   // deploy - goerli
-    //   await this.provider.getTransaction('0xdd5fcc611151191dade72e36ae951ad7c253ad086d566743599ab2d322e78d0b'),
-    //   // mint - goerli
-    //   await this.provider.getTransaction('0x6b64e01779e2a96c412556ed3e8a1c4ef0339c06d3a1f1c147f422fd8241de5a'),
-    // ]
-    // for (const block of [{ transactions, timestamp: 1 }]) {
-    for (const block of blocks) {
+    // const blocks = await this.provider.getBlockByArangeWithTransactions(start, end)
+    const transactions = [
+      // deploy - goerli
+      // await this.provider.getTransaction('0xdd5fcc611151191dade72e36ae951ad7c253ad086d566743599ab2d322e78d0b'),
+      // mint - goerli
+      // await this.provider.getTransaction('0x6b64e01779e2a96c412556ed3e8a1c4ef0339c06d3a1f1c147f422fd8241de5a'),
+      // await this.provider.getTransaction('0xfe668216021c8c6c60ba3cdba21e5b5caf40b41fd464579882899b5777f4a1e4'),
+      // await this.provider.getTransaction('0x86e391f6a8a580c66017f31b226b0ceceed4fd83e6f310e64674ef508c162e8c'),
+    ]
+    for (const block of [{ transactions, timestamp: 1 }]) {
+    // for (const block of blocks) {
       for (const transaction of block.transactions) {
         if (!transaction.data.startsWith('0x7b2270223a226d73632d323022'))
           continue

@@ -33,5 +33,12 @@
   "Country and Region": "Negara dan Wilayah",
   "Protocol": "Protokol",
   "Tick": "Kutu",
-  "Token": "Token"
+  "Token": "Token",
+  "Rank": "Pangkat",
+  "Address": "Alamat",
+  "Percentage": "Persentase",
+  "Value": "Nilai",
+  "Location": "Lokasi",
+  "Hexagons": "segi enam",
+  "Copy Success": "Salin Sukses"
 }

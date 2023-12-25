@@ -22,7 +22,7 @@ function LocationForHexagon(props: LocationForHexProps) {
     const suffix = `?${new URLSearchParams(Object.entries(params)).toString()}`
     const response = await fetch(`${baseURL}${suffix}`)
     const location = await response.json() as LocationDetail
-    mappings[hexagon] = location.name
+    mappings[hexagon] = location.name || location.display_name.split(',').slice(1, -2).join(',')
   })
 
   useEffect(() => {
@@ -39,8 +39,8 @@ function LocationForHexagon(props: LocationForHexProps) {
 
   return (
     <Condition
-      is={!props.hexagon && !name && !state.loading}
-      if={name}
+      is={name && !state.loading}
+      if={<div className="w-full truncate">{name}</div>}
       else={<Skeleton className="w-full" />}
     />
   )

@@ -9,7 +9,7 @@
     "build": "nest build && npm run build:prisma",
     "build:prisma": "prisma db push && prisma generate",
     "start": "nest start",
-    "start:dev": "nest start --watch",
+    "start:dev": "pnpm build:prisma && nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "test": "jest",

@@ -1,62 +1,33 @@
 import type { ReactElement } from 'react'
-import { useEffect, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { ArrowBackSharp } from '@ricons/ionicons5'
 import { Card, CardContent, Divider, Tab, Tabs } from '@mui/material'
 import { useRouter } from 'next/router'
-import { LoadingButton } from '@mui/lab'
 import { useAsync } from 'react-use'
 import dayjs from 'dayjs'
 import { useTranslation } from 'react-i18next'
-import { latLngToCell } from 'h3-js'
-import { useInjectHolder } from '@overlays/react'
 import { Layout } from '@/layout'
-import { Condition, DataGridHolders, Empty, FieldCol, Icon, LinearProgressWithLabel } from '@/components'
-import { useRouterParams, useSendSatsTransaction } from '@/hooks'
+import { ChainLink, DataTableHexagons, DataTableHolders, FieldCol, Icon, LinearProgressWithLabel, MintButton } from '@/components'
+import { useRouterParams } from '@/hooks'
 import { getTokenId } from '@/api'
-import { getCurrentPosition, percentage, thousandBitSeparator } from '@/utils'
-import LocationModal from '@/components/LocationModal'
+import { percentage, thousandBitSeparator } from '@/utils'
+import { useMittEmit } from '@/hooks/useMittEmit'
 
 function Page() {
   const router = useRouter()
   const { t } = useTranslation()
   const tokenId = useRouterParams('token', { replace: '/tokens' })
+
   const [tab, setTab] = useState(0)
-  const [hexagon, setHexagon] = useState('')
 
   const { value: token, loading } = useAsync(() => getTokenId({ id: tokenId }))
-  const { isLoading, sendTransaction, isConfigFetched } = useSendSatsTransaction({
-    data: {
-      p: 'msc-20',
-      op: 'mint',
-      hex: hexagon,
-      tick: tokenId,
-      amt: token?.limit || 0,
-    },
-  })
 
-  const [holderModal, openLocationModal] = useInjectHolder(LocationModal)
+  const isPageLoading = useMemo(() => loading || !token, [loading, token])
 
-  async function authorize() {
-    await openLocationModal()
-    const position = await getCurrentPosition()
-    const hexagon = latLngToCell(
-      position.coords.latitude,
-      position.coords.longitude,
-      7,
-    )
-    setHexagon(hexagon)
-  }
+  // TODO
+  // eslint-disable-next-line unused-imports/no-unused-vars
+  const emit = useMittEmit('reload:table')
 
-  async function mint() {
-    if (!hexagon)
-      await authorize()
-    else
-      sendTransaction?.()
-  }
-  useEffect(() => {
-    if (hexagon && isConfigFetched)
-      sendTransaction?.()
-  }, [hexagon, isConfigFetched])
   return (
     <>
       <div className="flex items-center mt-[3.125rem] mb-[2.25rem] gap-2 cursor-pointer" onClick={() => router.replace('/tokens')}>
@@ -75,38 +46,36 @@ function Page() {
         <CardContent>
           <div className="mb-3 flex justify-between">
             <span className="text-xl font-bold">{t('Overview')}</span>
-            <LoadingButton loading={isLoading} variant="contained" onClick={mint}>
-              {t('Mint Directly')}
-            </LoadingButton>
+            <MintButton token={token} />
           </div>
           <Divider />
-          <FieldCol label={t('Scription ID')} skeleton={!token}>
-            {token?.deployHash}
+          <FieldCol label={t('Scription ID')} skeleton={isPageLoading}>
+            <ChainLink type="hash" href={token?.deployHash} />
           </FieldCol>
-          <FieldCol label={t('Total Supply')} skeleton={!token}>
+          <FieldCol label={t('Total Supply')} skeleton={isPageLoading}>
             {thousandBitSeparator(token?.total)}
           </FieldCol>
-          <FieldCol label={t('Minted')} skeleton={!token}>
+          <FieldCol label={t('Minted')} skeleton={isPageLoading}>
             {thousandBitSeparator(token?.minted)}
           </FieldCol>
-          <FieldCol label={t('Limit Per Mint')} skeleton={!token}>
+          <FieldCol label={t('Limit Per Mint')} skeleton={isPageLoading}>
             {thousandBitSeparator(token?.limit)}
           </FieldCol>
-          {/* <FieldCol label="Decimal" skeleton={!token}>
+          {/* <FieldCol label="Decimal" skeleton={isPageLoading}>
             0
           </FieldCol> */}
-          <FieldCol label={t('Deploy By')} skeleton={!token}>
-            {token?.deployHash}
+          <FieldCol label={t('Deploy By')} skeleton={isPageLoading}>
+            <ChainLink type="address" href={token?.creator} />
           </FieldCol>
-          <FieldCol label={t('Deploy Time')} skeleton={!token}>
+          <FieldCol label={t('Deploy Time')} skeleton={isPageLoading}>
             {dayjs(token?.deployTime).format('YYYY/MM/DD HH:mm:ss')}
           </FieldCol>
-          <FieldCol label={t('Completed Time')} skeleton={!token}>
+          <FieldCol label={t('Completed Time')} skeleton={isPageLoading}>
             {token?.completedTime
               ? dayjs(token?.completedTime).format('YYYY/MM/DD HH:mm:ss')
               : ''}
           </FieldCol>
-          <FieldCol label={t('Holders')} skeleton={!token}>
+          <FieldCol label={t('Holders')} skeleton={isPageLoading}>
             {thousandBitSeparator(token?.holders)}
           </FieldCol>
           {/* <FieldCol label={t('Total Transactions')} skeleton={!token}>
@@ -121,15 +90,16 @@ function Page() {
             onChange={(event, value) => setTab(value)}
             value={tab}
           >
-            <Tab disableRipple label="Holders" />
-            <Tab disableRipple label="Hexagons" />
+            <Tab disableRipple value={0} label={t('Holders')} />
+            <Tab disableRipple value={1} label={t('Hexagons')} />
           </Tabs>
-          <Condition is={token} else={<Empty loading={!token || loading} />}>
-            <DataGridHolders token={token} />
-          </Condition>
+          {
+            tab === 0
+              ? <DataTableHolders token={token} />
+              : <DataTableHexagons token={token} />
+          }
         </CardContent>
       </Card>
-      {holderModal}
     </>
   )
 }

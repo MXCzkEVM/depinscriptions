@@ -33,5 +33,12 @@
   "Country and Region": "Land en regio",
   "Protocol": "Protocol",
   "Tick": "Kruis aan",
-  "Token": "Token"
+  "Token": "Token",
+  "Rank": "Rang",
+  "Address": "Adres",
+  "Percentage": "Percentage",
+  "Value": "Waarde",
+  "Location": "Plaats",
+  "Hexagons": "Zeshoeken",
+  "Copy Success": "Kopieer succes"
 }

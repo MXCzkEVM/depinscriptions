@@ -33,5 +33,12 @@
   "Country and Region": "Страна и регион",
   "Protocol": "Протокол",
   "Tick": "Галочка",
-  "Token": "Токен"
+  "Token": "Токен",
+  "Rank": "Классифицировать",
+  "Address": "Адрес",
+  "Percentage": "Процент",
+  "Value": "Ценить",
+  "Location": "Расположение",
+  "Hexagons": "Шестиугольники",
+  "Copy Success": "Копировать успех"
 }

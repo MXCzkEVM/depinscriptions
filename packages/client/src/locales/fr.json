@@ -33,5 +33,12 @@
   "Country and Region": "Pays et région",
   "Protocol": "Protocole",
   "Tick": "Cocher",
-  "Token": "Jeton"
+  "Token": "Jeton",
+  "Rank": "Rang",
+  "Address": "Adresse",
+  "Percentage": "Pourcentage",
+  "Value": "Valeur",
+  "Location": "Emplacement",
+  "Hexagons": "Hexagones",
+  "Copy Success": "Copie réussie"
 }

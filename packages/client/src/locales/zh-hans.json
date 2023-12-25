@@ -33,5 +33,12 @@
   "Country and Region": "国家及地区",
   "Protocol": "协议",
   "Tick": "标志",
-  "Token": "代币"
+  "Token": "代币",
+  "Rank": "秩",
+  "Address": "地址",
+  "Percentage": "进度",
+  "Value": "数量",
+  "Location": "地点",
+  "Hexagons": "六边形",
+  "Copy Success": "复制成功"
 }
