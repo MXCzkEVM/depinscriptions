@@ -9,5 +9,6 @@ module.exports = antfu({
     'no-console': 'off',
     'ts/consistent-type-imports': 'off',
     'react-hooks/exhaustive-deps': 'off',
+    'node/prefer-global/process': 'off',
   },
 })
