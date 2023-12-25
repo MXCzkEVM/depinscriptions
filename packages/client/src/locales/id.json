@@ -40,5 +40,13 @@
   "Value": "Nilai",
   "Location": "Lokasi",
   "Hexagons": "segi enam",
-  "Copy Success": "Salin Sukses"
+  "Copy Success": "Salin Sukses",
+  "Waiting for index transaction": "Menunggu transaksi indeks",
+  "Reload Page": "Muat Ulang Halaman",
+  "Reload": "Muat ulang",
+  "Indexing successful Dsc": "DePINscription telah menyelesaikan proses pengindeksan dengan penuh kemenangan. \nAnda sudah siap sekarang—ayo maju terus dan LFG!",
+  "Skip": "Melewati",
+  "Indexing Progress Dsc": "DePINscription rajin memproses prasasti dan pesanan Anda. \nMohon tunggu sejenak selama fase penting ini, saat kita berjuang bersama dalam mengejar kebanggaan nasional!",
+  "Successfully indexed": "Berhasil diindeks",
+  "Waiting for indexing": "Menunggu pengindeksan"
 }

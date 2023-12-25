@@ -9,7 +9,7 @@ interface RefreshProps {
 
 function Refresh(props: RefreshProps) {
   const { t } = useTranslation()
-  const reload = useMittEmit(props.event || 'reload:data')
+  const reload = useMittEmit(props.event || 'reload:page')
 
   return (
     <div className="flex gap-2 items-center cursor-pointer" onClick={reload}>

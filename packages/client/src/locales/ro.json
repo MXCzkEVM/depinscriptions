@@ -40,5 +40,13 @@
   "Value": "Valoare",
   "Location": "Locație",
   "Hexagons": "Hexagoane",
-  "Copy Success": "Copiere cu succes"
+  "Copy Success": "Copiere cu succes",
+  "Waiting for index transaction": "Se așteaptă tranzacția cu index",
+  "Reload Page": "Reîncarcă pagina",
+  "Reload": "Reîncărcați",
+  "Indexing successful Dsc": "DePINscription a finalizat triumfător procesul de indexare. \nSunteți gata acum – să mergem înainte și să LFG!",
+  "Skip": "Ocolire",
+  "Indexing Progress Dsc": "DePINscription procesează cu atenție înscrierea și comenzile dvs. \nVă rugăm să țineți o clipă în această fază crucială, în timp ce ne străduim împreună în urmărirea mândriei noastre naționale!",
+  "Successfully indexed": "Indexat cu succes",
+  "Waiting for indexing": "Se așteaptă indexarea"
 }

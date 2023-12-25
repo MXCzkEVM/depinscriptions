@@ -40,5 +40,13 @@
   "Value": "값",
   "Location": "위치",
   "Hexagons": "육각형",
-  "Copy Success": "복사 성공"
+  "Copy Success": "복사 성공",
+  "Waiting for index transaction": "인덱스 트랜잭션을 기다리는 중",
+  "Reload Page": "페이지 새로고침",
+  "Reload": "새로고침",
+  "Indexing successful Dsc": "DePINscription이 색인 생성 프로세스를 성공적으로 마무리했습니다. \n이제 모든 준비가 완료되었습니다. 앞으로 나아가고 LFG를 시작해 보세요!",
+  "Skip": "건너뛰다",
+  "Indexing Progress Dsc": "DePINscription은 귀하의 비문과 주문을 성실히 처리하고 있습니다. \n국가적 자부심을 추구하기 위해 함께 노력하는 이 중요한 단계를 잠시만 기다려 주십시오!",
+  "Successfully indexed": "색인이 성공적으로 생성되었습니다.",
+  "Waiting for indexing": "색인 생성을 기다리는 중"
 }

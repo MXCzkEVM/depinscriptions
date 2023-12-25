@@ -40,5 +40,13 @@
   "Value": "Waarde",
   "Location": "Plaats",
   "Hexagons": "Zeshoeken",
-  "Copy Success": "Kopieer succes"
+  "Copy Success": "Kopieer succes",
+  "Waiting for index transaction": "Wachten op indextransactie",
+  "Reload Page": "Herlaad pagina",
+  "Reload": "Herladen",
+  "Indexing successful Dsc": "DePINscription heeft het indexeringsproces triomfantelijk afgerond. \nJe bent nu helemaal klaar - laten we verder gaan en LFG!",
+  "Skip": "Overslaan",
+  "Indexing Progress Dsc": "DePINscription verwerkt uw inschrijving en bestellingen zorgvuldig. \nWacht alstublieft even tijdens deze cruciale fase, terwijl we samen streven naar het nastreven van onze nationale trots!",
+  "Successfully indexed": "Succesvol geïndexeerd",
+  "Waiting for indexing": "Wachten op indexering"
 }

@@ -11,7 +11,6 @@ import { ChainLink, DataTableHexagons, DataTableHolders, FieldCol, Icon, LinearP
 import { useRouterParams } from '@/hooks'
 import { getTokenId } from '@/api'
 import { percentage, thousandBitSeparator } from '@/utils'
-import { useMittEmit } from '@/hooks/useMittEmit'
 
 function Page() {
   const router = useRouter()
@@ -23,10 +22,6 @@ function Page() {
   const { value: token, loading } = useAsync(() => getTokenId({ id: tokenId }))
 
   const isPageLoading = useMemo(() => loading || !token, [loading, token])
-
-  // TODO
-  // eslint-disable-next-line unused-imports/no-unused-vars
-  const emit = useMittEmit('reload:table')
 
   return (
     <>

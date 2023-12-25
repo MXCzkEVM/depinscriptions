@@ -40,5 +40,13 @@
   "Value": "Value",
   "Location": "Location",
   "Hexagons": "Hexagons",
-  "Copy Success": "Copy Success"
+  "Copy Success": "Copy Success",
+  "Waiting for index transaction": "Waiting for index transaction",
+  "Reload Page": "Reload Page",
+  "Reload": "Reload",
+  "Indexing successful Dsc": "DePINscription has triumphantly finalized the indexing process. You’re all set now—let’s forge ahead and LFG!",
+  "Skip": "Skip",
+  "Indexing Progress Dsc": "DePINscription is diligently processing your inscription and orders. Please hold for a moment during this crucial phase, as we strive together in the pursuit of our national pride!",
+  "Successfully indexed": "Successfully indexed",
+  "Waiting for indexing": "Waiting for indexing"
 }

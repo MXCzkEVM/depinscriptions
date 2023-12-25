@@ -18,10 +18,10 @@ function LocationModal() {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={() => reject()}>
+        <Button color="inherit" variant="contained" onClick={() => reject()}>
           {t('Cancel')}
         </Button>
-        <Button onClick={() => resolve()} autoFocus>
+        <Button variant="contained" onClick={() => resolve()} autoFocus>
           {t('Confirm')}
         </Button>
       </DialogActions>

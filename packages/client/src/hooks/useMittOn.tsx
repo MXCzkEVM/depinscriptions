@@ -1,9 +1,19 @@
-import { Emitter, Handler } from 'mitt'
+import { Handler } from 'mitt'
 import { useEffect } from 'react'
 import { useMitt } from 'react-mitt'
-import { useMount } from 'react-use'
+
+const events: Record<string, any> = {}
+
+export function on(type: string, handler: Function) {
+  if (!(handler instanceof Function))
+    throw new Error('handler type error')
+  events[type] = handler
+}
+
+export function emit(type: string, params?: any) {
+  events[type]?.(params)
+}
 
 export function useMittOn(type: string, handler: Handler) {
-  const { emitter } = useMitt()
-  useMount(() => emitter.on(type, handler))
+  useEffect(() => on(type, handler), [handler])
 }

@@ -1,7 +1,7 @@
 import { Controller, Get, NotFoundException, Param, Query } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
 import { ApiConsumes, ApiExtraModels, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger'
-import { HexagonDto, HexagonPageResponseDto, HolderDto, HolderPageResponseDto, InscriptionDto, InscriptionPageResponseDto, InscriptionResponseDto, TickDto, TickPageResponseDto } from 'dtos'
+import { HexagonDto, HexagonPageResponseDto, HolderDto, HolderPageResponseDto, InscriptionDto, InscriptionPageResponseDto, InscriptionResponseDto, InscriptionSomeResponseDto, TickDto, TickPageResponseDto } from 'dtos'
 import { InscriptionService } from './services/inscription.service'
 import { HolderService } from './services/holder.service'
 import { TickService } from './services/tick.service'
@@ -67,6 +67,15 @@ export class AppController {
       time: inscription.time,
       json: inscription.json,
       holders,
+    }
+  }
+
+  @Get('inscription/some/:hash')
+  @ApiConsumes('application/json')
+  @ApiResponse({ status: 200, type: InscriptionSomeResponseDto, description: 'InscriptionSome' })
+  async getInscriptionSome(@Param('hash') hash: string) {
+    return {
+      data: await this.inscriptionService.someInscription(hash),
     }
   }
 

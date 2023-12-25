@@ -58,6 +58,9 @@ export interface InscriptionResponseDto {
   tick: string;
   holders: number;
 }
+export interface InscriptionSomeResponseDto {
+  data: boolean;
+}
 export interface HexagonPageResponseDto {
   total: number;
   data: HexagonDto[];
@@ -76,6 +79,9 @@ export interface GetInscriptionQuery {
   page: number;
 }
 export interface GetInscriptionHashPath {
+  hash: string;
+}
+export interface GetInscriptionSomeHashPath {
   hash: string;
 }
 export interface GetHexagonQuery {

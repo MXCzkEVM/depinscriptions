@@ -24,7 +24,7 @@ function DeployDialog() {
   })
 
   const { sendTransaction, isLoading } = useSendSatsTransaction({
-    onSuccess: () => resolve(),
+    onSuccess: data => resolve(data),
     data: {
       p: 'msc-20',
       op: 'deploy',

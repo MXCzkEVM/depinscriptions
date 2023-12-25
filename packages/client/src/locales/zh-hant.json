@@ -40,5 +40,13 @@
   "Value": "數量",
   "Location": "地點",
   "Hexagons": "六邊形",
-  "Copy Success": "複製成功"
+  "Copy Success": "複製成功",
+  "Waiting for index transaction": "等待索引交易",
+  "Reload Page": "重新載入頁面",
+  "Reload": "重新載入",
+  "Indexing successful Dsc": "DePINscription 已成功完成索引程序。\n現在一切都準備好了——讓我們繼續前進，LFG！",
+  "Skip": "跳過",
+  "Indexing Progress Dsc": "DePINscription 正在努力處理您的銘文和訂單。\n在這個關鍵時刻，請大家稍等片刻，我們一起為追求民族自豪感而奮鬥！",
+  "Successfully indexed": "已成功編入索引",
+  "Waiting for indexing": "等待索引"
 }

@@ -14,6 +14,7 @@ import { Layout } from '@/layout'
 import { TickDto } from '@/api/index.type'
 import { percentage } from '@/utils'
 import { getToken } from '@/api'
+import WaitingIndexModal from '@/components/WaitingIndexModal'
 
 // Retrieve tokens deployed by a user
 function Page() {
@@ -22,7 +23,8 @@ function Page() {
   const [type, setType] = useState(1)
   const [keyword, setKeyword] = useState('')
   const [page, setPage] = useState(1)
-  const [holder, deploy] = useInjectHolder<unknown, any>(DeployDialog)
+  const [holderDeployMl, openDeployModal] = useInjectHolder<unknown, { hash: string }>(DeployDialog)
+  const [holderWaitingMl, openWaitingIndexModal] = useInjectHolder(WaitingIndexModal)
   const [ticks, setTicks] = useState<TickDto[]>([])
   const [total, setTotal] = useState(0)
 
@@ -73,7 +75,15 @@ function Page() {
   }, [total, keyword, page, type])
 
   useMount(() => fetchTicks(1))
-  useEffect(() => { fetchTicks(page) }, [type])
+  useEffect(() => {
+    fetchTicks(page)
+  }, [type])
+
+  async function deploy() {
+    const { hash } = await openDeployModal()
+    await openWaitingIndexModal({ hash })
+    await fetchTicks(1)
+  }
 
   return (
     <>
@@ -126,7 +136,8 @@ function Page() {
           </Condition>
         </CardContent>
       </Card>
-      {holder}
+      {holderDeployMl}
+      {holderWaitingMl}
     </>
   )
 }

@@ -34,6 +34,16 @@ export async function getInscriptionHash(paths: Types.GetInscriptionHashPath, co
  * @method get
  * @tags app-controller
  */
+export async function getInscriptionSomeHash(paths: Types.GetInscriptionSomeHashPath, config?: RequestInit) {
+  const response = await fetch(`${baseURL}/inscription/some/${paths.hash}`, {
+    ...config,
+  });
+  return response.json() as Promise<Types.InscriptionSomeResponseDto>;
+}
+/**
+ * @method get
+ * @tags app-controller
+ */
 export async function getHexagon(query: Types.GetHexagonQuery, config?: RequestInit) {
   const _query_ = `?${new URLSearchParams(Object.entries(query)).toString()}`;
   const response = await fetch(`${baseURL}/hexagon${_query_}`, {

@@ -77,6 +77,36 @@
         ]
       }
     },
+    "/inscription/some/{hash}": {
+      "get": {
+        "operationId": "AppController_getInscriptionSome",
+        "parameters": [
+          {
+            "name": "hash",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "InscriptionSome",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InscriptionSomeResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "app-controller"
+        ]
+      }
+    },
     "/hexagon": {
       "get": {
         "operationId": "AppController_getHexagons",
@@ -509,6 +539,17 @@
           "json",
           "tick",
           "holders"
+        ]
+      },
+      "InscriptionSomeResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "data"
         ]
       },
       "HexagonPageResponseDto": {

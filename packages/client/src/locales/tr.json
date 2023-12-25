@@ -44,5 +44,13 @@
   "Value": "Değer",
   "Location": "Konum",
   "Hexagons": "Altıgenler",
-  "Copy Success": "Başarıyı Kopyala"
+  "Copy Success": "Başarıyı Kopyala",
+  "Waiting for index transaction": "Endeks işlemi bekleniyor",
+  "Reload Page": "SAYFAYI yeniden yuklemek",
+  "Reload": "Tekrar yükle",
+  "Indexing successful Dsc": "DePINscription indeksleme sürecini başarıyla tamamladı. \nArtık hazırsınız; haydi ilerleyelim ve LFG!",
+  "Skip": "Atlamak",
+  "Indexing Progress Dsc": "DePINscription, kaydınızı ve siparişlerinizi özenle işliyor. \nUlusal gururumuzun peşinde hep birlikte çabaladığımız bu önemli aşamada lütfen biraz bekleyin!",
+  "Successfully indexed": "Başarıyla dizine eklendi",
+  "Waiting for indexing": "İndeksleme bekleniyor"
 }

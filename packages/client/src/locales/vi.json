@@ -40,5 +40,13 @@
   "Value": "Giá trị",
   "Location": "Vị trí",
   "Hexagons": "lục giác",
-  "Copy Success": "Sao chép thành công"
+  "Copy Success": "Sao chép thành công",
+  "Waiting for index transaction": "Đang chờ giao dịch chỉ số",
+  "Reload Page": "Tải lại trang",
+  "Reload": "Tải lại",
+  "Indexing successful Dsc": "DePINscription đã hoàn thành thành công quá trình lập chỉ mục. \nBây giờ bạn đã sẵn sàng — hãy tiến lên phía trước và LFG!",
+  "Skip": "Nhảy",
+  "Indexing Progress Dsc": "DePINscription đang siêng năng xử lý dòng chữ và đơn đặt hàng của bạn. \nXin hãy dành chút thời gian trong giai đoạn quan trọng này, khi chúng ta cùng nhau nỗ lực theo đuổi niềm tự hào dân tộc!",
+  "Successfully indexed": "Đã lập chỉ mục thành công",
+  "Waiting for indexing": "Đang chờ lập chỉ mục"
 }

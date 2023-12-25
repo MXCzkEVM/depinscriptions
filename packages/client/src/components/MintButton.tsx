@@ -1,12 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useInjectHolder } from '@overlays/react'
 import { latLngToCell } from 'h3-js'
 import { LoadingButton } from '@mui/lab'
 import { useTranslation } from 'react-i18next'
 import LocationModal from './LocationModal'
+import WaitingIndexModal from './WaitingIndexModal'
 import { TickDto } from '@/api/index.type'
 import { useSendSatsTransaction } from '@/hooks'
 import { getCurrentPosition } from '@/utils'
+import { useMittEmit } from '@/hooks/useMittEmit'
 
 export interface MintButtonProps {
   token?: TickDto
@@ -14,8 +16,13 @@ export interface MintButtonProps {
 
 function MintButton(props: MintButtonProps) {
   const [hexagon, setHexagon] = useState('')
-  const [locked, setLocked] = useState(false)
+  const locked = useRef(false)
   const { t } = useTranslation()
+
+  const [holderLocationMl, openLocationModal] = useInjectHolder(LocationModal)
+  const [holderWaitingMl, openWaitingIndexModal] = useInjectHolder(WaitingIndexModal)
+
+  const emit = useMittEmit('reload:table')
 
   const { isLoading: isButtonLoading, sendTransaction, isConfigFetched } = useSendSatsTransaction({
     data: {
@@ -25,9 +32,12 @@ function MintButton(props: MintButtonProps) {
       amt: props.token?.limit || 0,
       hex: hexagon,
     },
+    async onSuccess({ hash }) {
+      await openWaitingIndexModal({ hash })
+      emit()
+    },
   })
 
-  const [holderModal, openLocationModal] = useInjectHolder(LocationModal)
   async function authorize() {
     await openLocationModal()
     const position = await getCurrentPosition()
@@ -47,17 +57,21 @@ function MintButton(props: MintButtonProps) {
   }
 
   useEffect(() => {
-    if (hexagon && isConfigFetched && !locked) {
+    if (hexagon && isConfigFetched && !locked.current) {
       sendTransaction?.()
-      setLocked(true)
+      locked.current = true
     }
   }, [hexagon, isConfigFetched, locked])
 
   return (
-    <LoadingButton disabled={!props.token} loading={isButtonLoading} variant="contained" onClick={mint}>
-      {t('Mint Directly')}
-      {holderModal}
-    </LoadingButton>
+    <>
+      <LoadingButton disabled={!props.token} loading={isButtonLoading} variant="contained" onClick={mint}>
+        {t('Mint Directly')}
+
+      </LoadingButton>
+      {holderLocationMl}
+      {holderWaitingMl}
+    </>
   )
 }
 

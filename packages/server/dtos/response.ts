@@ -64,7 +64,10 @@ export class InscriptionResponseDto {
   @ApiProperty()
   holders: number
 }
-
+export class InscriptionSomeResponseDto {
+  @ApiProperty()
+  data: boolean
+}
 export class HexagonPageResponseDto extends PaginationResponseDto {
   @ApiProperty({
     type: 'array',
