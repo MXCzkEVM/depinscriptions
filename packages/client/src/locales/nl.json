@@ -48,5 +48,7 @@
   "Skip": "Overslaan",
   "Indexing Progress Dsc": "DePINscription verwerkt uw inschrijving en bestellingen zorgvuldig. \nWacht alstublieft even tijdens deze cruciale fase, terwijl we samen streven naar het nastreven van onze nationale trots!",
   "Successfully indexed": "Succesvol geïndexeerd",
-  "Waiting for indexing": "Wachten op indexering"
+  "Waiting for indexing": "Wachten op indexering",
+  "The current tick has been deployed": "Het huidige vinkje {{tick}} is ingezet",
+  "has been deployed": "{{tick}} is geïmplementeerd"
 }

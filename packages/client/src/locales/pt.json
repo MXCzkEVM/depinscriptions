@@ -48,5 +48,7 @@
   "Skip": "Pular",
   "Indexing Progress Dsc": "DePINscription está processando diligentemente sua inscrição e pedidos. \nPor favor, espere um momento durante esta fase crucial, enquanto nos esforçamos juntos na busca do nosso orgulho nacional!",
   "Successfully indexed": "Indexado com sucesso",
-  "Waiting for indexing": "Aguardando indexação"
+  "Waiting for indexing": "Aguardando indexação",
+  "The current tick has been deployed": "O tick atual {{tick}} foi implantado",
+  "has been deployed": "{{tick}} foi implantado"
 }

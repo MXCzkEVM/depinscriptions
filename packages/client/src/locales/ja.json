@@ -48,5 +48,7 @@
   "Skip": "スキップ",
   "Indexing Progress Dsc": "DePINscription は、あなたの碑文と注文を熱心に処理しています。\n私たちは国家の誇りを追求するために共に努力しますので、この重要な段階で少しお待ちください。",
   "Successfully indexed": "インデックスが正常に作成されました",
-  "Waiting for indexing": "インデックス作成を待っています"
+  "Waiting for indexing": "インデックス作成を待っています",
+  "The current tick has been deployed": "現在のティック {{tick}} がデプロイされました",
+  "has been deployed": "{{tick}} がデプロイされました"
 }

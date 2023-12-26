@@ -48,5 +48,7 @@
   "Skip": "Skip",
   "Indexing Progress Dsc": "DePINscription is diligently processing your inscription and orders. Please hold for a moment during this crucial phase, as we strive together in the pursuit of our national pride!",
   "Successfully indexed": "Successfully indexed",
-  "Waiting for indexing": "Waiting for indexing"
+  "Waiting for indexing": "Waiting for indexing",
+  "The current tick has been deployed": "The current tick {{tick}} has been deployed",
+  "has been deployed": "{{tick}} has been deployed"
 }

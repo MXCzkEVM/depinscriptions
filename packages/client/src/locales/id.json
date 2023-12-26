@@ -48,5 +48,7 @@
   "Skip": "Melewati",
   "Indexing Progress Dsc": "DePINscription rajin memproses prasasti dan pesanan Anda. \nMohon tunggu sejenak selama fase penting ini, saat kita berjuang bersama dalam mengejar kebanggaan nasional!",
   "Successfully indexed": "Berhasil diindeks",
-  "Waiting for indexing": "Menunggu pengindeksan"
+  "Waiting for indexing": "Menunggu pengindeksan",
+  "The current tick has been deployed": "Centang saat ini {{tick}} telah diterapkan",
+  "has been deployed": "{{tick}} telah diterapkan"
 }

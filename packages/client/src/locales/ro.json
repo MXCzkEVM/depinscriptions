@@ -48,5 +48,7 @@
   "Skip": "Ocolire",
   "Indexing Progress Dsc": "DePINscription procesează cu atenție înscrierea și comenzile dvs. \nVă rugăm să țineți o clipă în această fază crucială, în timp ce ne străduim împreună în urmărirea mândriei noastre naționale!",
   "Successfully indexed": "Indexat cu succes",
-  "Waiting for indexing": "Se așteaptă indexarea"
+  "Waiting for indexing": "Se așteaptă indexarea",
+  "The current tick has been deployed": "Bifa actuală {{tick}} a fost implementată",
+  "has been deployed": "{{tick}} a fost implementat"
 }

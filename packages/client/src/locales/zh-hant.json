@@ -48,5 +48,7 @@
   "Skip": "跳過",
   "Indexing Progress Dsc": "DePINscription 正在努力處理您的銘文和訂單。\n在這個關鍵時刻，請大家稍等片刻，我們一起為追求民族自豪感而奮鬥！",
   "Successfully indexed": "已成功編入索引",
-  "Waiting for indexing": "等待索引"
+  "Waiting for indexing": "等待索引",
+  "The current tick has been deployed": "目前tick {{tick}} 已部署",
+  "has been deployed": "{{tick}} 已部署"
 }

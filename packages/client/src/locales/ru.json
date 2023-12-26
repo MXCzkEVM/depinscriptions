@@ -48,5 +48,7 @@
   "Skip": "Пропускать",
   "Indexing Progress Dsc": "DePINscription старательно обрабатывает ваши надписи и заказы. \nПожалуйста, подождите немного на этом решающем этапе, пока мы вместе боремся за нашу национальную гордость!",
   "Successfully indexed": "Успешно проиндексировано",
-  "Waiting for indexing": "Ожидание индексации"
+  "Waiting for indexing": "Ожидание индексации",
+  "The current tick has been deployed": "Текущий тик {{tick}} развернут.",
+  "has been deployed": "{{tick}} развернут"
 }

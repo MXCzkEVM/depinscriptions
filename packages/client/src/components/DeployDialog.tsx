@@ -50,7 +50,7 @@ function DeployDialog() {
       return
     const { data: isSomeToken } = await getTokenSomeId({ id: country })
     if (isSomeToken) {
-      toast.error(`The current tick ${country} has been deployed`, { position: 'top-center' })
+      toast.error(t(`has been deployed`, { tick: country }), { position: 'top-center' })
       return
     }
 

@@ -48,5 +48,7 @@
   "Skip": "Saltare",
   "Indexing Progress Dsc": "DePINscription elabora diligentemente la tua iscrizione e i tuoi ordini. \nPer favore, aspettate un momento durante questa fase cruciale, mentre ci impegniamo insieme nel perseguimento del nostro orgoglio nazionale!",
   "Successfully indexed": "Indicizzato con successo",
-  "Waiting for indexing": "In attesa di indicizzazione"
+  "Waiting for indexing": "In attesa di indicizzazione",
+  "The current tick has been deployed": "Il tick corrente {{tick}} è stato distribuito",
+  "has been deployed": "{{tick}} è stato distribuito"
 }
