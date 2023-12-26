@@ -16,8 +16,8 @@ function DataGridScriptions(props: DataGridScriptionsProps) {
   const [inscriptions, setInscriptions] = useState<InscriptionDto[]>([])
   const [fetched, setFetched] = useState(false)
 
-  const [state, fetchInscriptions] = useAsyncFn(async (page: number) => {
-    if (fetched)
+  const [state, fetch] = useAsyncFn(async (page: number, reload = false) => {
+    if (fetched && reload === false)
       return
     const { data } = await getInscription({ page, limit: 24, owner: props.address || '' })
     if (page === 1)
@@ -28,11 +28,10 @@ function DataGridScriptions(props: DataGridScriptionsProps) {
     setFetched(data.length < 24)
   }, [props.address])
 
-  useMount(() => fetchInscriptions(page))
+  useMittOn('reload:page', () => fetch(1))
 
-  useMittOn('reload:page', () => fetchInscriptions(1))
   useEffect(() => {
-    fetchInscriptions(page)
+    fetch(1, true)
   }, [props.address])
 
   return (
@@ -43,7 +42,7 @@ function DataGridScriptions(props: DataGridScriptionsProps) {
             <LoadingButton />
           </div>
         )}
-        next={() => fetchInscriptions(page + 1)}
+        next={() => fetch(page + 1)}
         loaded={fetched}
       >
         <div className="grid mp:grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-[1.25rem] mt-[2rem]">

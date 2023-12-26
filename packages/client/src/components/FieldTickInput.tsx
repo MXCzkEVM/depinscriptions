@@ -1,16 +1,22 @@
 import { TextField } from '@mui/material'
 import { Search } from '@ricons/ionicons5'
 import { useTranslation } from 'react-i18next'
-import { useState } from 'react'
+import { ChangeEventHandler, useEffect, useState } from 'react'
 import Icon from './Icon'
 
 export interface FieldTickInputProps {
   onSearch?: (text: string) => void
+  defaultValue?: string
+  value?: string
+  onChange?: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>
 }
 
 function FieldTickInput(props: FieldTickInputProps) {
   const { t } = useTranslation()
   const [value, setValue] = useState('')
+  useEffect(() => {
+    setValue(props.defaultValue || '')
+  }, [props.defaultValue])
   return (
     <>
       <div className="mx-auto mt-9 mb-14 w-full text-center">
@@ -22,7 +28,16 @@ function FieldTickInput(props: FieldTickInputProps) {
       </div>
       <div className="flex justify-center">
         <div className="md:w-[672px] w-full relative">
-          <TextField value={value} onChange={event => setValue(event.target.value)} className="w-full" color="secondary" size="small" variant="outlined" placeholder="0x...5e0d7A" />
+          <TextField
+            defaultValue={props.defaultValue}
+            value={props.value || value}
+            onChange={props.onChange || (event => setValue(event.target.value))}
+            className="w-full"
+            color="secondary"
+            size="small"
+            variant="outlined"
+            placeholder="0x...5e0d7A"
+          />
           <Icon className="absolute right-2 top-2 cursor-pointer" onClick={() => props.onSearch?.(value)}>
             <Search />
           </Icon>

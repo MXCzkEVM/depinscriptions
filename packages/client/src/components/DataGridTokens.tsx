@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useAsyncFn, useMount } from 'react-use'
 import { LoadingButton } from '@mui/lab'
 import Condition from './Condition'
@@ -18,8 +18,8 @@ function DataGridTokens(props: DataGridTokensProps) {
   const [tokens, setTokens] = useState<HolderDto[]>([])
   const [fetched, setFetched] = useState(false)
 
-  const [state, fetch] = useAsyncFn(async (page: number) => {
-    if (fetched)
+  const [state, fetch] = useAsyncFn(async (page: number, reload = false) => {
+    if (fetched && reload === false)
       return
     const { data } = await getHolder({ page, limit: 24, owner: props.address || '' })
     if (page === 1)
@@ -30,8 +30,10 @@ function DataGridTokens(props: DataGridTokensProps) {
     setFetched(data.length < 24)
   }, [props.address])
 
-  useMount(() => fetch(page))
   useMittOn('reload:page', () => fetch(1))
+  useEffect(() => {
+    fetch(1, true)
+  }, [props.address])
 
   return (
     <Condition is={tokens.length} else={<Empty loading={state.loading} />}>
