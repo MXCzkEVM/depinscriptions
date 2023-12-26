@@ -1,8 +1,7 @@
-import { type ReactElement, useState } from 'react'
+import type { ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Layout } from '@/layout'
-import { DataGridScriptions, Icon, Refresh } from '@/components'
-import { useMittEmit } from '@/hooks/useMittEmit'
+import { DataGridScriptions, Refresh } from '@/components'
 
 function Page() {
   const { t } = useTranslation()

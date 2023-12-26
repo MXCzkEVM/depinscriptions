@@ -1,6 +1,4 @@
 import { DataGrid, GridColDef } from '@mui/x-data-grid'
-import { useEffect, useState } from 'react'
-import { useAsyncFn } from 'react-use'
 import { useTranslation } from 'react-i18next'
 import LinearProgressWithLabel from './LinearProgressWithLabel'
 import LocationForHexagon from './LocationForHexagon'
@@ -10,29 +8,28 @@ import { percentage } from '@/utils'
 import { HexagonDto, TickDto } from '@/api/index.type'
 import { getHexagon } from '@/api'
 import { useMittOn } from '@/hooks/useMittOn'
+import { useGridPaginationFields, usePaginationServer } from '@/hooks'
+import { useWhenever } from '@/hooks/useWhenever'
 
 interface DataTableHexagonsProps {
   token?: TickDto
 }
 
 function DataTableHexagons(props: DataTableHexagonsProps) {
-  const [page, setPage] = useState(1)
-  const [total, setTotal] = useState(0)
-  const [hexagons, setHexagons] = useState<HexagonDto[]>([])
   const { t } = useTranslation()
 
-  const [state, fetch] = useAsyncFn(async (page: number) => {
-    if (!props.token)
-      return
-    const { data, total } = await getHexagon({
-      tick: props.token.tick,
-      page,
-      limit: 15,
-    })
-    setHexagons(data)
-    setTotal(total)
-    setPage(page)
-  }, [props.token])
+  const [state, controls] = usePaginationServer({
+    resolve: model => getHexagon({
+      tick: props.token!.tick,
+      page: model.page,
+      limit: model.limit,
+    }),
+  })
+
+  const gridPaginationFields = useGridPaginationFields({
+    pagination: state.pagination,
+    load: controls.load,
+  })
 
   const columns: GridColDef<HexagonDto>[] = [
     {
@@ -48,30 +45,28 @@ function DataTableHexagons(props: DataTableHexagonsProps) {
       headerName: t('Percentage'),
       flex: 1,
       renderCell(params) {
-        return <LinearProgressWithLabel className="w-full" value={percentage(props.token?.total || 0, params.row.mit)} />
+        return (
+          <LinearProgressWithLabel
+            className="w-full"
+            value={percentage(props.token?.total || 0, params.row.mit)}
+          />
+        )
       },
     },
   ]
 
-  useMittOn('reload:table', () => fetch(1))
-
-  useEffect(() => {
-    fetch(page)
-  }, [props.token])
+  useMittOn('reload:table', controls.reload)
+  useWhenever(props.token, controls.reload)
 
   return (
-    <Condition is={props.token && hexagons.length} else={<Empty loading={!props.token || state.loading} />}>
+    <Condition is={props.token && state.value.length} else={<Empty loading={!props.token || state.loading} />}>
       <DataGrid
         className="border-none data-grid-with-row-pointer"
-        paginationMode="server"
-        hideFooterSelectedRowCount
+        {...gridPaginationFields}
         loading={state.loading || !props.token}
         getRowId={row => row.hex}
-        rowCount={Math.floor(total / 15)}
-        paginationModel={{ page, pageSize: 15 }}
-        onPaginationModelChange={model => fetch(model.page)}
+        rows={state.value}
         columns={columns}
-        rows={hexagons}
       />
     </Condition>
   )

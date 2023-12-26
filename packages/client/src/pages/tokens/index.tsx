@@ -1,6 +1,6 @@
 import { Button, Card, CardContent, Tab, Tabs, TextField, Typography } from '@mui/material'
 import type { ReactElement } from 'react'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import type { GridColDef } from '@mui/x-data-grid'
 import { DataGrid } from '@mui/x-data-grid'
 import dayjs from 'dayjs'
@@ -8,13 +8,13 @@ import { useRouter } from 'next/router'
 import { useInjectHolder } from '@overlays/react'
 import { useTranslation } from 'react-i18next'
 import { Search } from '@ricons/ionicons5'
-import { useAsyncFn, useMount } from 'react-use'
 import { Condition, CountryFlag, DeployDialog, Empty, FieldTickInput, Icon, LinearProgressWithLabel } from '@/components'
 import { Layout } from '@/layout'
 import { TickDto } from '@/api/index.type'
 import { percentage } from '@/utils'
 import { getToken } from '@/api'
 import WaitingIndexModal from '@/components/WaitingIndexModal'
+import { useGridPaginationFields, usePaginationServer, useWatch } from '@/hooks'
 
 // Retrieve tokens deployed by a user
 function Page() {
@@ -22,11 +22,8 @@ function Page() {
   const { t } = useTranslation()
   const [type, setType] = useState(1)
   const [keyword, setKeyword] = useState('')
-  const [page, setPage] = useState(1)
   const [holderDeployMl, openDeployModal] = useInjectHolder<unknown, { hash: string }>(DeployDialog)
   const [holderWaitingMl, openWaitingIndexModal] = useInjectHolder(WaitingIndexModal)
-  const [ticks, setTicks] = useState<TickDto[]>([])
-  const [total, setTotal] = useState(0)
 
   const columns: GridColDef<TickDto>[] = [
     {
@@ -76,22 +73,22 @@ function Page() {
     // },
   ]
 
-  const [state, fetchTicks] = useAsyncFn(async (page: number) => {
-    const { data, total } = await getToken({ keyword, page, type, limit: 15 })
-    setTotal(total)
-    setTicks(data)
-  }, [total, keyword, page, type])
+  const [state, controls] = usePaginationServer({
+    resolve: model => getToken({ ...model, keyword, type }),
+  })
 
-  useMount(() => fetchTicks(1))
-  useEffect(() => {
-    fetchTicks(page)
-  }, [type])
+  const gridPaginationFields = useGridPaginationFields({
+    pagination: state.pagination,
+    load: controls.load,
+  })
 
   async function deploy() {
     const { hash } = await openDeployModal()
     await openWaitingIndexModal({ hash })
-    await fetchTicks(1)
+    await controls.reload()
   }
+
+  useWatch([type], controls.reload)
 
   return (
     <>
@@ -123,22 +120,19 @@ function Page() {
                 variant="outlined"
                 placeholder={t('Token')}
               />
-              <Icon className="absolute right-2 top-2 cursor-pointer" onClick={() => fetchTicks(1)}>
+              <Icon className="absolute right-2 top-2 cursor-pointer" onClick={controls.reload}>
                 <Search />
               </Icon>
             </div>
           </div>
-          <Condition is={ticks.length} else={<Empty loading={state.loading} />}>
+          <Condition is={state.value.length} else={<Empty loading={state.loading} />}>
             <DataGrid
-              paginationMode="server"
               className="border-none data-grid-with-row-pointer"
-              rows={ticks}
-              rowCount={Math.floor(total / 15)}
+              {...gridPaginationFields}
+              loading={state.loading}
               getRowId={row => row.tick}
+              rows={state.value}
               columns={columns}
-              hideFooterSelectedRowCount
-              paginationModel={{ page, pageSize: 15 }}
-              onPaginationModelChange={model => setPage(model.page)}
               onRowClick={({ row }) => router.push(`/tokens/detail?token=${row.tick}`)}
             />
           </Condition>

@@ -1,7 +1,6 @@
 import dayjs from 'dayjs'
 import { useRouter } from 'next/router'
 import BoxDefault from './BoxDefault'
-import ChainLink from './ChainLink'
 import { InscriptionDto } from '@/api/index.type'
 import { cover } from '@/utils'
 

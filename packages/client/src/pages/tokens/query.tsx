@@ -1,4 +1,4 @@
-import { type ReactElement, useEffect, useState } from 'react'
+import type { ReactElement } from 'react'
 import { useRouter } from 'next/router'
 import { Layout } from '@/layout'
 import { FieldTickInput } from '@/components'

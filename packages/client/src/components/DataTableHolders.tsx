@@ -1,6 +1,4 @@
 import { DataGrid, GridColDef } from '@mui/x-data-grid'
-import { useEffect, useState } from 'react'
-import { useAsyncFn } from 'react-use'
 import { useTranslation } from 'react-i18next'
 import LinearProgressWithLabel from './LinearProgressWithLabel'
 import Condition from './Condition'
@@ -10,30 +8,24 @@ import { HolderDto, TickDto } from '@/api/index.type'
 import { getHolder } from '@/api'
 import { percentage, thousandBitSeparator } from '@/utils'
 import { useMittOn } from '@/hooks/useMittOn'
+import { useGridPaginationFields, usePaginationServer } from '@/hooks'
+import { useWhenever } from '@/hooks/useWhenever'
 
 interface DataTableHoldersProps {
   token?: TickDto
 }
 
 function DataTableHolders(props: DataTableHoldersProps) {
-  const [page, setPage] = useState(1)
-  const [total, setTotal] = useState(0)
-  const [holders, setHolders] = useState<HolderDto[]>([])
   const { t } = useTranslation()
 
-  const [state, fetch] = useAsyncFn(async (page: number) => {
-    if (!props.token)
-      return
-    const { data, total } = await getHolder({
+  const [state, controls] = usePaginationServer({
+    resolve: model => getHolder({
+      tick: props.token?.tick,
       order: 'value',
-      tick: props.token.tick,
-      page,
-      limit: 15,
-    })
-    setPage(page)
-    setHolders(data)
-    setTotal(total)
-  }, [props.token])
+      page: model.page,
+      limit: model.limit,
+    }),
+  })
 
   const columns: GridColDef<HolderDto>[] = [
     {
@@ -41,7 +33,7 @@ function DataTableHolders(props: DataTableHoldersProps) {
       headerName: t('Rank'),
       minWidth: 120,
       renderCell(params) {
-        return (params.tabIndex + 2) * page
+        return (params.tabIndex + 2) * state.pagination.page
       },
     },
     {
@@ -80,25 +72,23 @@ function DataTableHolders(props: DataTableHoldersProps) {
     },
   ]
 
-  useMittOn('reload:table', () => fetch(1))
+  const gridPaginationFields = useGridPaginationFields({
+    pagination: state.pagination,
+    load: controls.load,
+  })
 
-  useEffect(() => {
-    fetch(page)
-  }, [props.token])
+  useMittOn('reload:table', controls.reload)
+  useWhenever(props.token, controls.reload)
 
   return (
-    <Condition is={props.token && holders.length} else={<Empty loading={!props.token || state.loading} />}>
+    <Condition is={props.token && state.value.length} else={<Empty loading={!props.token || state.loading} />}>
       <DataGrid
         className="border-none data-grid-with-row-pointer"
-        hideFooterSelectedRowCount
-        paginationMode="server"
+        {...gridPaginationFields}
         loading={state.loading || !props.token}
         getRowId={row => row.id}
-        rowCount={Math.floor(total / 15)}
-        paginationModel={{ page, pageSize: 15 }}
-        onPaginationModelChange={model => fetch(model.page)}
+        rows={state.value}
         columns={columns}
-        rows={holders}
       />
     </Condition>
   )

@@ -1,4 +1,3 @@
-/* eslint-disable node/prefer-global/process */
 import { Link, TypographyOwnProps } from '@mui/material'
 import { Copy } from '@ricons/ionicons5'
 import { useCopyToClipboard } from 'react-use'

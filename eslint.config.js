@@ -5,10 +5,10 @@ module.exports = antfu({
   typescript: true,
   react: true,
   rules: {
-    'ts/no-require-imports': 'off',
-    'no-console': 'off',
     'ts/consistent-type-imports': 'off',
+    'ts/no-require-imports': 'off',
     'react-hooks/exhaustive-deps': 'off',
     'node/prefer-global/process': 'off',
+    'no-console': 'off',
   },
 })

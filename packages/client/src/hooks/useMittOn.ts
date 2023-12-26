@@ -1,6 +1,5 @@
 import { Handler } from 'mitt'
 import { useEffect } from 'react'
-import { useMitt } from 'react-mitt'
 
 const events: Record<string, any> = {}
 

@@ -1,5 +1,3 @@
-import dayjs from 'dayjs'
-import { useRouter } from 'next/router'
 import { HolderDto } from '@/api/index.type'
 import { thousandBitSeparator } from '@/utils'
 
