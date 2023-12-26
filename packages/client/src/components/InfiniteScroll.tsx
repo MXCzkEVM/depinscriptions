@@ -1,5 +1,6 @@
 import { PropsWithChildren, ReactNode, useEffect, useRef } from 'react'
 import { useAsyncFn } from 'react-use'
+import { useWhenever } from '@/hooks/useWhenever'
 
 interface InfiniteScrollProps extends PropsWithChildren {
   next: () => Promise<void>
@@ -7,7 +8,7 @@ interface InfiniteScrollProps extends PropsWithChildren {
   loaded?: boolean
 }
 function InfiniteScroll(props: InfiniteScrollProps) {
-  const [state, next] = useAsyncFn(props.next)
+  const [state, next] = useAsyncFn(props.next, [props.next])
   const locked = useRef(false)
 
   useEffect(() => {
@@ -24,11 +25,11 @@ function InfiniteScroll(props: InfiniteScrollProps) {
     if (state.loading || locked.current || props.loaded)
       return
     const scrollTop
-       = document.documentElement.scrollTop || document.body.scrollTop
+      = document.documentElement.scrollTop || document.body.scrollTop
     const windowHeight
-       = document.documentElement.clientHeight || document.body.clientHeight
+      = document.documentElement.clientHeight || document.body.clientHeight
     const scrollHeight
-       = document.documentElement.scrollHeight || document.body.scrollHeight
+      = document.documentElement.scrollHeight || document.body.scrollHeight
     if (Math.round(scrollTop) + windowHeight === scrollHeight)
       next()
   }

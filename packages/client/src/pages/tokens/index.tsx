@@ -14,7 +14,7 @@ import { TickDto } from '@/api/index.type'
 import { percentage } from '@/utils'
 import { getToken } from '@/api'
 import WaitingIndexModal from '@/components/WaitingIndexModal'
-import { useGridPaginationFields, usePaginationServer, useWatch } from '@/hooks'
+import { useGridPaginationFields, useServerPagination, useWatch } from '@/hooks'
 
 // Retrieve tokens deployed by a user
 function Page() {
@@ -73,7 +73,7 @@ function Page() {
     // },
   ]
 
-  const [state, controls] = usePaginationServer({
+  const [state, controls] = useServerPagination({
     resolve: model => getToken({ ...model, keyword, type }),
   })
 

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export interface PaginationModal {
+export interface PaginationModel {
   limit: number
   page: number
   total: number
@@ -11,14 +11,14 @@ export interface PaginationResolved<T> {
   data: T
 }
 
-export interface UsePaginationServerOptions<T> {
-  resolve: (model: PaginationModal) => PaginationResolved<T> | Promise<PaginationResolved<T>>
+export interface UseServerPaginationOptions<T> {
+  resolve: (model: Omit<PaginationModel, 'total'>) => PaginationResolved<T> | Promise<PaginationResolved<T>>
   limit?: number
   page?: number
   total?: number
 }
 
-export function usePaginationServer<T>(options: UsePaginationServerOptions<T>) {
+export function useServerPagination<T>(options: UseServerPaginationOptions<T>) {
   const [value, setValue] = useState<T>([] as any)
   const [total, setTotal] = useState(0)
   const [page, setPage] = useState(1)
@@ -26,7 +26,7 @@ export function usePaginationServer<T>(options: UsePaginationServerOptions<T>) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<Error>()
 
-  async function load(modal: Partial<PaginationModal>) {
+  async function load(modal: Partial<PaginationModel>) {
     const _limit = modal.limit || limit
     const _total = modal.total || total
     const _page
@@ -34,12 +34,11 @@ export function usePaginationServer<T>(options: UsePaginationServerOptions<T>) {
       ? modal.page || page
       : 1
 
-    setLoading(true)
     try {
+      setLoading(true)
       const response = await options.resolve({
         page: _page,
         limit: _limit,
-        total: _total,
       })
       setValue(response.data)
       setTotal(response.total)
@@ -54,9 +53,6 @@ export function usePaginationServer<T>(options: UsePaginationServerOptions<T>) {
       throw error
     }
   }
-  const pages = Math.ceil(total / limit)
-  const first = page === 1
-  const last = page === pages
 
   async function next() {
     await load({ page: page + 1, limit, total })
@@ -67,6 +63,10 @@ export function usePaginationServer<T>(options: UsePaginationServerOptions<T>) {
   async function reload() {
     await load({ page: 1, limit, total })
   }
+
+  const pages = Math.ceil(total / limit)
+  const first = page === 1
+  const last = page === pages
 
   const pagination = {
     pages,

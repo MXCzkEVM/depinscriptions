@@ -11,7 +11,6 @@ function Page() {
         <span className="text-2xl text-primary font-bold">{t('Latest Scriptions')}</span>
         <Refresh />
       </div>
-
       <DataGridScriptions />
     </>
   )

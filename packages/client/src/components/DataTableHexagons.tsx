@@ -8,7 +8,7 @@ import { percentage } from '@/utils'
 import { HexagonDto, TickDto } from '@/api/index.type'
 import { getHexagon } from '@/api'
 import { useMittOn } from '@/hooks/useMittOn'
-import { useGridPaginationFields, usePaginationServer } from '@/hooks'
+import { useGridPaginationFields, useServerPagination } from '@/hooks'
 import { useWhenever } from '@/hooks/useWhenever'
 
 interface DataTableHexagonsProps {
@@ -18,7 +18,7 @@ interface DataTableHexagonsProps {
 function DataTableHexagons(props: DataTableHexagonsProps) {
   const { t } = useTranslation()
 
-  const [state, controls] = usePaginationServer({
+  const [state, controls] = useServerPagination({
     resolve: model => getHexagon({
       tick: props.token!.tick,
       page: model.page,

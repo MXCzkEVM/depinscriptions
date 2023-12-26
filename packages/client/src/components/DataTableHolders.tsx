@@ -8,7 +8,7 @@ import { HolderDto, TickDto } from '@/api/index.type'
 import { getHolder } from '@/api'
 import { percentage, thousandBitSeparator } from '@/utils'
 import { useMittOn } from '@/hooks/useMittOn'
-import { useGridPaginationFields, usePaginationServer } from '@/hooks'
+import { useGridPaginationFields, useServerPagination } from '@/hooks'
 import { useWhenever } from '@/hooks/useWhenever'
 
 interface DataTableHoldersProps {
@@ -18,7 +18,7 @@ interface DataTableHoldersProps {
 function DataTableHolders(props: DataTableHoldersProps) {
   const { t } = useTranslation()
 
-  const [state, controls] = usePaginationServer({
+  const [state, controls] = useServerPagination({
     resolve: model => getHolder({
       tick: props.token?.tick,
       order: 'value',

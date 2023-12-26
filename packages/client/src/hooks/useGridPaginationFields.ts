@@ -1,9 +1,9 @@
 import { GridPaginationModel } from '@mui/x-data-grid'
-import { PaginationModal } from './usePaginationServer'
+import { PaginationModel } from './useServerPagination'
 
 export interface UseGridPaginationFieldsOptions {
-  load: (modal: Partial<PaginationModal>) => Promise<void>
-  pagination: PaginationModal
+  load: (modal: Partial<PaginationModel>) => Promise<void>
+  pagination: PaginationModel
 }
 
 export function useGridPaginationFields(options: UseGridPaginationFieldsOptions) {
