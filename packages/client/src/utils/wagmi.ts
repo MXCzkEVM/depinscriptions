@@ -8,31 +8,13 @@ import { connectorsForWallets } from '@rainbow-me/rainbowkit'
 import { metaMaskWallet } from '@rainbow-me/rainbowkit/wallets'
 
 const defaultChains: Chain[] = [
-  {
-    id: 5167003,
-    name: 'Wannsee',
-    network: 'Wannsee',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'MXC Token',
-      symbol: 'MXC',
-    },
-    rpcUrls: {
-      public: { http: ['"https://wannsee-rpc.mxc.com"'] },
-      default: { http: ['"https://wannsee-rpc.mxc.com"'] },
-    },
-    blockExplorers: {
-      etherscan: { name: 'etherscan', url: 'https://wannsee-explorer.mxc.com' },
-      default: { name: 'etherscan', url: 'https://wannsee-explorer.mxc.com' },
-    },
-  },
   goerli,
 ]
 
 const providers = [
   jsonRpcProvider({
     rpc: () => ({
-      http: `https://wannsee-rpc.mxc.com`,
+      http: goerli.rpcUrls.default[0],
     }),
   }),
 ]
@@ -71,7 +53,7 @@ const client = createClient({
   logger: {
     warn: message => console.warn(message),
   },
-  // autoConnect: true,
+  autoConnect: true,
   connectors,
   provider,
   webSocketProvider,
