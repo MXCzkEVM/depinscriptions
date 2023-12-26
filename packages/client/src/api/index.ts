@@ -7,7 +7,7 @@
 
 import * as Types from "./index.type";
 
-export const baseURL = process.env.NEXT_SERVER_URL;
+export const baseURL = process.env.NEXT_PUBLIC_SERVER_URL;
 
 /**
  * @method get
