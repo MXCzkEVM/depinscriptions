@@ -10,7 +10,7 @@ export interface BlockWithTransactions extends Omit<Block, 'transactions'> {
 export class JsonProviderService {
   private provider: JsonRpcProvider
   constructor(private config: ConfigService) {
-    this.provider = new JsonRpcProvider(config.get('CHAIN_JSON_PROVIDER_URL'))
+    this.provider = new JsonRpcProvider(config.get('NEST_PROVIDER_URL'))
   }
 
   async getLastBlockNumber() {
