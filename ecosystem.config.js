@@ -1,7 +1,7 @@
 module.exports = {
   apps: [{
-    name: 'wannsee-geoscriptions',
+    name: 'geoscriptions-wannsee',
     script: 'npm',
-    args: 'run start:dev',
+    args: 'run start:prod',
   }],
 }
