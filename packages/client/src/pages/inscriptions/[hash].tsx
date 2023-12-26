@@ -6,7 +6,7 @@ import { useAsync } from 'react-use'
 import dayjs from 'dayjs'
 import { useTranslation } from 'react-i18next'
 import { Layout } from '@/layout'
-import { ChainLink, Condition, Empty, FieldCol, LocationForHexagon } from '@/components'
+import { ChainLink, Condition, CountryFlag, Empty, FieldCol, LocationForHexagon } from '@/components'
 import { useRouterQuery } from '@/hooks'
 import { getInscriptionHash } from '@/api'
 import { noop, thousandBitSeparator } from '@/utils'
@@ -90,7 +90,9 @@ function Page() {
       <Card className="lg:w-[800px]" style={{ background: 'rgb(22 21 21 / 20%)' }}>
         <CardContent className="p-6">
           <div className="flex items-center mb-6">
-            <span className="font-bold text-2xl mr-1">{data.tick}</span>
+            <span className="font-bold text-2xl mr-1">
+              <CountryFlag find={data.tick} />
+            </span>
             <span className="text-gray-400">
               #
               {data.number}

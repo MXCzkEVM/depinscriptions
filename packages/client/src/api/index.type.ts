@@ -58,7 +58,7 @@ export interface InscriptionResponseDto {
   tick: string;
   holders: number;
 }
-export interface InscriptionSomeResponseDto {
+export interface SomeResponseDto {
   data: boolean;
 }
 export interface HexagonPageResponseDto {
@@ -101,6 +101,9 @@ export interface GetTokenQuery {
   type: number;
   keyword: string;
   page: number;
+}
+export interface GetTokenSomeIdPath {
+  id: string;
 }
 export interface GetTokenIdPath {
   id: string;

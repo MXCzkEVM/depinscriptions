@@ -62,7 +62,7 @@ export class TasksService {
           const json = toUtf8String(transaction.data)
           const inscription = JSON.parse(json) as InscriptionJSON
 
-          const existInscription = await this.inscription.someInscription(transaction.hash)
+          const existInscription = await this.inscription.some(transaction.hash)
           if (existInscription)
             throw new Error(`[inscription] - Attempting to record existing inscription(${transaction.hash.slice(0, 12)})`)
 
@@ -74,7 +74,7 @@ export class TasksService {
             await this.scripts.transfer(block as any, transaction, inscription)
           if (inscription.op === 'mint')
             await this.scripts.mint(block as any, transaction, inscription)
-          await this.inscription.recordInscription({
+          await this.inscription.create({
             from: transaction.from,
             to: transaction.to,
             hash: transaction.hash,

@@ -17,7 +17,7 @@ export class JsonProviderService {
     return this.provider.getBlockNumber()
   }
 
-  getBlockByArangeWithTransactions(start: number, end: number) {
+  async getBlockByArangeWithTransactions(start: number, end: number) {
     return Promise.all(
       arange(start, end).map(index => this.getBlockWithTransactions(index)),
     )

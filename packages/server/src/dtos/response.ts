@@ -64,7 +64,7 @@ export class InscriptionResponseDto {
   @ApiProperty()
   holders: number
 }
-export class InscriptionSomeResponseDto {
+export class SomeResponseDto {
   @ApiProperty()
   data: boolean
 }

@@ -3,14 +3,15 @@ import { useMemo, useState } from 'react'
 import { ArrowBackSharp } from '@ricons/ionicons5'
 import { Card, CardContent, Divider, Tab, Tabs } from '@mui/material'
 import { useRouter } from 'next/router'
-import { useAsync } from 'react-use'
+import { useAsyncFn, useMount } from 'react-use'
 import dayjs from 'dayjs'
 import { useTranslation } from 'react-i18next'
 import { Layout } from '@/layout'
-import { ChainLink, DataTableHexagons, DataTableHolders, FieldCol, Icon, LinearProgressWithLabel, MintButton } from '@/components'
+import { ChainLink, CountryFlag, DataTableHexagons, DataTableHolders, FieldCol, Icon, LinearProgressWithLabel, MintButton } from '@/components'
 import { useRouterParams } from '@/hooks'
 import { getTokenId } from '@/api'
 import { percentage, thousandBitSeparator } from '@/utils'
+import { useMittOn } from '@/hooks/useMittOn'
 
 function Page() {
   const router = useRouter()
@@ -19,9 +20,13 @@ function Page() {
 
   const [tab, setTab] = useState(0)
 
-  const { value: token, loading } = useAsync(() => getTokenId({ id: tokenId }))
+  const [{ value: token, loading }, fetch] = useAsyncFn(() => getTokenId({ id: tokenId }), [tokenId])
 
   const isPageLoading = useMemo(() => loading || !token, [loading, token])
+
+  useMount(fetch)
+
+  useMittOn('reload:page', fetch)
 
   return (
     <>
@@ -29,7 +34,9 @@ function Page() {
         <Icon>
           <ArrowBackSharp />
         </Icon>
-        <span className="text-2xl">{tokenId}</span>
+        <span className="text-2xl">
+          <CountryFlag find={tokenId} />
+        </span>
         <div className="bg-white text-xs py-[2px] px-[4px] rounded-lg bg-opacity-30">
           MSC-20
         </div>

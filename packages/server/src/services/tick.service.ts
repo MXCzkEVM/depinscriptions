@@ -6,37 +6,42 @@ import { PrismaService } from './prisma.service'
 export class TickService {
   constructor(private prisma: PrismaService) { }
 
-  async tick(where: Prisma.TickWhereUniqueInput) {
+  async detail(where: Prisma.TickWhereUniqueInput) {
     return this.prisma.tick.findUnique({ where })
   }
 
-  async ticks(params: Prisma.TickFindManyArgs) {
+  async lists(params: Prisma.TickFindManyArgs) {
     return this.prisma.tick.findMany(params)
   }
 
-  async createTick(data: Prisma.TickCreateInput) {
+  async create(data: Prisma.TickCreateInput) {
     return this.prisma.tick.create({ data })
   }
 
-  async updateTick(tick: string, data: Prisma.TickUpdateInput) {
+  async update(tick: string, data: Prisma.TickUpdateInput) {
     return this.prisma.tick.update({
       where: { tick },
       data,
     })
   }
 
-  async incrementTickMinted(tick: string, data: { value: number }) {
+  async some(tick: string) {
+    const count = await this.prisma.tick.count({ where: { tick } })
+    return count !== 0
+  }
+
+  async incrementMinted(tick: string, data: { value: number }) {
     return this.prisma.tick.update({
       where: { tick },
       data: { minted: { increment: data.value } },
     })
   }
 
-  async getTickCount(params?: Prisma.TickCountArgs) {
+  async count(params?: Prisma.TickCountArgs) {
     return this.prisma.tick.count(params)
   }
 
-  async getTickByMarket(page: number, limit: number) {
+  async detailByMarket(page: number, limit: number) {
     const result = await this.prisma.$queryRaw<{ a }>`
       SELECT
           Tick.tick,

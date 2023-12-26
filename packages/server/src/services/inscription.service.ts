@@ -6,24 +6,24 @@ import { PrismaService } from './prisma.service'
 export class InscriptionService {
   constructor(private prisma: PrismaService) {}
 
-  async inscription(where: Prisma.InscriptionWhereUniqueInput) {
+  async detail(where: Prisma.InscriptionWhereUniqueInput) {
     return this.prisma.inscription.findUnique({ where })
   }
 
-  async inscriptions(params: Prisma.InscriptionFindManyArgs) {
+  async lists(params: Prisma.InscriptionFindManyArgs) {
     return this.prisma.inscription.findMany(params)
   }
 
-  async inscriptionCount(params: Prisma.InscriptionCountArgs) {
+  async count(params: Prisma.InscriptionCountArgs) {
     return this.prisma.inscription.count(params)
   }
 
-  async someInscription(hash: string) {
+  async some(hash: string) {
     const count = await this.prisma.inscription.count({ where: { hash } })
     return count !== 0
   }
 
-  async recordInscription(data: Prisma.InscriptionCreateInput) {
+  async create(data: Prisma.InscriptionCreateInput) {
     return this.prisma.inscription.create({ data })
   }
 }

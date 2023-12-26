@@ -43,7 +43,7 @@ export class ScriptsService {
     inscription: ScanDeployJSON,
   ) {
     try {
-      await this.tickService.createTick({
+      await this.tickService.create({
         creator: transaction.from,
         deployTime: new Date(block.timestamp * 1000),
         deployHash: transaction.hash,
@@ -67,7 +67,7 @@ export class ScriptsService {
     transaction: TransactionResponse,
     inscription: ScanMintJSON,
   ) {
-    const tick = await this.tickService.tick({ tick: String(inscription.tick) })
+    const tick = await this.tickService.detail({ tick: String(inscription.tick) })
     if (!tick)
       throw new Error(`[mint] - Attempting to mint into non-existent tick(${inscription.tick})`)
 
@@ -77,23 +77,23 @@ export class ScriptsService {
     if (+inscription.amt > surplus)
       throw new Error(`Exceeded ${inscription.tick} total number of mints by ${tick.total}`)
 
-    await this.hexagonService.incrementHexagonValue(
+    await this.hexagonService.incrementValue(
       { hex: inscription.hex, tik: inscription.tick },
       { value: +inscription.amt },
     )
 
-    await this.holderService.incrementHolderValue(
+    await this.holderService.incrementValue(
       { owner: transaction.from, tick: inscription.tick },
       { value: +inscription.amt, number: tick.number },
     )
 
-    await this.tickService.incrementTickMinted(
+    await this.tickService.incrementMinted(
       inscription.tick,
       { value: +inscription.amt },
     )
 
     if ((+inscription.amt + tick.minted) === tick.total) {
-      await this.tickService.updateTick(
+      await this.tickService.update(
         inscription.tick,
         { completedTime: new Date(block.timestamp * 1000) },
       )
@@ -109,19 +109,19 @@ export class ScriptsService {
     transaction: TransactionResponse,
     inscription: ScanTransferJSON,
   ) {
-    const tick = await this.tickService.tick({ tick: String(inscription.tick) })
+    const tick = await this.tickService.detail({ tick: String(inscription.tick) })
     if (!tick)
       throw new Error(`[transfer] - Attempting to transfer into non-existent tick( ${inscription.tick} )`)
-    const holder = await this.holderService.holder({
+    const holder = await this.holderService.detail({
       where: { tick: inscription.tick, owner: transaction.from },
     })
     if (!holder)
       throw new Error(`[transfer] - from(${transaction.from.slice(0, 12)}) does not have a holder`)
-    await this.holderService.decrementHolderValue(
+    await this.holderService.decrementValue(
       { owner: transaction.from, tick: inscription.tick },
       { value: +inscription.amt },
     )
-    await this.holderService.incrementHolderValue(
+    await this.holderService.incrementValue(
       { owner: transaction.to, tick: inscription.tick },
       { value: +inscription.amt, number: tick.number },
     )

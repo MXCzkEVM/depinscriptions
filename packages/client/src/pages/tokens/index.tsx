@@ -9,7 +9,7 @@ import { useInjectHolder } from '@overlays/react'
 import { useTranslation } from 'react-i18next'
 import { Search } from '@ricons/ionicons5'
 import { useAsyncFn, useMount } from 'react-use'
-import { Condition, DeployDialog, Empty, FieldTickInput, Icon, LinearProgressWithLabel } from '@/components'
+import { Condition, CountryFlag, DeployDialog, Empty, FieldTickInput, Icon, LinearProgressWithLabel } from '@/components'
 import { Layout } from '@/layout'
 import { TickDto } from '@/api/index.type'
 import { percentage } from '@/utils'
@@ -29,7 +29,15 @@ function Page() {
   const [total, setTotal] = useState(0)
 
   const columns: GridColDef<TickDto>[] = [
-    { field: 'tick', headerName: t('Token'), minWidth: 120, flex: 1 },
+    {
+      field: 'tick',
+      headerName: t('Token'),
+      minWidth: 120,
+      flex: 1,
+      renderCell(params) {
+        return <CountryFlag find={params.row.tick} />
+      },
+    },
     {
       field: 'deployTime',
       headerName: t('Deploy Time'),

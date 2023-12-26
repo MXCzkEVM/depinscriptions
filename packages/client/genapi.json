@@ -96,7 +96,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/InscriptionSomeResponseDto"
+                  "$ref": "#/components/schemas/SomeResponseDto"
                 }
               }
             }
@@ -259,6 +259,36 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TickPageResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "app-controller"
+        ]
+      }
+    },
+    "/token/some/{id}": {
+      "get": {
+        "operationId": "AppController_getTickSome",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "InscriptionSome",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SomeResponseDto"
                 }
               }
             }
@@ -541,7 +571,7 @@
           "holders"
         ]
       },
-      "InscriptionSomeResponseDto": {
+      "SomeResponseDto": {
         "type": "object",
         "properties": {
           "data": {

@@ -11,15 +11,15 @@ export interface QueryHexagonParams {
 export class HexagonService {
   constructor(private prisma: PrismaService) { }
 
-  async hexagonCount(params: Prisma.HexagonCountArgs) {
+  async count(params: Prisma.HexagonCountArgs) {
     return this.prisma.hexagon.count(params)
   }
 
-  async hexagons(params: Prisma.HexagonFindManyArgs) {
+  async lists(params: Prisma.HexagonFindManyArgs) {
     return this.prisma.hexagon.findMany(params)
   }
 
-  async incrementHexagonValue(params: QueryHexagonParams, data: { value: number }) {
+  async incrementValue(params: QueryHexagonParams, data: { value: number }) {
     const count = await this.prisma.hexagon.count({ where: params })
     if (count === 0) {
       await this.prisma.hexagon.create({

@@ -22,11 +22,9 @@ body {
 .Mui-focused:after {
   display: none !important
 }
-.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded {
-  /* max-height: 400px; */
+.MuiPopover-root .MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded {
+  max-height: 400px;
   margin: 0;
-}
-.MuiDataGrid-virtualScroller {
 }
 
 .MuiDataGrid-virtualScroller::-webkit-scrollbar {

@@ -1,7 +1,19 @@
 import { Controller, Get, NotFoundException, Param, Query } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
 import { ApiConsumes, ApiExtraModels, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger'
-import { HexagonDto, HexagonPageResponseDto, HolderDto, HolderPageResponseDto, InscriptionDto, InscriptionPageResponseDto, InscriptionResponseDto, InscriptionSomeResponseDto, TickDto, TickPageResponseDto } from 'dtos'
+import {
+  HexagonDto,
+  HexagonPageResponseDto,
+  HolderDto,
+  HolderPageResponseDto,
+  InscriptionDto,
+  InscriptionPageResponseDto,
+  InscriptionResponseDto,
+  SomeResponseDto,
+  TickDto,
+  TickPageResponseDto,
+} from './dtos'
+
 import { InscriptionService } from './services/inscription.service'
 import { HolderService } from './services/holder.service'
 import { TickService } from './services/tick.service'
@@ -28,11 +40,11 @@ export class AppController {
   @ApiConsumes('application/json')
   @ApiResponse({ status: 200, type: InscriptionPageResponseDto, description: 'Inscriptions' })
   async getInscriptions(@Query('owner') owner?: string, @Query('page') page = 1, @Query('limit') limit = 15) {
-    const total = await this.inscriptionService.inscriptionCount({
+    const total = await this.inscriptionService.count({
       orderBy: { number: 'asc' },
       where: owner ? { from: owner } : undefined,
     })
-    const data = await this.inscriptionService.inscriptions({
+    const data = await this.inscriptionService.lists({
       orderBy: { number: 'asc' },
       where: owner ? { from: owner } : undefined,
       skip: (page - 1) * limit,
@@ -45,14 +57,14 @@ export class AppController {
   @ApiConsumes('application/json')
   @ApiResponse({ status: 200, type: InscriptionResponseDto, description: 'Inscription' })
   async getInscription(@Param('hash') hash: string) {
-    const inscription = await this.inscriptionService.inscription({ hash })
+    const inscription = await this.inscriptionService.detail({ hash })
     if (!inscription)
       throw new NotFoundException('Inscription not found')
-    const tick = await this.tickService.tick({ tick: inscription?.tick })
+    const tick = await this.tickService.detail({ tick: inscription?.tick })
     if (!tick)
       throw new NotFoundException(`Not relevant information found Tick [${inscription.tick}]`)
 
-    const holders = await this.holderService.holderCount({
+    const holders = await this.holderService.count({
       where: { tick: inscription.tick },
     })
     return {
@@ -72,10 +84,10 @@ export class AppController {
 
   @Get('inscription/some/:hash')
   @ApiConsumes('application/json')
-  @ApiResponse({ status: 200, type: InscriptionSomeResponseDto, description: 'InscriptionSome' })
+  @ApiResponse({ status: 200, type: SomeResponseDto, description: 'InscriptionSome' })
   async getInscriptionSome(@Param('hash') hash: string) {
     return {
-      data: await this.inscriptionService.someInscription(hash),
+      data: await this.inscriptionService.some(hash),
     }
   }
 
@@ -86,10 +98,10 @@ export class AppController {
   @ApiResponse({ status: 200, type: HexagonPageResponseDto, description: 'Hexagons' })
   async getHexagons(
     @Query('tick') tick?: string, @Query('page') page = 1, @Query('limit') limit = 15) {
-    const total = await this.hexagonService.hexagonCount({
+    const total = await this.hexagonService.count({
       where: { tik: tick },
     })
-    const data = await this.hexagonService.hexagons({
+    const data = await this.hexagonService.lists({
       skip: (page - 1) * limit,
       take: +limit,
       where: { tik: tick },
@@ -115,8 +127,8 @@ export class AppController {
     if (owner)
       where.owner = owner
     order && (orderBy[order] = 'asc')
-    const total = await this.holderService.holderCount({ where })
-    const data = await this.holderService.holders({
+    const total = await this.holderService.count({ where })
+    const data = await this.holderService.lists({
       skip: (page - 1) * limit,
       take: +limit,
       where,
@@ -144,8 +156,8 @@ export class AppController {
       where.completedTime = null
     if (+type === 3)
       where.completedTime = { not: null }
-    const total = await this.tickService.getTickCount({ where })
-    const data = await this.tickService.ticks({
+    const total = await this.tickService.count({ where })
+    const data = await this.tickService.lists({
       orderBy: { lastTime: 'asc' },
       skip: (page - 1) * limit,
       take: +limit,
@@ -154,11 +166,20 @@ export class AppController {
     return { total, data }
   }
 
+  @Get('token/some/:id')
+  @ApiConsumes('application/json')
+  @ApiResponse({ status: 200, type: SomeResponseDto, description: 'InscriptionSome' })
+  async getTickSome(@Param('id') id: string) {
+    return {
+      data: await this.tickService.some(id),
+    }
+  }
+
   @Get('token/:id')
   @ApiConsumes('application/json')
   @ApiResponse({ status: 200, type: TickDto, description: 'Ticks' })
   async getTick(@Param('id') id: string) {
-    const data = await this.tickService.tick({ tick: id })
+    const data = await this.tickService.detail({ tick: id })
     if (!data)
       throw new NotFoundException(`Not found Tick [${id}]`)
     return data
@@ -169,6 +190,6 @@ export class AppController {
     @Query('page') page = 1,
     @Query('limit') limit = 15,
   ) {
-    return this.tickService.getTickByMarket(page, limit)
+    return this.tickService.detailByMarket(page, limit)
   }
 }

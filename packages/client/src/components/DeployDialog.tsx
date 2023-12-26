@@ -5,8 +5,11 @@ import { useState } from 'react'
 import { LoadingButton } from '@mui/lab'
 import { } from '@rainbow-me/rainbowkit'
 import { useTranslation } from 'react-i18next'
+import toast from 'react-hot-toast'
+import CountryFlag from './CountryFlag'
 import { useSendSatsTransaction } from '@/hooks'
 import { countries } from '@/config'
+import { getTokenSomeId } from '@/api'
 
 function DeployDialog() {
   const { visible, resolve, reject } = useOverlay({
@@ -45,6 +48,12 @@ function DeployDialog() {
     setErrors(helpers)
     if (helpers.limit || helpers.tick || helpers.total)
       return
+    const { data: isSomeToken } = await getTokenSomeId({ id: country })
+    if (isSomeToken) {
+      toast.error(`The current tick ${country} has been deployed`)
+      return
+    }
+
     sendTransaction?.()
   }
 
@@ -79,10 +88,7 @@ function DeployDialog() {
               >
                 {countries.map(country => (
                   <MenuItem key={country.code} value={country.code}>
-                    <div className="flex items-center">
-                      <span className="min-w-10 mr-2">{country.code}</span>
-                      <img className="w-6" src={country.image} />
-                    </div>
+                    <CountryFlag code={country.code} image={country.image} />
                   </MenuItem>
                 ))}
               </Select>

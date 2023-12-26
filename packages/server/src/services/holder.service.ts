@@ -11,59 +11,59 @@ export interface QueryHolderParams {
 export class HolderService {
   constructor(private prisma: PrismaService, private tickService: TickService) { }
 
-  async holder(params: Prisma.HolderFindFirstArgs) {
+  async detail(params: Prisma.HolderFindFirstArgs) {
     return this.prisma.holder.findFirst(params)
   }
 
-  async holders(params: Prisma.HolderFindManyArgs) {
+  async lists(params: Prisma.HolderFindManyArgs) {
     return this.prisma.holder.findMany(params)
   }
 
-  async createHolder(data: Prisma.HolderCreateInput) {
+  async create(data: Prisma.HolderCreateInput) {
     return this.prisma.holder.create({ data })
   }
 
-  async someHolder(params: QueryHolderParams) {
+  async some(params: QueryHolderParams) {
     const count = await this.prisma.holder.count({
       where: params,
     })
     return count !== 0
   }
 
-  async holderCount(params: Prisma.HolderCountArgs) {
+  async count(params: Prisma.HolderCountArgs) {
     return this.prisma.holder.count(params)
   }
 
-  async updateHolder(where: QueryHolderParams, data: Prisma.HolderUpdateInput) {
+  async update(where: QueryHolderParams, data: Prisma.HolderUpdateInput) {
     return this.prisma.holder.updateMany({
       where,
       data,
     })
   }
 
-  async incrementHolderValue(params: QueryHolderParams, data: { value: number, number: number }) {
-    const isExist = await this.someHolder(params)
+  async incrementValue(params: QueryHolderParams, data: { value: number, number: number }) {
+    const isExist = await this.some(params)
     if (!isExist) {
-      await this.createHolder({
+      await this.create({
         owner: params.owner,
         tick: params.tick,
         number: data.number,
         value: +data.value,
       })
-      await this.tickService.updateTick(params.tick, {
+      await this.tickService.update(params.tick, {
         holders: { increment: 1 },
       })
     }
     else {
-      await this.updateHolder(
+      await this.update(
         { owner: params.owner, tick: params.tick },
         { value: { increment: data.value } },
       )
     }
   }
 
-  async decrementHolderValue(params: QueryHolderParams, data: { value: number }) {
-    const holder = await this.holder({ where: params })
+  async decrementValue(params: QueryHolderParams, data: { value: number }) {
+    const holder = await this.detail({ where: params })
     if (!holder)
       throw new Error(`Holder Error: ${params.owner.slice(0, 12)} does not hold ${params.tick}`)
 
@@ -74,7 +74,7 @@ export class HolderService {
       await this.prisma.holder.delete({ where: { id: holder.id } })
     }
     else {
-      this.updateHolder(
+      this.update(
         { owner: params.owner, tick: params.tick },
         { value: { decrement: data.value } },
       )

@@ -22,7 +22,8 @@ function MintButton(props: MintButtonProps) {
   const [holderLocationMl, openLocationModal] = useInjectHolder(LocationModal)
   const [holderWaitingMl, openWaitingIndexModal] = useInjectHolder(WaitingIndexModal)
 
-  const emit = useMittEmit('reload:table')
+  const reloadTable = useMittEmit('reload:table')
+  const reloadPage = useMittEmit('reload:page')
 
   const { isLoading: isButtonLoading, sendTransaction, isConfigFetched } = useSendSatsTransaction({
     data: {
@@ -34,7 +35,8 @@ function MintButton(props: MintButtonProps) {
     },
     async onSuccess({ hash }) {
       await openWaitingIndexModal({ hash })
-      emit()
+      reloadTable()
+      reloadPage()
     },
   })
 
