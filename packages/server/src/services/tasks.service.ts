@@ -34,7 +34,9 @@ export class TasksService {
       return
     }
     const titleLogText = `${reset.underline('[scan]')} ${gray('- regularly scan blockchain')}`
-    const rangeLogText = `${cyan(`${startBlockNumber} ${gray('to')} ${endBlockNumber}`)}`
+    const rangeLogText = startBlockNumber !== endBlockNumber
+      ? `${cyan(`${startBlockNumber} ${gray('to')} ${endBlockNumber}`)} ${gray('blocks')}`
+      : `${cyan(startBlockNumber)} ${gray('block')}`
     this.logger.log(`${titleLogText} ${rangeLogText} ${gray('blocks')}`)
     await this.nextBlocks(startBlockNumber, endBlockNumber)
     await setIndexerLastBlock(endBlockNumber + 1)
