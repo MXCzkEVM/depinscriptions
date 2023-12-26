@@ -9,7 +9,7 @@ export function useServerPaginationConcat<T extends Array<unknown>>(options: Use
   const pageRef = useRef(options.page || 1)
   const valueRef = useRef<T>([] as any)
   const [total, setTotal] = useState(options.total || 0)
-  const [limit, setLimit] = useState(options.limit || 24)
+  const [limit, setLimit] = useState(options.limit || 15)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<Error>()
   const [loaded, setLoaded] = useState(false)

@@ -15,7 +15,6 @@ export interface DataGridScriptionsProps {
 
 function DataGridScriptions(props: DataGridScriptionsProps) {
   const [state, { reload, next }] = useServerPaginationConcat({
-    limit: 5,
     resolve: model => getInscription({ ...model, owner: props.address || '' }),
   })
 
