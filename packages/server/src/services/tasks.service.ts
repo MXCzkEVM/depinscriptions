@@ -29,7 +29,7 @@ export class TasksService {
     const lastBlockNumber = await this.provider.getLastBlockNumber()
     const startBlockNumber = await getIndexerLastBlock()
     const endBlockNumber = Math.min(startBlockNumber + 10, lastBlockNumber)
-    if (startBlockNumber >= endBlockNumber) {
+    if (startBlockNumber > endBlockNumber) {
       this.locked = false
       return
     }
