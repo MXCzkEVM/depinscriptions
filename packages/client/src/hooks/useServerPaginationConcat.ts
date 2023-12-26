@@ -16,7 +16,6 @@ export function useServerPaginationConcat<T extends Array<unknown>>(options: Use
 
   async function load(model: Partial<PaginationModel & { reload: boolean }>) {
     const _limit = model.limit || limit
-    const _total = model.total || total
     const _reload = model.reload || false
     const _page
       = !(typeof model.limit !== 'undefined' && model.limit !== limit)
@@ -55,7 +54,7 @@ export function useServerPaginationConcat<T extends Array<unknown>>(options: Use
   }
 
   async function next() {
-    await load({ page: pageRef.current + 1, limit, total })
+    await load({ page: pageRef.current + 1, limit })
   }
 
   const pages = Math.ceil(total / limit)

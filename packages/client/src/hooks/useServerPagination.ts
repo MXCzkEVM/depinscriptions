@@ -3,7 +3,6 @@ import { useState } from 'react'
 export interface PaginationModel {
   limit: number
   page: number
-  total: number
 }
 
 export interface PaginationResolved<T> {
@@ -28,7 +27,6 @@ export function useServerPagination<T>(options: UseServerPaginationOptions<T>) {
 
   async function load(modal: Partial<PaginationModel>) {
     const _limit = modal.limit || limit
-    const _total = modal.total || total
     const _page
     = !(typeof modal.limit !== 'undefined' && modal.limit !== limit)
       ? modal.page || page
@@ -55,13 +53,13 @@ export function useServerPagination<T>(options: UseServerPaginationOptions<T>) {
   }
 
   async function next() {
-    await load({ page: page + 1, limit, total })
+    await load({ page: page + 1, limit })
   }
   async function prev() {
-    await load({ page: page - 1, limit, total })
+    await load({ page: page - 1, limit })
   }
   async function reload() {
-    await load({ page: 1, limit, total })
+    await load({ page: 1, limit })
   }
 
   const pages = Math.ceil(total / limit)
