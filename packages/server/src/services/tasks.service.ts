@@ -31,9 +31,10 @@ export class TasksService {
     const lastBlockNumber = await this.provider.getLastBlockNumber()
     const startBlockNumber = await getIndexerLastBlock()
     const endBlockNumber = Math.min(startBlockNumber + 10, lastBlockNumber)
-    this.logger.log(`Blockchain current block number is ${lastBlockNumber}`)
-    if (startBlockNumber >= endBlockNumber)
-      return
+    if (startBlockNumber >= endBlockNumber) {
+      this.locked = false
+      return false
+    }
     this.logger.log(`Regularly scan blockchain ${startBlockNumber} to ${endBlockNumber} blocks`)
     try {
       await this.nextBlocks(startBlockNumber, endBlockNumber)
