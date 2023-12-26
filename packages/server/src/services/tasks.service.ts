@@ -33,7 +33,7 @@ export class TasksService {
     const endBlockNumber = Math.min(startBlockNumber + 10, lastBlockNumber)
     if (startBlockNumber >= endBlockNumber) {
       this.locked = false
-      return false
+      return
     }
     this.logger.log(`Regularly scan blockchain ${startBlockNumber} to ${endBlockNumber} blocks`)
     try {
