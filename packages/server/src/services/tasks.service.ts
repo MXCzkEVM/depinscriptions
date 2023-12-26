@@ -36,17 +36,8 @@ export class TasksService {
       return
     }
     this.logger.log(`Regularly scan blockchain ${startBlockNumber} to ${endBlockNumber} blocks`)
-    try {
-      await this.nextBlocks(startBlockNumber, endBlockNumber)
-      await setIndexerLastBlock(endBlockNumber)
-    }
-    catch (error) {
-      if (error.name.startsWith('Prisma'))
-        this.logger.warn(`Tasks ${error.name}-${error.code}: ${error.meta.modelName} - ${error.meta.target}`)
-      else
-        this.logger.warn(error.message)
-    }
-
+    await this.nextBlocks(startBlockNumber, endBlockNumber)
+    await setIndexerLastBlock(endBlockNumber)
     this.locked = false
   }
 
@@ -67,13 +58,13 @@ export class TasksService {
         if (receipt.status !== 1)
           continue
 
-        const json = toUtf8String(transaction.data)
-        const inscription = JSON.parse(json) as InscriptionJSON
-
-        this.logger.log(`transaction hash: ${transaction.hash}`)
-        this.logger.log(`inscription json: ${json}`)
-
         try {
+          const json = toUtf8String(transaction.data)
+          const inscription = JSON.parse(json) as InscriptionJSON
+
+          this.logger.log(`transaction hash: ${transaction.hash}`)
+          this.logger.log(`inscription json: ${json}`)
+
           const existInscription = await this.inscription.someInscription(transaction.hash)
           if (existInscription)
             throw new Error(`Inscription Error: attempting to record existing inscription(${transaction.hash.slice(0, 12)})`)
@@ -94,9 +85,10 @@ export class TasksService {
           })
         }
         catch (error) {
-          if (error.code === 'P2002')
-            throw new Error(`The current hash(${transaction.hash}) already exists, skipping record`)
-          throw error
+          if (error.name.startsWith('Prisma'))
+            this.logger.warn(`Tasks ${error.name}-${error.code}: ${error.meta.modelName} - ${error.meta.target}`)
+          else
+            this.logger.warn(error.message)
         }
       }
     }
