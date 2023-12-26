@@ -37,7 +37,7 @@ export class TasksService {
     const rangeLogText = startBlockNumber !== endBlockNumber
       ? `${cyan(`${startBlockNumber} ${gray('to')} ${endBlockNumber}`)} ${gray('blocks')}`
       : `${cyan(startBlockNumber)} ${gray('block')}`
-    this.logger.log(`${titleLogText} ${rangeLogText} ${gray('blocks')}`)
+    this.logger.log(`${titleLogText} ${rangeLogText}`)
     await this.nextBlocks(startBlockNumber, endBlockNumber)
     await setIndexerLastBlock(endBlockNumber + 1)
     this.locked = false
