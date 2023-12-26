@@ -1,7 +1,6 @@
 import { PropsWithChildren, ReactNode, useEffect, useRef } from 'react'
 import { useAsyncFn, useMount } from 'react-use'
 import { delay } from '@hairy/utils'
-import { useWhenever } from '@/hooks/useWhenever'
 
 interface InfiniteScrollProps extends PropsWithChildren {
   next: () => Promise<void>
