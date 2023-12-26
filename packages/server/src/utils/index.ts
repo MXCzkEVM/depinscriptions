@@ -3,7 +3,7 @@ import { cwd } from 'node:process'
 import { ensureDir, readFile, writeFile } from 'fs-extra'
 
 const INDEXER_SCAN_LAST_BLOCK_FILEPATH = join(cwd(), 'cache', '.indexer')
-const INDEXER_DEFAULT_LAST_BLOCK = 10246699
+const INDEXER_DEFAULT_LAST_BLOCK = Number(process.env.DEFAULT_LAST_BLOCK!)
 
 export async function setIndexerLastBlock(blockNumber: number) {
   if (Number.isNaN(blockNumber) || typeof blockNumber !== 'number')

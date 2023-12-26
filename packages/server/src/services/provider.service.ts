@@ -7,7 +7,7 @@ export interface BlockWithTransactions extends Omit<Block, 'transactions'> {
   transactions: Array<TransactionResponse>
 }
 @Injectable()
-export class jsonProviderService {
+export class JsonProviderService {
   private provider: JsonRpcProvider
   constructor(private config: ConfigService) {
     this.provider = new JsonRpcProvider(config.get('CHAIN_JSON_PROVIDER_URL'))
