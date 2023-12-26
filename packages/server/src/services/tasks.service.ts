@@ -1,13 +1,11 @@
 import { Injectable, Logger } from '@nestjs/common'
 import { Interval } from '@nestjs/schedule'
-import { TransactionResponse, toUtf8String } from 'ethers'
+import { toUtf8String } from 'ethers'
+import { cyan, dim, gray, reset } from 'chalk'
 import { getIndexerLastBlock, setIndexerLastBlock } from '../utils'
 
 import { JsonProviderService } from './provider.service'
-import { HolderService } from './holder.service'
-import { TickService } from './tick.service'
 import { InscriptionService } from './inscription.service'
-import { HexagonService } from './hexagon.service'
 import { ScanDeployJSON, ScanMintJSON, ScanTransferJSON, ScriptsService } from './scripts.service'
 
 type InscriptionJSON = ScanDeployJSON | ScanMintJSON | ScanTransferJSON
@@ -35,7 +33,9 @@ export class TasksService {
       this.locked = false
       return
     }
-    this.logger.log(`Regularly scan blockchain ${startBlockNumber} to ${endBlockNumber} blocks`)
+    const titleLogText = `${reset.underline('[scan]')} ${gray('- regularly scan blockchain')}`
+    const rangeLogText = `${cyan(`${startBlockNumber} ${gray('to')} ${endBlockNumber}`)}`
+    this.logger.log(`${titleLogText} ${rangeLogText} ${gray('blocks')}`)
     await this.nextBlocks(startBlockNumber, endBlockNumber)
     await setIndexerLastBlock(endBlockNumber)
     this.locked = false
@@ -62,12 +62,12 @@ export class TasksService {
           const json = toUtf8String(transaction.data)
           const inscription = JSON.parse(json) as InscriptionJSON
 
-          this.logger.log(`transaction hash: ${transaction.hash}`)
-          this.logger.log(`inscription json: ${json}`)
-
           const existInscription = await this.inscription.someInscription(transaction.hash)
           if (existInscription)
-            throw new Error(`Inscription Error: attempting to record existing inscription(${transaction.hash.slice(0, 12)})`)
+            throw new Error(`[inscription] - Attempting to record existing inscription(${transaction.hash.slice(0, 12)})`)
+
+          this.logger.log(reset(`Transaction hash: ${dim(transaction.hash)}`))
+          this.logger.log(reset(`Inscription json: ${dim(json)}`))
           if (inscription.op === 'deploy')
             await this.scripts.deploy(block as any, transaction, inscription)
           if (inscription.op === 'transfer')
@@ -86,7 +86,7 @@ export class TasksService {
         }
         catch (error) {
           if (error.name.startsWith('Prisma'))
-            this.logger.warn(`Tasks ${error.name}-${error.code}: ${error.meta.modelName} - ${error.meta.target}`)
+            this.logger.warn(`[prisma:${error.code}] ${error.name}: ${error.meta.modelName} - ${error.meta.target}`)
           else
             this.logger.warn(error.message)
         }

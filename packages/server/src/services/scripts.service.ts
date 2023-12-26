@@ -1,5 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common'
 import { TransactionResponse } from 'ethers'
+import { bgWhite, cyan, reset, yellow } from 'chalk'
 import { BlockWithTransactions } from './provider.service'
 import { HolderService } from './holder.service'
 import { TickService } from './tick.service'
@@ -34,7 +35,7 @@ export class ScriptsService {
     private hexagonService: HexagonService,
   ) { }
 
-  private readonly logger = new Logger(ScriptsService.name)
+  private readonly logger = new Logger('TasksService')
 
   async deploy(
     block: BlockWithTransactions,
@@ -50,12 +51,13 @@ export class ScriptsService {
         limit: +inscription.lim,
         tick: inscription.tick,
       })
-
-      this.logger.log(`[deployed] - ${inscription.tick} were deploy at ${transaction.from.slice(0, 12)}`)
+      const fromLogText = yellow(transaction.from.slice(0, 12))
+      const hashLogText = yellow(transaction.hash.slice(0, 12))
+      this.logger.log(reset(`${bgWhite('[deployed]')} - ${cyan(inscription.tick)} were z at ${fromLogText} in ${hashLogText}`))
     }
     catch (error) {
       if (error.code === '2002')
-        throw new Error('Deploy Error: The current hash already exists, skipping record')
+        throw new Error('[deploy] - The current hash already exists, skipping record')
       throw error
     }
   }
@@ -67,13 +69,13 @@ export class ScriptsService {
   ) {
     const tick = await this.tickService.tick({ tick: String(inscription.tick) })
     if (!tick)
-      throw new Error(`Mint Error: Attempting to mint into non-existent tick(${inscription.tick})`)
+      throw new Error(`[mint] - Attempting to mint into non-existent tick(${inscription.tick})`)
 
     const surplus = tick.total - tick.minted
     if (+inscription.amt > tick.limit)
-      throw new Error(`Mint Error: Exceeded ${inscription.tick} limit number of mints by ${tick.limit}`)
+      throw new Error(`Exceeded ${inscription.tick} limit number of mints by ${tick.limit}`)
     if (+inscription.amt > surplus)
-      throw new Error(`Mint Error: Exceeded ${inscription.tick} total number of mints by ${tick.total}`)
+      throw new Error(`Exceeded ${inscription.tick} total number of mints by ${tick.total}`)
 
     await this.hexagonService.incrementHexagonValue(
       { hex: inscription.hex, tik: inscription.tick },
@@ -96,8 +98,10 @@ export class ScriptsService {
         { completedTime: new Date(block.timestamp * 1000) },
       )
     }
-
-    this.logger.log(`[minted] - ${inscription.amt} ${tick.tick} were mint at ${transaction.from.slice(0, 12)}`)
+    const fromLogText = yellow(transaction.from.slice(0, 12))
+    const hashLogText = yellow(transaction.hash.slice(0, 12))
+    const amtLogText = cyan(`${inscription.amt} ${tick.tick}`)
+    this.logger.log(reset(`${bgWhite('[minted]')} - ${amtLogText} were minted at ${fromLogText} in ${hashLogText}`))
   }
 
   async transfer(
@@ -107,12 +111,12 @@ export class ScriptsService {
   ) {
     const tick = await this.tickService.tick({ tick: String(inscription.tick) })
     if (!tick)
-      throw new Error(`Transfer Error: Attempting to transfer into non-existent tick( ${inscription.tick} )`)
+      throw new Error(`[transfer] - Attempting to transfer into non-existent tick( ${inscription.tick} )`)
     const holder = await this.holderService.holder({
       where: { tick: inscription.tick, owner: transaction.from },
     })
     if (!holder)
-      throw new Error(`Transfer Error: from(${transaction.from.slice(0, 12)}) does not have a holder`)
+      throw new Error(`[transfer] - from(${transaction.from.slice(0, 12)}) does not have a holder`)
     await this.holderService.decrementHolderValue(
       { owner: transaction.from, tick: inscription.tick },
       { value: +inscription.amt },
