@@ -46,7 +46,7 @@ export function NavbarToggle() {
     const { action, index, status, type } = data
     if ([EVENTS.STEP_AFTER, EVENTS.TARGET_NOT_FOUND].includes(type as any)) {
       // Update state to advance the tour
-      if (index === 0 && !isOpen)
+      if (index === 0 && width < 768 && !isOpen)
         setIsOpen(true)
       else
         setStepIndex(index + (action === ACTIONS.PREV ? -1 : 1))
