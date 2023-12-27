@@ -58,7 +58,7 @@ pnpm build:prisma
 
 ### Production
 
-To start the production server for the server-side application, run the following command:
+To start the production server for the server-side application, run the following command in remote server:
 
 ```sh
 pm2 restart depinscriptions-wannsee
