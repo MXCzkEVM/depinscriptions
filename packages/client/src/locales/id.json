@@ -50,5 +50,22 @@
   "Successfully indexed": "Berhasil diindeks",
   "Waiting for indexing": "Menunggu pengindeksan",
   "The current tick has been deployed": "Centang saat ini {{tick}} telah diterapkan",
-  "has been deployed": "{{tick}} telah diterapkan"
+  "has been deployed": "{{tick}} telah diterapkan",
+  "DePINscriptions": "Prasasti DePIN",
+  "Wallet": "Dompet",
+  "Marketplace": "Pasar",
+  "Close": "Menutup",
+  "ISO 3166-2 Code Overview": "Ikhtisar Kode ISO 3166-2",
+  "Global Standard Title": "Standar Global",
+  "Global Standard Help": "Mewakili negara dan wilayah berdasarkan Organisasi Standar Internasional",
+  "Inclusivity": "Inklusivitas",
+  "Inclusivity Help": "Mencakup seluruh wilayah, bahkan wilayah yang disengketakan, tanpa dukungan politik.",
+  "Purpose": "Tujuan",
+  "Purpose Help": "Berfungsi sebagai pengenal universal untuk GeoInskripsi dalam konteks internasional.",
+  "Coming soon stay tuned Help": "Pasar DePINscription diatur untuk menampilkan kumpulan prasasti geolokasi mingguan yang paling banyak dicari. \nProses seleksi kami komprehensif, dengan mempertimbangkan berbagai faktor seperti kemajuan aktivitas pencetakan, semangat keterlibatan pengguna di berbagai negara dan wilayah, tingkat interaksi dengan MXC L3 zkEVM, serta visibilitas dan jangkauan prasasti. \ndi Twitter, di antara metrik lainnya. \nHal ini memastikan bahwa daftar kami mencerminkan prasasti yang tidak hanya populer tetapi juga secara dinamis terlibat dalam ruang DePIN.",
+  "Coming soon stay tuned": "Pantau terus",
+  "Transfer": "Transfer",
+  "List": "Daftar",
+  "Hexagon locations": "Lokasi segi enam",
+  "Language": "Bahasa"
 }

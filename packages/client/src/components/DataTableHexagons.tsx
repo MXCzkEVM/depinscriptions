@@ -37,7 +37,7 @@ function DataTableHexagons(props: DataTableHexagonsProps) {
     {
       field: 'hex',
       headerName: t('Location'),
-      minWidth: 240,
+      minWidth: 280,
       renderCell(params) {
         return <LocationForHexagon hexagon={params.row.hex} />
       },

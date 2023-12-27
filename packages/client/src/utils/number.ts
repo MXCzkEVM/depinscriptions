@@ -18,7 +18,7 @@ export function thousandBitSeparator(target: number | string = 0, unit = ',', op
   return [integer, decimal].filter(Boolean).join('.')
 }
 
-export function percentage(total: string | number, count: string | number, decimal = 2) {
+export function percentage(total: string | number, count: string | number, decimal = 1) {
   if (+total === 0)
     return '0.00'
   if (+count === 0)
