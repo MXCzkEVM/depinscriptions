@@ -4,7 +4,7 @@ import LinearProgressWithLabel from './LinearProgressWithLabel'
 import LocationForHexagon from './LocationForHexagon'
 import Condition from './Condition'
 import Empty from './Empty'
-import { percentage } from '@/utils'
+import { ejectBlankPage, percentage } from '@/utils'
 import { HexagonDto, TickDto } from '@/api/index.type'
 import { getHexagon } from '@/api'
 import { useMittOn } from '@/hooks/useMittOn'
@@ -14,6 +14,8 @@ import { useWhenever } from '@/hooks/useWhenever'
 interface DataTableHexagonsProps {
   token?: TickDto
 }
+
+const EXPLORER_URL = process.env.NEXT_PUBLIC_EXPLORER!
 
 function DataTableHexagons(props: DataTableHexagonsProps) {
   const { t } = useTranslation()
@@ -67,6 +69,7 @@ function DataTableHexagons(props: DataTableHexagonsProps) {
         getRowId={row => row.hex}
         rows={state.value}
         columns={columns}
+        onRowClick={() => ejectBlankPage(`${EXPLORER_URL}/mapper`)}
       />
     </Condition>
   )

@@ -29,7 +29,7 @@ function Page() {
     {
       field: 'tick',
       headerName: t('Token'),
-      minWidth: 120,
+      minWidth: 90,
       flex: 1,
       renderCell(params) {
         return <CountryFlag find={params.row.tick} />
@@ -38,7 +38,7 @@ function Page() {
     {
       field: 'deployTime',
       headerName: t('Deploy Time'),
-      minWidth: 180,
+      minWidth: 160,
       flex: 1,
       renderCell(params) {
         return dayjs(params.row.deployTime).format('YYYY-MM-DD HH:mm:ss')
@@ -57,7 +57,7 @@ function Page() {
         )
       },
     },
-    { field: 'holders', headerName: t('Holders'), minWidth: 150, flex: 1 },
+    { field: 'holders', headerName: t('Holders'), minWidth: 120, flex: 1 },
     // {
     //   field: 'trxs',
     //   headerName: t('Transactions'),
@@ -74,6 +74,7 @@ function Page() {
   ]
 
   const [state, controls] = useServerPagination({
+    limit: 8,
     resolve: model => getToken({ ...model, keyword, type }),
   })
 

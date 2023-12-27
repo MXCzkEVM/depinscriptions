@@ -1,9 +1,9 @@
 import { GridPaginationModel } from '@mui/x-data-grid'
-import { PaginationModel } from './useServerPagination'
+import { Pagination, PaginationModel } from './useServerPagination'
 
 export interface UseGridPaginationFieldsOptions {
   load: (modal: Partial<PaginationModel>) => Promise<void>
-  pagination: PaginationModel
+  pagination: Pagination
 }
 
 export function useGridPaginationFields(options: UseGridPaginationFieldsOptions) {
@@ -13,6 +13,7 @@ export function useGridPaginationFields(options: UseGridPaginationFieldsOptions)
       page: options.pagination.page - 1,
       pageSize: options.pagination.limit,
     },
+    hideFooterSelectedRowCount: true,
     rowCount: options.pagination.total,
     onPaginationModelChange: (model: GridPaginationModel) => {
       options.load({ page: model.page + 1, limit: model.pageSize })

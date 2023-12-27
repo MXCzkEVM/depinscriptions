@@ -17,6 +17,15 @@ export interface UseServerPaginationOptions<T> {
   total?: number
 }
 
+export interface Pagination {
+  pages: number
+  page: number
+  limit: number
+  total: number
+  first: boolean
+  last: boolean
+}
+
 export function useServerPagination<T>(options: UseServerPaginationOptions<T>) {
   const [value, setValue] = useState<T>([] as any)
   const [total, setTotal] = useState(0)

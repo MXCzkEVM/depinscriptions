@@ -5,3 +5,10 @@ export function getCurrentPosition() {
     navigator.geolocation.getCurrentPosition(resolve, reject)
   })
 }
+
+export function ejectBlankPage(url: string) {
+  const a = document.createElement('a')
+  a.href = url
+  a.target = '_blank'
+  a.click()
+}
