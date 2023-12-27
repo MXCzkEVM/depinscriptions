@@ -74,5 +74,13 @@
   "Please enter the amount": "Voer het bedrag in",
   "Exceeding available amount": "Het beschikbare bedrag wordt overschreden",
   "MSC-20 Transfer": "MSC-20-overdracht",
-  "Please enter the correct address": "Voer het juiste adres in"
+  "Please enter the correct address": "Voer het juiste adres in",
+  "Back": "Rug",
+  "Next": "Volgende",
+  "root_step_1": "Klik op Menu onderaan om te navigeren.",
+  "root_step_2": "Klik op Token om de inscriptielijsten te bekijken die kunnen worden ingezet.",
+  "root_step_3": "Het is uw portemonnee waarin uw inschrijvingsbezittingen en bedragen worden weergegeven. U kunt ze daar vermelden en overboeken.",
+  "root_step_4": "Ruil ze in op de DePINscription-marktplaats",
+  "root_step_1_5": "Bekijk hier geïndexeerde scripts",
+  "Tutorial": "Handleiding"
 }

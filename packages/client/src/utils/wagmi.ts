@@ -8,7 +8,7 @@ import { connectorsForWallets } from '@rainbow-me/rainbowkit'
 import { metaMaskWallet } from '@rainbow-me/rainbowkit/wallets'
 import { chains as CHAINS } from '@/config'
 
-const defaultChains: Chain[] = [
+export const defaultChains: Chain[] = [
   CHAINS[process.env.NEXT_PUBLIC_CHAINID || ''] || goerli,
 ]
 
@@ -51,8 +51,10 @@ function AXSWallet({ chains }) {
       const connector = new InjectedConnector({
         chains,
       })
+      // connector.connect()
       return { connector }
     },
   }
 }
+
 export { chains, client }

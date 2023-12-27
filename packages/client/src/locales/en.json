@@ -74,5 +74,13 @@
   "Please enter the amount": "Please enter the amount",
   "Exceeding available amount": "Exceeding available amount",
   "MSC-20 Transfer": "MSC-20 Transfer",
-  "Please enter the correct address": "Please enter the correct address"
+  "Please enter the correct address": "Please enter the correct address",
+  "Back": "Back",
+  "Next": "Next",
+  "root_step_1": "Click Menu bottom to naviagate.",
+  "root_step_2": "Click Token to check the Inscription lists that can be deployed.",
+  "root_step_3": "It is your wallet which shows your inscription holdings and amounts, you can list and transfer them there.",
+  "root_step_4": "Trade them on the DePINscription marketplace",
+  "root_step_1_5": "View indexed scripts here",
+  "Tutorial": "Tutorial"
 }

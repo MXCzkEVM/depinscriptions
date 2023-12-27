@@ -5,10 +5,11 @@ import { DataGridScriptions, Refresh } from '@/components'
 
 function Page() {
   const { t } = useTranslation()
+
   return (
     <>
-      <div className="flex justify-between mt-[30px]">
-        <span className="text-2xl text-primary font-bold">{t('Latest Scriptions')}</span>
+      <div className="my-first-step flex justify-between mt-[30px]">
+        <span className="my-other-step text-2xl text-primary font-bold">{t('Latest Scriptions')}</span>
         <Refresh />
       </div>
       <DataGridScriptions />
