@@ -50,5 +50,22 @@
   "Successfully indexed": "Đã lập chỉ mục thành công",
   "Waiting for indexing": "Đang chờ lập chỉ mục",
   "The current tick has been deployed": "Đánh dấu hiện tại {{tick}} đã được triển khai",
-  "has been deployed": "{{tick}} đã được triển khai"
+  "has been deployed": "{{tick}} đã được triển khai",
+  "DePINscriptions": "Dòng chữ DePIN",
+  "Wallet": "Cái ví",
+  "Marketplace": "Thương trường",
+  "Close": "Đóng",
+  "ISO 3166-2 Code Overview": "Tổng quan về mã ISO 3166-2",
+  "Global Standard Title": "Tiêu chuẩn toàn cầu",
+  "Global Standard Help": "Đại diện cho các quốc gia và khu vực dựa trên Tổ chức Tiêu chuẩn Quốc tế",
+  "Inclusivity": "Tính toàn diện",
+  "Inclusivity Help": "Bao gồm tất cả các khu vực, thậm chí cả lãnh thổ tranh chấp, không có sự ủng hộ chính trị.",
+  "Purpose": "Mục đích",
+  "Purpose Help": "Đóng vai trò là mã định danh chung cho GeoInscriptions trong bối cảnh quốc tế.",
+  "Coming soon stay tuned Help": "Thị trường DePINscription được thiết lập để giới thiệu một bản tổng hợp hàng tuần được tuyển chọn về các dòng chữ định vị địa lý được tìm kiếm nhiều nhất. \nQuá trình lựa chọn của chúng tôi rất toàn diện, có tính đến nhiều yếu tố như sự tiến bộ của hoạt động đúc tiền, mức độ tương tác của người dùng ở các quốc gia và khu vực khác nhau, mức độ tương tác với MXC L3 zkEVM, cũng như khả năng hiển thị và phạm vi tiếp cận của dòng chữ \ntrên Twitter, trong số các số liệu khác. \nĐiều này đảm bảo rằng danh sách của chúng tôi phản ánh các dòng chữ không chỉ phổ biến mà còn tham gia tích cực vào không gian DePIN.",
+  "Coming soon stay tuned": "Giữ nguyên",
+  "Transfer": "Chuyển khoản",
+  "List": "Danh sách",
+  "Hexagon locations": "Vị trí lục giác",
+  "Language": "Ngôn ngữ"
 }

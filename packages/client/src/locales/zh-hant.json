@@ -50,5 +50,22 @@
   "Successfully indexed": "已成功編入索引",
   "Waiting for indexing": "等待索引",
   "The current tick has been deployed": "目前tick {{tick}} 已部署",
-  "has been deployed": "{{tick}} 已部署"
+  "has been deployed": "{{tick}} 已部署",
+  "DePINscriptions": "DePIN 銘文",
+  "Wallet": "錢包",
+  "Marketplace": "市場",
+  "Close": "關閉",
+  "ISO 3166-2 Code Overview": "ISO 3166-2 規範概述",
+  "Global Standard Title": "全球標準",
+  "Global Standard Help": "以國際標準組織為代表的國家和地區",
+  "Inclusivity": "包容性",
+  "Inclusivity Help": "包括所有地區，甚至是有爭議的領土，無需政治支持。",
+  "Purpose": "目的",
+  "Purpose Help": "用作國際背景下地理銘文的通用識別符。",
+  "Coming soon stay tuned Help": "DePINscription 市場將每週對最受歡迎的地理定位銘文進行精選匯總。\n我們的選擇過程是全面的，考慮了多種因素，例如鑄幣活動的進展、不同國家和地區用戶參與的活力、與 MXC L3 zkEVM 的互動程度以及銘文的可見性和影響力Twitter 等指標。\n這確保了我們的清單反映了不僅流行而且動態參與 DePIN 空間的銘文。",
+  "Coming soon stay tuned": "敬請期待",
+  "Transfer": "轉移",
+  "List": "出售",
+  "Hexagon locations": "六角形位置",
+  "Language": "語言"
 }

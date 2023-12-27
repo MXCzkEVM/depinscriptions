@@ -50,5 +50,22 @@
   "Successfully indexed": "Indexado com sucesso",
   "Waiting for indexing": "Aguardando indexação",
   "The current tick has been deployed": "O tick atual {{tick}} foi implantado",
-  "has been deployed": "{{tick}} foi implantado"
+  "has been deployed": "{{tick}} foi implantado",
+  "DePINscriptions": "Inscrição DePIN",
+  "Wallet": "Carteira",
+  "Marketplace": "Mercado",
+  "Close": "Fechar",
+  "ISO 3166-2 Code Overview": "Visão geral do código ISO 3166-2",
+  "Global Standard Title": "Padrão Global",
+  "Global Standard Help": "Representa países e regiões com base na Organização Internacional de Padrões",
+  "Inclusivity": "Inclusividade",
+  "Inclusivity Help": "Inclui todas as áreas, mesmo territórios disputados, sem endosso político.",
+  "Purpose": "Propósito",
+  "Purpose Help": "Serve como identificador universal para GeoInscriptions em contextos internacionais.",
+  "Coming soon stay tuned Help": "O mercado DePINscription está configurado para apresentar um resumo semanal com curadoria das inscrições de geolocalização mais procuradas. \nNosso processo de seleção é abrangente, levando em consideração uma variedade de fatores, como o avanço das atividades de cunhagem, a vibração do envolvimento dos usuários em diferentes países e regiões, o nível de interação com o MXC L3 zkEVM, bem como a visibilidade e o alcance da inscrição. \nno Twitter, entre outras métricas. \nIsso garante que nossas listagens reflitam as inscrições que não são apenas populares, mas também envolvidas dinamicamente no espaço DePIN.",
+  "Coming soon stay tuned": "Fique atento",
+  "Transfer": "Transferir",
+  "List": "Lista",
+  "Hexagon locations": "Locais do hexágono",
+  "Language": "Linguagem"
 }

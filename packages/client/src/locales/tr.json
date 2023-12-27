@@ -54,5 +54,22 @@
   "Successfully indexed": "Başarıyla dizine eklendi",
   "Waiting for indexing": "İndeksleme bekleniyor",
   "The current tick has been deployed": "Geçerli onay işareti {{tick}} konuşlandırıldı",
-  "has been deployed": "{{tick}} konuşlandırıldı"
+  "has been deployed": "{{tick}} konuşlandırıldı",
+  "DePINscriptions": "DePIN yazısı",
+  "Wallet": "Cüzdan",
+  "Marketplace": "Pazar yeri",
+  "Close": "Kapalı",
+  "ISO 3166-2 Code Overview": "ISO 3166-2 Koduna Genel Bakış",
+  "Global Standard Title": "Küresel Standart",
+  "Global Standard Help": "Uluslararası Standart Organizasyona dayalı ülkeleri ve bölgeleri temsil eder",
+  "Inclusivity": "Kapsayıcılık",
+  "Inclusivity Help": "Siyasi onay olmaksızın tüm alanları, hatta tartışmalı bölgeleri içerir.",
+  "Purpose": "Amaç",
+  "Purpose Help": "Uluslararası bağlamlarda GeoInscriptions için evrensel bir tanımlayıcı görevi görür.",
+  "Coming soon stay tuned Help": "DePINscription pazarı, en çok aranan coğrafi konum yazıtlarının haftalık olarak derlenmiş bir özetini sunacak şekilde ayarlandı. \nSeçim sürecimiz, basım faaliyetlerinin ilerlemesi, farklı ülke ve bölgelerdeki kullanıcı katılımının canlılığı, MXC L3 zkEVM ile etkileşim düzeyinin yanı sıra yazının görünürlüğü ve erişimi gibi çeşitli faktörleri dikkate alan kapsamlıdır. \ndiğer ölçümlerin yanı sıra Twitter'da. \nBu, listelerimizin yalnızca popüler değil aynı zamanda DePIN alanında dinamik olarak yer alan yazıtları da yansıtmasını sağlar.",
+  "Coming soon stay tuned": "Bizi izlemeye devam edin",
+  "Transfer": "Aktar",
+  "List": "Liste",
+  "Hexagon locations": "Altıgen konumları",
+  "Language": "Dil"
 }

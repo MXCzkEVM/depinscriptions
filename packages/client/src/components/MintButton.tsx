@@ -41,7 +41,6 @@ function MintButton(props: MintButtonProps) {
   })
 
   async function authorize() {
-    await openLocationModal()
     const position = await getCurrentPosition()
     const hexagon = latLngToCell(
       position.coords.latitude,
@@ -52,6 +51,7 @@ function MintButton(props: MintButtonProps) {
   }
 
   async function mint() {
+    await openLocationModal()
     if (!hexagon)
       await authorize()
     else
