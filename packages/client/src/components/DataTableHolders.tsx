@@ -19,21 +19,27 @@ function DataTableHolders(props: DataTableHoldersProps) {
   const { t } = useTranslation()
 
   const [state, controls] = useServerPagination({
-    resolve: model => getHolder({
-      tick: props.token?.tick,
-      order: 'value',
-      page: model.page,
-      limit: model.limit,
-    }),
+    resolve: async (model) => {
+      const response = await getHolder({
+        tick: props.token?.tick,
+        order: 'value',
+        page: model.page,
+        limit: model.limit,
+      })
+      return {
+        data: response.data.map((item, index) => ({ ...item, index })),
+        total: response.total,
+      }
+    },
   })
 
-  const columns: GridColDef<HolderDto>[] = [
+  const columns: GridColDef<HolderDto & { index: number }>[] = [
     {
       field: 'rank',
       headerName: t('Rank'),
       minWidth: 120,
       renderCell(params) {
-        return (params.tabIndex + 2) * state.pagination.page
+        return (params.row.index + 1) + ((state.pagination.page - 1) * state.pagination.limit)
       },
     },
     {
@@ -86,7 +92,7 @@ function DataTableHolders(props: DataTableHoldersProps) {
         className="border-none data-grid-with-row-pointer"
         {...gridPaginationFields}
         loading={state.loading || !props.token}
-        getRowId={row => row.id}
+        getRowId={row => row.index}
         rows={state.value}
         columns={columns}
       />
