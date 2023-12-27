@@ -3,7 +3,7 @@ import { Chain } from 'wagmi'
 export const chains: Record<string, Chain> = {
   5167003: {
     id: 5167003,
-    name: 'Wannsee',
+    name: 'Wannsee MXC zkEVM',
     network: 'Wannsee',
     nativeCurrency: {
       decimals: 18,
@@ -11,8 +11,8 @@ export const chains: Record<string, Chain> = {
       symbol: 'MXC',
     },
     rpcUrls: {
-      public: { http: ['"https://wannsee-rpc.mxc.com"'] },
-      default: { http: ['"https://wannsee-rpc.mxc.com"'] },
+      public: { http: ['https://wannsee-rpc.mxc.com'] },
+      default: { http: ['https://wannsee-rpc.mxc.com'] },
     },
     blockExplorers: {
       etherscan: { name: 'etherscan', url: 'https://wannsee-explorer.mxc.com' },
@@ -29,8 +29,8 @@ export const chains: Record<string, Chain> = {
       symbol: 'MXC',
     },
     rpcUrls: {
-      public: { http: ['"https://rpc.mxc.com"'] },
-      default: { http: ['"https://rpc.mxc.com"'] },
+      public: { http: ['https://rpc.mxc.com'] },
+      default: { http: ['https://rpc.mxc.com'] },
     },
     blockExplorers: {
       etherscan: { name: 'etherscan', url: 'https://explorer.mxc.com' },

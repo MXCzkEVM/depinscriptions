@@ -73,5 +73,13 @@
   "Please enter the amount": "金額を入力してください",
   "Exceeding available amount": "利用可能額を超えています",
   "MSC-20 Transfer": "MSC-20 トランスファー",
-  "Please enter the correct address": "正しい住所を入力してください"
+  "Please enter the correct address": "正しい住所を入力してください",
+  "Back": "戻る",
+  "Next": "次",
+  "root_step_1": "[メニュー] の下部をクリックして移動します。",
+  "root_step_2": "[トークン] をクリックして、展開できる碑文のリストを確認します。",
+  "root_step_3": "それはあなたの碑文の保有物と金額を示すあなたの財布であり、そこにそれらをリストして転送することができます。",
+  "root_step_4": "DePINscript マーケットプレイスで取引する",
+  "root_step_1_5": "ここでインデックス付きスクリプトを表示します",
+  "Tutorial": "チュートリアル"
 }

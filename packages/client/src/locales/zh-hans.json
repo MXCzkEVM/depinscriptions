@@ -74,5 +74,13 @@
   "Please enter the amount": "请输入金额",
   "Exceeding available amount": "超出可用金额",
   "MSC-20 Transfer": "MSC-20 转移",
-  "Please enter the correct address": "请输入正确的地址"
+  "Please enter the correct address": "请输入正确的地址",
+  "Back": "后退",
+  "Next": "下一个",
+  "root_step_1": "单击底部菜单进行导航。",
+  "root_step_2": "单击Token查看可部署的铭文列表。",
+  "root_step_3": "这是您的钱包，显示您的铭文持有量和金额，您可以在那里列出和转移它们。",
+  "root_step_4": "在 DePINscription 市场上进行交易",
+  "root_step_1_5": "在此处查看已索引脚本",
+  "Tutorial": "教程"
 }

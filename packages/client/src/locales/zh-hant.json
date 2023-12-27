@@ -74,5 +74,13 @@
   "Please enter the amount": "請輸入金額",
   "Exceeding available amount": "超出可用金額",
   "MSC-20 Transfer": "MSC-20 轉移",
-  "Please enter the correct address": "請輸入正確的地址"
+  "Please enter the correct address": "請輸入正確的地址",
+  "Back": "後退",
+  "Next": "下一個",
+  "root_step_1": "點擊底部選單進行導航。",
+  "root_step_2": "按一下Token查看可部署的銘文清單。",
+  "root_step_3": "這是您的錢包，顯示您的銘文持有量和金額，您可以在那裡列出和轉移它們。",
+  "root_step_4": "在 DePINscription 市場進行交易",
+  "root_step_1_5": "在此處查看已索引腳本",
+  "Tutorial": "教學"
 }

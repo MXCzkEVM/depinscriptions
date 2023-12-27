@@ -1,15 +1,22 @@
-import { Navbar } from 'flowbite-react'
-import React from 'react'
+import React, { useState } from 'react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'react-i18next'
 import { useWindowSize } from 'react-use'
+import { Navbar } from 'flowbite-react/lib/cjs/components/Navbar/Navbar'
 import LocaleButton from './LocaleButton'
+import { NavbarToggle } from './NavbarToggle'
+import { chains } from '@/config'
+import { defaultChains } from '@/utils/wagmi'
+import { useMittEmit } from '@/hooks'
 
 const LayoutNavbar: React.FC = () => {
   const router = useRouter()
   const { t } = useTranslation()
   const { width } = useWindowSize()
+
+  const emit = useMittEmit('reshow:joyride')
+
   return (
     <Navbar className="relative top-0 bg-transparent" fluid={true} rounded={true}>
       <Navbar.Brand href="/">
@@ -20,8 +27,8 @@ const LayoutNavbar: React.FC = () => {
         <div className="scale-[0.85] -mx-2 md:mx-0 md:scale-90">
           <ConnectButton showBalance={true} accountStatus={width > 885 ? 'full' : false as any} />
         </div>
-        <div className="scale-[0.85] sm:scale-100">
-          <Navbar.Toggle className="text-[rgba(255,255,255,0.6)] hover:bg-transparent" />
+        <div className="root-step-1 scale-[0.85] sm:scale-100">
+          <NavbarToggle />
         </div>
         <span className="scale-[0.85] sm:scale-100">
           <LocaleButton />
@@ -29,10 +36,11 @@ const LayoutNavbar: React.FC = () => {
       </div>
       <div className="hidden md:block flex-1"></div>
       <Navbar.Collapse>
-        <div className="text-[18px] cursor-pointer p-2 md:p-0 text-[hsla(0,0%,100%,.6)] hover:text-white" onClick={() => router.push(`/`)}>{t('DePINscriptions')}</div>
-        <div className="text-[18px] cursor-pointer p-2 md:p-0 text-[hsla(0,0%,100%,.6)] hover:text-white" onClick={() => router.push(`/tokens`)}>{t('Token')}</div>
-        <div className="text-[18px] cursor-pointer p-2 md:p-0 text-[hsla(0,0%,100%,.6)] hover:text-white" onClick={() => router.push(`/personal`)}>{t('Wallet')}</div>
-        <div className="text-[18px] cursor-pointer p-2 md:p-0 text-[hsla(0,0%,100%,.6)] hover:text-white" onClick={() => router.push(`/market`)}>{t('Marketplace')}</div>
+        <div className="root-step-1_5 text-[18px] cursor-pointer p-2 md:p-0 text-[hsla(0,0%,100%,.6)] hover:text-white" onClick={() => router.push(`/`)}>{t('DePINscriptions')}</div>
+        <div className="root-step-2 text-[18px] cursor-pointer p-2 md:p-0 text-[hsla(0,0%,100%,.6)] hover:text-white" onClick={() => router.push(`/tokens`)}>{t('Token')}</div>
+        <div className="root-step-3 text-[18px] cursor-pointer p-2 md:p-0 text-[hsla(0,0%,100%,.6)] hover:text-white" onClick={() => router.push(`/personal`)}>{t('Wallet')}</div>
+        <div className="root-step-4 text-[18px] cursor-pointer p-2 md:p-0 text-[hsla(0,0%,100%,.6)] hover:text-white" onClick={() => router.push(`/market`)}>{t('Marketplace')}</div>
+        <div className="root-step-4 text-[18px] cursor-pointer p-2 md:p-0 text-[hsla(0,0%,100%,.6)] hover:text-white" onClick={emit}>{t('Tutorial')}</div>
       </Navbar.Collapse>
     </Navbar>
   )

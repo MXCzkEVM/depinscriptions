@@ -78,5 +78,13 @@
   "Please enter the amount": "Lütfen tutarı girin",
   "Exceeding available amount": "Mevcut miktarın aşılması",
   "MSC-20 Transfer": "MSC-20 Transferi",
-  "Please enter the correct address": "Lütfen doğru adresi girin"
+  "Please enter the correct address": "Lütfen doğru adresi girin",
+  "Back": "Geri",
+  "Next": "Sonraki",
+  "root_step_1": "Gezinmek için Menü alt kısmına tıklayın.",
+  "root_step_2": "Dağıtılabilecek Yazıt listelerini kontrol etmek için Token'a tıklayın.",
+  "root_step_3": "Yazılı varlıklarınızı ve tutarlarınızı gösteren cüzdanınızdır, bunları listeleyebilir ve oraya aktarabilirsiniz.",
+  "root_step_4": "Bunları DePINscription pazarında takas edin",
+  "root_step_1_5": "Dizine eklenen komut dosyalarını burada görüntüleyin",
+  "Tutorial": "öğretici"
 }
