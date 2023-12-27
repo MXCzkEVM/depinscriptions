@@ -69,7 +69,6 @@ function MintButton(props: MintButtonProps) {
     <>
       <LoadingButton disabled={!props.token} loading={isButtonLoading} variant="contained" onClick={mint}>
         {t('Mint Directly')}
-
       </LoadingButton>
       {holderLocationMl}
       {holderWaitingMl}
