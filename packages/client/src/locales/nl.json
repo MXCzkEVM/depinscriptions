@@ -57,7 +57,7 @@
   "Close": "Dichtbij",
   "ISO 3166-2 Code Overview": "ISO 3166-2-codeoverzicht",
   "Global Standard Title": "Mondiale standaard",
-  "Global Standard Help": "Vertegenwoordigt landen en regio's op basis van de International Standard Organization",
+  "Global Standard Help": "Vertegenwoordigt landen en regio's op basis van ISO 3166-2 van de International Standard Organization.",
   "Inclusivity": "Inclusiviteit",
   "Inclusivity Help": "Omvat alle gebieden, zelfs betwiste gebieden, zonder politieke goedkeuring.",
   "Purpose": "Doel",
@@ -67,5 +67,12 @@
   "Transfer": "Overdracht",
   "List": "Lijst",
   "Hexagon locations": "Zeshoekige locaties",
-  "Language": "Taal"
+  "Language": "Taal",
+  "To": "Naar",
+  "Amount": "Hoeveelheid",
+  "Please enter the address": "Voer het adres in",
+  "Please enter the amount": "Voer het bedrag in",
+  "Exceeding available amount": "Het beschikbare bedrag wordt overschreden",
+  "MSC-20 Transfer": "MSC-20-overdracht",
+  "Please enter the correct address": "Voer het juiste adres in"
 }

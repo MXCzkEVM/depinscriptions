@@ -125,5 +125,11 @@ export class ScriptsService {
       { owner: transaction.to, tick: inscription.tick },
       { value: +inscription.amt, number: tick.number },
     )
+    const fromLogText = yellow(transaction.from.slice(0, 12))
+    const toLogText = yellow(transaction.to.slice(0, 12))
+    const amtLogText = cyan(`${inscription.amt} ${tick.tick}`)
+    const hashLogText = yellow(transaction.hash.slice(0, 12))
+
+    this.logger.log(reset(`${bgWhite('[transferred]')} - transfer ${amtLogText} from ${fromLogText} to ${toLogText} in ${hashLogText}`))
   }
 }

@@ -57,7 +57,7 @@
   "Close": "Menutup",
   "ISO 3166-2 Code Overview": "Ikhtisar Kode ISO 3166-2",
   "Global Standard Title": "Standar Global",
-  "Global Standard Help": "Mewakili negara dan wilayah berdasarkan Organisasi Standar Internasional",
+  "Global Standard Help": "Mewakili negara dan wilayah berdasarkan ISO 3166-2 Organisasi Standar Internasional.",
   "Inclusivity": "Inklusivitas",
   "Inclusivity Help": "Mencakup seluruh wilayah, bahkan wilayah yang disengketakan, tanpa dukungan politik.",
   "Purpose": "Tujuan",
@@ -67,5 +67,12 @@
   "Transfer": "Transfer",
   "List": "Daftar",
   "Hexagon locations": "Lokasi segi enam",
-  "Language": "Bahasa"
+  "Language": "Bahasa",
+  "To": "Ke",
+  "Amount": "Jumlah",
+  "Please enter the address": "Silakan masukkan alamatnya",
+  "Please enter the amount": "Silakan masukkan jumlahnya",
+  "Exceeding available amount": "Melebihi jumlah yang tersedia",
+  "MSC-20 Transfer": "Pemindahan MSC-20",
+  "Please enter the correct address": "Silakan masukkan alamat yang benar"
 }

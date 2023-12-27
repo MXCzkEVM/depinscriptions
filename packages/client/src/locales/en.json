@@ -57,7 +57,7 @@
   "Close": "Close",
   "ISO 3166-2 Code Overview": "ISO 3166-2 Code Overview",
   "Global Standard Title": "Global Standard",
-  "Global Standard Help": "Represents countries and regions based on the International Standard Organization&apos;s ISO 3166-2.",
+  "Global Standard Help": "Represents countries and regions based on the International Standard Organization's ISO 3166-2.",
   "Inclusivity": "Inclusivity",
   "Inclusivity Help": "Includes all areas, even disputed territories, without political endorsement.",
   "Purpose": "Purpose",
@@ -67,5 +67,12 @@
   "Transfer": "Transfer",
   "List": "List",
   "Hexagon locations": "Hexagon locations",
-  "Language": "Language"
+  "Language": "Language",
+  "To": "To",
+  "Amount": "Amount",
+  "Please enter the address": "Please enter the address",
+  "Please enter the amount": "Please enter the amount",
+  "Exceeding available amount": "Exceeding available amount",
+  "MSC-20 Transfer": "MSC-20 Transfer",
+  "Please enter the correct address": "Please enter the correct address"
 }

@@ -23,7 +23,7 @@ const LayoutNavbar: React.FC = () => {
         <div className="scale-[0.85] sm:scale-100">
           <Navbar.Toggle className="text-[rgba(255,255,255,0.6)] hover:bg-transparent" />
         </div>
-        <span className="hidden md:inline-block">
+        <span className="scale-[0.85] sm:scale-100">
           <LocaleButton />
         </span>
       </div>
@@ -33,8 +33,6 @@ const LayoutNavbar: React.FC = () => {
         <div className="text-[18px] cursor-pointer p-2 md:p-0 text-[hsla(0,0%,100%,.6)] hover:text-white" onClick={() => router.push(`/tokens`)}>{t('Token')}</div>
         <div className="text-[18px] cursor-pointer p-2 md:p-0 text-[hsla(0,0%,100%,.6)] hover:text-white" onClick={() => router.push(`/personal`)}>{t('Wallet')}</div>
         <div className="text-[18px] cursor-pointer p-2 md:p-0 text-[hsla(0,0%,100%,.6)] hover:text-white" onClick={() => router.push(`/market`)}>{t('Marketplace')}</div>
-
-        <div className="inline-block md:hidden"><LocaleButton type="text" /></div>
       </Navbar.Collapse>
     </Navbar>
   )

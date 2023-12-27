@@ -57,7 +57,7 @@
   "Close": "Închide",
   "ISO 3166-2 Code Overview": "Prezentare generală a codului ISO 3166-2",
   "Global Standard Title": "Standard global",
-  "Global Standard Help": "Reprezintă țări și regiuni pe baza Organizației Internaționale de Standardizare",
+  "Global Standard Help": "Reprezintă țări și regiuni pe baza ISO 3166-2 al Organizației Internaționale de Standardizare.",
   "Inclusivity": "Inclusivitate",
   "Inclusivity Help": "Include toate zonele, chiar și teritoriile disputate, fără aprobare politică.",
   "Purpose": "Scop",
@@ -67,5 +67,12 @@
   "Transfer": "Transfer",
   "List": "Listă",
   "Hexagon locations": "Locații hexagonale",
-  "Language": "Limba"
+  "Language": "Limba",
+  "To": "La",
+  "Amount": "Cantitate",
+  "Please enter the address": "Vă rugăm să introduceți adresa",
+  "Please enter the amount": "Vă rugăm să introduceți suma",
+  "Exceeding available amount": "Depășirea sumei disponibile",
+  "MSC-20 Transfer": "Transfer MSC-20",
+  "Please enter the correct address": "Vă rugăm să introduceți adresa corectă"
 }

@@ -19,6 +19,7 @@ function DataGridTokens(props: DataGridTokensProps) {
   })
 
   useMittOn('reload:page', reload)
+  useMittOn('deploy-reload:page', reload)
   useWhenever(props.address, reload)
   useMount(reload)
 

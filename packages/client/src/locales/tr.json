@@ -61,7 +61,7 @@
   "Close": "Kapalı",
   "ISO 3166-2 Code Overview": "ISO 3166-2 Koduna Genel Bakış",
   "Global Standard Title": "Küresel Standart",
-  "Global Standard Help": "Uluslararası Standart Organizasyona dayalı ülkeleri ve bölgeleri temsil eder",
+  "Global Standard Help": "Uluslararası Standart Organizasyonunun ISO 3166-2 standardına göre ülkeleri ve bölgeleri temsil eder.",
   "Inclusivity": "Kapsayıcılık",
   "Inclusivity Help": "Siyasi onay olmaksızın tüm alanları, hatta tartışmalı bölgeleri içerir.",
   "Purpose": "Amaç",
@@ -71,5 +71,12 @@
   "Transfer": "Aktar",
   "List": "Liste",
   "Hexagon locations": "Altıgen konumları",
-  "Language": "Dil"
+  "Language": "Dil",
+  "To": "İle",
+  "Amount": "Miktar",
+  "Please enter the address": "Lütfen adresi girin",
+  "Please enter the amount": "Lütfen tutarı girin",
+  "Exceeding available amount": "Mevcut miktarın aşılması",
+  "MSC-20 Transfer": "MSC-20 Transferi",
+  "Please enter the correct address": "Lütfen doğru adresi girin"
 }

@@ -57,7 +57,7 @@
   "Close": "近い",
   "ISO 3166-2 Code Overview": "ISO 3166-2 コードの概要",
   "Global Standard Title": "グローバルスタンダード",
-  "Global Standard Help": "国際標準化機構に基づいて国と地域を表します。",
+  "Global Standard Help": "国際標準化機構の ISO 3166-2 に基づいて国と地域を表します。",
   "Inclusivity": "包括性",
   "Inclusivity Help": "政治的承認のないすべての地域（紛争地域も含む）が含まれます。",
   "Purpose": "目的",
@@ -66,5 +66,12 @@
   "Coming soon stay tuned": "乞うご期待",
   "Transfer": "移行",
   "Hexagon locations": "六角形の位置",
-  "Language": "言語"
+  "Language": "言語",
+  "To": "に",
+  "Amount": "額",
+  "Please enter the address": "住所を入力してください",
+  "Please enter the amount": "金額を入力してください",
+  "Exceeding available amount": "利用可能額を超えています",
+  "MSC-20 Transfer": "MSC-20 トランスファー",
+  "Please enter the correct address": "正しい住所を入力してください"
 }

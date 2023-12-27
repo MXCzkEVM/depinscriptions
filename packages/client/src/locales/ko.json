@@ -57,7 +57,7 @@
   "Close": "닫다",
   "ISO 3166-2 Code Overview": "ISO 3166-2 코드 개요",
   "Global Standard Title": "글로벌 스탠다드",
-  "Global Standard Help": "국제표준화기구(International Standard Organization)를 기준으로 국가 및 지역을 나타냅니다.",
+  "Global Standard Help": "국제표준화기구(International Standard Organization)의 ISO 3166-2를 기반으로 국가 및 지역을 나타냅니다.",
   "Inclusivity": "포용성",
   "Inclusivity Help": "정치적 승인 없이 모든 지역, 심지어 분쟁 지역까지 포함됩니다.",
   "Purpose": "목적",
@@ -67,5 +67,12 @@
   "Transfer": "옮기다",
   "List": "목록",
   "Hexagon locations": "육각형 위치",
-  "Language": "언어"
+  "Language": "언어",
+  "To": "에게",
+  "Amount": "양",
+  "Please enter the address": "주소를 입력해주세요",
+  "Please enter the amount": "금액을 입력해주세요.",
+  "Exceeding available amount": "사용 가능 금액 초과",
+  "MSC-20 Transfer": "MSC-20 전송",
+  "Please enter the correct address": "정확한 주소를 입력해주세요"
 }
