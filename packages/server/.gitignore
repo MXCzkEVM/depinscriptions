@@ -35,3 +35,4 @@ cache
 !.vscode/extensions.json
 
 .env*
+dev.db
