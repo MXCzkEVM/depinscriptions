@@ -33,6 +33,9 @@ pnpm dev:server
 
 > If you are in the testnet and mainnet branches, all you need to do is start the client
 
+> do not push code on the testnet and mainnet branches, as this can lead to confusion
+
+> The best practice is to develop through the main branch, where testnet/mainnet merge the main branch
 ### Building
 
 To build the client-side application, run the following command:
@@ -63,4 +66,3 @@ pnpm start:prod
 
 If you want to upload the client to the production environment, please push it to the testnet and mainnet branches.
 
-> Please note that testnet and mainnet cannot directly upload code, they can only merge the main branch
