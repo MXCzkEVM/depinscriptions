@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'react-i18next'
@@ -6,8 +6,6 @@ import { useWindowSize } from 'react-use'
 import { Navbar } from 'flowbite-react/lib/cjs/components/Navbar/Navbar'
 import LocaleButton from './LocaleButton'
 import { NavbarToggle } from './NavbarToggle'
-import { chains } from '@/config'
-import { defaultChains } from '@/utils/wagmi'
 import { useMittEmit } from '@/hooks'
 
 const LayoutNavbar: React.FC = () => {
