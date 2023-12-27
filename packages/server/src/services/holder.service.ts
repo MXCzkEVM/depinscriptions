@@ -72,6 +72,9 @@ export class HolderService {
 
     if (data.value - holder.value === 0) {
       await this.prisma.holder.delete({ where: { id: holder.id } })
+      await this.tickService.update(params.tick, {
+        holders: { decrement: 1 },
+      })
     }
     else {
       await this.update(
