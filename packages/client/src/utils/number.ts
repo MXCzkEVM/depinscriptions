@@ -20,9 +20,9 @@ export function thousandBitSeparator(target: number | string = 0, unit = ',', op
 
 export function percentage(total: string | number, count: string | number, decimal = 1) {
   if (+total === 0)
-    return '0.00'
+    return '0.0'
   if (+count === 0)
-    return '0.00'
+    return '0.0'
   const number = new BigNumber(count || '0')
     .div(total || '0')
     .times(100)
