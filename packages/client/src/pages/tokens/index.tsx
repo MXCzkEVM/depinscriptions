@@ -74,7 +74,7 @@ function Page() {
   ]
 
   const [state, controls] = useServerPagination({
-    limit: 6,
+    limit: 15,
     resolve: model => getToken({ ...model, keyword, type }),
   })
 

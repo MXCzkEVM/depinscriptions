@@ -101,6 +101,7 @@ export class AppController {
       where: { tik: tick },
     })
     const data = await this.hexagonService.lists({
+      orderBy: { mit: 'desc' },
       skip: (page - 1) * limit,
       take: +limit,
       where: { tik: tick },
@@ -157,7 +158,7 @@ export class AppController {
       where.completedTime = { not: null }
     const total = await this.tickService.count({ where })
     const data = await this.tickService.lists({
-      orderBy: { lastTime: 'desc' },
+      orderBy: { holders: 'desc' },
       skip: (page - 1) * limit,
       take: +limit,
       where,
