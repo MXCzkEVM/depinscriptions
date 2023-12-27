@@ -41,11 +41,10 @@ export class AppController {
   @ApiResponse({ status: 200, type: InscriptionPageResponseDto, description: 'Inscriptions' })
   async getInscriptions(@Query('owner') owner?: string, @Query('page') page = 1, @Query('limit') limit = 15) {
     const total = await this.inscriptionService.count({
-      orderBy: { number: 'asc' },
       where: owner ? { from: owner } : undefined,
     })
     const data = await this.inscriptionService.lists({
-      orderBy: { number: 'asc' },
+      orderBy: { number: 'desc' },
       where: owner ? { from: owner } : undefined,
       skip: (page - 1) * limit,
       take: +limit,
@@ -126,7 +125,7 @@ export class AppController {
       where.tick = tick
     if (owner)
       where.owner = owner
-    order && (orderBy[order] = 'asc')
+    order && (orderBy[order] = 'desc')
     const total = await this.holderService.count({ where })
     const data = await this.holderService.lists({
       skip: (page - 1) * limit,
@@ -158,7 +157,7 @@ export class AppController {
       where.completedTime = { not: null }
     const total = await this.tickService.count({ where })
     const data = await this.tickService.lists({
-      orderBy: { lastTime: 'asc' },
+      orderBy: { lastTime: 'desc' },
       skip: (page - 1) * limit,
       take: +limit,
       where,
