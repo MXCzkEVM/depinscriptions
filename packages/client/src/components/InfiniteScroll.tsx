@@ -1,6 +1,8 @@
 import { PropsWithChildren, ReactNode, useEffect, useRef } from 'react'
 import { useAsyncFn, useMount } from 'react-use'
 import { delay } from '@hairy/utils'
+import { useMittOn } from '@/hooks'
+import { useWhenever } from '@/hooks/useWhenever'
 
 interface InfiniteScrollProps extends PropsWithChildren {
   next: () => Promise<void>
@@ -12,6 +14,9 @@ function InfiniteScroll(props: InfiniteScrollProps) {
   const locked = useRef(false)
 
   async function loadToScroll() {
+    if (locked.current)
+      return
+    locked.current = true
     const windowHeight
     = document.documentElement.clientHeight || document.body.clientHeight
     const scrollHeight
@@ -21,6 +26,7 @@ function InfiniteScroll(props: InfiniteScrollProps) {
       await delay(100)
       await loadToScroll()
     }
+    locked.current = false
   }
 
   async function onScroll() {
@@ -48,6 +54,9 @@ function InfiniteScroll(props: InfiniteScrollProps) {
   }, [props.loaded])
 
   useMount(loadToScroll)
+  useEffect(() => {
+    loadToScroll()
+  }, [props.next])
 
   return (
     <>
