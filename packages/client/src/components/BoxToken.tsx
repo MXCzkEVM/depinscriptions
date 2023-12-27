@@ -34,7 +34,7 @@ function BoxToken(props: { data: HolderDto }) {
               <Flag find={props.data.tick} />
             </div>
             <Condition is={address === props.data.owner}>
-              <div className="flex gap-3">
+              <div className="flex gap-1">
                 <Button className="p-0 px-1 min-w-min" size="small" onClick={deploy}>{t('Transfer')}</Button>
                 <Button className="p-0 px-1 min-w-min" size="small">{t('List')}</Button>
               </div>

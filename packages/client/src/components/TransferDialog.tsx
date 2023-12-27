@@ -55,7 +55,7 @@ function TransferDialog(props: TransferDialogProps) {
     setErrors(helpers)
     const errorMessage = helpers.to || helpers.amount
     if (errorMessage) {
-      toast.error(errorMessage)
+      toast.error(errorMessage, { position: 'top-center' })
       return
     }
 
