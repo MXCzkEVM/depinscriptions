@@ -50,5 +50,22 @@
   "Successfully indexed": "Succesvol geïndexeerd",
   "Waiting for indexing": "Wachten op indexering",
   "The current tick has been deployed": "Het huidige vinkje {{tick}} is ingezet",
-  "has been deployed": "{{tick}} is geïmplementeerd"
+  "has been deployed": "{{tick}} is geïmplementeerd",
+  "DePINscriptions": "DePIN-inscriptie",
+  "Wallet": "Portemonnee",
+  "Marketplace": "Marktplaats",
+  "Close": "Dichtbij",
+  "ISO 3166-2 Code Overview": "ISO 3166-2-codeoverzicht",
+  "Global Standard Title": "Mondiale standaard",
+  "Global Standard Help": "Vertegenwoordigt landen en regio's op basis van de International Standard Organization",
+  "Inclusivity": "Inclusiviteit",
+  "Inclusivity Help": "Omvat alle gebieden, zelfs betwiste gebieden, zonder politieke goedkeuring.",
+  "Purpose": "Doel",
+  "Purpose Help": "Dient als universele identificatie voor GeoInscriptions in internationale contexten.",
+  "Coming soon stay tuned Help": "De DePINscription-marktplaats zal een samengestelde wekelijkse verzameling van de meest gewilde geolocatie-inscripties bevatten. \nOns selectieproces is veelomvattend en houdt rekening met een verscheidenheid aan factoren, zoals de vooruitgang van de muntactiviteiten, de levendigheid van de gebruikersbetrokkenheid in verschillende landen en regio's, het niveau van interactie met de MXC L3 zkEVM, evenals de zichtbaarheid en het bereik van de inscriptie \nop Twitter, naast andere statistieken. \nDit zorgt ervoor dat onze vermeldingen de inscripties weerspiegelen die niet alleen populair zijn, maar ook dynamisch betrokken zijn bij de DePIN-ruimte.",
+  "Coming soon stay tuned": "Blijf kijken",
+  "Transfer": "Overdracht",
+  "List": "Lijst",
+  "Hexagon locations": "Zeshoekige locaties",
+  "Language": "Taal"
 }

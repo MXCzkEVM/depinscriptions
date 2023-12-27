@@ -50,5 +50,21 @@
   "Successfully indexed": "インデックスが正常に作成されました",
   "Waiting for indexing": "インデックス作成を待っています",
   "The current tick has been deployed": "現在のティック {{tick}} がデプロイされました",
-  "has been deployed": "{{tick}} がデプロイされました"
+  "has been deployed": "{{tick}} がデプロイされました",
+  "DePINscriptions": "DePINの刻印",
+  "Wallet": "財布",
+  "Marketplace": "市場",
+  "Close": "近い",
+  "ISO 3166-2 Code Overview": "ISO 3166-2 コードの概要",
+  "Global Standard Title": "グローバルスタンダード",
+  "Global Standard Help": "国際標準化機構に基づいて国と地域を表します。",
+  "Inclusivity": "包括性",
+  "Inclusivity Help": "政治的承認のないすべての地域（紛争地域も含む）が含まれます。",
+  "Purpose": "目的",
+  "Purpose Help": "国際的な文脈において、GeoInscriptions の普遍的な識別子として機能します。",
+  "Coming soon stay tuned Help": "DePINscription マーケットプレイスでは、最も人気のある地理位置情報の登録を毎週厳選してまとめて紹介する予定です。\n私たちの選択プロセスは、鋳造活動の進歩、さまざまな国や地域にわたるユーザーエンゲージメントの活発さ、MXC L3 zkEVMとの相互作用のレベル、碑文の可視性とリーチなどのさまざまな要素を考慮した包括的なものです。 \nTwitter などの指標。\nこれにより、当社のリストには、人気があるだけでなく、DePIN 分野に動的に関与している碑文が確実に反映されます。",
+  "Coming soon stay tuned": "乞うご期待",
+  "Transfer": "移行",
+  "Hexagon locations": "六角形の位置",
+  "Language": "言語"
 }

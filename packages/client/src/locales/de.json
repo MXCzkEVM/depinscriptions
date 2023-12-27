@@ -50,5 +50,22 @@
   "Successfully indexed": "Erfolgreich indiziert",
   "Waiting for indexing": "Warten auf die Indizierung",
   "The current tick has been deployed": "Der aktuelle Tick {{tick}} wurde bereitgestellt",
-  "has been deployed": "{{tick}} wurde bereitgestellt"
+  "has been deployed": "{{tick}} wurde bereitgestellt",
+  "DePINscriptions": "DePIN-Inschrift",
+  "Wallet": "Geldbörse",
+  "Marketplace": "Marktplatz",
+  "Close": "Schließen",
+  "ISO 3166-2 Code Overview": "Übersicht über den ISO 3166-2-Code",
+  "Global Standard Title": "Globaler Standard",
+  "Global Standard Help": "Stellt Länder und Regionen basierend auf der International Standard Organization dar",
+  "Inclusivity": "Inklusivität",
+  "Inclusivity Help": "Umfasst alle Gebiete, auch umstrittene Gebiete, ohne politische Billigung.",
+  "Purpose": "Zweck",
+  "Purpose Help": "Dient als universeller Identifikator für GeoInscriptions im internationalen Kontext.",
+  "Coming soon stay tuned Help": "Der DePINscription-Marktplatz wird eine kuratierte wöchentliche Zusammenfassung der gefragtesten Geolocation-Inschriften bieten. \nUnser Auswahlprozess ist umfassend und berücksichtigt eine Vielzahl von Faktoren wie den Fortschritt der Prägeaktivitäten, die Dynamik des Benutzerengagements in verschiedenen Ländern und Regionen, den Grad der Interaktion mit dem MXC L3 zkEVM sowie die Sichtbarkeit und Reichweite der Inschrift \nunter anderem auf Twitter. \nDies stellt sicher, dass unsere Einträge die Inschriften widerspiegeln, die nicht nur beliebt sind, sondern auch dynamisch im DePIN-Bereich involviert sind.",
+  "Coming soon stay tuned": "Bleiben Sie dran",
+  "Transfer": "Überweisen",
+  "List": "Aufführen",
+  "Hexagon locations": "Hexagon-Standorte",
+  "Language": "Sprache"
 }

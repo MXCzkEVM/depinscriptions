@@ -18,6 +18,7 @@ export interface LocationDetail {
     'ISO3166-2-lvl4': string
     'country': string
     'country_code': string
+    [key: string]: any
   }
   boundingbox: [string, string, string, string]
 }

@@ -50,5 +50,22 @@
   "Successfully indexed": "Indexat cu succes",
   "Waiting for indexing": "Se așteaptă indexarea",
   "The current tick has been deployed": "Bifa actuală {{tick}} a fost implementată",
-  "has been deployed": "{{tick}} a fost implementat"
+  "has been deployed": "{{tick}} a fost implementat",
+  "DePINscriptions": "Inscripția DePIN",
+  "Wallet": "Portofel",
+  "Marketplace": "Piata de desfacere",
+  "Close": "Închide",
+  "ISO 3166-2 Code Overview": "Prezentare generală a codului ISO 3166-2",
+  "Global Standard Title": "Standard global",
+  "Global Standard Help": "Reprezintă țări și regiuni pe baza Organizației Internaționale de Standardizare",
+  "Inclusivity": "Inclusivitate",
+  "Inclusivity Help": "Include toate zonele, chiar și teritoriile disputate, fără aprobare politică.",
+  "Purpose": "Scop",
+  "Purpose Help": "Servește ca un identificator universal pentru GeoInscripții în contexte internaționale.",
+  "Coming soon stay tuned Help": "Piața DePINscription este setată să prezinte o rezumare săptămânală organizată a celor mai căutate inscripții de localizare geografică. \nProcesul nostru de selecție este cuprinzător, ținând cont de o varietate de factori, cum ar fi progresul activităților de batere, dinamica implicării utilizatorilor în diferite țări și regiuni, nivelul de interacțiune cu MXC L3 zkEVM, precum și vizibilitatea și acoperirea inscripției. \npe Twitter, printre alte valori. \nAcest lucru asigură că înregistrările noastre reflectă inscripțiile care nu sunt doar populare, ci și implicate dinamic în spațiul DePIN.",
+  "Coming soon stay tuned": "Rămâneţi aproape",
+  "Transfer": "Transfer",
+  "List": "Listă",
+  "Hexagon locations": "Locații hexagonale",
+  "Language": "Limba"
 }

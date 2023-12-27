@@ -74,7 +74,7 @@ function Page() {
   ]
 
   const [state, controls] = useServerPagination({
-    limit: 8,
+    limit: 6,
     resolve: model => getToken({ ...model, keyword, type }),
   })
 
@@ -94,8 +94,8 @@ function Page() {
   return (
     <>
       <FieldTickInput onSearch={addr => router.push(`/tokens/query?address=${addr}`)} />
-      <div className="mb-4 flex justify-between">
-        <Typography variant="h6" component="span">
+      <div className="mb-4 flex justify-between items-center">
+        <Typography className="text-base sm:text-lg" variant="h6" component="span">
           {t('The full list of tokens')}
         </Typography>
         <Button onClick={deploy} type="button" variant="contained">{t('Deploy')}</Button>

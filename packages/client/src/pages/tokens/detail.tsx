@@ -93,7 +93,7 @@ function Page() {
             value={tab}
           >
             <Tab disableRipple value={0} label={t('Holders')} />
-            <Tab disableRipple value={1} label={t('Hexagons')} />
+            <Tab disableRipple value={1} label={t('Hexagon locations')} />
           </Tabs>
           {
             tab === 0
