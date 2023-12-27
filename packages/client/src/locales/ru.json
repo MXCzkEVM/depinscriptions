@@ -67,5 +67,12 @@
   "Transfer": "Передача",
   "List": "Список",
   "Hexagon locations": "Шестиугольные локации",
-  "Language": "Язык"
+  "Language": "Язык",
+  "To": "К",
+  "Amount": "Количество",
+  "Please enter the address": "Пожалуйста, введите адрес",
+  "Please enter the amount": "Пожалуйста, введите сумму",
+  "Exceeding available amount": "Превышение доступной суммы",
+  "MSC-20 Transfer": "MSC-20 Трансфер",
+  "Please enter the correct address": "Пожалуйста, введите правильный адрес"
 }

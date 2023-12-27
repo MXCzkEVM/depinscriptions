@@ -67,5 +67,12 @@
   "Transfer": "Transfert",
   "List": "Liste",
   "Hexagon locations": "Emplacements hexagonaux",
-  "Language": "Langue"
+  "Language": "Langue",
+  "To": "À",
+  "Amount": "Montant",
+  "Please enter the address": "Veuillez entrer l'adresse",
+  "Please enter the amount": "Veuillez saisir le montant",
+  "Exceeding available amount": "Dépassement du montant disponible",
+  "MSC-20 Transfer": "Transfert MSC-20",
+  "Please enter the correct address": "Veuillez entrer la bonne adresse"
 }

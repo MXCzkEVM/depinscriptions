@@ -67,5 +67,12 @@
   "Transfer": "Chuyển khoản",
   "List": "Danh sách",
   "Hexagon locations": "Vị trí lục giác",
-  "Language": "Ngôn ngữ"
+  "Language": "Ngôn ngữ",
+  "To": "ĐẾN",
+  "Amount": "Số lượng",
+  "Please enter the address": "Vui lòng nhập địa chỉ",
+  "Please enter the amount": "Vui lòng nhập số tiền",
+  "Exceeding available amount": "Vượt quá số lượng có sẵn",
+  "MSC-20 Transfer": "Chuyển giao MSC-20",
+  "Please enter the correct address": "Vui lòng nhập địa chỉ chính xác"
 }

@@ -9,6 +9,7 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@ensdomains/ensjs": "3.0.0-alpha.62",
     "@hairy/utils": "^0.6.4",
     "@mui/lab": "5.0.0-alpha.157",
     "@mui/material": "^5.15.1",

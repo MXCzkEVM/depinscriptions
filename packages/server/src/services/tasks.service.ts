@@ -49,7 +49,9 @@ export class TasksService {
     //   // deploy - goerli
     //   // await this.provider.getTransaction('0x1c81625f7727e8825794d81adf2bc217a6d9302166df5db95df610ff1c3c0a3e'),
     //   // mint - goerli
-    //   // await this.provider.getTransaction('0xd75cfb4d592a200b25845a6861c91707a94c428499303bee964d080f28b3c926'),
+    //   // await this.provider.getTransaction('0xbf120aca3b8a2be8c38a159c709eaffdba1254a4c9e3afeb9563093b3340070a'),
+    //   // transfer - goerli
+    //   // await this.provider.getTransaction('0xd9659286e85465b7ed03d3d2eabd29cb2d33718355833dd92f357141ddc73feb'),
     // ]
     // for (const block of [{ transactions, timestamp: 1 }]) {
     for (const block of blocks) {

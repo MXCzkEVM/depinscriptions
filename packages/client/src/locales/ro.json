@@ -67,5 +67,12 @@
   "Transfer": "Transfer",
   "List": "Listă",
   "Hexagon locations": "Locații hexagonale",
-  "Language": "Limba"
+  "Language": "Limba",
+  "To": "La",
+  "Amount": "Cantitate",
+  "Please enter the address": "Vă rugăm să introduceți adresa",
+  "Please enter the amount": "Vă rugăm să introduceți suma",
+  "Exceeding available amount": "Depășirea sumei disponibile",
+  "MSC-20 Transfer": "Transfer MSC-20",
+  "Please enter the correct address": "Vă rugăm să introduceți adresa corectă"
 }

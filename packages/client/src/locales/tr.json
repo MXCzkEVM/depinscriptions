@@ -71,5 +71,12 @@
   "Transfer": "Aktar",
   "List": "Liste",
   "Hexagon locations": "Altıgen konumları",
-  "Language": "Dil"
+  "Language": "Dil",
+  "To": "İle",
+  "Amount": "Miktar",
+  "Please enter the address": "Lütfen adresi girin",
+  "Please enter the amount": "Lütfen tutarı girin",
+  "Exceeding available amount": "Mevcut miktarın aşılması",
+  "MSC-20 Transfer": "MSC-20 Transferi",
+  "Please enter the correct address": "Lütfen doğru adresi girin"
 }
