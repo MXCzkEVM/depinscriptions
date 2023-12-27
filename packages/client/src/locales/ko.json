@@ -74,5 +74,13 @@
   "Please enter the amount": "금액을 입력해주세요.",
   "Exceeding available amount": "사용 가능 금액 초과",
   "MSC-20 Transfer": "MSC-20 전송",
-  "Please enter the correct address": "정확한 주소를 입력해주세요"
+  "Please enter the correct address": "정확한 주소를 입력해주세요",
+  "Back": "뒤쪽에",
+  "Next": "다음",
+  "root_step_1": "탐색하려면 메뉴 하단을 클릭하세요.",
+  "root_step_2": "배포할 수 있는 Inscription 목록을 확인하려면 Token을 클릭하세요.",
+  "root_step_3": "귀하의 비문 보유량과 금액을 보여주는 것은 귀하의 지갑이며, 그곳에서 이를 나열하고 전송할 수 있습니다.",
+  "root_step_4": "DePINscription 마켓플레이스에서 거래하세요",
+  "root_step_1_5": "여기에서 색인화된 스크립트를 확인하세요.",
+  "Tutorial": "지도 시간"
 }

@@ -74,5 +74,13 @@
   "Please enter the amount": "Bitte geben Sie den Betrag ein",
   "Exceeding available amount": "Der verfügbare Betrag wird überschritten",
   "MSC-20 Transfer": "MSC-20-Übertragung",
-  "Please enter the correct address": "Bitte geben Sie die korrekte Adresse ein"
+  "Please enter the correct address": "Bitte geben Sie die korrekte Adresse ein",
+  "Back": "Zurück",
+  "Next": "Nächste",
+  "root_step_1": "Klicken Sie unten auf „Menü“, um zu navigieren.",
+  "root_step_2": "Klicken Sie auf Token, um die Inskriptionslisten zu überprüfen, die bereitgestellt werden können.",
+  "root_step_3": "In Ihrem Wallet werden Ihre Inschriftenbestände und Beträge angezeigt, Sie können diese dort auflisten und übertragen.",
+  "root_step_4": "Handeln Sie sie auf dem DePINscription-Marktplatz",
+  "root_step_1_5": "Sehen Sie sich hier indizierte Skripte an",
+  "Tutorial": "Lernprogramm"
 }

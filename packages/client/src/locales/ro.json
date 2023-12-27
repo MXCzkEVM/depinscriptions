@@ -74,5 +74,13 @@
   "Please enter the amount": "Vă rugăm să introduceți suma",
   "Exceeding available amount": "Depășirea sumei disponibile",
   "MSC-20 Transfer": "Transfer MSC-20",
-  "Please enter the correct address": "Vă rugăm să introduceți adresa corectă"
+  "Please enter the correct address": "Vă rugăm să introduceți adresa corectă",
+  "Back": "Înapoi",
+  "Next": "Următorul",
+  "root_step_1": "Faceți clic pe Meniu de jos pentru a naviga.",
+  "root_step_2": "Faceți clic pe Token pentru a verifica listele de inscripții care pot fi implementate.",
+  "root_step_3": "Portofelul dvs. este cel care vă arată deținerile și sumele de înscriere, le puteți lista și transfera acolo.",
+  "root_step_4": "Comercializați-le pe piața DePINscription",
+  "root_step_1_5": "Vizualizați scripturile indexate aici",
+  "Tutorial": "Tutorial"
 }
