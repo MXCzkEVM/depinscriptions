@@ -74,7 +74,7 @@ export class HolderService {
       await this.prisma.holder.delete({ where: { id: holder.id } })
     }
     else {
-      this.update(
+      await this.update(
         { owner: params.owner, tick: params.tick },
         { value: { decrement: data.value } },
       )

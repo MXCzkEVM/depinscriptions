@@ -67,5 +67,12 @@
   "Transfer": "转移",
   "List": "出售",
   "Hexagon locations": "六边形位置",
-  "Language": "语言"
+  "Language": "语言",
+  "To": "到",
+  "Amount": "数量",
+  "Please enter the address": "请输入地址",
+  "Please enter the amount": "请输入金额",
+  "Exceeding available amount": "超出可用金额",
+  "MSC-20 Transfer": "MSC-20 转移",
+  "Please enter the correct address": "请输入正确的地址"
 }
