@@ -48,7 +48,7 @@ function Page() {
         <CardContent>
           <div className="mb-3 flex justify-between">
             <span className="text-xl font-bold">{t('Overview')}</span>
-            <MintButton token={token} />
+            {!token?.completedTime && <MintButton token={token} />}
           </div>
           <Divider />
           <FieldCol label={t('Scription ID')} skeleton={isPageLoading}>

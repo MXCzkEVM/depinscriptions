@@ -17,7 +17,7 @@ export interface ScanMintJSON {
   p: 'msc-20'
   op: 'mint'
   tick: string
-  amt: string
+  amt: string | number
   hex: string
 }
 export interface ScanTransferJSON {
@@ -72,10 +72,14 @@ export class ScriptsService {
       throw new Error(`[mint] - Attempting to mint into non-existent tick(${inscription.tick})`)
 
     const surplus = tick.total - tick.minted
+    if (tick.completedTime || surplus <= 0)
+      throw new Error(`${inscription.tick} Completed`)
+
     if (+inscription.amt > tick.limit)
       throw new Error(`Exceeded ${inscription.tick} limit number of mints by ${tick.limit}`)
+
     if (+inscription.amt > surplus)
-      throw new Error(`Exceeded ${inscription.tick} total number of mints by ${tick.total}`)
+      inscription.amt = surplus
 
     await this.hexagonService.incrementValue(
       { hex: inscription.hex, tik: inscription.tick },
