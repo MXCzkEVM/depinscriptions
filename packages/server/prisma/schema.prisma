@@ -3,7 +3,7 @@
 
 
 datasource db {
-  provider = "sqlite"
+  provider = "mysql"
   url      = env("PRISMA_DATABASE_URL")
 }
 
