@@ -61,7 +61,9 @@ pnpm build:prisma
 To start the production server for the server-side application, run the following command:
 
 ```sh
-pnpm start:prod
+pm2 restart depinscriptions-wannsee
+# or
+pm2 restart depinscriptions-mainnet
 ```
 
 If you want to upload the client to the production environment, please push it to the testnet and mainnet branches.
