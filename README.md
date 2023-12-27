@@ -15,7 +15,8 @@ To get started with the development of the project, follow the steps below:
 
 1. Clone the repository.
 2. Navigate to the root directory of the project.
-3. Start dev:client and dev:server commands.
+3. Run `pnpm install` to install dependencies
+4. Start `dev:client` and `dev:server` commands.
 
 ### Development
 
