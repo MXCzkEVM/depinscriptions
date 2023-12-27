@@ -6,38 +6,19 @@ import { jsonRpcProvider } from '@wagmi/core/providers/jsonRpc'
 
 import { connectorsForWallets } from '@rainbow-me/rainbowkit'
 import { metaMaskWallet } from '@rainbow-me/rainbowkit/wallets'
+import { chains as CHAINS } from '@/config'
 
 const defaultChains: Chain[] = [
-  goerli,
+  CHAINS[process.env.NEXT_PUBLIC_CHAINID || ''] || goerli,
 ]
 
 const providers = [
   jsonRpcProvider({
-    rpc: () => ({
-      http: goerli.rpcUrls.default[0],
-    }),
+    rpc: () => ({ http: defaultChains[0].rpcUrls.default[0] }),
   }),
 ]
 
 const { chains, provider, webSocketProvider } = configureChains(defaultChains, providers)
-
-function AXSWallet({ chains }) {
-  return {
-    id: 'axs',
-    name: 'AXS Wallet',
-    iconUrl: '/AxsWallet.png',
-    iconBackground: '#FFFFFF',
-    description: 'AXS wallet web3 provider.',
-    createConnector: () => {
-      const connector = new InjectedConnector({
-        chains,
-      })
-      return {
-        connector,
-      }
-    },
-  }
-}
 
 const connectors = connectorsForWallets([
   {
@@ -59,4 +40,19 @@ const client = createClient({
   webSocketProvider,
 })
 
+function AXSWallet({ chains }) {
+  return {
+    id: 'axs',
+    name: 'AXS Wallet',
+    iconUrl: '/wallet.png',
+    iconBackground: '#FFFFFF',
+    description: 'AXS wallet web3 provider.',
+    createConnector: () => {
+      const connector = new InjectedConnector({
+        chains,
+      })
+      return { connector }
+    },
+  }
+}
 export { chains, client }
