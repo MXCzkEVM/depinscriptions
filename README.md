@@ -58,11 +58,15 @@ pnpm build:prisma
 
 ### Production
 
-To start the production server for the server-side application, run the following command in remote server:
+To restart the production server for the server-side application, run the following command in remote server:
 
 ```sh
+cd /mxc/depinscriptions-wannse
+git pull
 pm2 restart depinscriptions-wannsee
 # or
+cd /mxc/depinscriptions-mainnet
+git pull
 pm2 restart depinscriptions-mainnet
 ```
 
