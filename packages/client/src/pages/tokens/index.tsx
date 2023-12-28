@@ -1,6 +1,6 @@
 import { Button, Card, CardContent, Tab, Tabs, TextField, Typography } from '@mui/material'
 import type { ReactElement } from 'react'
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import type { GridColDef } from '@mui/x-data-grid'
 import { DataGrid } from '@mui/x-data-grid'
 import dayjs from 'dayjs'
@@ -8,13 +8,14 @@ import { useRouter } from 'next/router'
 import { useInjectHolder } from '@overlays/react'
 import { useTranslation } from 'react-i18next'
 import { Search } from '@ricons/ionicons5'
+import { Deferred } from '@hairy/utils'
 import { Condition, CountryFlag, DeployDialog, Empty, FieldTickInput, Icon, LinearProgressWithLabel } from '@/components'
 import { Layout } from '@/layout'
 import { TickDto } from '@/api/index.type'
 import { percentage } from '@/utils'
 import { getToken } from '@/api'
 import WaitingIndexModal from '@/components/WaitingIndexModal'
-import { useGridPaginationFields, useServerPagination, useWatch } from '@/hooks'
+import { useGridPaginationFields, useMittOn, useServerPagination, useWatch } from '@/hooks'
 
 // Retrieve tokens deployed by a user
 function Page() {
@@ -74,7 +75,7 @@ function Page() {
   ]
 
   const [state, controls] = useServerPagination({
-    limit: 6,
+    limit: 15,
     resolve: model => getToken({ ...model, keyword, type }),
   })
 
@@ -89,6 +90,7 @@ function Page() {
     await controls.reload()
   }
 
+  useMittOn('inscription:deploy-open', deploy)
   useWatch([type], controls.reload)
 
   return (
@@ -98,10 +100,10 @@ function Page() {
         <Typography className="text-base sm:text-lg" variant="h6" component="span">
           {t('The full list of tokens')}
         </Typography>
-        <Button onClick={deploy} type="button" variant="contained">{t('Deploy')}</Button>
+        <Button className="token_page_step_2" onClick={deploy} type="button" variant="contained">{t('Deploy')}</Button>
       </div>
       <Card style={{ background: 'rgb(22 21 21 / 20%)' }}>
-        <CardContent>
+        <CardContent className="token_page_step_1">
           <div className="mb-4 flex justify-between items-center">
             <Tabs
               variant="standard"

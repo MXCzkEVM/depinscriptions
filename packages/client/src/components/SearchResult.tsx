@@ -15,7 +15,7 @@ export function SearchResult(props: SearchResultProps) {
       <div className="flex">
         <Tabs value={tab} onChange={(event, value) => setTab(value)}>
           <Tab label="Tokens" />
-          <Tab label="Scriptions" />
+          <Tab className="personal_page_step_3" label="Scriptions" />
         </Tabs>
         <div className="ml-12 flex items-center">
           <Refresh />

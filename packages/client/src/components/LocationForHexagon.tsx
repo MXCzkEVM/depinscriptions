@@ -5,8 +5,9 @@ import { Skeleton } from '@mui/material'
 import { cellToLatLng } from 'h3-js'
 import Condition from './Condition'
 import { LocationDetail } from './LocationForHexagon.type'
+import { proxyWithPersistant } from '@/utils'
 
-const mappings = proxy<Record<string, string>>({})
+const mappings = proxyWithPersistant<Record<string, string>>('__valtio_mappings', {})
 const baseURL = 'https://nominatim.openstreetmap.org/reverse.php'
 
 export interface LocationForHexProps {

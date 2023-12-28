@@ -2,6 +2,7 @@ import React from 'react'
 import { Toaster } from 'react-hot-toast'
 import Link from 'next/link'
 import { LogoTwitter } from '@ricons/ionicons5'
+import { Navbar as NavbarProvider } from 'flowbite-react/lib/cjs/components/Navbar/Navbar'
 import Navbar from './components/Navbar'
 import { Icon, NoSSR } from '@/components'
 
@@ -15,7 +16,9 @@ const Layout: React.FC<Props> = ({ children }: Props) => {
       <div className="flex flex-col" style={{ minHeight: '100vh' }}>
         <div className="w-full max-w-[1400px] mx-auto">
           <NoSSR>
-            <Navbar />
+            <NavbarProvider className="relative top-0 bg-transparent" fluid={true} rounded={true}>
+              <Navbar />
+            </NavbarProvider>
           </NoSSR>
         </div>
         <div className="w-full flex-1 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">

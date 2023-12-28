@@ -82,5 +82,16 @@
   "root_step_3": "Es su billetera la que muestra las tenencias y montos de sus inscripciones, puede enumerarlos y transferirlos allí.",
   "root_step_4": "Cambielos en el mercado de DePINscription",
   "root_step_1_5": "Ver scripts indexados aquí",
-  "Tutorial": "Tutorial"
+  "Tutorial": "Tutorial",
+  "Last": "Último",
+  "Finish": "Finalizar",
+  "token_page_step_1": "Verifique todo el progreso de acuñación de las DePINscriptions, haga clic en los detalles de cada código para participar en el proceso de acuñación.",
+  "token_page_step_2": "Si no encuentra su descripción DePIN favorita, debe hacer clic en implementar usted mismo.",
+  "token_page_step_3": "Haga clic en el símbolo para elegir el código que desea implementar en su país/región; actualmente, solo puede implementar una vez por código.",
+  "token_page_step_4": "Pon el límite por menta y el suministro total ahí, no se puede cambiar, ten cuidado con las cantidades.",
+  "token_page_step_5": "Haga clic en Implementar para finalizar el nuevo proceso de implementación de DePINscription.",
+  "tokens_detail_page_step_1": "Haga clic en Mint para participar en el proceso de acuñación de su descripción DePIN",
+  "personal_page_step_1": "Puede transferir su Inscripción a otras direcciones.",
+  "personal_page_step_2": "Incluya su descripción DePIN en el mercado. Tenga en cuenta que si su inscripción aún no figura en el mercado, no se indexará y podrá eliminarla de la lista una vez que pueda comercializarse.",
+  "personal_page_step_3": "Haga clic en las inscripciones para ver sus datos recientes de DePINscription."
 }

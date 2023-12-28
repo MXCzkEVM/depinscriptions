@@ -1,12 +1,13 @@
 import { useMount } from 'react-use'
 import { LoadingButton } from '@mui/lab'
+import { useAccount } from 'wagmi'
 import Condition from './Condition'
 import Empty from './Empty'
 import BoxToken from './BoxToken'
 import InfiniteScroll from './InfiniteScroll'
 import { getHolder } from '@/api'
 import { useMittOn } from '@/hooks/useMittOn'
-import { useServerPaginationConcat } from '@/hooks'
+import { useGlobalPersonalExample, useServerPaginationConcat } from '@/hooks'
 import { useWhenever } from '@/hooks/useWhenever'
 
 export interface DataGridTokensProps {
@@ -17,6 +18,16 @@ function DataGridTokens(props: DataGridTokensProps) {
   const [state, { reload, next }] = useServerPaginationConcat({
     resolve: model => getHolder({ ...model, owner: props.address || '' }),
   })
+  const { address } = useAccount()
+  const [showExample] = useGlobalPersonalExample()
+
+  const example = {
+    id: 1,
+    number: 2,
+    owner: address!,
+    tick: 'DEU',
+    value: 10000,
+  }
 
   useMittOn('reload:page', reload)
   useMittOn('deploy-reload:page', reload)
@@ -24,7 +35,12 @@ function DataGridTokens(props: DataGridTokensProps) {
   useMount(reload)
 
   return (
-    <Condition is={state.value.length} else={<Empty loading={state.loading} />}>
+    <Condition
+      is={state.value.length}
+      else={showExample
+        ? <BoxToken guide data={example} />
+        : <Empty loading={state.loading} />}
+    >
       <InfiniteScroll
         loaded={state.loaded}
         loader={(
@@ -35,7 +51,7 @@ function DataGridTokens(props: DataGridTokensProps) {
         next={next}
       >
         <div className="grid mp:grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-[1.25rem] mt-[2rem]">
-          {state.value.map(item => <BoxToken key={item.id} data={item} />)}
+          {state.value.map((item, index) => <BoxToken guide={index === 0} key={item.id} data={item} />)}
         </div>
       </InfiniteScroll>
 

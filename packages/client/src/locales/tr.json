@@ -86,5 +86,16 @@
   "root_step_3": "Yazılı varlıklarınızı ve tutarlarınızı gösteren cüzdanınızdır, bunları listeleyebilir ve oraya aktarabilirsiniz.",
   "root_step_4": "Bunları DePINscription pazarında takas edin",
   "root_step_1_5": "Dizine eklenen komut dosyalarını burada görüntüleyin",
-  "Tutorial": "öğretici"
+  "Tutorial": "öğretici",
+  "Last": "Son",
+  "Finish": "Sona ermek",
+  "token_page_step_1": "DePINscription'ların tüm basım ilerlemesini kontrol edin, basım sürecine katılmak için her kodun ayrıntılarına tıklayın.",
+  "token_page_step_2": "Favori DePINscription'ınızı bulamazsanız, konuşlandırmayı kendiniz yapmalısınız.",
+  "token_page_step_3": "Ülkenize/bölgenize dağıtılacak kodu seçmek için İşaretçiyi tıklayın; şu anda kod başına yalnızca bir kez dağıtabilirsiniz.",
+  "token_page_step_4": "Darphane başına limiti ve toplam arzı oraya koyun, değiştirilemez, miktarlara dikkat edin.",
+  "token_page_step_5": "Yeni DePINscription dağıtım işlemini tamamlamak için Dağıt'a tıklayın.",
+  "tokens_detail_page_step_1": "DePINscription'ınızın basım sürecine katılmak için Mint'e tıklayın",
+  "personal_page_step_1": "Yazınızı başka adreslere aktarabilirsiniz.",
+  "personal_page_step_2": "DePINscription'ınızı piyasada listeleyin; yazıtınız henüz piyasada listelenmemişse indekslenmeyeceğini, işlem görmeye başladıktan sonra onu listeden çıkarabileceğinizi lütfen unutmayın.",
+  "personal_page_step_3": "En son DePINscription verilerinizi görüntülemek için yazılara tıklayın."
 }
