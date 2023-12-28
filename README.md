@@ -4,7 +4,7 @@ project consisting of a client-side application built with Next.js and a server-
 
 ## Directories
 
-The project is organized into the following directories:
+The project use monorepo for multiple packages is organized into the following directories:
 
 - `packages/client`: Contains the client-side application built with Next.js.
 - `packages/server`: Contains the server-side application built with NestJS.
