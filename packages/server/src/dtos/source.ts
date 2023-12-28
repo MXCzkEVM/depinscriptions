@@ -80,7 +80,6 @@ export class TickDto {
   @ApiProperty()
   trxs: number
 }
-
 export class HexagonDto {
   @ApiProperty()
   hex: string

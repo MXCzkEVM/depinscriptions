@@ -25,6 +25,10 @@ export class TickService {
     })
   }
 
+  async delete(where: Prisma.TickWhereInput) {
+    return this.prisma.tick.deleteMany({ where })
+  }
+
   async some(tick: string) {
     const count = await this.prisma.tick.count({ where: { tick } })
     return count !== 0
