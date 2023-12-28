@@ -38,7 +38,11 @@ function DataGridTokens(props: DataGridTokensProps) {
     <Condition
       is={state.value.length}
       else={showExample
-        ? <BoxToken guide data={example} />
+        ? (
+          <div className="grid mp:grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-[1.25rem] mt-[2rem]">
+            <BoxToken guide data={example} />
+          </div>
+          )
         : <Empty loading={state.loading} />}
     >
       <InfiniteScroll
