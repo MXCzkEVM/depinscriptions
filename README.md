@@ -31,6 +31,13 @@ To start the development server for the server-side application, run the followi
 pnpm dev:server
 ```
 
+If you change the server API, you can run it in the client directory
+
+```sh
+cd packages/client
+pnpm genapi
+```
+
 > If you are in the testnet and mainnet branches, all you need to do is start the client
 
 > do not push code on the testnet and mainnet branches, as this can lead to confusion
@@ -71,4 +78,3 @@ pm2 restart depinscriptions-mainnet
 ```
 
 If you want to upload the client to the production environment, please push it to the testnet and mainnet branches.
-
