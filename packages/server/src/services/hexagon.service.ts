@@ -19,6 +19,10 @@ export class HexagonService {
     return this.prisma.hexagon.findMany(params)
   }
 
+  async delete(where: Prisma.HexagonWhereInput) {
+    return this.prisma.hexagon.deleteMany({ where })
+  }
+
   async incrementValue(params: QueryHexagonParams, data: { value: number }) {
     const count = await this.prisma.hexagon.count({ where: params })
     if (count === 0) {

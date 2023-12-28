@@ -18,6 +18,10 @@ export class InscriptionService {
     return this.prisma.inscription.count(params)
   }
 
+  async delete(where: Prisma.InscriptionWhereInput) {
+    return this.prisma.inscription.deleteMany({ where })
+  }
+
   async some(hash: string) {
     const count = await this.prisma.inscription.count({ where: { hash } })
     return count !== 0
