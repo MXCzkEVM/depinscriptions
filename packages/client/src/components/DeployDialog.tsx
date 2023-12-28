@@ -156,8 +156,8 @@ function DeployDialog() {
 function Field(props: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> & { label: ReactNode }) {
   return (
     <div {...props} className={`flex items-center ${props.className}`}>
-      <div className="w-[100px] text-white">{props.label}</div>
-      <div className="flex-1">{props.children}</div>
+      <div className="w-[120px] text-white">{props.label}</div>
+      <div className="ml-2 flex-1">{props.children}</div>
     </div>
   )
 }

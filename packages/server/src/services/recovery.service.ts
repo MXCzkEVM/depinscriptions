@@ -18,7 +18,7 @@ export class RecoveryService {
   async tick(password: string, tick: string) {
     if (this.retryPasswords >= 5)
       throw new Error('Exceeded retry attempts')
-    if (password !== 'xabghZzc8#r5') {
+    if (password !== process.env.NEST_RECOVERY_PASSWORD) {
       this.retryPasswords++
       throw new Error('password is incorrect')
     }

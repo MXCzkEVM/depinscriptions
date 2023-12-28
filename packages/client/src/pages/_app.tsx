@@ -1,5 +1,5 @@
 import '@rainbow-me/rainbowkit/styles.css'
-import '@/styles/globals.css'
+import '@/styles/globals.scss'
 import { RainbowKitProvider } from '@rainbow-me/rainbowkit'
 import NextHead from 'next/head'
 import React from 'react'
