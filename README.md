@@ -31,7 +31,7 @@ To start the development server for the server-side application, run the followi
 pnpm dev:server
 ```
 
-If you change the server API, you can run it in the client directory
+If the server API is changed, it can be run in the client directory to generate client API code
 
 ```sh
 cd packages/client

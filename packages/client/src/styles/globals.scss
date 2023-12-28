@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "./components/flowbite.scss";
+@import "./components/joyride.scss";
+@import "./components/mui-base.scss";
+@import "./components/mui-data-grid.scss";
+@import "./components/mui-dialog.scss";
+@import "./components/mui-menu.scss";
+@import "./components/mui-popover.scss";
+
+.icon svg {
+  width: 1em;
+  height: 1em;
+}
+
+.icon svg:not([fill]) {
+  fill: currentColor
+}
+
+body {
+  background: rgb(42, 15, 105);
+  color: #fff
+}
