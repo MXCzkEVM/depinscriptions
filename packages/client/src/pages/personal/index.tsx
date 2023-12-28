@@ -6,7 +6,7 @@ import { SearchResult } from '@/components/SearchResult'
 function Page() {
   const { address } = useAccount()
   return (
-    <div className="mt-12">
+    <div className="mt-6">
       <SearchResult address={address} />
     </div>
   )

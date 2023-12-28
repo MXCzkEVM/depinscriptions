@@ -56,3 +56,13 @@ body {
 .react-joyride__tooltip button {
   outline: none !important;
 }
+
+@media screen and (max-width: 768px) {
+  .MuiDialog-container .MuiPaper-root.MuiPaper-elevation {
+    margin: 16px !important;
+  }
+  .MuiDialog-container {
+    align-items: start !important;
+    margin-top: 30%;
+  }
+}
