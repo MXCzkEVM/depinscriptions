@@ -5,20 +5,20 @@
  * @version 1.0.0
  */
 
-import * as Types from './index.type'
+import * as Types from "./index.type";
 
-export const baseURL = process.env.NEXT_PUBLIC_SERVER_URL
+export const baseURL = process.env.NEXT_PUBLIC_SERVER_URL;
 
 /**
  * @method get
  * @tags app-controller
  */
 export async function getInscription(query: Types.GetInscriptionQuery, config?: RequestInit) {
-  const _query_ = `?${new URLSearchParams(Object.entries(query)).toString()}`
+  const _query_ = `?${new URLSearchParams(Object.entries(query)).toString()}`;
   const response = await fetch(`${baseURL}/inscription${_query_}`, {
     ...config,
-  })
-  return response.json() as Promise<Types.InscriptionPageResponseDto>
+  });
+  return response.json() as Promise<Types.InscriptionPageResponseDto>;
 }
 /**
  * @method get
@@ -27,8 +27,8 @@ export async function getInscription(query: Types.GetInscriptionQuery, config?: 
 export async function getInscriptionHash(paths: Types.GetInscriptionHashPath, config?: RequestInit) {
   const response = await fetch(`${baseURL}/inscription/${paths.hash}`, {
     ...config,
-  })
-  return response.json() as Promise<Types.InscriptionResponseDto>
+  });
+  return response.json() as Promise<Types.InscriptionResponseDto>;
 }
 /**
  * @method get
@@ -37,41 +37,51 @@ export async function getInscriptionHash(paths: Types.GetInscriptionHashPath, co
 export async function getInscriptionSomeHash(paths: Types.GetInscriptionSomeHashPath, config?: RequestInit) {
   const response = await fetch(`${baseURL}/inscription/some/${paths.hash}`, {
     ...config,
-  })
-  return response.json() as Promise<Types.SomeResponseDto>
+  });
+  return response.json() as Promise<Types.SomeResponseDto>;
 }
 /**
  * @method get
  * @tags app-controller
  */
 export async function getHexagon(query: Types.GetHexagonQuery, config?: RequestInit) {
-  const _query_ = `?${new URLSearchParams(Object.entries(query)).toString()}`
+  const _query_ = `?${new URLSearchParams(Object.entries(query)).toString()}`;
   const response = await fetch(`${baseURL}/hexagon${_query_}`, {
     ...config,
-  })
-  return response.json() as Promise<Types.HexagonPageResponseDto>
+  });
+  return response.json() as Promise<Types.HexagonPageResponseDto>;
 }
 /**
  * @method get
  * @tags app-controller
  */
 export async function getHolder(query: Types.GetHolderQuery, config?: RequestInit) {
-  const _query_ = `?${new URLSearchParams(Object.entries(query)).toString()}`
+  const _query_ = `?${new URLSearchParams(Object.entries(query)).toString()}`;
   const response = await fetch(`${baseURL}/holder${_query_}`, {
     ...config,
-  })
-  return response.json() as Promise<Types.HolderPageResponseDto>
+  });
+  return response.json() as Promise<Types.HolderPageResponseDto>;
 }
 /**
  * @method get
  * @tags app-controller
  */
 export async function getToken(query: Types.GetTokenQuery, config?: RequestInit) {
-  const _query_ = `?${new URLSearchParams(Object.entries(query)).toString()}`
+  const _query_ = `?${new URLSearchParams(Object.entries(query)).toString()}`;
   const response = await fetch(`${baseURL}/token${_query_}`, {
     ...config,
-  })
-  return response.json() as Promise<Types.TickPageResponseDto>
+  });
+  return response.json() as Promise<Types.TickPageResponseDto>;
+}
+/**
+ * @method get
+ * @tags app-controller
+ */
+export async function getTokenDeployed(config?: RequestInit) {
+  const response = await fetch(`${baseURL}/token/deployed`, {
+    ...config,
+  });
+  return response.json() as Promise<Types.TickDeployedResponseDto>;
 }
 /**
  * @method get
@@ -80,8 +90,8 @@ export async function getToken(query: Types.GetTokenQuery, config?: RequestInit)
 export async function getTokenSomeId(paths: Types.GetTokenSomeIdPath, config?: RequestInit) {
   const response = await fetch(`${baseURL}/token/some/${paths.id}`, {
     ...config,
-  })
-  return response.json() as Promise<Types.SomeResponseDto>
+  });
+  return response.json() as Promise<Types.SomeResponseDto>;
 }
 /**
  * @method get
@@ -90,8 +100,8 @@ export async function getTokenSomeId(paths: Types.GetTokenSomeIdPath, config?: R
 export async function getTokenId(paths: Types.GetTokenIdPath, config?: RequestInit) {
   const response = await fetch(`${baseURL}/token/${paths.id}`, {
     ...config,
-  })
-  return response.json() as Promise<Types.TickDto>
+  });
+  return response.json() as Promise<Types.TickDto>;
 }
 /**
  * @method get
@@ -100,6 +110,6 @@ export async function getTokenId(paths: Types.GetTokenIdPath, config?: RequestIn
 export async function getMarket(config?: RequestInit) {
   const response = await fetch(`${baseURL}/market`, {
     ...config,
-  })
-  return response.json() as Promise<any>
+  });
+  return response.json() as Promise<any>;
 }

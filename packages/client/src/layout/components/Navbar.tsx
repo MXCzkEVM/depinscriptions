@@ -10,7 +10,6 @@ import { Step } from 'react-joyride'
 import LocaleButton from './LocaleButton'
 import GuidePage, { GuidePageRef, Trigger } from '@/components/GuidePage'
 import { useGlobalPersonalExample, useMittEmit } from '@/hooks'
-import { waitForElement } from '@/utils'
 
 type GuidePageOptions = Record<string, {
   steps: Step[]
@@ -69,6 +68,11 @@ const LayoutNavbar: React.FC = () => {
     },
     '/tokens': {
       steps: [
+        {
+          target: '.token_page_step_0_5',
+          content: t('token_page_step_0_5'),
+          disableBeacon: true,
+        },
         {
           target: '.token_page_step_1',
           content: t('token_page_step_1'),

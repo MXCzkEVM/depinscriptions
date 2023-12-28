@@ -85,7 +85,7 @@
   "Tutorial": "Tutorial",
   "Last": "Ultimul",
   "Finish": "finalizarea",
-  "token_page_step_1": "Verificați tot progresul de batere a DePINscriptions, faceți clic pe detaliile fiecărui cod pentru a participa la procesul de batere.",
+  "token_page_step_1": "Faceți clic pe detaliile fiecărui cod pentru a participa la procesul de batere.",
   "token_page_step_2": "Dacă nu găsiți DePINscription-ul dvs. favorit, ar trebui să faceți clic pe implementați-vă.",
   "token_page_step_3": "Faceți clic pe Ticker pentru a alege codul de implementat pentru țara/regiunea dvs., în prezent, puteți implementa o singură dată per cod.",
   "token_page_step_4": "Pune acolo limita pe mentă și aprovizionare totală, nu poate fi schimbată, fii atent la cantități.",
@@ -93,5 +93,6 @@
   "tokens_detail_page_step_1": "Faceți clic pe Mint pentru a participa la procesul de batere a DePINscription",
   "personal_page_step_1": "Vă puteți transfera Inscripția la alte adrese.",
   "personal_page_step_2": "Listați-vă DePINscription pe piață, vă rugăm să rețineți că, dacă înscrierea dvs. nu este încă listată pe piață, nu va fi indexată, veți putea să o eliminați după ce va putea fi tranzacționată.",
-  "personal_page_step_3": "Faceți clic pe inscripții pentru a vedea datele dvs. recente DePINscription."
+  "personal_page_step_3": "Faceți clic pe inscripții pentru a vedea datele dvs. recente DePINscription.",
+  "token_page_step_0_5": "Verificați tot progresul de batere a DePINscriptions"
 }

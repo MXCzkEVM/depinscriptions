@@ -22,12 +22,21 @@ export class TickPageResponseDto extends PaginationResponseDto {
   })
   data: Tick[]
 }
+
 export class HolderPageResponseDto extends PaginationResponseDto {
   @ApiProperty({
     type: 'array',
     items: { $ref: getSchemaPath(HolderDto) },
   })
   data: Holder[]
+}
+
+export class HexagonPageResponseDto extends PaginationResponseDto {
+  @ApiProperty({
+    type: 'array',
+    items: { $ref: getSchemaPath(HexagonDto) },
+  })
+  data: Hexagon[]
 }
 
 export class InscriptionResponseDto {
@@ -68,10 +77,11 @@ export class SomeResponseDto {
   @ApiProperty()
   data: boolean
 }
-export class HexagonPageResponseDto extends PaginationResponseDto {
+
+export class TickDeployedResponseDto {
   @ApiProperty({
     type: 'array',
-    items: { $ref: getSchemaPath(HexagonDto) },
+    items: { type: 'string' },
   })
-  data: Hexagon[]
+  data: string[]
 }

@@ -85,7 +85,7 @@
   "Tutorial": "Tutorial",
   "Last": "Last",
   "Finish": "Finish",
-  "token_page_step_1": "Check all the minting progress of the DePINscriptions, click details of each code to participate in the minting process.",
+  "token_page_step_1": "Click details of each code to participate in the minting process.",
   "token_page_step_2": "If you don’t find your favorite DePINscription, you should click deploy yourself.",
   "token_page_step_3": "Click the Ticker to choose the code for your country/region to deploy, currently you can only deploy once per code.",
   "token_page_step_4": "Put the limit per mint and total supply there, it can’t be changed, be careful about the amounts.",
@@ -93,5 +93,6 @@
   "tokens_detail_page_step_1": "Click Mint to participate the minting process of your DePINscription",
   "personal_page_step_1": "You can transfer your Inscription to other addresses.",
   "personal_page_step_2": "List your DePINscription on the marketplace, please note that if your inscription is not yet listed on the marketplace it won’t be indexed, you will be able to delist it once it can be traded.",
-  "personal_page_step_3": "Click inscriptions to view your recent DePINscription data."
+  "personal_page_step_3": "Click inscriptions to view your recent DePINscription data.",
+  "token_page_step_0_5": "Check all the minting progress of the DePINscriptions"
 }

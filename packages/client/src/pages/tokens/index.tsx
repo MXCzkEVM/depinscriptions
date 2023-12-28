@@ -75,7 +75,7 @@ function Page() {
   ]
 
   const [state, controls] = useServerPagination({
-    limit: 15,
+    limit: 10,
     resolve: model => getToken({ ...model, keyword, type }),
   })
 
@@ -103,7 +103,7 @@ function Page() {
         <Button className="token_page_step_2" onClick={deploy} type="button" variant="contained">{t('Deploy')}</Button>
       </div>
       <Card style={{ background: 'rgb(22 21 21 / 20%)' }}>
-        <CardContent className="token_page_step_1">
+        <CardContent className="token_page_step_0_5">
           <div className="mb-4 flex justify-between items-center">
             <Tabs
               variant="standard"
@@ -136,6 +136,7 @@ function Page() {
               getRowId={row => row.tick}
               rows={state.value}
               columns={columns}
+              getRowClassName={params => params.row.tick === state.value[0].tick ? 'token_page_step_1' : ''}
               onRowClick={({ row }) => router.push(`/tokens/detail?token=${row.tick}`)}
             />
           </Condition>

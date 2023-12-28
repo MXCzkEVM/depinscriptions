@@ -6,12 +6,13 @@ import { LoadingButton } from '@mui/lab'
 import { useTranslation } from 'react-i18next'
 import toast from 'react-hot-toast'
 import { HelpCircleOutline } from '@ricons/ionicons5'
+import { useAsync } from 'react-use'
 import CountryFlag from './CountryFlag'
 import Icon from './Icon'
 import DeployIsoHelpDialog from './DeployIsoHelpDialog'
 import { useMittOn, useSendSatsTransaction } from '@/hooks'
-import { countries } from '@/config'
-import { getTokenSomeId } from '@/api'
+import { countries as _countries } from '@/config'
+import { getTokenDeployed, getTokenSomeId } from '@/api'
 
 function DeployDialog() {
   const { visible, resolve, reject } = useOverlay({
@@ -27,6 +28,9 @@ function DeployDialog() {
     tick: '',
     total: '',
     limit: '',
+  })
+  const { value: deployed = [] } = useAsync(async () => {
+    return await getTokenDeployed().then(r => r.data)
   })
 
   const { sendTransaction, isLoading } = useSendSatsTransaction({
@@ -76,6 +80,8 @@ function DeployDialog() {
       </div>
     )
   }
+
+  const countries = _countries.filter(item => !deployed.includes(item.code))
 
   useMittOn('inscription:deploy-cancel', onClose)
 

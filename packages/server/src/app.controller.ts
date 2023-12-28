@@ -10,6 +10,7 @@ import {
   InscriptionPageResponseDto,
   InscriptionResponseDto,
   SomeResponseDto,
+  TickDeployedResponseDto,
   TickDto,
   TickPageResponseDto,
 } from './dtos'
@@ -164,6 +165,18 @@ export class AppController {
       where,
     })
     return { total, data }
+  }
+
+  @Get('token/deployed')
+  @ApiConsumes('application/json')
+  @ApiResponse({ status: 200, type: TickDeployedResponseDto, description: 'Ticks' })
+  async getTicksByDeployed() {
+    const data = await this.tickService.lists({
+      select: { tick: true },
+    })
+    return {
+      data: data.map(v => v.tick),
+    }
   }
 
   @Get('token/some/:id')

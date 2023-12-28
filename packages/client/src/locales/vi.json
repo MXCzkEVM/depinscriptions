@@ -85,7 +85,7 @@
   "Tutorial": "Hướng dẫn",
   "Last": "Cuối cùng",
   "Finish": "Hoàn thành",
-  "token_page_step_1": "Kiểm tra tất cả tiến trình đúc của Mô tả DePIN, nhấp vào chi tiết của từng mã để tham gia vào quá trình đúc.",
+  "token_page_step_1": "Nhấp vào chi tiết của từng mã để tham gia vào quá trình đúc.",
   "token_page_step_2": "Nếu bạn không tìm thấy Mô tả PIN yêu thích của mình, bạn nên nhấp vào triển khai chính mình.",
   "token_page_step_3": "Bấm vào Mã để chọn code quốc gia/khu vực của bạn triển khai, hiện tại mỗi mã chỉ được triển khai một lần.",
   "token_page_step_4": "Đặt giới hạn cho mỗi lần đúc và tổng nguồn cung ở đó, không thể thay đổi được, hãy cẩn thận về số lượng.",
@@ -93,5 +93,6 @@
   "tokens_detail_page_step_1": "Nhấp vào Mint để tham gia quá trình tạo DePINscription của bạn",
   "personal_page_step_1": "Bạn có thể chuyển Dòng chữ của mình đến các địa chỉ khác.",
   "personal_page_step_2": "Liệt kê Dòng chữ DePIN của bạn trên thị trường, xin lưu ý rằng nếu dòng chữ của bạn chưa được liệt kê trên thị trường thì nó sẽ không được lập chỉ mục, bạn sẽ có thể xóa nó sau khi nó có thể được giao dịch.",
-  "personal_page_step_3": "Nhấp vào dòng chữ để xem dữ liệu Mô tả mã PIN gần đây của bạn."
+  "personal_page_step_3": "Nhấp vào dòng chữ để xem dữ liệu Mô tả mã PIN gần đây của bạn.",
+  "token_page_step_0_5": "Kiểm tra tất cả tiến trình đúc của Mô tả mã PIN"
 }
