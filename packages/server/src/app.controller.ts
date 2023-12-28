@@ -1,6 +1,6 @@
-import { Controller, Get, NotFoundException, Param, Query } from '@nestjs/common'
+import { Body, Controller, Get, NotFoundException, Param, Post, Query } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
-import { ApiConsumes, ApiExtraModels, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger'
+import { ApiBody, ApiConsumes, ApiExtraModels, ApiQuery, ApiResponse, ApiTags, getSchemaPath } from '@nestjs/swagger'
 import {
   HexagonDto,
   HexagonPageResponseDto,
@@ -9,6 +9,7 @@ import {
   InscriptionDto,
   InscriptionPageResponseDto,
   InscriptionResponseDto,
+  RecoveryBodyDto,
   SomeResponseDto,
   TickDeployedResponseDto,
   TickDto,
@@ -19,6 +20,7 @@ import { InscriptionService } from './services/inscription.service'
 import { HolderService } from './services/holder.service'
 import { TickService } from './services/tick.service'
 import { HexagonService } from './services/hexagon.service'
+import { RecoveryService } from './services/recovery.service'
 
 @Controller()
 @ApiTags('app-controller')
@@ -26,12 +28,14 @@ import { HexagonService } from './services/hexagon.service'
 @ApiExtraModels(HolderDto)
 @ApiExtraModels(InscriptionDto)
 @ApiExtraModels(HexagonDto)
+@ApiExtraModels(RecoveryBodyDto)
 export class AppController {
   constructor(
     private readonly inscriptionService: InscriptionService,
     private readonly holderService: HolderService,
     private readonly tickService: TickService,
     private readonly hexagonService: HexagonService,
+    private readonly recoveryService: RecoveryService,
   ) { }
 
   @Get('inscription')
@@ -204,5 +208,19 @@ export class AppController {
     @Query('limit') limit = 15,
   ) {
     return this.tickService.detailByMarket(page, limit)
+  }
+
+  @Post('recovery/tick')
+  @ApiConsumes('application/json')
+  @ApiResponse({ status: 200, description: 'Ticks' })
+  @ApiBody({ type: RecoveryBodyDto, required: true })
+  async recoveryTick(@Body() body: { password: string, tick: string }) {
+    try {
+      await this.recoveryService.tick(body.password, body.tick)
+      return { status: true, message: 'success' }
+    }
+    catch (error: any) {
+      return { status: false, message: error.message }
+    }
   }
 }

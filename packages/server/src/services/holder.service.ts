@@ -41,6 +41,10 @@ export class HolderService {
     })
   }
 
+  async delete(where: Prisma.HolderWhereInput) {
+    return this.prisma.holder.deleteMany({ where })
+  }
+
   async incrementValue(params: QueryHolderParams, data: { value: number, number: number }) {
     const isExist = await this.some(params)
     if (!isExist) {
