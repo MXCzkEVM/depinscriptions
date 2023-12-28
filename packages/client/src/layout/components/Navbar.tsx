@@ -24,7 +24,7 @@ const LayoutNavbar: React.FC = () => {
   const { isOpen, setIsOpen } = useNavbarContext()
   const isMobile = width < 768
 
-  const [showExample, setShowExample] = useGlobalPersonalExample()
+  const [_, setShowExample] = useGlobalPersonalExample()
   const openDeployDialog = useMittEmit('inscription:deploy-open')
   const cancelDeployDialog = useMittEmit('inscription:deploy-cancel')
   const options: GuidePageOptions = {
@@ -140,7 +140,7 @@ const LayoutNavbar: React.FC = () => {
         '.personal_page_step_1': {
           invoke: () => setShowExample(true),
           unvoke: () => setShowExample(false),
-          cond: () => showExample,
+          // cond: () => showExample,
         },
       },
       onFinish: () => {
