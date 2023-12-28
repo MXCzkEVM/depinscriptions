@@ -85,7 +85,7 @@
   "Tutorial": "Handleiding",
   "Last": "Laatst",
   "Finish": "Finish",
-  "token_page_step_1": "Controleer alle voortgang bij het aanmaken van de DePINscriptions, klik op de details van elke code om deel te nemen aan het muntproces.",
+  "token_page_step_1": "Klik op de details van elke code om deel te nemen aan het muntproces.",
   "token_page_step_2": "Als u uw favoriete DePINscription niet kunt vinden, klikt u op Zelf implementeren.",
   "token_page_step_3": "Klik op de ticker om de code voor uw land/regio te kiezen die u wilt implementeren. Momenteel kunt u slechts één keer per code implementeren.",
   "token_page_step_4": "Zet daar de limiet per munt en het totale aanbod, deze kan niet worden gewijzigd, wees voorzichtig met de hoeveelheden.",
@@ -93,5 +93,6 @@
   "tokens_detail_page_step_1": "Klik op Mint om deel te nemen aan het mintingproces van uw DePINscription",
   "personal_page_step_1": "U kunt uw Inschrijving overbrengen naar andere adressen.",
   "personal_page_step_2": "Plaats uw DePINscription op de marktplaats. Houd er rekening mee dat als uw inschrijving nog niet op de marktplaats staat, deze niet wordt geïndexeerd. U kunt deze verwijderen zodra deze kan worden verhandeld.",
-  "personal_page_step_3": "Klik op inschrijvingen om uw recente DePINscription-gegevens te bekijken."
+  "personal_page_step_3": "Klik op inschrijvingen om uw recente DePINscription-gegevens te bekijken.",
+  "token_page_step_0_5": "Controleer alle voortgang bij het maken van de DePINscriptions"
 }

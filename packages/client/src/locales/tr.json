@@ -89,7 +89,7 @@
   "Tutorial": "öğretici",
   "Last": "Son",
   "Finish": "Sona ermek",
-  "token_page_step_1": "DePINscription'ların tüm basım ilerlemesini kontrol edin, basım sürecine katılmak için her kodun ayrıntılarına tıklayın.",
+  "token_page_step_1": "Basım sürecine katılmak için her kodun ayrıntılarına tıklayın.",
   "token_page_step_2": "Favori DePINscription'ınızı bulamazsanız, konuşlandırmayı kendiniz yapmalısınız.",
   "token_page_step_3": "Ülkenize/bölgenize dağıtılacak kodu seçmek için İşaretçiyi tıklayın; şu anda kod başına yalnızca bir kez dağıtabilirsiniz.",
   "token_page_step_4": "Darphane başına limiti ve toplam arzı oraya koyun, değiştirilemez, miktarlara dikkat edin.",
@@ -97,5 +97,6 @@
   "tokens_detail_page_step_1": "DePINscription'ınızın basım sürecine katılmak için Mint'e tıklayın",
   "personal_page_step_1": "Yazınızı başka adreslere aktarabilirsiniz.",
   "personal_page_step_2": "DePINscription'ınızı piyasada listeleyin; yazıtınız henüz piyasada listelenmemişse indekslenmeyeceğini, işlem görmeye başladıktan sonra onu listeden çıkarabileceğinizi lütfen unutmayın.",
-  "personal_page_step_3": "En son DePINscription verilerinizi görüntülemek için yazılara tıklayın."
+  "personal_page_step_3": "En son DePINscription verilerinizi görüntülemek için yazılara tıklayın.",
+  "token_page_step_0_5": "DePINscriptions'ın tüm basım ilerlemesini kontrol edin"
 }

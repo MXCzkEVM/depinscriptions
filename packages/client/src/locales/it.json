@@ -85,7 +85,7 @@
   "Tutorial": "Esercitazione",
   "Last": "Scorso",
   "Finish": "Fine",
-  "token_page_step_1": "Controlla tutti i progressi del conio delle DePINscription, fai clic sui dettagli di ciascun codice per partecipare al processo di conio.",
+  "token_page_step_1": "Fai clic sui dettagli di ciascun codice per partecipare al processo di conio.",
   "token_page_step_2": "Se non trovi la tua DePINscrizione preferita, dovresti fare clic su Distribuisci tu stesso.",
   "token_page_step_3": "Fai clic sul ticker per scegliere il codice da implementare per il tuo paese/regione. Al momento puoi eseguire l'implementazione solo una volta per codice.",
   "token_page_step_4": "Metti lì il limite per conio e fornitura totale, non può essere modificato, fai attenzione agli importi.",
@@ -93,5 +93,6 @@
   "tokens_detail_page_step_1": "Fai clic su Mint per partecipare al processo di conio della tua DePINscription",
   "personal_page_step_1": "Puoi trasferire la tua Iscrizione ad altri indirizzi.",
   "personal_page_step_2": "Elenca la tua DePINscription sul marketplace, tieni presente che se la tua iscrizione non è ancora elencata sul marketplace non verrà indicizzata, potrai rimuoverla una volta che potrà essere scambiata.",
-  "personal_page_step_3": "Fai clic sulle iscrizioni per visualizzare i dati DePINscription recenti."
+  "personal_page_step_3": "Fai clic sulle iscrizioni per visualizzare i dati DePINscription recenti.",
+  "token_page_step_0_5": "Controlla tutti i progressi del conio delle DePINscription"
 }

@@ -269,6 +269,27 @@
         ]
       }
     },
+    "/token/deployed": {
+      "get": {
+        "operationId": "AppController_getTicksByDeployed",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Ticks",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TickDeployedResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "app-controller"
+        ]
+      }
+    },
     "/token/some/{id}": {
       "get": {
         "operationId": "AppController_getTickSome",
@@ -633,6 +654,20 @@
         },
         "required": [
           "total",
+          "data"
+        ]
+      },
+      "TickDeployedResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
           "data"
         ]
       }

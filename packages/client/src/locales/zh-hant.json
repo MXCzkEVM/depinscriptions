@@ -85,7 +85,7 @@
   "Tutorial": "教學",
   "Last": "最後",
   "Finish": "結束",
-  "token_page_step_1": "查看DePINscriptions的所有鑄幣進度，點擊每個代碼的詳情即可參與鑄幣過程。",
+  "token_page_step_1": "點擊每個代碼的詳細資訊即可參與鑄造過程。",
   "token_page_step_2": "如果您沒有找到您最喜歡的 DePINscription，您應該按一下「自行部署」。",
   "token_page_step_3": "按一下程式碼選擇您所在國家/地區要部署的程式碼，目前每個程式碼只能部署一次。",
   "token_page_step_4": "把每枚硬幣的限額和總供應量放在那裡，它不能改變，要小心數量。",
@@ -93,5 +93,6 @@
   "tokens_detail_page_step_1": "點擊 Mint 參與您的 DePINscription 的鑄造過程",
   "personal_page_step_1": "您可以將您的銘文轉移到其他地址。",
   "personal_page_step_2": "在市場上列出您的 DePINscription，請注意，如果您的銘文尚未在市場上列出，則不會被索引，一旦可以交易，您將能夠將其下架。",
-  "personal_page_step_3": "點擊銘文可查看您最近的 DePINscription 資料。"
+  "personal_page_step_3": "點擊銘文可查看您最近的 DePINscription 資料。",
+  "token_page_step_0_5": "查看DePINscriptions的所有鑄幣進度"
 }

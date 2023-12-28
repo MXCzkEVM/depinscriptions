@@ -85,7 +85,7 @@
   "Tutorial": "Didacticiel",
   "Last": "Dernier",
   "Finish": "Finition",
-  "token_page_step_1": "Vérifiez toute la progression de la frappe des DePINscriptions, cliquez sur les détails de chaque code pour participer au processus de frappe.",
+  "token_page_step_1": "Cliquez sur les détails de chaque code pour participer au processus de frappe.",
   "token_page_step_2": "Si vous ne trouvez pas votre DePINscription préférée, vous devez cliquer sur déployer vous-même.",
   "token_page_step_3": "Cliquez sur le ticker pour choisir le code à déployer pour votre pays/région. Actuellement, vous ne pouvez déployer qu'une seule fois par code.",
   "token_page_step_4": "Mettez-y la limite par menthe et l'approvisionnement total, cela ne peut pas être modifié, faites attention aux quantités.",
@@ -93,5 +93,6 @@
   "tokens_detail_page_step_1": "Cliquez sur Mint pour participer au processus de création de votre DePINscription",
   "personal_page_step_1": "Vous pouvez transférer votre inscription vers d'autres adresses.",
   "personal_page_step_2": "Listez votre DePINscription sur la place de marché, veuillez noter que si votre inscription n'est pas encore répertoriée sur la place de marché, elle ne sera pas indexée, vous pourrez la supprimer une fois qu'elle pourra être échangée.",
-  "personal_page_step_3": "Cliquez sur inscriptions pour afficher vos données DePINscription récentes."
+  "personal_page_step_3": "Cliquez sur inscriptions pour afficher vos données DePINscription récentes.",
+  "token_page_step_0_5": "Vérifiez toute la progression de la frappe des DePINscriptions"
 }
