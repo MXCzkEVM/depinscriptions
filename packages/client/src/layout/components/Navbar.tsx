@@ -11,6 +11,8 @@ import LocaleButton from './LocaleButton'
 import GuidePage, { GuidePageRef, Trigger } from '@/components/GuidePage'
 import { useGlobalPersonalExample, useMittEmit } from '@/hooks'
 
+Navbar.Locale = LocaleButton
+
 type GuidePageOptions = Record<string, {
   steps: Step[]
   triggers?: Record<any, Trigger>
@@ -167,12 +169,8 @@ const LayoutNavbar: React.FC = () => {
         <div className="scale-[0.85] -mx-2 md:mx-0 md:scale-90">
           <ConnectButton showBalance={true} accountStatus={width > 885 ? 'full' : 'avatar'} />
         </div>
-        <div className="root_step_1 scale-[0.85] sm:scale-100">
-          <Navbar.Toggle className="text-[rgba(255,255,255,0.6)] hover:bg-transparent" />
-        </div>
-        <span className="scale-[0.85] sm:scale-100">
-          <LocaleButton />
-        </span>
+        <Navbar.Toggle className="root_step_1 scale-[0.85] sm:scale-100 text-[rgba(255,255,255,0.6)] hover:bg-transparent" />
+        <Navbar.Locale className="scale-[0.85] sm:scale-100" />
         <GuidePage
           ref={guideRef}
           triggers={options[router.pathname]?.triggers}
@@ -188,7 +186,6 @@ const LayoutNavbar: React.FC = () => {
         <div className="root_step_4 text-[18px] cursor-pointer p-2 md:p-0 text-[hsla(0,0%,100%,.6)] hover:text-white" onClick={() => router.push(`/market`)}>{t('Marketplace')}</div>
         <div className="root_step_4 text-[18px] cursor-pointer p-2 md:p-0 text-[hsla(0,0%,100%,.6)] hover:text-white" onClick={() => guideRef.current?.load()}>{t('Tutorial')}</div>
       </Navbar.Collapse>
-
     </>
   )
 }

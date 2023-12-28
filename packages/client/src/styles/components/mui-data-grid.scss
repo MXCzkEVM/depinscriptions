@@ -1,0 +1,10 @@
+.MuiDataGrid-cell:focus-within,
+.MuiDataGrid-cell:focus {
+  outline: none !important
+}
+
+.MuiDataGrid-virtualScroller::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  background: transparent;
+}
