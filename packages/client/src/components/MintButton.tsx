@@ -12,6 +12,7 @@ import { useMittEmit } from '@/hooks/useMittEmit'
 
 export interface MintButtonProps {
   token?: TickDto
+  className?: string
 }
 
 function MintButton(props: MintButtonProps) {
@@ -67,7 +68,7 @@ function MintButton(props: MintButtonProps) {
 
   return (
     <>
-      <LoadingButton disabled={!props.token} loading={isButtonLoading} variant="contained" onClick={mint}>
+      <LoadingButton className={props.className} disabled={!props.token} loading={isButtonLoading} variant="contained" onClick={mint}>
         {t('Mint Directly')}
       </LoadingButton>
       {holderLocationMl}

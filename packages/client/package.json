@@ -24,6 +24,7 @@
     "@wagmi/core": "^0.8.11",
     "axios": "^1.6.2",
     "bignumber.js": "^9.1.2",
+    "classnames": "^2.4.0",
     "dayjs": "^1.11.10",
     "ethers": "^5.7.2",
     "flowbite": "^2.2.1",

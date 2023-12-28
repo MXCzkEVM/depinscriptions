@@ -82,5 +82,17 @@
   "root_step_3": "É a sua carteira que mostra os seus acervos e valores de inscrições, você pode listá-los e transferi-los para lá.",
   "root_step_4": "Negocie-os no mercado DePINscription",
   "root_step_1_5": "Veja scripts indexados aqui",
-  "Tutorial": "Tutorial"
+  "Tutorial": "Tutorial",
+  "Last": "Durar",
+  "Finish": "Terminar",
+  "token_page_step_1": "Clique nos detalhes de cada código para participar do processo de cunhagem.",
+  "token_page_step_2": "Se você não encontrar seu DePINscription favorito, clique em implantar você mesmo.",
+  "token_page_step_3": "Clique no ticker para escolher o código para seu país/região a ser implantado. Atualmente, você só pode implantar uma vez por código.",
+  "token_page_step_4": "Coloque aí o limite por casa da moeda e oferta total, não pode ser alterado, tome cuidado com as quantidades.",
+  "token_page_step_5": "Clique em Implementar para finalizar o novo processo de implantação do DePINscription.",
+  "tokens_detail_page_step_1": "Clique em Mint para participar do processo de cunhagem de sua DePINscription",
+  "personal_page_step_1": "Você pode transferir sua inscrição para outros endereços.",
+  "personal_page_step_2": "Liste sua inscrição DePIN no mercado, observe que se sua inscrição ainda não estiver listada no mercado, ela não será indexada, você poderá removê-la assim que puder ser negociada.",
+  "personal_page_step_3": "Clique nas inscrições para visualizar seus dados DePINscription recentes.",
+  "token_page_step_0_5": "Verifique todo o andamento da cunhagem dos DePINscriptions"
 }

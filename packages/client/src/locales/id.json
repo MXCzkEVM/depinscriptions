@@ -82,5 +82,17 @@
   "root_step_3": "Dompet Andalah yang menunjukkan kepemilikan dan jumlah prasasti Anda, Anda dapat membuat daftar dan mentransfernya ke sana.",
   "root_step_4": "Perdagangkan di pasar DePINscription",
   "root_step_1_5": "Lihat skrip yang diindeks di sini",
-  "Tutorial": "tutorial"
+  "Tutorial": "tutorial",
+  "Last": "Terakhir",
+  "Finish": "Menyelesaikan",
+  "token_page_step_1": "Klik detail setiap kode untuk berpartisipasi dalam proses pembuatan.",
+  "token_page_step_2": "Jika Anda tidak menemukan deskripsi DePIN favorit Anda, Anda harus mengklik terapkan sendiri.",
+  "token_page_step_3": "Klik Ticker untuk memilih kode yang akan diterapkan di negara/wilayah Anda, saat ini Anda hanya dapat menerapkan satu kali per kode.",
+  "token_page_step_4": "Cantumkan batasan per mint dan total persediaan di sana, tidak dapat diubah, hati-hati dengan jumlahnya.",
+  "token_page_step_5": "Klik Deploy untuk menyelesaikan proses penerapan DePINscription baru.",
+  "tokens_detail_page_step_1": "Klik Mint untuk berpartisipasi dalam proses pembuatan DePINscription Anda",
+  "personal_page_step_1": "Anda dapat mentransfer Prasasti Anda ke alamat lain.",
+  "personal_page_step_2": "Cantumkan DePINscription Anda di Marketplace, harap dicatat bahwa jika prasasti Anda belum terdaftar di Marketplace, maka tidak akan terindeks, Anda akan dapat menghapusnya setelah dapat diperdagangkan.",
+  "personal_page_step_3": "Klik prasasti untuk melihat data DePINscription terbaru Anda.",
+  "token_page_step_0_5": "Periksa semua kemajuan pencetakan DePINscriptions"
 }

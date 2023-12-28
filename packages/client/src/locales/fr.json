@@ -82,5 +82,17 @@
   "root_step_3": "C'est votre portefeuille qui affiche vos avoirs et montants d'inscription, vous pouvez y lister et les transférer.",
   "root_step_4": "Échangez-les sur le marché DePINscription",
   "root_step_1_5": "Afficher les scripts indexés ici",
-  "Tutorial": "Didacticiel"
+  "Tutorial": "Didacticiel",
+  "Last": "Dernier",
+  "Finish": "Finition",
+  "token_page_step_1": "Cliquez sur les détails de chaque code pour participer au processus de frappe.",
+  "token_page_step_2": "Si vous ne trouvez pas votre DePINscription préférée, vous devez cliquer sur déployer vous-même.",
+  "token_page_step_3": "Cliquez sur le ticker pour choisir le code à déployer pour votre pays/région. Actuellement, vous ne pouvez déployer qu'une seule fois par code.",
+  "token_page_step_4": "Mettez-y la limite par menthe et l'approvisionnement total, cela ne peut pas être modifié, faites attention aux quantités.",
+  "token_page_step_5": "Cliquez sur Déployer pour terminer le nouveau processus de déploiement DePINscription.",
+  "tokens_detail_page_step_1": "Cliquez sur Mint pour participer au processus de création de votre DePINscription",
+  "personal_page_step_1": "Vous pouvez transférer votre inscription vers d'autres adresses.",
+  "personal_page_step_2": "Listez votre DePINscription sur la place de marché, veuillez noter que si votre inscription n'est pas encore répertoriée sur la place de marché, elle ne sera pas indexée, vous pourrez la supprimer une fois qu'elle pourra être échangée.",
+  "personal_page_step_3": "Cliquez sur inscriptions pour afficher vos données DePINscription récentes.",
+  "token_page_step_0_5": "Vérifiez toute la progression de la frappe des DePINscriptions"
 }

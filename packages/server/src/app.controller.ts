@@ -10,6 +10,7 @@ import {
   InscriptionPageResponseDto,
   InscriptionResponseDto,
   SomeResponseDto,
+  TickDeployedResponseDto,
   TickDto,
   TickPageResponseDto,
 } from './dtos'
@@ -101,6 +102,7 @@ export class AppController {
       where: { tik: tick },
     })
     const data = await this.hexagonService.lists({
+      orderBy: { mit: 'desc' },
       skip: (page - 1) * limit,
       take: +limit,
       where: { tik: tick },
@@ -157,12 +159,24 @@ export class AppController {
       where.completedTime = { not: null }
     const total = await this.tickService.count({ where })
     const data = await this.tickService.lists({
-      orderBy: { lastTime: 'desc' },
+      orderBy: { holders: 'desc' },
       skip: (page - 1) * limit,
       take: +limit,
       where,
     })
     return { total, data }
+  }
+
+  @Get('token/deployed')
+  @ApiConsumes('application/json')
+  @ApiResponse({ status: 200, type: TickDeployedResponseDto, description: 'Ticks' })
+  async getTicksByDeployed() {
+    const data = await this.tickService.lists({
+      select: { tick: true },
+    })
+    return {
+      data: data.map(v => v.tick),
+    }
   }
 
   @Get('token/some/:id')

@@ -6,12 +6,13 @@ import { LoadingButton } from '@mui/lab'
 import { useTranslation } from 'react-i18next'
 import toast from 'react-hot-toast'
 import { HelpCircleOutline } from '@ricons/ionicons5'
+import { useAsync } from 'react-use'
 import CountryFlag from './CountryFlag'
 import Icon from './Icon'
 import DeployIsoHelpDialog from './DeployIsoHelpDialog'
-import { useSendSatsTransaction } from '@/hooks'
-import { countries } from '@/config'
-import { getTokenSomeId } from '@/api'
+import { useMittOn, useSendSatsTransaction } from '@/hooks'
+import { countries as _countries } from '@/config'
+import { getTokenDeployed, getTokenSomeId } from '@/api'
 
 function DeployDialog() {
   const { visible, resolve, reject } = useOverlay({
@@ -27,6 +28,9 @@ function DeployDialog() {
     tick: '',
     total: '',
     limit: '',
+  })
+  const { value: deployed = [] } = useAsync(async () => {
+    return await getTokenDeployed().then(r => r.data)
   })
 
   const { sendTransaction, isLoading } = useSendSatsTransaction({
@@ -68,7 +72,7 @@ function DeployDialog() {
 
   function renderTickLabel() {
     return (
-      <div className="flex items-center pt-4 gap-2">
+      <div className="flex items-center pt-2 gap-2">
         <span>{t('Tick')}</span>
         <Icon className="cursor-pointer" onClick={openDeployIsoHelp} size={18}>
           <HelpCircleOutline />
@@ -77,39 +81,44 @@ function DeployDialog() {
     )
   }
 
+  const countries = _countries.filter(item => !deployed.includes(item.code))
+
+  useMittOn('inscription:deploy-cancel', onClose)
+
   return (
     <>
       <Dialog
-        aria-describedby="alert-dialog-slide-description"
+        className="token_page_step_2_target"
+        aria-describedby="deploy-dialog-slide"
         open={visible}
         keepMounted
         onClose={onClose}
       >
         <DialogTitle>{t('MSC-20 Deploy')}</DialogTitle>
         <DialogContent className="max-w-[550px] md:min-w-[550px]">
-          <DialogContentText id="alert-dialog-slide-description">
-            <Field label={t('Protocol')}>
+          <DialogContentText id="deploy-dialog-slide">
+            <Field className="mb-4" label={t('Protocol')}>
               MSC-20
             </Field>
-            <div className="flex flex-col gap-3">
-              <Field label={renderTickLabel()}>
-                <FormControl error={!!errors.tick} variant="standard" className="w-full">
-                  <InputLabel id="country">{t('Country and Region')}</InputLabel>
-                  <Select
-                    labelId="country"
-                    id="country"
-                    placeholder="Country and Region"
-                    onChange={event => setCountry(event.target.value)}
-                    value={country}
-                  >
-                    {countries.map(country => (
-                      <MenuItem key={country.code} value={country.code}>
-                        <CountryFlag code={country.code} image={country.image} />
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              </Field>
+            <Field className="token_page_step_3 mb-3" label={renderTickLabel()}>
+              <FormControl error={!!errors.tick} variant="standard" className="w-full -mt-4">
+                <InputLabel id="country">{t('Country and Region')}</InputLabel>
+                <Select
+                  labelId="country"
+                  id="country"
+                  placeholder="Country and Region"
+                  onChange={event => setCountry(event.target.value)}
+                  value={country}
+                >
+                  {countries.map(country => (
+                    <MenuItem key={country.code} value={country.code}>
+                      <CountryFlag code={country.code} image={country.image} />
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Field>
+            <div className="token_page_step_4 flex flex-col gap-3">
               <Field label={t('Total Supply')}>
                 <Input
                   error={!!errors.total}
@@ -136,7 +145,7 @@ function DeployDialog() {
         </DialogContent>
         <DialogActions>
           <Button color="inherit" variant="contained" onClick={onClose}>{t('Cancel')}</Button>
-          <LoadingButton loading={isLoading} variant="contained" onClick={onResolve}>{t('Deploy')}</LoadingButton>
+          <LoadingButton className="token_page_step_5" loading={isLoading} variant="contained" onClick={onResolve}>{t('Deploy')}</LoadingButton>
         </DialogActions>
       </Dialog>
       {holder}

@@ -82,5 +82,17 @@
   "root_step_3": "In Ihrem Wallet werden Ihre Inschriftenbestände und Beträge angezeigt, Sie können diese dort auflisten und übertragen.",
   "root_step_4": "Handeln Sie sie auf dem DePINscription-Marktplatz",
   "root_step_1_5": "Sehen Sie sich hier indizierte Skripte an",
-  "Tutorial": "Lernprogramm"
+  "Tutorial": "Lernprogramm",
+  "Last": "Zuletzt",
+  "Finish": "Beenden",
+  "token_page_step_1": "Klicken Sie auf die Details jedes Codes, um am Prägungsprozess teilzunehmen.",
+  "token_page_step_2": "Wenn Sie Ihre bevorzugte DePINscription nicht finden, sollten Sie auf „Selbst bereitstellen“ klicken.",
+  "token_page_step_3": "Klicken Sie auf den Ticker, um den Code für Ihr Land/Ihre Region auszuwählen, der bereitgestellt werden soll. Derzeit können Sie nur einmal pro Code bereitstellen.",
+  "token_page_step_4": "Geben Sie dort das Limit pro Minze und den Gesamtvorrat ein, es kann nicht geändert werden, seien Sie vorsichtig mit den Mengen.",
+  "token_page_step_5": "Klicken Sie auf „Bereitstellen“, um den neuen DePINscription-Bereitstellungsprozess abzuschließen.",
+  "tokens_detail_page_step_1": "Klicken Sie auf Mint, um am Minting-Prozess Ihrer DePINscription teilzunehmen",
+  "personal_page_step_1": "Sie können Ihre Anmeldung auf andere Adressen übertragen.",
+  "personal_page_step_2": "Listen Sie Ihre DePIN-Einschreibung auf dem Marktplatz auf. Bitte beachten Sie, dass Ihre Eintragung, wenn sie noch nicht auf dem Marktplatz gelistet ist, nicht indexiert wird. Sie können sie jedoch aus der Liste entfernen, sobald sie gehandelt werden kann.",
+  "personal_page_step_3": "Klicken Sie auf Einträge, um Ihre aktuellen DePINscription-Daten anzuzeigen.",
+  "token_page_step_0_5": "Überprüfen Sie den gesamten Prägefortschritt der DePINscriptions"
 }
