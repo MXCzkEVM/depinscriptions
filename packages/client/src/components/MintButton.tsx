@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 import LocationModal from './LocationModal'
 import WaitingIndexModal from './WaitingIndexModal'
 import { TickDto } from '@/api/index.type'
-import { useSendSatsTransaction } from '@/hooks'
+import { useEventBus, useSendSatsTransaction } from '@/hooks'
 import { getCurrentPosition } from '@/utils'
 import { useMittEmit } from '@/hooks/useMittEmit'
 
@@ -23,8 +23,7 @@ function MintButton(props: MintButtonProps) {
   const [holderLocationMl, openLocationModal] = useInjectHolder(LocationModal)
   const [holderWaitingMl, openWaitingIndexModal] = useInjectHolder(WaitingIndexModal)
 
-  const reloadTable = useMittEmit('reload:table')
-  const reloadPage = useMittEmit('reload:page')
+  const bus = useEventBus('reload:page')
 
   const { isLoading: isButtonLoading, sendTransaction, isConfigFetched } = useSendSatsTransaction({
     data: {
@@ -36,8 +35,7 @@ function MintButton(props: MintButtonProps) {
     },
     async onSuccess({ hash }) {
       await openWaitingIndexModal({ hash })
-      reloadTable()
-      reloadPage()
+      bus.emit()
     },
   })
 

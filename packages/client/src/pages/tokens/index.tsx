@@ -15,7 +15,7 @@ import { TickDto } from '@/api/index.type'
 import { percentage } from '@/utils'
 import { getToken } from '@/api'
 import WaitingIndexModal from '@/components/WaitingIndexModal'
-import { useGridPaginationFields, useMittOn, useServerPagination, useWatch } from '@/hooks'
+import { useEventBus, useGridPaginationFields, useMittOn, useServerPagination, useWatch } from '@/hooks'
 
 // Retrieve tokens deployed by a user
 function Page() {
@@ -89,8 +89,7 @@ function Page() {
     await openWaitingIndexModal({ hash })
     await controls.reload()
   }
-
-  useMittOn('inscription:deploy-open', deploy)
+  useEventBus('dialog:deploy').on(deploy)
   useWatch([type], controls.reload)
 
   return (

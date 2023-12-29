@@ -1,6 +1,5 @@
-import { Button, Menu, MenuItem } from '@mui/material'
-import { Language } from '@ricons/ionicons5'
-import { useTranslation } from 'react-i18next'
+import { Menu, MenuItem } from '@mui/material'
+import { Language as IconLanguage } from '@ricons/ionicons5'
 import classNames from 'classnames'
 import { useState } from 'react'
 import { LOCALE_TEXTS } from '@/config'
@@ -9,7 +8,7 @@ import { Icon } from '@/components'
 
 const locales = Object.keys(LOCALE_TEXTS).map(key => ({ value: key, label: LOCALE_TEXTS[key] }))
 
-function LocaleButton(props: { type?: 'text' | 'icon', className?: string }) {
+function Language(props: { type?: 'text' | 'icon', className?: string }) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -41,7 +40,7 @@ function LocaleButton(props: { type?: 'text' | 'icon', className?: string }) {
         ])}
       >
         <Icon size={24}>
-          <Language />
+          <IconLanguage />
         </Icon>
       </button>
       <Menu
@@ -59,15 +58,8 @@ function LocaleButton(props: { type?: 'text' | 'icon', className?: string }) {
           </MenuItem>
         ))}
       </Menu>
-      {/* <Dropdown label="Language" renderTrigger={() => props.type === 'text' ? renderTriggerText() : renderTriggerIcon()}>
-        {locales.map(({ label, value }) => (
-          <Dropdown.Item key={value} onClick={() => changeLocal(value)}>
-            {label}
-          </Dropdown.Item>
-        ))}
-      </Dropdown> */}
     </>
   )
 }
 
-export default LocaleButton
+export default Language
