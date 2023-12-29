@@ -90,7 +90,7 @@ export class TasksService {
         }
         catch (error) {
           if (error.name.startsWith('Prisma'))
-            this.logger.warn(`[prisma:${error.code}] ${error.name}: ${error.meta.modelName} - ${error.meta.target}`)
+            this.logger.warn(`[prisma:${error?.code}] ${error?.name}: ${error.meta?.modelName} - ${error.meta?.target}`)
           else
             this.logger.warn(error.message)
         }
