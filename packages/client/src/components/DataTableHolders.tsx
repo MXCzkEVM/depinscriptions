@@ -88,7 +88,7 @@ function DataTableHolders(props: DataTableHoldersProps) {
   return (
     <Condition is={props.token && state.value.length} else={<Empty loading={!props.token || state.loading} />}>
       <DataGrid
-        className="border-none data-grid-with-row-pointer"
+        className="border-none"
         {...gridPaginationFields}
         loading={state.loading || !props.token}
         getRowId={row => row.index}

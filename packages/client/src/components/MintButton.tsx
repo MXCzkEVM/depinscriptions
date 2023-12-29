@@ -8,7 +8,6 @@ import WaitingIndexModal from './WaitingIndexModal'
 import { TickDto } from '@/api/index.type'
 import { useEventBus, useSendSatsTransaction } from '@/hooks'
 import { getCurrentPosition } from '@/utils'
-import { useMittEmit } from '@/hooks/useMittEmit'
 
 export interface MintButtonProps {
   token?: TickDto
