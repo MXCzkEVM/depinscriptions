@@ -10,7 +10,7 @@ import { useAsync } from 'react-use'
 import CountryFlag from './CountryFlag'
 import Icon from './Icon'
 import DeployIsoHelpDialog from './DeployIsoHelpDialog'
-import { useMittOn, useSendSatsTransaction } from '@/hooks'
+import { useEventBus, useSendSatsTransaction } from '@/hooks'
 import { countries as _countries } from '@/config'
 import { getTokenDeployed, getTokenSomeId } from '@/api'
 
@@ -83,7 +83,7 @@ function DeployDialog() {
 
   const countries = _countries.filter(item => !deployed.includes(item.code))
 
-  useMittOn('inscription:deploy-cancel', onClose)
+  useEventBus('dialog:cancel').on(onClose)
 
   return (
     <>

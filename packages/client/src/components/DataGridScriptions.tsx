@@ -3,8 +3,7 @@ import { LoadingButton } from '@mui/lab'
 import Condition from './Condition'
 import { BoxScription, Empty, InfiniteScroll } from '.'
 import { getInscription } from '@/api'
-import { useMittOn } from '@/hooks/useMittOn'
-import { useServerPaginationConcat } from '@/hooks'
+import { useEventBus, useServerPaginationConcat } from '@/hooks'
 import { useWhenever } from '@/hooks/useWhenever'
 
 export interface DataGridScriptionsProps {
@@ -16,7 +15,7 @@ function DataGridScriptions(props: DataGridScriptionsProps) {
     resolve: model => getInscription({ ...model, owner: props.address || '' }),
   })
 
-  useMittOn('reload:page', reload)
+  useEventBus('reload:page').on(reload)
   useWhenever(props.address, reload)
   useMount(reload)
   return (

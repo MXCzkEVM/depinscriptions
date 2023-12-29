@@ -4,7 +4,7 @@ project consisting of a client-side application built with Next.js and a server-
 
 ## Directories
 
-The project is organized into the following directories:
+The project use monorepo for multiple packages is organized into the following directories:
 
 - `packages/client`: Contains the client-side application built with Next.js.
 - `packages/server`: Contains the server-side application built with NestJS.
@@ -43,6 +43,33 @@ pnpm genapi
 > do not push code on the testnet and mainnet branches, as this can lead to confusion
 
 > The best practice is to develop through the main branch, where testnet/mainnet merge the main branch
+
+### Production
+
+If you want to upload the client to the production environment, please push it to the testnet and mainnet branches.
+
+```sh
+git checkout testnet
+git merge main
+git pull
+# or
+git checkout mainnet
+git merge main
+git pull
+```
+
+To restart the production server for the server-side application, run the following command in remote server:
+
+```sh
+cd /mxc/depinscriptions-wannsee
+git pull
+pm2 restart depinscriptions-wannsee
+# or
+cd /mxc/depinscriptions-mainnet
+git pull
+pm2 restart depinscriptions-mainnet
+```
+
 ### Building
 
 To build the client-side application, run the following command:
@@ -62,19 +89,3 @@ To compile and upload the database using Prisma, run the following command:
 ```sh
 pnpm build:prisma
 ```
-
-### Production
-
-To restart the production server for the server-side application, run the following command in remote server:
-
-```sh
-cd /mxc/depinscriptions-wannse
-git pull
-pm2 restart depinscriptions-wannsee
-# or
-cd /mxc/depinscriptions-mainnet
-git pull
-pm2 restart depinscriptions-mainnet
-```
-
-If you want to upload the client to the production environment, please push it to the testnet and mainnet branches.

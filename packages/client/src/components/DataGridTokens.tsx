@@ -1,13 +1,13 @@
 import { useMount } from 'react-use'
 import { LoadingButton } from '@mui/lab'
 import { useAccount } from 'wagmi'
+import { useState } from 'react'
 import Condition from './Condition'
 import Empty from './Empty'
 import BoxToken from './BoxToken'
 import InfiniteScroll from './InfiniteScroll'
 import { getHolder } from '@/api'
-import { useMittOn } from '@/hooks/useMittOn'
-import { useGlobalPersonalExample, useServerPaginationConcat } from '@/hooks'
+import { useEventBus, useServerPaginationConcat } from '@/hooks'
 import { useWhenever } from '@/hooks/useWhenever'
 
 export interface DataGridTokensProps {
@@ -19,7 +19,7 @@ function DataGridTokens(props: DataGridTokensProps) {
     resolve: model => getHolder({ ...model, owner: props.address || '' }),
   })
   const { address } = useAccount()
-  const [showExample] = useGlobalPersonalExample()
+  const [showExample, setShowExample] = useState(false)
 
   const example = {
     id: 1,
@@ -29,8 +29,9 @@ function DataGridTokens(props: DataGridTokensProps) {
     value: 10000,
   }
 
-  useMittOn('reload:page', reload)
-  useMittOn('deploy-reload:page', reload)
+  useEventBus<boolean>('setter:setShowPersonalExample').on(setShowExample)
+  useEventBus<unknown>('reload:page').on(reload)
+
   useWhenever(props.address, reload)
   useMount(reload)
 
