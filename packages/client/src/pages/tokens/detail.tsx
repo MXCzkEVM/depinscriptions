@@ -8,14 +8,17 @@ import dayjs from 'dayjs'
 import { useTranslation } from 'react-i18next'
 import { Layout } from '@/layout'
 import { ChainLink, CountryFlag, DataTableHexagons, DataTableHolders, FieldCol, Icon, LinearProgressWithLabel, MintButton } from '@/components'
-import { useEventBus, useRouterQuery } from '@/hooks'
+import { useEventBus, useRouterParams } from '@/hooks'
 import { getTokenId } from '@/api'
 import { percentage, thousandBitSeparator } from '@/utils'
 
 function Page() {
   const router = useRouter()
   const { t } = useTranslation()
-  const tokenId = useRouterQuery('token')
+  const tokenId = useRouterParams('token', {
+    replace: '/tokens',
+    persistant: true,
+  })
 
   const [tab, setTab] = useState(0)
 
