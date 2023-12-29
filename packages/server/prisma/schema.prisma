@@ -14,9 +14,9 @@ generator client {
 model Tick {
   number        Int         @default(autoincrement()) @id
   tick          String      @unique
-  minted        Int      @default(0)
-  total         Int      @default(0)
-  holders       Int      @default(0)
+  minted        BigInt      @default(0)
+  total         BigInt      @default(0)
+  holders       Int         @default(0)
   creator       String
   limit         Int
   deployHash    String      @unique
@@ -30,15 +30,15 @@ model Hexagon {
   id            Int         @default(autoincrement()) @id
   hex           String      
   tik           String
-  mit           Int      @default(0)
+  mit           BigInt      @default(0)
 }
 
 model Holder {
   id          Int         @default(autoincrement()) @id
-  tick        String
   number      Int
+  value       BigInt
+  tick        String
   owner       String
-  value       Int
 }
 
 model Order {
@@ -46,8 +46,8 @@ model Order {
   hash      String    @unique
   tick      String
   maker     String
-  amount    Int
-  price     Int
+  amount    BigInt
+  price     BigInt
   // 0: listing | 1: sold | 2: cancelled
   status    Int
   time      DateTime    @default(now())

@@ -75,28 +75,29 @@ export class ScriptsService {
     if (tick.completedTime || surplus <= 0)
       throw new Error(`${inscription.tick} Completed`)
 
-    if (+inscription.amt > tick.limit)
+    let amount = BigInt(inscription.amt)
+    if (amount > tick.limit)
       throw new Error(`Exceeded ${inscription.tick} limit number of mints by ${tick.limit}`)
 
-    if (+inscription.amt > surplus)
-      inscription.amt = surplus
+    if (amount > surplus)
+      amount = surplus
 
     await this.hexagonService.incrementValue(
       { hex: inscription.hex, tik: inscription.tick },
-      { value: +inscription.amt },
+      { value: amount },
     )
 
     await this.holderService.incrementValue(
       { owner: transaction.from, tick: inscription.tick },
-      { value: +inscription.amt, number: tick.number },
+      { value: amount, number: tick.number },
     )
 
     await this.tickService.incrementMinted(
       inscription.tick,
-      { value: +inscription.amt },
+      { value: amount },
     )
 
-    if ((+inscription.amt + tick.minted) === tick.total) {
+    if ((amount + tick.minted) === tick.total) {
       await this.tickService.update(
         inscription.tick,
         { completedTime: new Date(block.timestamp * 1000) },
@@ -121,14 +122,18 @@ export class ScriptsService {
     })
     if (!holder)
       throw new Error(`[transfer] - from(${transaction.from.slice(0, 12)}) does not have a holder`)
+
+    const amount = BigInt(inscription.amt)
+
     await this.holderService.decrementValue(
       { owner: transaction.from, tick: inscription.tick },
-      { value: +inscription.amt },
+      { value: amount },
     )
     await this.holderService.incrementValue(
       { owner: transaction.to, tick: inscription.tick },
-      { value: +inscription.amt, number: tick.number },
+      { value: amount, number: tick.number },
     )
+
     const fromLogText = yellow(transaction.from.slice(0, 12))
     const toLogText = yellow(transaction.to.slice(0, 12))
     const amtLogText = cyan(`${inscription.amt} ${tick.tick}`)
