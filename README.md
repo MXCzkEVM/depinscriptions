@@ -62,11 +62,11 @@ To restart the production server for the server-side application, run the follow
 
 ```sh
 cd /mxc/depinscriptions-wannsee
-git pull
+git push
 pm2 restart depinscriptions-wannsee
 # or
 cd /mxc/depinscriptions-mainnet
-git pull
+git push
 pm2 restart depinscriptions-mainnet
 ```
 
