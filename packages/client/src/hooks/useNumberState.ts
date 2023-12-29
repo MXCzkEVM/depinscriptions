@@ -12,6 +12,9 @@ export function useNumberState(init: string, options: NumberStateOptions = {}) {
   function set(value: string = '0') {
     if (BigInt(value) < BigInt(min))
       return setValue(min.toString())
+
+    if (max === Number.POSITIVE_INFINITY)
+      return
     if (BigInt(value) > BigInt(max))
       return setValue(max.toString())
 

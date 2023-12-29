@@ -24,7 +24,7 @@ function DeployDialog() {
     duration: 500,
   })
   const [country, setCountry] = useState('')
-  const [total, setTotal] = useNumberState('21000000', { min: 0, max: '9223372036854775807' })
+  const [total, setTotal] = useNumberState('21000000', { min: 0 })
   const [limit, setLimit] = useNumberState('1000', {
     max: multipliedBy(total, 0.01),
     min: 0,
@@ -132,7 +132,6 @@ function DeployDialog() {
                   error={!!errors.total}
                   onChange={event => setTotal(event.target.value)}
                   value={total}
-                  inputProps={{ min: '0' }}
                   type="number"
                   className="w-full"
                 />
@@ -142,7 +141,6 @@ function DeployDialog() {
                   error={!!errors.limit}
                   onChange={event => setLimit(event.target.value)}
                   value={limit}
-                  inputProps={{ min: '0', max: '9223372036854775807' }}
                   type="number"
                   className="w-full"
                 />
