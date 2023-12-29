@@ -47,8 +47,8 @@ export class ScriptsService {
         creator: transaction.from,
         deployTime: new Date(block.timestamp * 1000),
         deployHash: transaction.hash,
-        total: +inscription.max,
-        limit: +inscription.lim,
+        total: BigInt(inscription.max),
+        limit: BigInt(inscription.lim),
         tick: inscription.tick,
       })
       const fromLogText = yellow(transaction.from.slice(0, 12))
