@@ -7,8 +7,7 @@ import Empty from './Empty'
 import { ejectBlankPage, percentage } from '@/utils'
 import { HexagonDto, TickDto } from '@/api/index.type'
 import { getHexagon } from '@/api'
-import { useMittOn } from '@/hooks/useMittOn'
-import { useGridPaginationFields, useServerPagination } from '@/hooks'
+import { useEventBus, useGridPaginationFields, useServerPagination } from '@/hooks'
 import { useWhenever } from '@/hooks/useWhenever'
 
 interface DataTableHexagonsProps {
@@ -57,7 +56,7 @@ function DataTableHexagons(props: DataTableHexagonsProps) {
     },
   ]
 
-  useMittOn('reload:table', controls.reload)
+  useEventBus('reload:page').on(controls.reload)
   useWhenever(props.token, controls.reload)
 
   return (

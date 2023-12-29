@@ -1,49 +1,53 @@
 /* eslint-disable ts/ban-ts-comment */
 /* eslint-disable react/display-name */
-import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react'
+import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import ReactJoyride, { ACTIONS, EVENTS, Props, STATUS, CallBackProps as _CallBackProps, Step as _Step } from 'react-joyride'
-
+import BaseReactJoyride, { ACTIONS, EVENTS, Props, STATUS, Step, CallBackProps as _CallBackProps } from 'react-joyride'
 import { useSetState } from 'react-use'
 
-export interface GuidePageRef {
+export interface JoyrideRef {
+  reload: () => void
   load: () => void
+  // TODO
   next: () => void
   prev: () => void
   skip: () => void
 }
 
-export interface Trigger {
-  unvoke?: (data: CallBackProps) => void | Promise<void>
-  invoke?: (data: CallBackProps) => void | Promise<void>
+export interface JoyrideTrigger {
+  unvoke?: (data: JoyrideCallBackProps) => void | Promise<void>
+  invoke?: (data: JoyrideCallBackProps) => void | Promise<void>
   cond?: () => boolean | Promise<boolean>
-  deps?: any[]
 }
 
-export interface CallBackProps extends Omit<_CallBackProps, 'step'> {
+export interface JoyrideCallBackProps extends Omit<_CallBackProps, 'step'> {
   step: Step
   force?: boolean
 }
 
-export interface Step extends _Step {
-}
-
-export interface GuidePageProps extends Omit<Props, 'run'> {
-  triggers?: Record<any, Trigger>
-  onFinish?: (data: CallBackProps) => void
+export interface ReactJoyrideProps extends Omit<Props, 'run'> {
+  triggers?: Record<any, JoyrideTrigger>
+  onFinish?: (data: JoyrideCallBackProps) => void
   run?: boolean
 }
 
-const GuidePage = forwardRef((props: GuidePageProps, ref) => {
+const ReactJoyride = forwardRef((props: ReactJoyrideProps, ref) => {
   const { t } = useTranslation()
 
-  const processing = useRef<Record<string, CallBackProps>>({})
+  const processing = useRef<Record<string, JoyrideCallBackProps>>({})
   const [{ index, run }, setState] = useSetState({
     index: 0,
     run: false,
   })
 
   function load() {
+    if (!props.steps?.length)
+      return
+    setState({ run: true })
+  }
+  function reload() {
+    if (!props.steps?.length)
+      return
     setState({ run: true, index: 0 })
   }
   function findTrigger(step?: Step) {
@@ -53,7 +57,7 @@ const GuidePage = forwardRef((props: GuidePageProps, ref) => {
     return props.triggers?.[target]
   }
 
-  async function onJoyrideCallback(data: CallBackProps) {
+  async function onJoyrideCallback(data: JoyrideCallBackProps) {
     const { action, status, type, index, step } = data
 
     const prevTrigger = findTrigger(props.steps?.[index - 1])
@@ -112,11 +116,12 @@ const GuidePage = forwardRef((props: GuidePageProps, ref) => {
 
   useImperativeHandle(ref, () => ({
     load,
+    reload,
   }))
 
   return (
     <>
-      <ReactJoyride
+      <BaseReactJoyride
         styles={{ options: { primaryColor: '#6300ff', backgroundColor: '#121212', arrowColor: '#383838', zIndex: 10000 } }}
         run={run}
         stepIndex={index}
@@ -137,4 +142,4 @@ const GuidePage = forwardRef((props: GuidePageProps, ref) => {
   )
 })
 
-export default GuidePage
+export default ReactJoyride

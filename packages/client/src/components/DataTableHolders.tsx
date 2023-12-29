@@ -7,8 +7,7 @@ import ChainLink from './ChainLink'
 import { HolderDto, TickDto } from '@/api/index.type'
 import { getHolder } from '@/api'
 import { percentage, thousandBitSeparator } from '@/utils'
-import { useMittOn } from '@/hooks/useMittOn'
-import { useGridPaginationFields, useServerPagination } from '@/hooks'
+import { useEventBus, useGridPaginationFields, useServerPagination } from '@/hooks'
 import { useWhenever } from '@/hooks/useWhenever'
 
 interface DataTableHoldersProps {
@@ -83,13 +82,13 @@ function DataTableHolders(props: DataTableHoldersProps) {
     load: controls.load,
   })
 
-  useMittOn('reload:table', controls.reload)
+  useEventBus('reload:page').on(controls.reload)
   useWhenever(props.token, controls.reload)
 
   return (
     <Condition is={props.token && state.value.length} else={<Empty loading={!props.token || state.loading} />}>
       <DataGrid
-        className="border-none data-grid-with-row-pointer"
+        className="border-none"
         {...gridPaginationFields}
         loading={state.loading || !props.token}
         getRowId={row => row.index}

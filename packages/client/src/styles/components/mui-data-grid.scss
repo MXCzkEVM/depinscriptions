@@ -8,3 +8,14 @@
   height: 0;
   background: transparent;
 }
+.MuiDataGrid-row.Mui-selected {
+  background-color: transparent !important;
+}
+.MuiDataGrid-row:hover {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+.data-grid-with-row-pointer {
+  .MuiDataGrid-row {
+    cursor: pointer;
+  }
+}

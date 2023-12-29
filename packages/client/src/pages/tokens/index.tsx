@@ -9,13 +9,13 @@ import { useInjectHolder } from '@overlays/react'
 import { useTranslation } from 'react-i18next'
 import { Search } from '@ricons/ionicons5'
 import { Deferred } from '@hairy/utils'
-import { Condition, CountryFlag, DeployDialog, Empty, FieldTickInput, Icon, LinearProgressWithLabel } from '@/components'
+import { Condition, CountryFlag, DeployDialog, Empty, FieldTickInput, Icon, LinearProgressWithLabel, Refresh } from '@/components'
 import { Layout } from '@/layout'
 import { TickDto } from '@/api/index.type'
 import { percentage } from '@/utils'
 import { getToken } from '@/api'
 import WaitingIndexModal from '@/components/WaitingIndexModal'
-import { useGridPaginationFields, useMittOn, useServerPagination, useWatch } from '@/hooks'
+import { useEventBus, useGridPaginationFields, useServerPagination, useWatch } from '@/hooks'
 
 // Retrieve tokens deployed by a user
 function Page() {
@@ -85,12 +85,15 @@ function Page() {
   })
 
   async function deploy() {
-    const { hash } = await openDeployModal()
+    const instance = openDeployModal()
+    console.log(instance)
+    const { hash } = await instance
     await openWaitingIndexModal({ hash })
     await controls.reload()
   }
 
-  useMittOn('inscription:deploy-open', deploy)
+  useEventBus('dialog:deploy').on(deploy)
+
   useWatch([type], controls.reload)
 
   return (
@@ -114,6 +117,9 @@ function Page() {
               <Tab disableRipple value={2} label={t('In-Progress')} />
               <Tab disableRipple value={3} label={t('Completed')} />
             </Tabs>
+            <div className="flex-1 flex justify-end md:mr-6">
+              <Refresh onClick={controls.reload} />
+            </div>
             <div className="relative hidden md:block">
               <TextField
                 value={keyword}

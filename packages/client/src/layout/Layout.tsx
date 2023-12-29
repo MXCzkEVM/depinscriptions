@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { LogoTwitter } from '@ricons/ionicons5'
 import { Navbar as NavbarProvider } from 'flowbite-react/lib/cjs/components/Navbar/Navbar'
 import Navbar from './components/Navbar'
+import GuidePage from './components/GuidePage'
 import { Icon, NoSSR } from '@/components'
 
 interface Props {
@@ -40,7 +41,7 @@ const Layout: React.FC<Props> = ({ children }: Props) => {
           </Link>
         </div>
       </div>
-
+      <GuidePage />
       <Toaster position="top-right" />
     </>
   )

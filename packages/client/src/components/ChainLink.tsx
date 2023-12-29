@@ -14,7 +14,7 @@ interface ChainLinkProps extends TypographyOwnProps {
   href?: string
 }
 
-const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
+// const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 
 function ChainLink(props: ChainLinkProps) {
   const { t } = useTranslation()
@@ -23,7 +23,6 @@ function ChainLink(props: ChainLinkProps) {
     address: '0x0795D90c6d60F7c77041862E9aE5059B4d5e0d7A',
   })
 
-  console.log(data)
   const href = props.type === 'hash'
     ? `${EXPLORER_URL}/tx/${props.href}`
     : `/tokens/query?address=${props.href}`

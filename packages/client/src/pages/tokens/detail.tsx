@@ -8,25 +8,27 @@ import dayjs from 'dayjs'
 import { useTranslation } from 'react-i18next'
 import { Layout } from '@/layout'
 import { ChainLink, CountryFlag, DataTableHexagons, DataTableHolders, FieldCol, Icon, LinearProgressWithLabel, MintButton } from '@/components'
-import { useRouterParams } from '@/hooks'
+import { useEventBus, useRouterParams } from '@/hooks'
 import { getTokenId } from '@/api'
 import { percentage, thousandBitSeparator } from '@/utils'
-import { useMittOn } from '@/hooks/useMittOn'
 
 function Page() {
   const router = useRouter()
   const { t } = useTranslation()
-  const tokenId = useRouterParams('token', { replace: '/tokens' })
+  const tokenId = useRouterParams('token', {
+    replace: '/tokens',
+    persistant: true,
+  })
 
   const [tab, setTab] = useState(0)
 
-  const [{ value: token, loading }, fetch] = useAsyncFn(() => getTokenId({ id: tokenId }), [tokenId])
+  const [{ value: token, loading }, reload] = useAsyncFn(() => getTokenId({ id: tokenId }), [tokenId])
 
   const isPageLoading = useMemo(() => loading || !token, [loading, token])
 
-  useMount(fetch)
+  useMount(reload)
 
-  useMittOn('reload:page', fetch)
+  useEventBus('reload:page').on(reload)
 
   return (
     <>

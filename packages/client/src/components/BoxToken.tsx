@@ -10,16 +10,16 @@ import WaitingIndexModal from './WaitingIndexModal'
 import Flag from './Flag'
 import { HolderDto } from '@/api/index.type'
 import { thousandBitSeparator } from '@/utils'
-import { useMittEmit } from '@/hooks'
+import { useEventBus } from '@/hooks'
 
 function BoxToken(props: { data: HolderDto, guide?: boolean }) {
   const { t } = useTranslation()
   const { address } = useAccount()
-  const [holderDeployMl, openTransferModal] = useInjectHolder<TransferDialogProps, { hash: string }>(TransferDialog as any)
+  const [holderTransferMl, openTransferModal] = useInjectHolder<TransferDialogProps, { hash: string }>(TransferDialog as any)
   const [holderWaitingMl, openWaitingIndexModal] = useInjectHolder(WaitingIndexModal)
-  const reload = useMittEmit('deploy-reload:page')
+  const { emit: reload } = useEventBus('reload:page')
 
-  async function deploy() {
+  async function transfer() {
     const { hash } = await openTransferModal({ holder: props.data })
     await openWaitingIndexModal({ hash })
     reload()
@@ -36,7 +36,7 @@ function BoxToken(props: { data: HolderDto, guide?: boolean }) {
             </div>
             <Condition is={address === props.data.owner}>
               <div className="flex gap-3 relative z-10">
-                <Link className={classnames([props.guide && 'personal_page_step_1', 'cursor-pointer text-sm min-w-min'])} onClick={deploy}>{t('Transfer')}</Link>
+                <Link className={classnames([props.guide && 'personal_page_step_1', 'cursor-pointer text-sm min-w-min'])} onClick={transfer}>{t('Transfer')}</Link>
                 <Link className={classnames([props.guide && 'personal_page_step_2', 'cursor-pointer text-sm min-w-min'])}>{t('List')}</Link>
               </div>
             </Condition>
@@ -50,7 +50,7 @@ function BoxToken(props: { data: HolderDto, guide?: boolean }) {
           {props.data.number}
         </span>
       </div>
-      {holderDeployMl}
+      {holderTransferMl}
       {holderWaitingMl}
     </div>
   )
