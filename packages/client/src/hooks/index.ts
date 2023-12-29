@@ -1,5 +1,6 @@
 export * from './useSendSatsTransaction'
 export * from './useRouterQuery'
+export * from './useRouterParams'
 export * from './useServerPagination'
 export * from './useWatch'
 export * from './useGridPaginationFields'
