@@ -34,7 +34,7 @@ export class TickService {
     return count !== 0
   }
 
-  async incrementMinted(tick: string, data: { value: number }) {
+  async incrementMinted(tick: string, data: { value: bigint }) {
     return this.prisma.tick.update({
       where: { tick },
       data: { minted: { increment: data.value } },
