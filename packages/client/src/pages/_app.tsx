@@ -9,7 +9,6 @@ import { ThemeProvider } from '@mui/material/styles'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import { useMount } from 'react-use'
-import { MittProvider } from 'react-mitt'
 import { chains, client } from '@/utils/wagmi'
 import { fetchResponseIntercept, i18n } from '@/plugins'
 import { MountsProvider, NoSSR, PleaseConnectWallet } from '@/components'
@@ -46,7 +45,6 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
           { component: WagmiConfig, props: { client } },
           { component: RainbowKitProvider, props: { chains } },
           { component: ThemeProvider, props: { theme: darkTheme } },
-          { component: MittProvider },
           { component: NoSSR },
           { component: I18nextProvider, props: { i18n } },
         ]}

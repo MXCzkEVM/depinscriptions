@@ -23,7 +23,7 @@ export class HexagonService {
     return this.prisma.hexagon.deleteMany({ where })
   }
 
-  async incrementValue(params: QueryHexagonParams, data: { value: number }) {
+  async incrementValue(params: QueryHexagonParams, data: { value: bigint }) {
     const count = await this.prisma.hexagon.count({ where: params })
     if (count === 0) {
       await this.prisma.hexagon.create({
