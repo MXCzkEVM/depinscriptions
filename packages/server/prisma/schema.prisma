@@ -17,13 +17,13 @@ model Tick {
   minted        BigInt      @default(0)
   total         BigInt      @default(0)
   holders       Int         @default(0)
+  limit         BigInt
   creator       String
-  limit         Int
   deployHash    String      @unique
   deployTime    DateTime
   lastTime      DateTime    @updatedAt
   completedTime DateTime?
-  trxs          Int      @default(0)
+  trxs          BigInt      @default(0)
 }
 
 model Hexagon {
