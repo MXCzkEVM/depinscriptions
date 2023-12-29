@@ -51,22 +51,22 @@ If you want to upload the client to the production environment, please push it t
 ```sh
 git checkout testnet
 git merge main
-git pull
+git push
 # or
 git checkout mainnet
 git merge main
-git pull
+git push
 ```
 
 To restart the production server for the server-side application, run the following command in remote server:
 
 ```sh
 cd /mxc/depinscriptions-wannsee
-git push
+git pull
 pm2 restart depinscriptions-wannsee
 # or
 cd /mxc/depinscriptions-mainnet
-git push
+git pull
 pm2 restart depinscriptions-mainnet
 ```
 
