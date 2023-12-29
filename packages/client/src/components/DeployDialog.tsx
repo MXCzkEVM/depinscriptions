@@ -24,7 +24,7 @@ function DeployDialog() {
     duration: 500,
   })
   const [country, setCountry] = useState('')
-  const [total, setTotal] = useNumberState('21000000', { min: 0 })
+  const [total, setTotal] = useNumberState('21000000', { min: 0, max: '2100000000000000000' })
   const [limit, setLimit] = useNumberState('1000', {
     max: multipliedBy(total, 0.01),
     min: 0,
