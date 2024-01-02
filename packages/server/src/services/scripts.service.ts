@@ -26,6 +26,27 @@ export interface ScanTransferJSON {
   tick: string
   amt: string
 }
+export interface ScanListJSON {
+  p: 'msc-20'
+  op: 'list'
+  tick: string
+  amt: string
+  pre: string
+  tim: string
+}
+
+export interface ScanCancelJSON {
+  p: 'msc-20'
+  op: 'cancel'
+  tick: string
+  hash: string
+}
+export interface ScanBuyJSON {
+  p: 'msc-20'
+  op: 'buy'
+  tick: string
+  hash: string
+}
 
 @Injectable()
 export class ScriptsService {
@@ -112,7 +133,7 @@ export class ScriptsService {
   async transfer(
     block: BlockWithTransactions,
     transaction: TransactionResponse,
-    inscription: ScanTransferJSON,
+    inscription: ScanListJSON,
   ) {
     const tick = await this.tickService.detail({ tick: String(inscription.tick) })
     if (!tick)
@@ -140,5 +161,29 @@ export class ScriptsService {
     const hashLogText = yellow(transaction.hash.slice(0, 12))
 
     this.logger.log(reset(`${bgWhite('[transferred]')} - transfer ${amtLogText} from ${fromLogText} to ${toLogText} in ${hashLogText}`))
+  }
+
+  async list(
+    _block: BlockWithTransactions,
+    _transaction: TransactionResponse,
+    _inscription: ScanTransferJSON,
+  ) {
+
+  }
+
+  async cancel(
+    _block: BlockWithTransactions,
+    _transaction: TransactionResponse,
+    _inscription: ScanCancelJSON,
+  ) {
+
+  }
+
+  async buy(
+    _block: BlockWithTransactions,
+    _transaction: TransactionResponse,
+    _inscription: ScanCancelJSON,
+  ) {
+
   }
 }
