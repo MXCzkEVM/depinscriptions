@@ -94,5 +94,18 @@
   "personal_page_step_1": "Bạn có thể chuyển Dòng chữ của mình đến các địa chỉ khác.",
   "personal_page_step_2": "Liệt kê Dòng chữ DePIN của bạn trên thị trường, xin lưu ý rằng nếu dòng chữ của bạn chưa được liệt kê trên thị trường thì nó sẽ không được lập chỉ mục, bạn sẽ có thể xóa nó sau khi nó có thể được giao dịch.",
   "personal_page_step_3": "Nhấp vào dòng chữ để xem dữ liệu Mô tả mã PIN gần đây của bạn.",
-  "token_page_step_0_5": "Kiểm tra tất cả tiến trình đúc của Mô tả mã PIN"
+  "token_page_step_0_5": "Kiểm tra tất cả tiến trình đúc của Mô tả mã PIN",
+  "Total MXC-20 Market Cap": "Tổng vốn hóa thị trường MXC-20 ${{price}}",
+  "Trending Tokens": "Token xu hướng",
+  "Floor Price": "Giá sàn",
+  "24h Volume": "Khối lượng 24h",
+  "24h Sales": "Bán hàng 24h",
+  "Owners": "Những chủ sở hữu",
+  "Total Volume": "Tổng khối lượng",
+  "Total Sales": "Tổng doanh thu",
+  "Market Cap": "Vốn hóa thị trường",
+  "Listed": "Liệt kê",
+  "Tokens ": {
+    " Detail": "Mã thông báo / Chi tiết"
+  }
 }

@@ -94,5 +94,18 @@
   "personal_page_step_1": "Puoi trasferire la tua Iscrizione ad altri indirizzi.",
   "personal_page_step_2": "Elenca la tua DePINscription sul marketplace, tieni presente che se la tua iscrizione non è ancora elencata sul marketplace non verrà indicizzata, potrai rimuoverla una volta che potrà essere scambiata.",
   "personal_page_step_3": "Fai clic sulle iscrizioni per visualizzare i dati DePINscription recenti.",
-  "token_page_step_0_5": "Controlla tutti i progressi del conio delle DePINscription"
+  "token_page_step_0_5": "Controlla tutti i progressi del conio delle DePINscription",
+  "Total MXC-20 Market Cap": "Capitalizzazione di mercato totale MXC-20 ${{price}}",
+  "Trending Tokens": "Token di tendenza",
+  "Floor Price": "Prezzo al piano",
+  "24h Volume": "Volume 24 ore",
+  "24h Sales": "Vendite 24 ore su 24",
+  "Owners": "Proprietari",
+  "Total Volume": "Volume totale",
+  "Total Sales": "Vendite totali",
+  "Market Cap": "Capitalizzazione di mercato",
+  "Listed": "Elencato",
+  "Tokens ": {
+    " Detail": "Gettoni/Dettaglio"
+  }
 }

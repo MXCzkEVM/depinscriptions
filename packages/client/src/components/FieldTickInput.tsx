@@ -21,9 +21,7 @@ function FieldTickInput(props: FieldTickInputProps) {
     <>
       <div className="mx-auto mt-9 mb-14 w-full text-center">
         <span className="md:text-3xl text-center mt-[41px] mp:mb-[18px] select-none text-[#6300ff]">
-          {' '}
           {t('Check out msc-20 balance of the address')}
-          {' '}
         </span>
       </div>
       <div className="flex justify-center">

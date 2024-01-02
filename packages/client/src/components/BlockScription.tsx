@@ -1,10 +1,10 @@
 import dayjs from 'dayjs'
 import { useRouter } from 'next/router'
-import BoxDefault from './BoxDefault'
+import Block from './Block'
 import { InscriptionDto } from '@/api/index.type'
 import { cover } from '@/utils'
 
-function BoxScription(props: { data: InscriptionDto }) {
+function BlockScription(props: { data: InscriptionDto }) {
   const router = useRouter()
 
   function renderFooter() {
@@ -28,7 +28,7 @@ function BoxScription(props: { data: InscriptionDto }) {
     )
   }
   return (
-    <BoxDefault footer={renderFooter()} onClick={() => router.push(`/inscriptions/${props.data.hash}`)}>
+    <Block footer={renderFooter()} onClick={() => router.push(`/inscriptions/${props.data.hash}`)}>
       <pre className="text-sm break-all whitespace-pre-wrap">
         {JSON.stringify(JSON.parse(props.data.json), null, 1)
           .replace('{', '')
@@ -37,8 +37,8 @@ function BoxScription(props: { data: InscriptionDto }) {
           .replace(/,/g, '')
           .trim()}
       </pre>
-    </BoxDefault>
+    </Block>
   )
 }
 
-export default BoxScription
+export default BlockScription

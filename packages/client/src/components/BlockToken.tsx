@@ -12,7 +12,7 @@ import { HolderDto } from '@/api/index.type'
 import { thousandBitSeparator } from '@/utils'
 import { useEventBus } from '@/hooks'
 
-function BoxToken(props: { data: HolderDto, guide?: boolean }) {
+function BlockToken(props: { data: HolderDto, guide?: boolean }) {
   const { t } = useTranslation()
   const { address } = useAccount()
   const [holderTransferMl, openTransferModal] = useInjectHolder<TransferDialogProps, { hash: string }>(TransferDialog as any)
@@ -56,4 +56,4 @@ function BoxToken(props: { data: HolderDto, guide?: boolean }) {
   )
 }
 
-export default BoxToken
+export default BlockToken

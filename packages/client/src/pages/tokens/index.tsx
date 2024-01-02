@@ -9,7 +9,7 @@ import { useInjectHolder } from '@overlays/react'
 import { useTranslation } from 'react-i18next'
 import { Search } from '@ricons/ionicons5'
 import { Deferred } from '@hairy/utils'
-import { Condition, CountryFlag, DeployDialog, Empty, FieldTickInput, Icon, LinearProgressWithLabel, Refresh } from '@/components'
+import { Condition, CountryFlag, DeployDialog, Empty, FieldTickInput, Icon, LinearProgressWithLabel, Refresh, SearchTextField } from '@/components'
 import { Layout } from '@/layout'
 import { TickDto } from '@/api/index.type'
 import { percentage } from '@/utils'
@@ -127,19 +127,12 @@ function Page() {
             <div className="flex-1 flex justify-end md:mr-6">
               <Refresh onClick={controls.reload} />
             </div>
-            <div className="relative hidden md:block">
-              <TextField
-                value={keyword}
-                onChange={event => setKeyword(event.target.value)}
-                color="secondary"
-                size="small"
-                variant="outlined"
-                placeholder={t('Token')}
-              />
-              <Icon className="absolute right-2 top-2 cursor-pointer" onClick={controls.reload}>
-                <Search />
-              </Icon>
-            </div>
+            <SearchTextField
+              value={keyword}
+              onChange={event => setKeyword(event.target.value)}
+              placeholder={t('Token')}
+              onSearch={controls.reload}
+            />
           </div>
           <Condition is={state.value.length} else={<Empty loading={state.loading} />}>
             <DataGrid

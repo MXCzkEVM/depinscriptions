@@ -35,7 +35,7 @@ const LayoutNavbar: React.FC = () => {
       <div className="hidden md:block flex-1"></div>
       <Navbar.Collapse>
         <div className="root_step-1_5 text-[18px] cursor-pointer p-2 md:p-0 text-[hsla(0,0%,100%,.6)] hover:text-white" onClick={() => router.push(`/`)}>{t('DePINscriptions')}</div>
-        <div className="root_step_2 text-[18px] cursor-pointer p-2 md:p-0 text-[hsla(0,0%,100%,.6)] hover:text-white" onClick={() => router.push(`/tokens`)}>{t('Token')}</div>
+        <div className="root_step_2 text-[18px] cursor-pointer p-2 md:p-0 text-[hsla(0,0%,100%,.6)] hover:text-white" onClick={() => router.push(`/tokens?tab=all`)}>{t('Token')}</div>
         <div className="root_step_3 text-[18px] cursor-pointer p-2 md:p-0 text-[hsla(0,0%,100%,.6)] hover:text-white" onClick={() => router.push(`/personal`)}>{t('Wallet')}</div>
         <div className="root_step_4 text-[18px] cursor-pointer p-2 md:p-0 text-[hsla(0,0%,100%,.6)] hover:text-white" onClick={() => router.push(`/market`)}>{t('Marketplace')}</div>
         <div className="root_step_4 text-[18px] cursor-pointer p-2 md:p-0 text-[hsla(0,0%,100%,.6)] hover:text-white" onClick={reloadGuide}>{t('Tutorial')}</div>

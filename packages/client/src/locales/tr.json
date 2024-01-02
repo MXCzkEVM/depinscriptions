@@ -98,5 +98,18 @@
   "personal_page_step_1": "Yazınızı başka adreslere aktarabilirsiniz.",
   "personal_page_step_2": "DePINscription'ınızı piyasada listeleyin; yazıtınız henüz piyasada listelenmemişse indekslenmeyeceğini, işlem görmeye başladıktan sonra onu listeden çıkarabileceğinizi lütfen unutmayın.",
   "personal_page_step_3": "En son DePINscription verilerinizi görüntülemek için yazılara tıklayın.",
-  "token_page_step_0_5": "DePINscriptions'ın tüm basım ilerlemesini kontrol edin"
+  "token_page_step_0_5": "DePINscriptions'ın tüm basım ilerlemesini kontrol edin",
+  "Total MXC-20 Market Cap": "Toplam MXC-20 Piyasa Değeri ${{price}}",
+  "Trending Tokens": "Trend Tokenları",
+  "Floor Price": "Taban Fiyat",
+  "24h Volume": "24 saatlik Hacim",
+  "24h Sales": "24 saat Satış",
+  "Owners": "Sahipler",
+  "Total Volume": "Toplam ses",
+  "Total Sales": "Toplam satış",
+  "Market Cap": "Piyasa değeri",
+  "Listed": "Listelenmiş",
+  "Tokens ": {
+    " Detail": "Jetonlar / Detay"
+  }
 }

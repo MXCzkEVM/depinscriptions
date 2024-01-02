@@ -94,5 +94,18 @@
   "personal_page_step_1": "U kunt uw Inschrijving overbrengen naar andere adressen.",
   "personal_page_step_2": "Plaats uw DePINscription op de marktplaats. Houd er rekening mee dat als uw inschrijving nog niet op de marktplaats staat, deze niet wordt geïndexeerd. U kunt deze verwijderen zodra deze kan worden verhandeld.",
   "personal_page_step_3": "Klik op inschrijvingen om uw recente DePINscription-gegevens te bekijken.",
-  "token_page_step_0_5": "Controleer alle voortgang bij het maken van de DePINscriptions"
+  "token_page_step_0_5": "Controleer alle voortgang bij het maken van de DePINscriptions",
+  "Total MXC-20 Market Cap": "Totale marktkapitalisatie MXC-20 ${{price}}",
+  "Trending Tokens": "Populaire tokens",
+  "Floor Price": "Vloerprijs",
+  "24h Volume": "24 uur volume",
+  "24h Sales": "24 uur verkoop",
+  "Owners": "Eigenaren",
+  "Total Volume": "Totale volume",
+  "Total Sales": "Totale verkoop",
+  "Market Cap": "Marktkapitalisatie",
+  "Listed": "Vermeld",
+  "Tokens ": {
+    " Detail": "Penningen / Detail"
+  }
 }

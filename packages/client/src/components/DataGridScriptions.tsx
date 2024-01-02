@@ -1,7 +1,8 @@
 import { useMount } from 'react-use'
 import { LoadingButton } from '@mui/lab'
 import Condition from './Condition'
-import { BoxScription, Empty, InfiniteScroll } from '.'
+import Blocks from './Blocks'
+import { BlockScription, Empty, InfiniteScroll } from '.'
 import { getInscription } from '@/api'
 import { useEventBus, useServerPaginationConcat } from '@/hooks'
 import { useWhenever } from '@/hooks/useWhenever'
@@ -29,9 +30,9 @@ function DataGridScriptions(props: DataGridScriptionsProps) {
         next={next}
         loaded={state.loaded}
       >
-        <div className="grid mp:grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-[1.25rem] mt-[2rem]">
-          {state.value.map((item, i) => <BoxScription key={i} data={item} />)}
-        </div>
+        <Blocks>
+          {state.value.map((item, i) => <BlockScription key={i} data={item} />)}
+        </Blocks>
       </InfiniteScroll>
     </Condition>
   )

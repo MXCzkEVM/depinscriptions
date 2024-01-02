@@ -1,4 +1,6 @@
-export function fetchResponseIntercept(callback: (response: Response) => Response | Promise<Response>) {
+export type FetchResponseInterceptFn = (response: Response) => Response | Promise<Response>
+
+export function fetchResponseIntercept(callback: FetchResponseInterceptFn) {
   const { fetch: originalFetch } = window
   window.fetch = async (...args) => {
     const [resource, config] = args

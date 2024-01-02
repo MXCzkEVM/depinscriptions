@@ -26,6 +26,7 @@ export class TasksService {
     if (this.locked)
       return
     this.locked = true
+
     const lastBlockNumber = await this.provider.getLastBlockNumber()
     const startBlockNumber = await getIndexerLastBlock()
     const endBlockNumber = Math.min(startBlockNumber + 10, lastBlockNumber)
@@ -75,7 +76,7 @@ export class TasksService {
           if (inscription.op === 'deploy')
             await this.scripts.deploy(block as any, transaction, inscription)
           if (inscription.op === 'transfer')
-            await this.scripts.transfer(block as any, transaction, inscription)
+            await this.scripts.transfer(block as any, transaction, inscription as any)
           if (inscription.op === 'mint')
             await this.scripts.mint(block as any, transaction, inscription)
           await this.inscription.create({

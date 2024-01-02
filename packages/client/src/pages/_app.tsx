@@ -9,29 +9,34 @@ import { ThemeProvider } from '@mui/material/styles'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import { useMount } from 'react-use'
+import { useSnapshot } from 'valtio'
 import { chains, client } from '@/utils/wagmi'
-import { fetchResponseIntercept, i18n } from '@/plugins'
+import { FetchResponseInterceptFn, fetchResponseIntercept, i18n } from '@/plugins'
 import { MountsProvider, NoSSR, PleaseConnectWallet } from '@/components'
 import type { AppPropsWithLayout } from '@/types'
 import { darkTheme, fontInter } from '@/config'
+import { helperGetSimplePrice } from '@/service'
+import store from '@/store'
 
 dayjs.extend(relativeTime)
 
 // If wallet is connected -> display app
 // Else -> display connect prompt
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
-  const [mounted, setMounted] = React.useState(false)
   const { isConnected } = useAccount()
+  const mounted = useMounted()
 
   const layout = Component.layout ?? (page => page)
-  useMount(() => setMounted(true))
-  useMount(() => {
-    fetchResponseIntercept(async (response) => {
-      const data = await response.clone().json()
-      if (data.error)
-        throw new Error(data.message)
-      return response
-    })
+
+  useFetchResponseIntercept(async (response) => {
+    const data = await response.clone().json()
+    if (data.error)
+      throw new Error(data.message)
+    return response
+  })
+  useMount(async () => {
+    const { mxc: { usd } } = await helperGetSimplePrice({ ids: 'mxc', vs: 'usd' })
+    store.config.price = usd
   })
 
   return (
@@ -56,4 +61,14 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
       </div>
     </>
   )
+}
+
+function useMounted() {
+  const [mounted, setMounted] = React.useState(false)
+  useMount(() => setMounted(true))
+  return mounted
+}
+
+function useFetchResponseIntercept(cb: FetchResponseInterceptFn) {
+  useMount(() => fetchResponseIntercept(cb))
 }

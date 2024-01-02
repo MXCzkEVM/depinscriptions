@@ -4,8 +4,9 @@ import { useAccount } from 'wagmi'
 import { useState } from 'react'
 import Condition from './Condition'
 import Empty from './Empty'
-import BoxToken from './BoxToken'
+import BlockToken from './BlockToken'
 import InfiniteScroll from './InfiniteScroll'
+import Blocks from './Blocks'
 import { getHolder } from '@/api'
 import { useEventBus, useServerPaginationConcat } from '@/hooks'
 import { useWhenever } from '@/hooks/useWhenever'
@@ -40,9 +41,9 @@ function DataGridTokens(props: DataGridTokensProps) {
       is={state.value.length}
       else={showExample
         ? (
-          <div className="grid mp:grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-[1.25rem] mt-[2rem]">
-            <BoxToken guide data={example} />
-          </div>
+          <Blocks>
+            <BlockToken guide data={example} />
+          </Blocks>
           )
         : <Empty loading={state.loading} />}
     >
@@ -55,9 +56,9 @@ function DataGridTokens(props: DataGridTokensProps) {
         )}
         next={next}
       >
-        <div className="grid mp:grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-[1.25rem] mt-[2rem]">
-          {state.value.map((item, index) => <BoxToken guide={index === 0} key={item.id} data={item} />)}
-        </div>
+        <Blocks>
+          {state.value.map((item, index) => <BlockToken guide={index === 0} key={item.id} data={item} />)}
+        </Blocks>
       </InfiniteScroll>
 
     </Condition>

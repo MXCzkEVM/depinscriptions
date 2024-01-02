@@ -1,7 +1,19 @@
 import { Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
-import { Block, BlockTag, JsonRpcProvider, TransactionResponse } from 'ethers'
+import { Block, BlockTag, FetchRequest, JsonRpcProvider, TransactionResponse } from 'ethers'
 import { arange } from '@hairy/utils'
+import { httpsOverHttp } from 'tunnel'
+
+const fetchRequest = FetchRequest.createGetUrlFunc({
+  agent: httpsOverHttp({
+    proxy: {
+      host: '127.0.0.1',
+      port: 7890,
+    },
+  }),
+})
+
+FetchRequest.registerGetUrl(fetchRequest)
 
 export interface BlockWithTransactions extends Omit<Block, 'transactions'> {
   transactions: Array<TransactionResponse>

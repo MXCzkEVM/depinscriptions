@@ -94,5 +94,18 @@
   "personal_page_step_1": "Anda dapat mentransfer Prasasti Anda ke alamat lain.",
   "personal_page_step_2": "Cantumkan DePINscription Anda di Marketplace, harap dicatat bahwa jika prasasti Anda belum terdaftar di Marketplace, maka tidak akan terindeks, Anda akan dapat menghapusnya setelah dapat diperdagangkan.",
   "personal_page_step_3": "Klik prasasti untuk melihat data DePINscription terbaru Anda.",
-  "token_page_step_0_5": "Periksa semua kemajuan pencetakan DePINscriptions"
+  "token_page_step_0_5": "Periksa semua kemajuan pencetakan DePINscriptions",
+  "Total MXC-20 Market Cap": "Total Kapitalisasi Pasar MXC-20 ${{price}}",
+  "Trending Tokens": "Token yang Sedang Tren",
+  "Floor Price": "Harga Lantai",
+  "24h Volume": "Volume 24 jam",
+  "24h Sales": "Penjualan 24 jam",
+  "Owners": "Pemilik",
+  "Total Volume": "Jumlah Volume",
+  "Total Sales": "Jumlah Penjualan",
+  "Market Cap": "Kapitalisasi Pasar",
+  "Listed": "Terdaftar",
+  "Tokens ": {
+    " Detail": "Token / Detil"
+  }
 }

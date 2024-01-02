@@ -94,5 +94,18 @@
   "personal_page_step_1": "Vă puteți transfera Inscripția la alte adrese.",
   "personal_page_step_2": "Listați-vă DePINscription pe piață, vă rugăm să rețineți că, dacă înscrierea dvs. nu este încă listată pe piață, nu va fi indexată, veți putea să o eliminați după ce va putea fi tranzacționată.",
   "personal_page_step_3": "Faceți clic pe inscripții pentru a vedea datele dvs. recente DePINscription.",
-  "token_page_step_0_5": "Verificați tot progresul de batere a DePINscriptions"
+  "token_page_step_0_5": "Verificați tot progresul de batere a DePINscriptions",
+  "Total MXC-20 Market Cap": "Total MXC-20 Market Cap ${{price}}",
+  "Trending Tokens": "Jetoane de tendințe",
+  "Floor Price": "Pret etaj",
+  "24h Volume": "Volum 24h",
+  "24h Sales": "Vânzări 24 de ore",
+  "Owners": "Proprietarii",
+  "Total Volume": "Volum total",
+  "Total Sales": "Vanzari totale",
+  "Market Cap": "Capitalizarea pieței",
+  "Listed": "Listată",
+  "Tokens ": {
+    " Detail": "Jetoane / Detaliu"
+  }
 }

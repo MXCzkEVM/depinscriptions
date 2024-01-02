@@ -93,5 +93,18 @@
   "personal_page_step_1": "碑文を他の住所に転送することができます。",
   "personal_page_step_2": "DePINscript をマーケットプレイスに出品します。登録がまだマーケットプレイスに出品されていない場合はインデックスに登録されないことに注意してください。取引可能になったら出品を解除できます。",
   "personal_page_step_3": "碑文をクリックすると、最近の DePINscription データが表示されます。",
-  "token_page_step_0_5": "DePINscriptions の鋳造の進行状況をすべて確認します。"
+  "token_page_step_0_5": "DePINscriptions の鋳造の進行状況をすべて確認します。",
+  "Total MXC-20 Market Cap": "MXC-20 時価総額総額 ${{price}}",
+  "Trending Tokens": "トレンドトークン",
+  "Floor Price": "最低価格",
+  "24h Volume": "24時間ボリューム",
+  "24h Sales": "24時間販売",
+  "Owners": "所有者",
+  "Total Volume": "全容積",
+  "Total Sales": "総売上高",
+  "Market Cap": "時価総額",
+  "Listed": "上場",
+  "Tokens ": {
+    " Detail": "トークン/詳細"
+  }
 }

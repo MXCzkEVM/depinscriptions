@@ -9,4 +9,11 @@ export class OrderService {
   create(data: Prisma.OrderCreateInput) {
     return this.prisma.order.create({ data })
   }
+
+  async price() {
+    const { _sum } = await this.prisma.order.aggregate({
+      _sum: { price: true },
+    })
+    return _sum.price
+  }
 }

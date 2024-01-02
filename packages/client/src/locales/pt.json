@@ -94,5 +94,18 @@
   "personal_page_step_1": "Você pode transferir sua inscrição para outros endereços.",
   "personal_page_step_2": "Liste sua inscrição DePIN no mercado, observe que se sua inscrição ainda não estiver listada no mercado, ela não será indexada, você poderá removê-la assim que puder ser negociada.",
   "personal_page_step_3": "Clique nas inscrições para visualizar seus dados DePINscription recentes.",
-  "token_page_step_0_5": "Verifique todo o andamento da cunhagem dos DePINscriptions"
+  "token_page_step_0_5": "Verifique todo o andamento da cunhagem dos DePINscriptions",
+  "Total MXC-20 Market Cap": "Valor de mercado total do MXC-20 ${{price}}",
+  "Trending Tokens": "Tokens populares",
+  "Floor Price": "Preço mínimo",
+  "24h Volume": "Volume 24h",
+  "24h Sales": "Vendas 24h",
+  "Owners": "os Proprietários",
+  "Total Volume": "Volume total",
+  "Total Sales": "Vendas totais",
+  "Market Cap": "Valor de mercado",
+  "Listed": "Listado",
+  "Tokens ": {
+    " Detail": "Tokens/Detalhe"
+  }
 }

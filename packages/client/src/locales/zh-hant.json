@@ -94,5 +94,18 @@
   "personal_page_step_1": "您可以將您的銘文轉移到其他地址。",
   "personal_page_step_2": "在市場上列出您的 DePINscription，請注意，如果您的銘文尚未在市場上列出，則不會被索引，一旦可以交易，您將能夠將其下架。",
   "personal_page_step_3": "點擊銘文可查看您最近的 DePINscription 資料。",
-  "token_page_step_0_5": "查看DePINscriptions的所有鑄幣進度"
+  "token_page_step_0_5": "查看DePINscriptions的所有鑄幣進度",
+  "Total MXC-20 Market Cap": "MXC-20 總市值 ${{price}}",
+  "Trending Tokens": "熱門代幣",
+  "Floor Price": "底價",
+  "24h Volume": "24小時交易量",
+  "24h Sales": "24小時銷售",
+  "Owners": "擁有者",
+  "Total Volume": "總交易量",
+  "Total Sales": "總銷售額",
+  "Market Cap": "市值",
+  "Listed": "已上架",
+  "Tokens ": {
+    " Detail": "代幣/詳細信息"
+  }
 }

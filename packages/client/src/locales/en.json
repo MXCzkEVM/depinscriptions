@@ -94,5 +94,18 @@
   "personal_page_step_1": "You can transfer your Inscription to other addresses.",
   "personal_page_step_2": "List your DePINscription on the marketplace, please note that if your inscription is not yet listed on the marketplace it won’t be indexed, you will be able to delist it once it can be traded.",
   "personal_page_step_3": "Click inscriptions to view your recent DePINscription data.",
-  "token_page_step_0_5": "Check all the minting progress of the DePINscriptions"
+  "token_page_step_0_5": "Check all the minting progress of the DePINscriptions",
+  "Total MXC-20 Market Cap": "Total MXC-20 Market Cap ${{price}}",
+  "Trending Tokens": "Trending Tokens",
+  "Floor Price": "Floor Price",
+  "24h Volume": "24h Volume",
+  "24h Sales": "24h Sales",
+  "Owners": "Owners",
+  "Total Volume": "Total Volume",
+  "Total Sales": "Total Sales",
+  "Market Cap": "Market Cap",
+  "Listed": "Listed",
+  "Tokens ": {
+    " Detail": "Tokens / Detail"
+  }
 }
