@@ -28,7 +28,7 @@ function BlockScription(props: { data: InscriptionDto }) {
     )
   }
   return (
-    <Block footer={renderFooter()} onClick={() => router.push(`/inscriptions/${props.data.hash}`)}>
+    <Block className="cursor-pointer" footer={renderFooter()} onClick={() => router.push(`/inscriptions/${props.data.hash}`)}>
       <pre className="text-sm break-all whitespace-pre-wrap">
         {JSON.stringify(JSON.parse(props.data.json), null, 1)
           .replace('{', '')

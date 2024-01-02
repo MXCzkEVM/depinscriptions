@@ -8,6 +8,8 @@ export interface IconProps {
   children?: React.ReactNode
   className?: string
   onClick?: MouseEventHandler | undefined
+  ariaDescribedby?: string
+  [key: string]: any
 }
 
 function Icon(props: IconProps) {
@@ -18,6 +20,7 @@ function Icon(props: IconProps) {
         color: props.color,
         fontSize: atWillToUnit(props.size || 24),
       }}
+      {...props as any}
       className={`icon w-[1em] h-[1em] inline-flex` + ` ${props.className}` || ''}
       onClick={props.onClick}
     >

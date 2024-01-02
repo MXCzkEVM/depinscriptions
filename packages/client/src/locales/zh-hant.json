@@ -98,7 +98,7 @@
   "Total MXC-20 Market Cap": "MXC-20 總市值 ${{price}}",
   "Trending Tokens": "熱門代幣",
   "Floor Price": "底價",
-  "24h Volume": "24小時交易量",
+  "24h Volume": "24小时交易价",
   "24h Sales": "24小時銷售",
   "Owners": "擁有者",
   "Total Volume": "總交易量",
@@ -107,5 +107,17 @@
   "Listed": "已上架",
   "Tokens ": {
     " Detail": "代幣/詳細信息"
-  }
+  },
+  "Activities": "活動",
+  "My Orders": "我的訂單",
+  "No": "編號",
+  "Event": "事件",
+  "Price": "價格",
+  "Total": "全部",
+  "From": "從",
+  "Time": "時間",
+  "Tokens": "代幣",
+  "Buy": "購買",
+  "List Dialog Title": "出售 <1>{{token}}</1>",
+  "Amount calculated by mints": "金額以 Mint 數量計算"
 }

@@ -107,5 +107,17 @@
   "Listed": "Listată",
   "Tokens ": {
     " Detail": "Jetoane / Detaliu"
-  }
+  },
+  "Activities": "Activități",
+  "My Orders": "Comenzile mele",
+  "No": "Nu.",
+  "Event": "Eveniment",
+  "Price": "Preț",
+  "Total": "Total",
+  "From": "Din",
+  "Time": "Timp",
+  "Tokens": "Jetoane",
+  "Buy": "Cumpără",
+  "List Dialog Title": "Lista <1>{{token}}</1> pentru vânzare",
+  "Amount calculated by mints": "Suma calculată de monetări"
 }

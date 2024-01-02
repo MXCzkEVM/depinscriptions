@@ -106,5 +106,17 @@
   "Listed": "上場",
   "Tokens ": {
     " Detail": "トークン/詳細"
-  }
+  },
+  "Activities": "活動内容",
+  "My Orders": "私の注文",
+  "No": "いいえ。",
+  "Event": "イベント",
+  "Price": "価格",
+  "Total": "合計",
+  "From": "から",
+  "Time": "時間",
+  "Tokens": "トークン",
+  "Buy": "買う",
+  "List Dialog Title": "販売中のリスト <1>{{token}}</1>",
+  "Amount calculated by mints": "造幣局が計算した金額"
 }

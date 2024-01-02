@@ -107,5 +107,17 @@
   "Listed": "Inscrit",
   "Tokens ": {
     " Detail": "Jetons / Détail"
-  }
+  },
+  "Activities": "Activités",
+  "My Orders": "Mes commandes",
+  "No": "Non.",
+  "Event": "Événement",
+  "Price": "Prix",
+  "Total": "Total",
+  "From": "Depuis",
+  "Time": "Temps",
+  "Tokens": "Jetons",
+  "Buy": "Acheter",
+  "List Dialog Title": "Liste <1>{{token}}</1> à vendre",
+  "Amount calculated by mints": "Montant calculé par les menthes"
 }

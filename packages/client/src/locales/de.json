@@ -107,5 +107,17 @@
   "Listed": "Gelistet",
   "Tokens ": {
     " Detail": "Token / Detail"
-  }
+  },
+  "Activities": "Aktivitäten",
+  "My Orders": "Meine Bestellungen",
+  "No": "NEIN.",
+  "Event": "Ereignis",
+  "Price": "Preis",
+  "Total": "Gesamt",
+  "From": "Aus",
+  "Time": "Zeit",
+  "Tokens": "Token",
+  "Buy": "Kaufen",
+  "List Dialog Title": "Liste <1>{{token}}</1> zum Verkauf",
+  "Amount calculated by mints": "Von den Münzstätten berechneter Betrag"
 }

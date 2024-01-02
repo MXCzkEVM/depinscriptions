@@ -1,3 +1,4 @@
+import Decimal from './Decimal'
 import { thousandBitSeparator } from '@/utils'
 
 export interface PriceProps {
@@ -17,7 +18,7 @@ function Price(props: PriceProps) {
         <span className="text-[#999999] flex-1 mr-2">{props.label}</span>
       )}
       {mappings[props.symbol || '']?.()}
-      <span>{thousandBitSeparator(props.value)}</span>
+      <Decimal value={props.value} />
     </div>
   )
 }

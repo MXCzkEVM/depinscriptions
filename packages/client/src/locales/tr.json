@@ -111,5 +111,17 @@
   "Listed": "Listelenmiş",
   "Tokens ": {
     " Detail": "Jetonlar / Detay"
-  }
+  },
+  "Activities": "Faaliyetler",
+  "My Orders": "Siparişlerim",
+  "No": "HAYIR.",
+  "Event": "Etkinlik",
+  "Price": "Fiyat",
+  "Total": "Toplam",
+  "From": "İtibaren",
+  "Time": "Zaman",
+  "Tokens": "Jetonlar",
+  "Buy": "Satın almak",
+  "List Dialog Title": "<1>{{token}}</1>'i satılık olarak listeleyin",
+  "Amount calculated by mints": "Darphane bazında hesaplanan tutar"
 }

@@ -17,7 +17,7 @@ function CountryFlag(props: CountryFlagProps) {
   if (!country.code)
     return ''
   return (
-    <div className="flex items-center">
+    <div className="inline-flex items-center">
       <span className="min-w-10">{country.code || props.find}</span>
       {country.image && <img className="w-6 ml-2" src={country.image} />}
     </div>

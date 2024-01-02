@@ -107,5 +107,17 @@
   "Listed": "Liệt kê",
   "Tokens ": {
     " Detail": "Mã thông báo / Chi tiết"
-  }
+  },
+  "Activities": "Các hoạt động",
+  "My Orders": "Đơn hàng của tôi",
+  "No": "KHÔNG.",
+  "Event": "Sự kiện",
+  "Price": "Giá",
+  "Total": "Tổng cộng",
+  "From": "Từ",
+  "Time": "Thời gian",
+  "Tokens": "Mã thông báo",
+  "Buy": "Mua",
+  "List Dialog Title": "Danh sách <1>{{token}</1> để bán",
+  "Amount calculated by mints": "Số tiền được tính bằng bạc hà"
 }

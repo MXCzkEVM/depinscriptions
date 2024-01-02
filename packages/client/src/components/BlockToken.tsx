@@ -1,10 +1,9 @@
-import { Button, Link } from '@mui/material'
+import { Link } from '@mui/material'
 import { useTranslation } from 'react-i18next'
-import { useAccount, useEnsName } from 'wagmi'
+import { useAccount } from 'wagmi'
 import { useInjectHolder } from '@overlays/react'
 import classnames from 'classnames'
 import Condition from './Condition'
-import CountryFlag from './CountryFlag'
 import TransferDialog, { TransferDialogProps } from './TransferDialog'
 import WaitingIndexModal from './WaitingIndexModal'
 import Flag from './Flag'
@@ -41,7 +40,7 @@ function BlockToken(props: { data: HolderDto, guide?: boolean }) {
               </div>
             </Condition>
           </div>
-          <div className="absolute inset-0 flex justify-center items-center">{thousandBitSeparator(props.data.value)}</div>
+          <div className="mt-10 flex justify-center items-center text-xl font-bold">{thousandBitSeparator(props.data.value)}</div>
         </div>
       </div>
       <div className="personal_page_step_1 personal_page_step_2 p-4 bg-[rgb(48,52,61)] flex items-center gap-3">

@@ -4,12 +4,15 @@ import { Card, CardContent, TextField, Typography } from '@mui/material'
 import { useSnapshot } from 'valtio'
 import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import { useRouter } from 'next/router'
+import { utils } from 'ethers'
+import BigNumber from 'bignumber.js'
 import { Layout } from '@/layout'
-import { Condition, Empty, SearchTextField } from '@/components'
+import { Condition, Empty, Price, SearchTextField } from '@/components'
 import store from '@/store'
 import { thousandBitSeparator } from '@/utils'
 import { useGridPaginationFields, useServerPagination } from '@/hooks'
 import { getToken } from '@/api'
+import { MOCK_MARKETS } from '@/config'
 
 function Page() {
   const { t } = useTranslation()
@@ -22,52 +25,67 @@ function Page() {
       headerName: t('Token'),
       minWidth: 90,
       flex: 1,
-      renderCell() {
+      renderCell(params) {
         // return <CountryFlag find={params.row.tick} />
-        return 'AVAV'
+        return params.row.tick
       },
     },
     {
       field: 'floorPrice',
       headerName: t('Floor Price'),
-      minWidth: 150,
+      minWidth: 120,
       flex: 1,
-      renderCell() {
-        return '$ 1.8545'
+      renderCell(params) {
+        const mxc = new BigNumber(utils.formatEther(params.row.floorPrice)).toFixed(6)
+        return <Price symbol="mxc" value={mxc} />
       },
     },
     {
-      field: '24hVolume',
+      field: 'volume',
       headerName: t('24h Volume'),
       minWidth: 150,
       flex: 1,
-      renderCell() {
-        return '8,873.39'
+      renderCell(params) {
+        const mxc = new BigNumber(utils.formatEther(params.row.volume)).toFixed(2)
+        return <Price symbol="mxc" value={mxc} />
       },
     },
     {
-      field: '24hSales',
+      field: 'sales',
       headerName: t('24h Sales'),
       minWidth: 120,
       flex: 1,
+      renderCell(params) {
+        return thousandBitSeparator(params.row.sales)
+      },
     },
     {
-      field: 'owners',
+      field: 'holders',
       headerName: t('Owners'),
       minWidth: 120,
       flex: 1,
+      renderCell(params) {
+        return thousandBitSeparator(params.row.holders)
+      },
     },
     {
       field: 'totalVolume',
       headerName: t('Total Volume'),
       minWidth: 120,
       flex: 1,
+      renderCell(params) {
+        const mxc = new BigNumber(utils.formatEther(params.row.totalVolume)).toFixed(2)
+        return <Price symbol="mxc" value={mxc} />
+      },
     },
     {
       field: 'totalSales',
       headerName: t('Total Sales'),
       minWidth: 120,
       flex: 1,
+      renderCell(params) {
+        return thousandBitSeparator(params.row.totalSales)
+      },
     },
     {
       field: 'marketCap',
@@ -80,6 +98,9 @@ function Page() {
       headerName: t('Listed'),
       minWidth: 120,
       flex: 1,
+      renderCell(params) {
+        return thousandBitSeparator(params.row.listed)
+      },
     },
   ]
 
@@ -112,16 +133,15 @@ function Page() {
               placeholder={t('Token')}
             />
           </div>
-          <Condition is={state.value.length} else={<Empty loading={state.loading} />}>
+          <Condition is={true} else={<Empty loading={state.loading} />}>
             <DataGrid
               className="border-none data-grid-with-row-pointer"
               {...gridPaginationFields}
               loading={state.loading}
               getRowId={row => row.tick}
-              rows={state.value}
+              rows={MOCK_MARKETS}
               columns={columns}
-              getRowClassName={params => params.row.tick === state.value[0].tick ? 'token_page_step_1' : ''}
-              onRowClick={({ row }) => router.push(`/tokens/detail?token=${row.tick}`)}
+              onRowClick={({ row }) => router.push(`/market/${row.tick}`)}
             />
           </Condition>
         </CardContent>

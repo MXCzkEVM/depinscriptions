@@ -107,5 +107,17 @@
   "Listed": "Elencato",
   "Tokens ": {
     " Detail": "Gettoni/Dettaglio"
-  }
+  },
+  "Activities": "Attività",
+  "My Orders": "i miei ordini",
+  "No": "NO.",
+  "Event": "Evento",
+  "Price": "Prezzo",
+  "Total": "Totale",
+  "From": "Da",
+  "Time": "Tempo",
+  "Tokens": "Gettoni",
+  "Buy": "Acquistare",
+  "List Dialog Title": "Elenca <1>{{token}}</1> in vendita",
+  "Amount calculated by mints": "Importo calcolato dalle zecche"
 }

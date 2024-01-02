@@ -6,6 +6,7 @@ import { useEventBus } from '@/hooks'
 interface RefreshProps {
   event?: string
   onClick?: any
+  hideText?: boolean
 }
 
 function Refresh(props: RefreshProps) {
@@ -14,7 +15,9 @@ function Refresh(props: RefreshProps) {
 
   return (
     <div className="flex gap-2 items-center cursor-pointer" onClick={props.onClick || reload}>
-      <span className="hidden md:inline-block">{t('Refresh')}</span>
+      {
+        !props.hideText && <span className="hidden md:inline-block">{t('Refresh')}</span>
+      }
       <Icon size={18}>
         <IconRefresh />
       </Icon>

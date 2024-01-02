@@ -107,5 +107,17 @@
   "Listed": "Vermeld",
   "Tokens ": {
     " Detail": "Penningen / Detail"
-  }
+  },
+  "Activities": "Activiteiten",
+  "My Orders": "mijn bestellingen",
+  "No": "Nee.",
+  "Event": "Evenement",
+  "Price": "Prijs",
+  "Total": "Totaal",
+  "From": "Van",
+  "Time": "Tijd",
+  "Tokens": "Munten",
+  "Buy": "Kopen",
+  "List Dialog Title": "Lijst <1>{{token}}</1> te koop",
+  "Amount calculated by mints": "Bedrag berekend door pepermuntjes"
 }

@@ -107,5 +107,17 @@
   "Listed": "Terdaftar",
   "Tokens ": {
     " Detail": "Token / Detil"
-  }
+  },
+  "Activities": "Kegiatan",
+  "My Orders": "pesananku",
+  "No": "TIDAK.",
+  "Event": "Peristiwa",
+  "Price": "Harga",
+  "Total": "Total",
+  "From": "Dari",
+  "Time": "Waktu",
+  "Tokens": "Token",
+  "Buy": "Membeli",
+  "List Dialog Title": "Daftar <1>{{token}}</1> untuk dijual",
+  "Amount calculated by mints": "Jumlah dihitung dengan permen"
 }

@@ -107,5 +107,17 @@
   "Listed": "상장됨",
   "Tokens ": {
     " Detail": "토큰 / 세부정보"
-  }
+  },
+  "Activities": "활동",
+  "My Orders": "내 주문",
+  "No": "아니요.",
+  "Event": "이벤트",
+  "Price": "가격",
+  "Total": "총",
+  "From": "에서",
+  "Time": "시간",
+  "Tokens": "토큰",
+  "Buy": "구입하다",
+  "List Dialog Title": "판매용 목록 <1>{{token}}</1>",
+  "Amount calculated by mints": "민트로 계산된 금액"
 }

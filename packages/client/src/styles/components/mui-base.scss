@@ -1,3 +1,13 @@
 .Mui-focused:after {
   display: none !important
 }
+.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #6300ff !important;
+}
+
+.MuiOutlinedInput-notchedOutline {
+  border-color: rgba(255, 255, 255, 0.23) !important;
+}
+.MuiPaper-root.uiPopover-paper {
+  // z-index: ;
+}
