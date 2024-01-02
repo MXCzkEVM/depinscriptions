@@ -7,20 +7,28 @@ import { useTranslation } from 'react-i18next'
 import toast from 'react-hot-toast'
 import { HelpCircleOutline } from '@ricons/ionicons5'
 import { useAsync } from 'react-use'
+import BigNumber from 'bignumber.js'
 import CountryFlag from './CountryFlag'
 import Icon from './Icon'
 import DeployIsoHelpDialog from './DeployIsoHelpDialog'
-import { useEventBus, useSendSatsTransaction } from '@/hooks'
+import { useEventBus, useNumberState, useSendSatsTransaction } from '@/hooks'
 import { countries as _countries } from '@/config'
 import { getTokenDeployed, getTokenSomeId } from '@/api'
+
+function multipliedBy(total: string, n: string | number) {
+  return new BigNumber(total).multipliedBy(n).toFixed(0).split('.')[0]
+}
 
 function DeployDialog() {
   const { visible, resolve, reject } = useOverlay({
     duration: 500,
   })
   const [country, setCountry] = useState('')
-  const [total, setTotal] = useState('21000000')
-  const [limit, setLimit] = useState('1000')
+  const [total, setTotal] = useNumberState('21000000', { min: 0, max: '2100000000000000000' })
+  const [limit, setLimit] = useNumberState('1000', {
+    max: multipliedBy(total, 0.01),
+    min: 0,
+  })
   const { t } = useTranslation()
   const [holder, openDeployIsoHelp] = useInjectHolder(DeployIsoHelpDialog)
 
@@ -124,7 +132,6 @@ function DeployDialog() {
                   error={!!errors.total}
                   onChange={event => setTotal(event.target.value)}
                   value={total}
-                  inputProps={{ min: '0' }}
                   type="number"
                   className="w-full"
                 />
@@ -134,7 +141,6 @@ function DeployDialog() {
                   error={!!errors.limit}
                   onChange={event => setLimit(event.target.value)}
                   value={limit}
-                  inputProps={{ min: '0' }}
                   type="number"
                   className="w-full"
                 />

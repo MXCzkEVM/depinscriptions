@@ -27,4 +27,14 @@ export class RecoveryService {
     await this.tickService.delete({ tick })
     await this.hexagonService.delete({ tik: tick })
   }
+
+  async inscription(password: string, hash: string) {
+    if (this.retryPasswords >= 5)
+      throw new Error('Exceeded retry attempts')
+    if (password !== process.env.NEST_RECOVERY_PASSWORD) {
+      this.retryPasswords++
+      throw new Error('password is incorrect')
+    }
+    await this.inscriptionService.delete({ hash })
+  }
 }

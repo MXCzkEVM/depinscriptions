@@ -1,7 +1,15 @@
+/* eslint-disable no-extend-native */
 import { NestFactory } from '@nestjs/core'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import { Logger } from '@nestjs/common'
 import { AppModule } from './app.module'
+
+Object.defineProperty(BigInt.prototype, 'toJSON', {
+  get() {
+    'use strict'
+    return () => String(this)
+  },
+})
 
 async function bootstrap() {
   const config = new DocumentBuilder()
@@ -13,7 +21,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule)
   const document = SwaggerModule.createDocument(app, config)
 
-  SwaggerModule.setup('swagger', app, document, {
+  SwaggerModule.setup('swagger/website', app, document, {
     jsonDocumentUrl: 'swagger/json',
   })
 

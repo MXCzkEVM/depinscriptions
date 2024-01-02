@@ -5,5 +5,5 @@ export class RecoveryBodyDto {
   password: string
 
   @ApiProperty()
-  tick: string
+  value: string
 }

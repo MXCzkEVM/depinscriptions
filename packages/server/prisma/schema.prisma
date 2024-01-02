@@ -1,7 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-
 datasource db {
   provider = "sqlite"
   url      = env("PRISMA_DATABASE_URL")
@@ -12,55 +11,56 @@ generator client {
 }
 
 model Tick {
-  number        Int         @default(autoincrement()) @id
-  tick          String      @unique
-  minted        Int      @default(0)
-  total         Int      @default(0)
-  holders       Int      @default(0)
+  number        Int       @id @default(autoincrement())
+  tick          String    @unique
+  minted        BigInt    @default(0)
+  total         BigInt    @default(0)
+  holders       Int       @default(0)
+  limit         BigInt
   creator       String
-  limit         Int
-  deployHash    String      @unique
+  deployHash    String    @unique
   deployTime    DateTime
-  lastTime      DateTime    @updatedAt
+  lastTime      DateTime  @updatedAt
   completedTime DateTime?
-  trxs          Int      @default(0)
+  trxs          BigInt    @default(0)
 }
 
 model Hexagon {
-  id            Int         @default(autoincrement()) @id
-  hex           String      
-  tik           String
-  mit           Int      @default(0)
+  id  Int    @id @default(autoincrement())
+  hex String
+  tik String
+  mit BigInt @default(0)
 }
 
 model Holder {
-  id          Int         @default(autoincrement()) @id
-  tick        String
-  number      Int
-  owner       String
-  value       Int
+  id     Int    @id @default(autoincrement())
+  number Int
+  value  BigInt
+  tick   String
+  owner  String
 }
 
 model Order {
-  number    Int       @default(autoincrement()) @id
-  hash      String    @unique
-  tick      String
-  maker     String
-  amount    Int
-  price     Int
+  number     Int      @id @default(autoincrement())
+  hash       String   @unique
+  tick       String
+  maker      String
+  amount     BigInt
+  price      BigInt
   // 0: listing | 1: sold | 2: cancelled
-  status    Int
-  time      DateTime    @default(now())
-  lastTime  DateTime    @updatedAt
+  status     Int
+  time       DateTime @default(now())
+  lastTime   DateTime @updatedAt
+  expiration DateTime
 }
 
 model Inscription {
-  number      Int       @default(autoincrement()) @id
-  hash        String    @unique
-  op          String
-  tick        String
-  json        String
-  from        String
-  to          String
-  time        DateTime  @default(now())
+  number Int      @id @default(autoincrement())
+  hash   String   @unique
+  op     String
+  tick   String
+  json   String
+  from   String
+  to     String
+  time   DateTime @default(now())
 }

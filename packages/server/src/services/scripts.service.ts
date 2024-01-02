@@ -26,6 +26,27 @@ export interface ScanTransferJSON {
   tick: string
   amt: string
 }
+export interface ScanListJSON {
+  p: 'msc-20'
+  op: 'list'
+  tick: string
+  amt: string
+  pre: string
+  tim: string
+}
+
+export interface ScanCancelJSON {
+  p: 'msc-20'
+  op: 'cancel'
+  tick: string
+  hash: string
+}
+export interface ScanBuyJSON {
+  p: 'msc-20'
+  op: 'buy'
+  tick: string
+  hash: string
+}
 
 @Injectable()
 export class ScriptsService {
@@ -47,8 +68,8 @@ export class ScriptsService {
         creator: transaction.from,
         deployTime: new Date(block.timestamp * 1000),
         deployHash: transaction.hash,
-        total: +inscription.max,
-        limit: +inscription.lim,
+        total: BigInt(inscription.max),
+        limit: BigInt(inscription.lim),
         tick: inscription.tick,
       })
       const fromLogText = yellow(transaction.from.slice(0, 12))
@@ -75,28 +96,29 @@ export class ScriptsService {
     if (tick.completedTime || surplus <= 0)
       throw new Error(`${inscription.tick} Completed`)
 
-    if (+inscription.amt > tick.limit)
+    let amount = BigInt(inscription.amt)
+    if (amount > tick.limit)
       throw new Error(`Exceeded ${inscription.tick} limit number of mints by ${tick.limit}`)
 
-    if (+inscription.amt > surplus)
-      inscription.amt = surplus
+    if (amount > surplus)
+      amount = surplus
 
     await this.hexagonService.incrementValue(
       { hex: inscription.hex, tik: inscription.tick },
-      { value: +inscription.amt },
+      { value: amount },
     )
 
     await this.holderService.incrementValue(
       { owner: transaction.from, tick: inscription.tick },
-      { value: +inscription.amt, number: tick.number },
+      { value: amount, number: tick.number },
     )
 
     await this.tickService.incrementMinted(
       inscription.tick,
-      { value: +inscription.amt },
+      { value: amount },
     )
 
-    if ((+inscription.amt + tick.minted) === tick.total) {
+    if ((amount + tick.minted) === tick.total) {
       await this.tickService.update(
         inscription.tick,
         { completedTime: new Date(block.timestamp * 1000) },
@@ -111,7 +133,7 @@ export class ScriptsService {
   async transfer(
     block: BlockWithTransactions,
     transaction: TransactionResponse,
-    inscription: ScanTransferJSON,
+    inscription: ScanListJSON,
   ) {
     const tick = await this.tickService.detail({ tick: String(inscription.tick) })
     if (!tick)
@@ -121,19 +143,47 @@ export class ScriptsService {
     })
     if (!holder)
       throw new Error(`[transfer] - from(${transaction.from.slice(0, 12)}) does not have a holder`)
+
+    const amount = BigInt(inscription.amt)
+
     await this.holderService.decrementValue(
       { owner: transaction.from, tick: inscription.tick },
-      { value: +inscription.amt },
+      { value: amount },
     )
     await this.holderService.incrementValue(
       { owner: transaction.to, tick: inscription.tick },
-      { value: +inscription.amt, number: tick.number },
+      { value: amount, number: tick.number },
     )
+
     const fromLogText = yellow(transaction.from.slice(0, 12))
     const toLogText = yellow(transaction.to.slice(0, 12))
     const amtLogText = cyan(`${inscription.amt} ${tick.tick}`)
     const hashLogText = yellow(transaction.hash.slice(0, 12))
 
     this.logger.log(reset(`${bgWhite('[transferred]')} - transfer ${amtLogText} from ${fromLogText} to ${toLogText} in ${hashLogText}`))
+  }
+
+  async list(
+    _block: BlockWithTransactions,
+    _transaction: TransactionResponse,
+    _inscription: ScanTransferJSON,
+  ) {
+
+  }
+
+  async cancel(
+    _block: BlockWithTransactions,
+    _transaction: TransactionResponse,
+    _inscription: ScanCancelJSON,
+  ) {
+
+  }
+
+  async buy(
+    _block: BlockWithTransactions,
+    _transaction: TransactionResponse,
+    _inscription: ScanCancelJSON,
+  ) {
+
   }
 }
