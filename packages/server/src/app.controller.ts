@@ -214,9 +214,23 @@ export class AppController {
   @ApiConsumes('application/json')
   @ApiResponse({ status: 200, description: 'Ticks' })
   @ApiBody({ type: RecoveryBodyDto, required: true })
-  async recoveryTick(@Body() body: { password: string, tick: string }) {
+  async recoveryTick(@Body() body: { password: string, value: string }) {
     try {
-      await this.recoveryService.tick(body.password, body.tick)
+      await this.recoveryService.tick(body.password, body.value)
+      return { status: true, message: 'success' }
+    }
+    catch (error: any) {
+      return { status: false, message: error.message }
+    }
+  }
+
+  @Post('recovery/inscription')
+  @ApiConsumes('application/json')
+  @ApiResponse({ status: 200, description: 'Inscription' })
+  @ApiBody({ type: RecoveryBodyDto, required: true })
+  async recoveryInscription(@Body() body: { password: string, value: string }) {
+    try {
+      await this.recoveryService.inscription(body.password, body.value)
       return { status: true, message: 'success' }
     }
     catch (error: any) {

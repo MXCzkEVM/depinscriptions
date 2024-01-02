@@ -15,7 +15,7 @@ import { percentage, thousandBitSeparator } from '@/utils'
 function Page() {
   const router = useRouter()
   const { t } = useTranslation()
-  const tokenId = useRouterParams('token', {
+  const [tokenId] = useRouterParams('token', {
     replace: '/tokens',
     persistant: true,
   })
