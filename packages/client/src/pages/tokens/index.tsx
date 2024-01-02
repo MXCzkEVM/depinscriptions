@@ -15,13 +15,14 @@ import { TickDto } from '@/api/index.type'
 import { percentage } from '@/utils'
 import { getToken } from '@/api'
 import WaitingIndexModal from '@/components/WaitingIndexModal'
-import { useEventBus, useGridPaginationFields, useServerPagination, useWatch } from '@/hooks'
+import { useEventBus, useGridPaginationFields, useRouterParams, useServerPagination, useWatch } from '@/hooks'
 
 // Retrieve tokens deployed by a user
 function Page() {
   const router = useRouter()
   const { t } = useTranslation()
-  const [type, setType] = useState(1)
+  const [tab, setTab] = useRouterParams('tab', { default: 'all' })
+
   const [keyword, setKeyword] = useState('')
   const [holderDeployMl, openDeployModal] = useInjectHolder<unknown, { hash: string }>(DeployDialog)
   const [holderWaitingMl, openWaitingIndexModal] = useInjectHolder(WaitingIndexModal)
@@ -74,9 +75,15 @@ function Page() {
     // },
   ]
 
+  const mappings = {
+    all: 1,
+    progress: 2,
+    complete: 3,
+  }
+
   const [state, controls] = useServerPagination({
     limit: 10,
-    resolve: model => getToken({ ...model, keyword, type }),
+    resolve: model => getToken({ ...model, keyword, type: mappings[tab] }),
   })
 
   const gridPaginationFields = useGridPaginationFields({
@@ -94,7 +101,7 @@ function Page() {
 
   useEventBus('dialog:deploy').on(deploy)
 
-  useWatch([type], controls.reload)
+  useWatch([tab], controls.reload)
 
   return (
     <>
@@ -110,12 +117,12 @@ function Page() {
           <div className="mb-4 flex justify-between items-center">
             <Tabs
               variant="standard"
-              onChange={(event, value) => setType(value)}
-              value={type}
+              onChange={(event, value) => setTab(value)}
+              value={tab}
             >
-              <Tab disableRipple value={1} label={t('All')} />
-              <Tab disableRipple value={2} label={t('In-Progress')} />
-              <Tab disableRipple value={3} label={t('Completed')} />
+              <Tab disableRipple value="all" label={t('All')} />
+              <Tab disableRipple value="progress" label={t('In-Progress')} />
+              <Tab disableRipple value="complete" label={t('Completed')} />
             </Tabs>
             <div className="flex-1 flex justify-end md:mr-6">
               <Refresh onClick={controls.reload} />
