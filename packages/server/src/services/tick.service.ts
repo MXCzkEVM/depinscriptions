@@ -1,5 +1,6 @@
 import { Prisma } from '@prisma/client'
 import { Injectable } from '@nestjs/common'
+import { MarketRawDto } from 'src/dtos/query-raw'
 import { PrismaService } from './prisma.service'
 
 @Injectable()
@@ -45,27 +46,26 @@ export class TickService {
     return this.prisma.tick.count(params)
   }
 
-  async detailByMarket(page: number, limit: number) {
-    const result = await this.prisma.$queryRaw<{ a }>`
+  async detailByMarkets(page: number, limit: number) {
+    // 当前的 order 所计算出来的 1个 tick 等于多少美元，然后把上架和购买的数量
+    // 上架和购买的 price 相加
+    return this.prisma.$queryRaw<MarketRawDto[]>`
       SELECT
-          Tick.tick,
-          MIN(Order.price) as floorPrice,
-          SUM(CASE WHEN Order.createdAt > CURRENT_TIMESTAMP - INTERVAL '24 HOURS' THEN Order.amount ELSE 0 END) as "volume",
-          COUNT(CASE WHEN Order.createdAt > CURRENT_TIMESTAMP - INTERVAL '24 HOURS' THEN Order.id ELSE NULL END) as "sales",
-          COUNT(distinct Holder.owner) as owners,
-          SUM(Order.amount) as totalVolume,
-          COUNT(Order.id) as totalSales,
-          (COUNT(Order.id) - COUNT(CASE WHEN Order.status = 1 THEN Order.id ELSE NULL END)) as Listed
-      FROM 
-          Tick
-      LEFT JOIN Holder ON Tick.tick = Holder.tick
-      LEFT JOIN Order  ON Tick.tick = Order.tick
-      GROUP BY 
-          Tick.tick
-      ORDER BY "volume" DESC
+          T.tick as tick,
+          COALESCE(MIN(O.price), 0) as price,
+          SUM(CASE WHEN O.time >= DATE_SUB(NOW(), INTERVAL 24 HOUR) THEN O.price ELSE 0 END) as volume,
+          COUNT(CASE WHEN O.time >= DATE_SUB(NOW(), INTERVAL 24 HOUR) AND O.status=1 THEN O.number ELSE NULL END) as sales,
+          COUNT(distinct H.owner) as holders,
+          SUM(CASE WHEN O.status=1 THEN O.price ELSE 0 END) as totalVolume,
+          COUNT(CASE WHEN O.status=1 THEN O.number ELSE NULL END) as totalSales,
+          SUM(CASE WHEN O.status=1 AND O.status=0 THEN O.price ELSE 0 END) as marketCap
+      FROM
+          Tick as T
+      LEFT JOIN Holder as H ON T.tick = H.tick
+      LEFT JOIN \`Order\` as O ON T.tick = O.tick
+      GROUP BY
+          T.tick
       LIMIT ${limit} OFFSET ${(page - 1) * limit};
     `
-
-    return result
   }
 }

@@ -207,7 +207,9 @@ export class AppController {
     @Query('page') page = 1,
     @Query('limit') limit = 15,
   ) {
-    return this.tickService.detailByMarket(page, limit)
+    const total = await this.tickService.count()
+    const data = await this.tickService.detailByMarkets(page, limit)
+    return { total, data }
   }
 
   @Post('recovery/tick')

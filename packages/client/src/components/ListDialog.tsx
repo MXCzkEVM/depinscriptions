@@ -40,7 +40,7 @@ function ListDialog(_props: ListDialogProps) {
       </DialogTitle>
       <DialogContent className="max-w-[550px] md:min-w-[550px]">
         <DialogContentText id="deploy-dialog-slide">
-          <div className="flex flex-col gap-3 max-w-80 mx-auto">
+          <div className="flex flex-col gap-3 max-w-80 mr-8 md:mx-auto">
             <OutlinedInput
               placeholder={t('Price')}
               size="small"
