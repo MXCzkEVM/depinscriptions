@@ -36,6 +36,7 @@ export class OrderService {
 
   async price() {
     const { _sum } = await this.prisma.order.aggregate({
+      where: { status: { in: [0, 1] } },
       _sum: { price: true },
     })
     return _sum.price

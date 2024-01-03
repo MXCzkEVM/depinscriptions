@@ -4,7 +4,7 @@ import { thousandBitSeparator } from '@/utils'
 export interface PriceProps {
   symbol?: string
   label?: string
-  value: string
+  value: any
 }
 
 function Price(props: PriceProps) {

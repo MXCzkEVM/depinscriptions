@@ -119,5 +119,12 @@
   "Tokens": "Gettoni",
   "Buy": "Acquistare",
   "List Dialog Title": "Elenca <1>{{token}}</1> in vendita",
-  "Amount calculated by mints": "Importo calcolato dalle zecche"
+  "Amount calculated by mints": "Importo calcolato dalle zecche",
+  "List Dialog Price": "Prezzo minimo <0>{{price}}</0>, il tuo prezzo ${{usd}<1>{{preMint}}</1>",
+  "Floor price": "Prezzo al piano",
+  "Your price": "Il tuo prezzo",
+  "You dont have enough balance": "Non hai abbastanza equilibrio.",
+  "Please enter the price": "Inserisci il prezzo",
+  "Order total amount should be greater than 10": "L'importo totale dell'ordine deve essere superiore a $ 10",
+  "You dont have enough tick": "Non hai abbastanza {{token}}."
 }

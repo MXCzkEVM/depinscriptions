@@ -119,5 +119,12 @@
   "Tokens": "Jetoane",
   "Buy": "Cumpără",
   "List Dialog Title": "Lista <1>{{token}}</1> pentru vânzare",
-  "Amount calculated by mints": "Suma calculată de monetări"
+  "Amount calculated by mints": "Suma calculată de monetări",
+  "List Dialog Price": "Preț minim <0>{{price}}</0>, prețul dvs. ${{usd}}<1>{{preMint}}</1>",
+  "Floor price": "Preț la etaj",
+  "Your price": "Prețul tău",
+  "You dont have enough balance": "Nu ai suficient echilibru.",
+  "Please enter the price": "Vă rugăm să introduceți prețul",
+  "Order total amount should be greater than 10": "Suma totală a comenzii ar trebui să fie mai mare de 10 USD",
+  "You dont have enough tick": "Nu aveți suficient {{token}}."
 }

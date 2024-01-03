@@ -123,5 +123,12 @@
   "Tokens": "Jetonlar",
   "Buy": "Satın almak",
   "List Dialog Title": "<1>{{token}}</1>'i satılık olarak listeleyin",
-  "Amount calculated by mints": "Darphane bazında hesaplanan tutar"
+  "Amount calculated by mints": "Darphane bazında hesaplanan tutar",
+  "List Dialog Price": "Taban fiyat <0>{{price}}</0>, Fiyatınız ${{usd}><1>{{preMint}}</1>",
+  "Floor price": "Taban fiyat",
+  "Your price": "Senin fiyatin",
+  "You dont have enough balance": "Yeterli bakiyeniz yok.",
+  "Please enter the price": "Lütfen fiyatı girin",
+  "Order total amount should be greater than 10": "Siparişin toplam tutarı 10$'dan büyük olmalıdır",
+  "You dont have enough tick": "Yeterli {{token}}'ınız yok."
 }

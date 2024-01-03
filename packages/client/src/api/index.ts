@@ -107,8 +107,39 @@ export async function getTokenId(paths: Types.GetTokenIdPath, config?: RequestIn
  * @method get
  * @tags app-controller
  */
-export async function getMarket(config?: RequestInit) {
-  const response = await fetch(`${baseURL}/market`, {
+export async function getMarket(query: Types.GetMarketQuery, config?: RequestInit) {
+  const _query_ = `?${new URLSearchParams(Object.entries(query)).toString()}`;
+  const response = await fetch(`${baseURL}/market${_query_}`, {
+    ...config,
+  });
+  return response.json() as Promise<Types.MarketPageResponseDto>;
+}
+/**
+ * @method get
+ * @tags app-controller
+ */
+export async function getMarketId(paths: Types.GetMarketIdPath, config?: RequestInit) {
+  const response = await fetch(`${baseURL}/market/${paths.id}`, {
+    ...config,
+  });
+  return response.json() as Promise<Types.MarketDetailDto>;
+}
+/**
+ * @method post
+ * @tags app-controller
+ */
+export async function postRecoveryTick(config?: RequestInit) {
+  const response = await fetch(`${baseURL}/recovery/tick`, {
+    ...config,
+  });
+  return response.json() as Promise<any>;
+}
+/**
+ * @method post
+ * @tags app-controller
+ */
+export async function postRecoveryInscription(config?: RequestInit) {
+  const response = await fetch(`${baseURL}/recovery/inscription`, {
     ...config,
   });
   return response.json() as Promise<any>;

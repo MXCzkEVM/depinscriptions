@@ -119,5 +119,12 @@
   "Tokens": "Mã thông báo",
   "Buy": "Mua",
   "List Dialog Title": "Danh sách <1>{{token}</1> để bán",
-  "Amount calculated by mints": "Số tiền được tính bằng bạc hà"
+  "Amount calculated by mints": "Số tiền được tính bằng bạc hà",
+  "List Dialog Price": "Giá sàn <0>{{price}</0>, Giá của bạn ${{usd}<1>{{preMint}</1>",
+  "Floor price": "Giá sàn",
+  "Your price": "Giá trị của bạn",
+  "You dont have enough balance": "Bạn không có đủ số dư.",
+  "Please enter the price": "Vui lòng nhập giá",
+  "Order total amount should be greater than 10": "Tổng số tiền đặt hàng phải lớn hơn $10",
+  "You dont have enough tick": "Bạn không có đủ {{token}}."
 }

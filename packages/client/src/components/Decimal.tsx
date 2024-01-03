@@ -7,19 +7,30 @@ export interface DecimalProps {
 function Decimal(props: DecimalProps) {
   const [integer = '0', decimal = ''] = String(props.value).split('.')
 
+  function renderSubDecimal() {
+    return (
+      <>
+        0
+        <sub>{decimal.length - 4}</sub>
+        {decimal.slice(decimal.length - 4, decimal.length)}
+      </>
+    )
+  }
+  const isRenderDecimal = Number(decimal || 0) > 0
+
   return (
     <span>
       {thousandBitSeparator(integer)}
-      {decimal && '.'}
-      {decimal.length > 4
-        ? (
+      {
+        isRenderDecimal && (
           <>
-            0
-            <sub>{decimal.length - 4}</sub>
-            {decimal.slice(decimal.length - 4, decimal.length)}
+            .
+            {decimal.length > 4
+              ? renderSubDecimal()
+              : decimal}
           </>
-          )
-        : decimal}
+        )
+      }
     </span>
   )
 }

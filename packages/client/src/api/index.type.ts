@@ -5,6 +5,21 @@
  * @version 1.0.0
  */
 
+export interface MarketRawDto {
+  tick: string;
+  price: string;
+  volume: string;
+  sales: string;
+  holders: string;
+  totalVolume: string;
+  totalSales: string;
+  marketCap: string;
+  listed: string;
+}
+export interface RecoveryBodyDto {
+  password: string;
+  value: string;
+}
 export interface HexagonDto {
   hex: string;
   tik: string;
@@ -76,6 +91,20 @@ export interface TickPageResponseDto {
 export interface TickDeployedResponseDto {
   data: string[];
 }
+export interface MarketPageResponseDto {
+  total: number;
+  data: MarketRawDto[];
+  price: string;
+}
+export interface MarketDetailDto {
+  tick: string;
+  holders: string;
+  price: string;
+  volume: string;
+  sales: string;
+  limit: string;
+  limitPrice: string;
+}
 export interface GetInscriptionQuery {
   owner?: string;
   limit?: number;
@@ -109,5 +138,12 @@ export interface GetTokenSomeIdPath {
   id: string;
 }
 export interface GetTokenIdPath {
+  id: string;
+}
+export interface GetMarketQuery {
+  limit?: number;
+  page: number;
+}
+export interface GetMarketIdPath {
   id: string;
 }

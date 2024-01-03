@@ -119,5 +119,12 @@
   "Tokens": "Tokens",
   "Buy": "Buy",
   "List Dialog Title": "List <1>{{token}}</1> for sale",
-  "Amount calculated by mints": "Amount calculated by mints"
+  "Amount calculated by mints": "Amount calculated by mints",
+  "List Dialog Price": "Floor price <0>{{price}}</0>, Your price ${{usd}}<1>{{preMint}}</1>",
+  "Floor price": "Floor price",
+  "Your price": "Your price",
+  "You dont have enough balance": "You don't have enough balance.  ",
+  "Please enter the price": "Please enter the price",
+  "Order total amount should be greater than 10": "Order total amount should be greater than $10",
+  "You dont have enough tick": "You don't have enough {{token}}."
 }

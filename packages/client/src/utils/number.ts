@@ -5,7 +5,7 @@ export interface ThousandBitSeparatorOptions {
   decimal?: boolean
 }
 
-export function thousandBitSeparator(target: number | string = 0, unit = ',', options: ThousandBitSeparatorOptions = {}) {
+export function thousandBitSeparator(target: any = 0, unit = ',', options: ThousandBitSeparatorOptions = {}) {
   options.integer = options.integer ?? true
   options.decimal = options.decimal ?? false
   const exp = /(\d)(?=(\d{3})+$)/ig
@@ -28,4 +28,11 @@ export function percentage(total: string | number, count: string | number, decim
     .times(100)
     .toFixed(decimal, BigNumber.ROUND_DOWN)
   return number as any
+}
+
+const Big = BigNumber.clone({
+  DECIMAL_PLACES: 18,
+})
+export function BigNum(n: BigNumber.Value) {
+  return new Big(n)
 }

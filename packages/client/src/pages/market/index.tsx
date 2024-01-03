@@ -6,38 +6,38 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import { useRouter } from 'next/router'
 import { utils } from 'ethers'
 import BigNumber from 'bignumber.js'
+import { useMount } from 'react-use'
 import { Layout } from '@/layout'
-import { Condition, Empty, Price, SearchTextField } from '@/components'
+import { Condition, CountryFlag, Empty, Price, SearchTextField } from '@/components'
 import store from '@/store'
-import { thousandBitSeparator } from '@/utils'
+import { BigNum, thousandBitSeparator } from '@/utils'
 import { useGridPaginationFields, useServerPagination } from '@/hooks'
-import { getToken } from '@/api'
-import { MOCK_MARKETS } from '@/config'
+import { getMarket, getToken } from '@/api'
+import { MarketRawDto } from '@/api/index.type'
 
 function Page() {
   const { t } = useTranslation()
   const config = useSnapshot(store.config)
   const router = useRouter()
 
-  const columns: GridColDef<any>[] = [
+  const columns: GridColDef<MarketRawDto>[] = [
     {
       field: 'tick',
       headerName: t('Token'),
       minWidth: 90,
       flex: 1,
       renderCell(params) {
-        // return <CountryFlag find={params.row.tick} />
-        return params.row.tick
+        return <CountryFlag find={params.row.tick} />
       },
     },
     {
-      field: 'floorPrice',
+      field: 'price',
       headerName: t('Floor Price'),
       minWidth: 120,
       flex: 1,
       renderCell(params) {
-        const mxc = new BigNumber(utils.formatEther(params.row.floorPrice)).toFixed(6)
-        return <Price symbol="mxc" value={mxc} />
+        const usd = BigNum(params.row.price).multipliedBy(config.price)
+        return <Price symbol="usd" value={usd.toFixed(6)} />
       },
     },
     {
@@ -46,8 +46,7 @@ function Page() {
       minWidth: 150,
       flex: 1,
       renderCell(params) {
-        const mxc = new BigNumber(utils.formatEther(params.row.volume)).toFixed(2)
-        return <Price symbol="mxc" value={mxc} />
+        return <Price symbol="mxc" value={params.row.volume} />
       },
     },
     {
@@ -74,8 +73,7 @@ function Page() {
       minWidth: 120,
       flex: 1,
       renderCell(params) {
-        const mxc = new BigNumber(utils.formatEther(params.row.totalVolume)).toFixed(2)
-        return <Price symbol="mxc" value={mxc} />
+        return <Price symbol="mxc" value={params.row.totalVolume} />
       },
     },
     {
@@ -92,6 +90,10 @@ function Page() {
       headerName: t('Market Cap'),
       minWidth: 120,
       flex: 1,
+      renderCell(params) {
+        const usd = BigNum(params.row.marketCap).multipliedBy(config.price)
+        return <Price symbol="usd" value={usd} />
+      },
     },
     {
       field: 'listed',
@@ -105,9 +107,14 @@ function Page() {
   ]
 
   const [keyword, setKeyword] = useState('')
+  const [price, setPrice] = useState('1')
 
   const [state, controls] = useServerPagination({
-    resolve: model => getToken({ ...model, keyword, type: 1 }),
+    resolve: async (model) => {
+      const response = await getMarket({ ...model })
+      setPrice(response.price)
+      return response
+    },
     limit: 10,
   })
 
@@ -116,11 +123,13 @@ function Page() {
     load: controls.load,
   })
 
+  useMount(controls.reload)
+
   return (
     <>
       <div className="mx-auto mt-9 mb-14 w-full text-center">
         <span className="md:text-3xl text-center mt-[41px] mp:mb-[18px] select-none text-[#6300ff]">
-          {t('Total MXC-20 Market Cap', { price: thousandBitSeparator(config.price) })}
+          {t('Total MXC-20 Market Cap', { price: thousandBitSeparator(BigNum(price).multipliedBy(config.price)) })}
         </span>
       </div>
       <Card style={{ background: 'rgb(22 21 21 / 20%)' }}>
@@ -133,13 +142,13 @@ function Page() {
               placeholder={t('Token')}
             />
           </div>
-          <Condition is={true} else={<Empty loading={state.loading} />}>
+          <Condition is={state.value.length} else={<Empty loading={state.loading} />}>
             <DataGrid
               className="border-none data-grid-with-row-pointer"
               {...gridPaginationFields}
               loading={state.loading}
               getRowId={row => row.tick}
-              rows={MOCK_MARKETS}
+              rows={state.value}
               columns={columns}
               onRowClick={({ row }) => router.push(`/market/${row.tick}`)}
             />

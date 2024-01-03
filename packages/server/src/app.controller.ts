@@ -9,6 +9,7 @@ import {
   InscriptionDto,
   InscriptionPageResponseDto,
   InscriptionResponseDto,
+  MarketPageResponseDto,
   RecoveryBodyDto,
   SomeResponseDto,
   TickDeployedResponseDto,
@@ -21,6 +22,8 @@ import { HolderService } from './services/holder.service'
 import { TickService } from './services/tick.service'
 import { HexagonService } from './services/hexagon.service'
 import { RecoveryService } from './services/recovery.service'
+import { MarketDetailDto, MarketRawDto } from './dtos/query-raw'
+import { OrderService } from './services/order.service'
 
 @Controller()
 @ApiTags('app-controller')
@@ -29,6 +32,7 @@ import { RecoveryService } from './services/recovery.service'
 @ApiExtraModels(InscriptionDto)
 @ApiExtraModels(HexagonDto)
 @ApiExtraModels(RecoveryBodyDto)
+@ApiExtraModels(MarketRawDto)
 export class AppController {
   constructor(
     private readonly inscriptionService: InscriptionService,
@@ -36,6 +40,7 @@ export class AppController {
     private readonly tickService: TickService,
     private readonly hexagonService: HexagonService,
     private readonly recoveryService: RecoveryService,
+    private readonly orderService: OrderService,
   ) { }
 
   @Get('inscription')
@@ -139,6 +144,7 @@ export class AppController {
       where,
       orderBy,
     })
+
     return { data, total }
   }
 
@@ -203,18 +209,35 @@ export class AppController {
   }
 
   @Get('market')
+  @ApiQuery({ name: 'page', type: 'number' })
+  @ApiQuery({ name: 'limit', type: 'number', required: false })
+  @ApiConsumes('application/json')
+  @ApiResponse({ status: 200, type: MarketPageResponseDto, description: 'Markets' })
   async getMarkets(
     @Query('page') page = 1,
     @Query('limit') limit = 15,
   ) {
     const total = await this.tickService.count()
     const data = await this.tickService.detailByMarkets(page, limit)
-    return { total, data }
+    const price = await this.orderService.price()
+    return { total, data, price }
+  }
+
+  @Get('market/:id')
+  @ApiConsumes('application/json')
+  @ApiResponse({ status: 200, type: MarketDetailDto, description: 'Market' })
+  async getMarket(
+    @Param('id') id: string,
+  ) {
+    const data = this.tickService.detailByMarket(id)
+    if (!data)
+      throw new NotFoundException(`Not found Tick [${id}]`)
+    return data
   }
 
   @Post('recovery/tick')
   @ApiConsumes('application/json')
-  @ApiResponse({ status: 200, description: 'Ticks' })
+  @ApiResponse({ status: 200, description: 'RecoveryTicks' })
   @ApiBody({ type: RecoveryBodyDto, required: true })
   async recoveryTick(@Body() body: { password: string, value: string }) {
     try {
@@ -228,7 +251,7 @@ export class AppController {
 
   @Post('recovery/inscription')
   @ApiConsumes('application/json')
-  @ApiResponse({ status: 200, description: 'Inscription' })
+  @ApiResponse({ status: 200, description: 'RecoveryInscription' })
   @ApiBody({ type: RecoveryBodyDto, required: true })
   async recoveryInscription(@Body() body: { password: string, value: string }) {
     try {

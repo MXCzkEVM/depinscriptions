@@ -10,12 +10,14 @@ export function useNumberState(init: string, options: NumberStateOptions = {}) {
   const { max = Number.POSITIVE_INFINITY, min = 0 } = options
 
   function set(value: string = '0') {
-    if (BigInt(value) < BigInt(min))
+    if (Number.isNaN(Number(value)))
+      return
+    if (min === 0 && value === '-')
+      return
+    if (BigInt(value === '-' ? '0' : value) < BigInt(min))
       return setValue(min.toString())
 
-    if (max === Number.POSITIVE_INFINITY)
-      return
-    if (BigInt(value) > BigInt(max))
+    if (max !== Number.POSITIVE_INFINITY && BigInt(value) > BigInt(max))
       return setValue(max.toString())
 
     setValue(value)

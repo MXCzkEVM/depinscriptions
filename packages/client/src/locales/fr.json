@@ -119,5 +119,12 @@
   "Tokens": "Jetons",
   "Buy": "Acheter",
   "List Dialog Title": "Liste <1>{{token}}</1> à vendre",
-  "Amount calculated by mints": "Montant calculé par les menthes"
+  "Amount calculated by mints": "Montant calculé par les menthes",
+  "List Dialog Price": "Prix ​​plancher <0>{{price}}</0>, Votre prix ${{usd}}<1>{{preMint}}</1>",
+  "Floor price": "Prix ​​plancher",
+  "Your price": "Ton prix",
+  "You dont have enough balance": "Vous n'avez pas assez d'équilibre.",
+  "Please enter the price": "Veuillez entrer le prix",
+  "Order total amount should be greater than 10": "Le montant total de la commande doit être supérieur à 10 $",
+  "You dont have enough tick": "Vous n'avez pas assez de {{token}}."
 }

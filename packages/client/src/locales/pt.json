@@ -119,5 +119,12 @@
   "Tokens": "Fichas",
   "Buy": "Comprar",
   "List Dialog Title": "Lista <1>{{token}}</1> à venda",
-  "Amount calculated by mints": "Valor calculado por casas da moeda"
+  "Amount calculated by mints": "Valor calculado por casas da moeda",
+  "List Dialog Price": "Preço mínimo <0>{{price}}</0>, Seu preço ${{usd}}<1>{{preMint}}</1>",
+  "Floor price": "Preço mínimo",
+  "Your price": "Seu preço",
+  "You dont have enough balance": "Você não tem equilíbrio suficiente.",
+  "Please enter the price": "Por favor insira o preço",
+  "Order total amount should be greater than 10": "O valor total do pedido deve ser superior a US$ 10",
+  "You dont have enough tick": "Você não tem {{token}} suficientes."
 }

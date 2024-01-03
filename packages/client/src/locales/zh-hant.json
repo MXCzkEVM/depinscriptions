@@ -98,10 +98,10 @@
   "Total MXC-20 Market Cap": "MXC-20 總市值 ${{price}}",
   "Trending Tokens": "熱門代幣",
   "Floor Price": "底價",
-  "24h Volume": "24小时交易价",
+  "24h Volume": "24小時交易價",
   "24h Sales": "24小時銷售",
   "Owners": "擁有者",
-  "Total Volume": "總交易量",
+  "Total Volume": "總交易價",
   "Total Sales": "總銷售額",
   "Market Cap": "市值",
   "Listed": "已上架",
@@ -119,5 +119,12 @@
   "Tokens": "代幣",
   "Buy": "購買",
   "List Dialog Title": "出售 <1>{{token}}</1>",
-  "Amount calculated by mints": "金額以 Mint 數量計算"
+  "Amount calculated by mints": "金額以 Mint 數量計算",
+  "List Dialog Price": "底價 <0>{{price}}</0>，您的價格 ${{usd}}<1>{{preMint}}</1>",
+  "Floor price": "底價",
+  "Your price": "您的價格",
+  "You dont have enough balance": "你的餘額不夠。",
+  "Please enter the price": "請輸入價格",
+  "Order total amount should be greater than 10": "訂單總金額應大於 10 美元",
+  "You dont have enough tick": "您沒有足夠的 {{token}}。"
 }

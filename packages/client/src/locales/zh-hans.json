@@ -101,7 +101,7 @@
   "24h Volume": "24小时交易价",
   "24h Sales": "24小时销售",
   "Owners": "拥有者",
-  "Total Volume": "总交易量",
+  "Total Volume": "总交易价",
   "Total Sales": "总销售额",
   "Market Cap": "市值",
   "Listed": "已上架",
@@ -119,5 +119,12 @@
   "Tokens": "代币",
   "Buy": "购买",
   "List Dialog Title": "出售 <1>{{token}}</1>",
-  "Amount calculated by mints": "金额以 Mint 数量计算"
+  "Amount calculated by mints": "金额以 Mint 数量计算",
+  "List Dialog Price": "底价 <0>{{price}}</0>，您的价格 ${{usd}}<1>{{preMint}}</1>",
+  "Floor price": "底价",
+  "Your price": "您的价格",
+  "You dont have enough balance": "你的余额不够。",
+  "Please enter the price": "请输入价格",
+  "Order total amount should be greater than 10": "订单总金额应大于 10 美元",
+  "You dont have enough tick": "您没有足够的 {{token}}。"
 }

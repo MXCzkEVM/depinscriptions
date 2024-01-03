@@ -119,5 +119,12 @@
   "Tokens": "Токены",
   "Buy": "Купить",
   "List Dialog Title": "Выставьте <1>{{token}}</1> на продажу",
-  "Amount calculated by mints": "Сумма рассчитана по монетным дворам"
+  "Amount calculated by mints": "Сумма рассчитана по монетным дворам",
+  "List Dialog Price": "Минимальная цена <0>{{price}</0>, Ваша цена ${{usd}}<1>{{preMint}</1>",
+  "Floor price": "Минимальная цена",
+  "Your price": "Твоя цена",
+  "You dont have enough balance": "Вам не хватает баланса.",
+  "Please enter the price": "Пожалуйста, введите цену",
+  "Order total amount should be greater than 10": "Общая сумма заказа должна превышать 10 долларов США.",
+  "You dont have enough tick": "У вас недостаточно {{token}}."
 }

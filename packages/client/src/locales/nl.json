@@ -119,5 +119,12 @@
   "Tokens": "Munten",
   "Buy": "Kopen",
   "List Dialog Title": "Lijst <1>{{token}}</1> te koop",
-  "Amount calculated by mints": "Bedrag berekend door pepermuntjes"
+  "Amount calculated by mints": "Bedrag berekend door pepermuntjes",
+  "List Dialog Price": "Minimumprijs <0>{{price}}</0>, jouw prijs ${{usd}}<1>{{preMint}}</1>",
+  "Floor price": "Vloerprijs",
+  "Your price": "Jouw prijs",
+  "You dont have enough balance": "Je hebt niet genoeg saldo.",
+  "Please enter the price": "Voer de prijs in",
+  "Order total amount should be greater than 10": "Het totale bedrag van de bestelling moet groter zijn dan $ 10",
+  "You dont have enough tick": "Je hebt niet genoeg {{token}}."
 }

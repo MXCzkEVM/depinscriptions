@@ -24,4 +24,30 @@ export class MarketRawDto {
 
   @ApiProperty()
   marketCap: string
+
+  @ApiProperty()
+  listed: string
+}
+
+export class MarketDetailDto {
+  @ApiProperty()
+  tick: string
+
+  @ApiProperty()
+  holders: string
+
+  @ApiProperty()
+  price: string
+
+  @ApiProperty()
+  volume: string
+
+  @ApiProperty()
+  sales: string
+
+  @ApiProperty()
+  limit: string
+
+  @ApiProperty()
+  limitPrice: string
 }

@@ -119,5 +119,12 @@
   "Tokens": "Token",
   "Buy": "Kaufen",
   "List Dialog Title": "Liste <1>{{token}}</1> zum Verkauf",
-  "Amount calculated by mints": "Von den Münzstätten berechneter Betrag"
+  "Amount calculated by mints": "Von den Münzstätten berechneter Betrag",
+  "List Dialog Price": "Mindestpreis <0>{{price}}</0>, Ihr Preis ${{usd}}<1>{{preMint}}</1>",
+  "Floor price": "Mindestpreis",
+  "Your price": "Dein Preis",
+  "You dont have enough balance": "Dir fehlt das Gleichgewicht.",
+  "Please enter the price": "Bitte geben Sie den Preis ein",
+  "Order total amount should be greater than 10": "Der Gesamtbetrag der Bestellung sollte mehr als 10 $ betragen",
+  "You dont have enough tick": "Sie haben nicht genug {{token}}."
 }

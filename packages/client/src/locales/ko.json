@@ -119,5 +119,12 @@
   "Tokens": "토큰",
   "Buy": "구입하다",
   "List Dialog Title": "판매용 목록 <1>{{token}}</1>",
-  "Amount calculated by mints": "민트로 계산된 금액"
+  "Amount calculated by mints": "민트로 계산된 금액",
+  "List Dialog Price": "가격 하한선 <0>{{price}}</0>, 가격 ${{usd}}<1>{{preMint}}</1>",
+  "Floor price": "가격 하한선",
+  "Your price": "귀하의 가격",
+  "You dont have enough balance": "잔액이 부족합니다.",
+  "Please enter the price": "가격을 입력해주세요",
+  "Order total amount should be greater than 10": "주문 총액은 $10보다 커야 합니다.",
+  "You dont have enough tick": "{{token}}이(가) 부족합니다."
 }

@@ -45,6 +45,9 @@ export class MarketPageResponseDto extends PaginationResponseDto {
     items: { $ref: getSchemaPath(MarketRawDto) },
   })
   data: MarketRawDto[]
+
+  @ApiProperty()
+  price: string
 }
 
 export class InscriptionResponseDto {

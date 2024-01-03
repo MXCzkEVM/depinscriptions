@@ -37,7 +37,6 @@ export interface ScanListJSON {
   tick: string
   amt: string
   pre: string
-  tim: string
   exp: string
 }
 
@@ -180,7 +179,7 @@ export class ScriptsService {
   ) {
     const tick = await this.tickService.detail({ tick: String(inscription.tick) })
     const contract = this.config.get('NEST_MARKET_CONTRACT')
-    const day30timestamp = 24 * 3600 * 1000 * 30
+    const yearTimestamp = 24 * 3600 * 1000 * 365
     const expiration = Number(inscription.exp)
 
     if (!tick)
@@ -189,7 +188,7 @@ export class ScriptsService {
     if (transaction.to !== contract)
       throw new Error(`[list] - Listing exception, listing through an unverified address`)
 
-    if (expiration > day30timestamp)
+    if (expiration > yearTimestamp)
       throw new Error(`Exceeded the time limit for listing`)
 
     await this.holderService.decrementValue(
@@ -204,7 +203,7 @@ export class ScriptsService {
 
     await this.orderService.create({
       amount: BigInt(inscription.amt),
-      price: BigInt(inscription.pre),
+      price: inscription.pre,
       tick: inscription.tick,
       hash: transaction.hash,
       maker: transaction.from,
