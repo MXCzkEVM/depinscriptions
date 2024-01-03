@@ -1,10 +1,15 @@
 import { Injectable, Logger } from '@nestjs/common'
 import { TransactionResponse } from 'ethers'
 import { bgWhite, cyan, reset, yellow } from 'chalk'
+import { ConfigService } from '@nestjs/config'
+import { SchedulerRegistry } from '@nestjs/schedule'
+import { Order } from '@prisma/client'
 import { BlockWithTransactions } from './provider.service'
 import { HolderService } from './holder.service'
 import { TickService } from './tick.service'
 import { HexagonService } from './hexagon.service'
+import { OrderService } from './order.service'
+import { InscriptionService } from './inscription.service'
 
 export interface ScanDeployJSON {
   p: 'msc-20'
@@ -33,6 +38,7 @@ export interface ScanListJSON {
   amt: string
   pre: string
   tim: string
+  exp: string
 }
 
 export interface ScanCancelJSON {
@@ -54,7 +60,11 @@ export class ScriptsService {
     private holderService: HolderService,
     private tickService: TickService,
     private hexagonService: HexagonService,
-  ) { }
+    private orderService: OrderService,
+    private inscriptionService: InscriptionService,
+    private config: ConfigService,
+  ) {
+  }
 
   private readonly logger = new Logger('TasksService')
 
@@ -133,7 +143,7 @@ export class ScriptsService {
   async transfer(
     block: BlockWithTransactions,
     transaction: TransactionResponse,
-    inscription: ScanListJSON,
+    inscription: ScanTransferJSON,
   ) {
     const tick = await this.tickService.detail({ tick: String(inscription.tick) })
     if (!tick)
@@ -165,18 +175,63 @@ export class ScriptsService {
 
   async list(
     _block: BlockWithTransactions,
-    _transaction: TransactionResponse,
-    _inscription: ScanTransferJSON,
+    transaction: TransactionResponse,
+    inscription: ScanListJSON,
   ) {
+    const tick = await this.tickService.detail({ tick: String(inscription.tick) })
+    const contract = this.config.get('NEST_MARKET_CONTRACT')
+    const day30timestamp = 24 * 3600 * 1000 * 30
+    const expiration = Number(inscription.exp)
 
+    if (!tick)
+      throw new Error(`[list] - Attempting to transfer into non-existent tick( ${inscription.tick} )`)
+
+    if (transaction.to !== contract)
+      throw new Error(`[list] - Listing exception, listing through an unverified address`)
+
+    if (expiration > day30timestamp)
+      throw new Error(`Exceeded the time limit for listing`)
+
+    await this.holderService.decrementValue(
+      { owner: transaction.from, tick: inscription.tick },
+      { value: BigInt(inscription.amt) },
+    )
+
+    await this.holderService.incrementValue(
+      { owner: transaction.to, tick: inscription.tick },
+      { value: BigInt(inscription.amt), number: tick.number },
+    )
+
+    await this.orderService.create({
+      amount: BigInt(inscription.amt),
+      price: BigInt(inscription.pre),
+      tick: inscription.tick,
+      hash: transaction.hash,
+      maker: transaction.from,
+      expiration: new Date(Date.now() + Number(inscription.exp)),
+      status: 0,
+    })
   }
 
   async cancel(
     _block: BlockWithTransactions,
-    _transaction: TransactionResponse,
-    _inscription: ScanCancelJSON,
+    transaction: TransactionResponse,
+    inscription: ScanCancelJSON,
   ) {
+    const order = await this.orderService.detail({ hash: inscription.hash })
+    const record = await this.inscriptionService.detail({ hash: inscription.hash })
+    if (!record || !order)
+      throw new Error('Unlisted Inscription')
+    if (record.from.toUpperCase() !== transaction.from.toUpperCase())
+      throw new Error(`Attempt to remove inscriptions that do not belong to ${transaction.hash}`)
+    if (order.status !== 0)
+      throw new Error(`the order has been processed`)
 
+    await this.orderService.update(inscription.hash, {
+      status: 2,
+    })
+
+    await this.refund(order)
   }
 
   async buy(
@@ -185,5 +240,36 @@ export class ScriptsService {
     _inscription: ScanCancelJSON,
   ) {
 
+  }
+
+  async refund(order: Order) {
+    const contract = this.config.get('NEST_MARKET_CONTRACT')
+
+    await this.holderService.decrementValue(
+      { owner: contract, tick: order.tick },
+      { value: BigInt(order.amount) },
+    )
+
+    await this.holderService.incrementValue(
+      { owner: order.maker, tick: order.tick },
+      { value: BigInt(order.amount) },
+    )
+  }
+
+  async checks() {
+    const orders = await this.orderService.lists({
+      where: { status: 0 },
+    })
+    for (const order of orders) {
+      const current = Date.now()
+      if (order.expiration.valueOf() > current)
+        continue
+      this.orderService.update(order.hash, {
+        status: 3,
+      })
+      await this.refund(order)
+      const hashLogText = yellow(order.hash.slice(0, 12))
+      this.logger.log(reset(`${bgWhite('[expired]')} - order in ${hashLogText}`))
+    }
   }
 }

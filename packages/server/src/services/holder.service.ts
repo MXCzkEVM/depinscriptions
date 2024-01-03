@@ -45,13 +45,14 @@ export class HolderService {
     return this.prisma.holder.deleteMany({ where })
   }
 
-  async incrementValue(params: QueryHolderParams, data: { value: bigint, number: number }) {
+  async incrementValue(params: QueryHolderParams, data: { value: bigint, number?: number }) {
     const isExist = await this.some(params)
+    const number = data.number || (await this.tickService.detail({ tick: params.tick })).number
     if (!isExist) {
       await this.create({
         owner: params.owner,
         tick: params.tick,
-        number: data.number,
+        number,
         value: data.value,
       })
       await this.tickService.update(params.tick, {

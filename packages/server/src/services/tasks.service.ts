@@ -1,14 +1,14 @@
 import { Injectable, Logger } from '@nestjs/common'
-import { Interval } from '@nestjs/schedule'
+import { Cron, Interval } from '@nestjs/schedule'
 import { toUtf8String } from 'ethers'
 import { cyan, dim, gray, reset } from 'chalk'
 import { getIndexerLastBlock, setIndexerLastBlock } from '../utils'
 
 import { JsonProviderService } from './provider.service'
 import { InscriptionService } from './inscription.service'
-import { ScanDeployJSON, ScanMintJSON, ScanTransferJSON, ScriptsService } from './scripts.service'
+import { ScanDeployJSON, ScanListJSON, ScanMintJSON, ScanTransferJSON, ScriptsService } from './scripts.service'
 
-type InscriptionJSON = ScanDeployJSON | ScanMintJSON | ScanTransferJSON
+type InscriptionJSON = ScanDeployJSON | ScanMintJSON | ScanTransferJSON | ScanListJSON
 
 @Injectable()
 export class TasksService {
@@ -46,15 +46,6 @@ export class TasksService {
 
   async nextBlocks(start: number, end: number) {
     const blocks = await this.provider.getBlockByArangeWithTransactions(start, end)
-    // const transactions = [
-    //   // deploy - goerli
-    //   // await this.provider.getTransaction('0x1c81625f7727e8825794d81adf2bc217a6d9302166df5db95df610ff1c3c0a3e'),
-    //   // mint - goerli
-    //   // await this.provider.getTransaction('0xbf120aca3b8a2be8c38a159c709eaffdba1254a4c9e3afeb9563093b3340070a'),
-    //   // transfer - goerli
-    //   // await this.provider.getTransaction('0xd9659286e85465b7ed03d3d2eabd29cb2d33718355833dd92f357141ddc73feb'),
-    // ]
-    // for (const block of [{ transactions, timestamp: 1 }]) {
     for (const block of blocks) {
       for (const transaction of block.transactions) {
         if (!transaction.data.startsWith('0x7b2270223a226d73632d323022'))
@@ -74,11 +65,13 @@ export class TasksService {
           this.logger.log(reset(`Transaction hash: ${dim(transaction.hash)}`))
           this.logger.log(reset(`Inscription json: ${dim(json)}`))
           if (inscription.op === 'deploy')
-            await this.scripts.deploy(block as any, transaction, inscription)
+            await this.scripts.deploy(block, transaction, inscription)
           if (inscription.op === 'transfer')
-            await this.scripts.transfer(block as any, transaction, inscription as any)
+            await this.scripts.transfer(block, transaction, inscription)
           if (inscription.op === 'mint')
-            await this.scripts.mint(block as any, transaction, inscription)
+            await this.scripts.mint(block, transaction, inscription)
+          if (inscription.op === 'list')
+            await this.scripts.list(block, transaction, inscription)
           await this.inscription.create({
             from: transaction.from,
             to: transaction.to,
@@ -97,5 +90,10 @@ export class TasksService {
         }
       }
     }
+  }
+
+  @Cron('0 */5 * * * *')
+  async timeoutOrders() {
+    await this.scripts.checks()
   }
 }

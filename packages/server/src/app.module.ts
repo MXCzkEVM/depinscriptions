@@ -11,6 +11,7 @@ import { JsonProviderService } from './services/provider.service'
 import { HexagonService } from './services/hexagon.service'
 import { ScriptsService } from './services/scripts.service'
 import { RecoveryService } from './services/recovery.service'
+import { OrderService } from './services/order.service'
 
 @Module({
   imports: [ConfigModule.forRoot({ isGlobal: true }), ScheduleModule.forRoot()],
@@ -25,6 +26,7 @@ import { RecoveryService } from './services/recovery.service'
     HexagonService,
     ScriptsService,
     RecoveryService,
+    OrderService,
   ],
 })
 export class AppModule {}
