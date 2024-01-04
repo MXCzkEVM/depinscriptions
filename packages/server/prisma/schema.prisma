@@ -45,12 +45,28 @@ model Order {
   hash       String   @unique
   tick       String
   maker      String
+  buyer      String?
   amount     BigInt
   price      Decimal  @db.Decimal(65, 18)
   // 0:listing | 1:sold | 2:cancelled | 3:expired
   status     Int      @default(0)
   time       DateTime @default(now())
   lastTime   DateTime @updatedAt
+  expiration DateTime
+}
+
+model OrderRecord {
+  id         Int      @id @default(autoincrement())
+  number     Int      
+  hash       String
+  tick       String
+  maker      String
+  buyer      String?
+  amount     BigInt
+  price      Decimal  @db.Decimal(65, 18)
+  // 0:listing | 1:sold | 2:cancelled | 3:expired
+  status     Int      @default(0)
+  time       DateTime @default(now())
   expiration DateTime
 }
 

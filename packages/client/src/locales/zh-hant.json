@@ -126,5 +126,15 @@
   "You dont have enough balance": "你的餘額不夠。",
   "Please enter the price": "請輸入價格",
   "Order total amount should be greater than 10": "訂單總金額應大於 10 美元",
-  "You dont have enough tick": "您沒有足夠的 {{token}}。"
+  "You dont have enough tick": "您沒有足夠的 {{token}}。",
+  "Sold": "賣",
+  "Listing": "上架中",
+  "Cancelled": "取消",
+  "Action": "操作",
+  "Refund": "退回",
+  "Expired": "已到期",
+  "Result": "結果",
+  "Per Mint": "每鑄造",
+  "USD Denominated": "美元計價",
+  "Scriptions": "腳本"
 }

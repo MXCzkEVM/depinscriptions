@@ -121,4 +121,7 @@ export class OrderDto {
 
   @ApiProperty()
   expiration: string
+
+  @ApiProperty()
+  buyer: string
 }

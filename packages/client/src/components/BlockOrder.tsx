@@ -59,7 +59,7 @@ function BlockOrder(props: BlockOrderProps) {
       <div className="text-[#6300ff] gap-2 flex justify-center mb-3">
         <Price symbol="mxc" value={mxc} />
         <span> / </span>
-        <span>Per Mint</span>
+        <span>{mode === 'mint' ? t('Per Mint') : props.data.tick}</span>
       </div>
       <div className="flex justify-center text-sm text-[#e5e7eb]">
         <Price symbol="usd" value={usd} />

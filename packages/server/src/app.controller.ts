@@ -48,17 +48,24 @@ export class AppController {
 
   @Get('inscription')
   @ApiQuery({ name: 'page', type: 'number' })
-  @ApiQuery({ name: 'owner', type: 'string', required: false })
   @ApiQuery({ name: 'limit', type: 'number', required: false })
+  @ApiQuery({ name: 'owner', type: 'string', required: false })
+  @ApiQuery({ name: 'op', type: 'string', isArray: true, required: false })
   @ApiConsumes('application/json')
   @ApiResponse({ status: 200, type: InscriptionPageResponseDto, description: 'Inscriptions' })
-  async getInscriptions(@Query('owner') owner?: string, @Query('page') page = 1, @Query('limit') limit = 15) {
+  async getInscriptions(
+    @Query('owner') owner?: string, @Query('owner') op?: string, @Query('page') page = 1, @Query('limit') limit = 15) {
+    const where: Prisma.InscriptionWhereInput = {
+      op: { in: (op || 'mint,deploy').split(',') },
+    }
+    if (owner)
+      where.from = owner
     const total = await this.inscriptionService.count({
-      where: owner ? { from: owner } : undefined,
+      where,
     })
     const data = await this.inscriptionService.lists({
       orderBy: { number: 'desc' },
-      where: owner ? { from: owner } : undefined,
+      where,
       skip: (page - 1) * limit,
       take: +limit,
     })
@@ -244,24 +251,62 @@ export class AppController {
   @ApiQuery({ name: 'limit', type: 'number', required: false })
   @ApiQuery({ name: 'status', type: 'string', isArray: true, required: false })
   @ApiQuery({ name: 'tick', required: false })
+  @ApiQuery({ name: 'owner', required: false })
   @ApiConsumes('application/json')
   @ApiResponse({ status: 200, type: OrderPageResponseDto, description: 'Market' })
   async getOrders(
     @Query('page') page = 1,
     @Query('limit') limit = 15,
-    @Query('status') status = [0, 1, 2, 3],
+    @Query('status') status?: string,
     @Query('tick') tick?: string,
+    @Query('owner') owner?: string,
   ) {
-    const total = await this.orderService.count({
-      where: { status: { in: status.map(Number) }, tick },
-    })
+    const where: Prisma.OrderWhereInput = {
+      status: { in: (status || '0,1,2,3').split(',').map(Number) },
+      tick,
+    }
+    if (owner)
+      where.OR = [{ maker: owner }, { buyer: owner }]
+
+    const total = await this.orderService.count({ where })
     const data = await this.orderService.lists({
-      where: { status: { in: status.map(Number) }, tick },
+      where,
       orderBy: { lastTime: 'desc' },
       skip: (page - 1) * limit,
       take: +limit,
     })
 
+    return {
+      data,
+      total,
+    }
+  }
+
+  @Get('order/record')
+  @ApiConsumes('application/json')
+  @ApiQuery({ name: 'page', type: 'number' })
+  @ApiQuery({ name: 'limit', type: 'number', required: false })
+  @ApiQuery({ name: 'status', type: 'string', isArray: true, required: false })
+  @ApiQuery({ name: 'tick', required: false })
+  @ApiConsumes('application/json')
+  @ApiResponse({ status: 200, type: OrderPageResponseDto, description: 'Market' })
+  async getOrdersByRecord(
+    @Query('page') page = 1,
+    @Query('limit') limit = 15,
+    @Query('status') status?: string,
+    @Query('tick') tick?: string,
+  ) {
+    const where: Prisma.OrderRecordWhereInput = {
+      status: { in: (status || '0,1,2,3').split(',').map(Number) },
+      tick,
+    }
+    const total = await this.orderService.countByRecord({ where })
+    const data = await this.orderService.listsByRecord({
+      where,
+      orderBy: { lastTime: 'desc' },
+      skip: (page - 1) * limit,
+      take: +limit,
+    })
     return {
       data,
       total,

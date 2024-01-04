@@ -93,7 +93,6 @@ function Page() {
 
   async function deploy() {
     const instance = openDeployModal()
-    console.log(instance)
     const { hash } = await instance
     await openWaitingIndexModal({ hash })
     await controls.reload()

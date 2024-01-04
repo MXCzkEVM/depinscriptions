@@ -126,5 +126,15 @@
   "You dont have enough balance": "Nu ai suficient echilibru.",
   "Please enter the price": "Vă rugăm să introduceți prețul",
   "Order total amount should be greater than 10": "Suma totală a comenzii ar trebui să fie mai mare de 10 USD",
-  "You dont have enough tick": "Nu aveți suficient {{token}}."
+  "You dont have enough tick": "Nu aveți suficient {{token}}.",
+  "Sold": "Vândut",
+  "Listing": "Listare",
+  "Cancelled": "Anulat",
+  "Action": "Acțiune",
+  "Refund": "Restituire",
+  "Expired": "Expirat",
+  "Result": "Rezultat",
+  "Per Mint": "Per Mint",
+  "USD Denominated": "Denominat în USD",
+  "Scriptions": "Scripturi"
 }

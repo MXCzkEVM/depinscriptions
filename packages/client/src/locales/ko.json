@@ -126,5 +126,15 @@
   "You dont have enough balance": "잔액이 부족합니다.",
   "Please enter the price": "가격을 입력해주세요",
   "Order total amount should be greater than 10": "주문 총액은 $10보다 커야 합니다.",
-  "You dont have enough tick": "{{token}}이(가) 부족합니다."
+  "You dont have enough tick": "{{token}}이(가) 부족합니다.",
+  "Sold": "판매된",
+  "Listing": "상장",
+  "Cancelled": "취소 된",
+  "Action": "행동",
+  "Refund": "환불하다",
+  "Expired": "만료됨",
+  "Result": "결과",
+  "Per Mint": "민트당",
+  "USD Denominated": "USD 표시",
+  "Scriptions": "스크립트"
 }

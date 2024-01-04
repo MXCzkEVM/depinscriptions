@@ -126,5 +126,15 @@
   "You dont have enough balance": "Vous n'avez pas assez d'équilibre.",
   "Please enter the price": "Veuillez entrer le prix",
   "Order total amount should be greater than 10": "Le montant total de la commande doit être supérieur à 10 $",
-  "You dont have enough tick": "Vous n'avez pas assez de {{token}}."
+  "You dont have enough tick": "Vous n'avez pas assez de {{token}}.",
+  "Sold": "Vendu",
+  "Listing": "Référencement",
+  "Cancelled": "Annulé",
+  "Action": "Action",
+  "Refund": "Remboursement",
+  "Expired": "Expiré",
+  "Result": "Résultat",
+  "Per Mint": "Par Menthe",
+  "USD Denominated": "Libellé en USD",
+  "Scriptions": "Écritures"
 }

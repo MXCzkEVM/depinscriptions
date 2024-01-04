@@ -126,5 +126,15 @@
   "You dont have enough balance": "Anda tidak memiliki cukup saldo.",
   "Please enter the price": "Silakan masukkan harganya",
   "Order total amount should be greater than 10": "Jumlah total pesanan harus lebih besar dari $10",
-  "You dont have enough tick": "Anda tidak memiliki cukup {{token}}."
+  "You dont have enough tick": "Anda tidak memiliki cukup {{token}}.",
+  "Sold": "Terjual",
+  "Listing": "Daftar",
+  "Cancelled": "Dibatalkan",
+  "Action": "Tindakan",
+  "Refund": "Pengembalian dana",
+  "Expired": "Kedaluwarsa",
+  "Result": "Hasil",
+  "Per Mint": "Per permen",
+  "USD Denominated": "Dalam mata uang USD",
+  "Scriptions": "Naskah"
 }

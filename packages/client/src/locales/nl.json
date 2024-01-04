@@ -126,5 +126,15 @@
   "You dont have enough balance": "Je hebt niet genoeg saldo.",
   "Please enter the price": "Voer de prijs in",
   "Order total amount should be greater than 10": "Het totale bedrag van de bestelling moet groter zijn dan $ 10",
-  "You dont have enough tick": "Je hebt niet genoeg {{token}}."
+  "You dont have enough tick": "Je hebt niet genoeg {{token}}.",
+  "Sold": "Verkocht",
+  "Listing": "Lijst",
+  "Cancelled": "Geannuleerd",
+  "Action": "Actie",
+  "Refund": "Terugbetaling",
+  "Expired": "Verlopen",
+  "Result": "Resultaat",
+  "Per Mint": "Per munt",
+  "USD Denominated": "In USD uitgedrukt",
+  "Scriptions": "Scripties"
 }

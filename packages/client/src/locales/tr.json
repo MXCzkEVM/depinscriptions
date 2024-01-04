@@ -130,5 +130,15 @@
   "You dont have enough balance": "Yeterli bakiyeniz yok.",
   "Please enter the price": "Lütfen fiyatı girin",
   "Order total amount should be greater than 10": "Siparişin toplam tutarı 10$'dan büyük olmalıdır",
-  "You dont have enough tick": "Yeterli {{token}}'ınız yok."
+  "You dont have enough tick": "Yeterli {{token}}'ınız yok.",
+  "Sold": "Satılmış",
+  "Listing": "İlan",
+  "Cancelled": "İptal edildi",
+  "Action": "Aksiyon",
+  "Refund": "Geri ödemek",
+  "Expired": "Günü geçmiş",
+  "Result": "Sonuç",
+  "Per Mint": "Darphane Başına",
+  "USD Denominated": "ABD Doları Cinsinden",
+  "Scriptions": "Yazılar"
 }

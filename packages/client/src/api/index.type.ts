@@ -16,6 +16,7 @@ export interface OrderDto {
   time: string;
   lastTime: string;
   expiration: string;
+  buyer: string;
 }
 export interface MarketRawDto {
   tick: string;
@@ -123,6 +124,7 @@ export interface OrderPageResponseDto {
 }
 export interface GetInscriptionQuery {
   owner?: string;
+  op?: string[];
   limit?: number;
   page: number;
 }
@@ -164,8 +166,15 @@ export interface GetMarketIdPath {
   id: string;
 }
 export interface GetOrderQuery {
-  tick?: string;
   status?: string[];
+  tick?: string;
+  owner?: string;
+  limit?: number;
+  page: number;
+}
+export interface GetOrderRecordQuery {
+  status?: string[];
+  tick?: string;
   limit?: number;
   page: number;
 }

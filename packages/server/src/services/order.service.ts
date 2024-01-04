@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { Order, Prisma } from '@prisma/client'
+import { omit } from 'lodash'
 import { PrismaService } from './prisma.service'
 
 export interface OrderByFloorPriceParams {
@@ -12,12 +13,16 @@ export interface OrderByFloorPriceParams {
 export class OrderService {
   constructor(private prisma: PrismaService) {}
 
-  create(data: Prisma.OrderCreateInput) {
-    return this.prisma.order.create({ data })
+  async create(data: Prisma.OrderCreateInput) {
+    return this.record(await this.prisma.order.create({ data }))
   }
 
   async lists(params: Prisma.OrderFindManyArgs) {
     return this.prisma.order.findMany(params)
+  }
+
+  async listsByRecord(params: Prisma.OrderRecordFindManyArgs) {
+    return this.prisma.orderRecord.findMany(params)
   }
 
   async listsOrderByFloorPrice(params: OrderByFloorPriceParams) {
@@ -30,10 +35,7 @@ export class OrderService {
   }
 
   async update(hash: string, data: Prisma.OrderUpdateInput) {
-    return this.prisma.order.update({
-      where: { hash },
-      data,
-    })
+    return this.record(await this.prisma.order.update({ where: { hash }, data }))
   }
 
   async detail(where: Prisma.OrderWhereUniqueInput) {
@@ -44,9 +46,20 @@ export class OrderService {
     return this.prisma.order.count(params)
   }
 
+  async countByRecord(params: Prisma.OrderRecordCountArgs) {
+    return this.prisma.orderRecord.count(params)
+  }
+
   async some(hash: string) {
     const count = await this.count({ where: { hash } })
     return count !== 0
+  }
+
+  async record(data: Order) {
+    await this.prisma.orderRecord.create({
+      data: omit(data, ['lastTime', 'time']),
+    })
+    return data
   }
 
   async price() {

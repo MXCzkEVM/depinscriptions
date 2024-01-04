@@ -213,6 +213,9 @@ importers:
       https-proxy-agent:
         specifier: ^7.0.2
         version: 7.0.2
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
       reflect-metadata:
         specifier: ^0.1.13
         version: 0.1.14
@@ -238,6 +241,9 @@ importers:
       '@types/jest':
         specifier: ^29.5.2
         version: 29.5.11
+      '@types/lodash':
+        specifier: ^4.14.202
+        version: 4.14.202
       '@types/node':
         specifier: ^20.3.1
         version: 20.10.5
@@ -4060,6 +4066,10 @@ packages:
     resolution: {integrity: sha512-BQ5aZNSCpj7D6K2ksrRCTmKRLEpnPvWDiLPfoGyhZ++8YtiK9d/3DBKPJgry359X/P1PfruyYwvnvwFjuEiEIg==}
     dependencies:
       '@types/node': 20.10.5
+    dev: true
+
+  /@types/lodash@4.14.202:
+    resolution: {integrity: sha512-OvlIYQK9tNneDlS0VN54LLd5uiPCBOp7gS5Z0f1mjoJYBrtStzgmJBxONW3U6OZqdtNzZPmn9BS/7WI7BFFcFQ==}
     dev: true
 
   /@types/luxon@3.3.7:

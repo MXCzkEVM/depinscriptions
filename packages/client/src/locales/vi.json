@@ -126,5 +126,15 @@
   "You dont have enough balance": "Bạn không có đủ số dư.",
   "Please enter the price": "Vui lòng nhập giá",
   "Order total amount should be greater than 10": "Tổng số tiền đặt hàng phải lớn hơn $10",
-  "You dont have enough tick": "Bạn không có đủ {{token}}."
+  "You dont have enough tick": "Bạn không có đủ {{token}}.",
+  "Sold": "Đã bán",
+  "Listing": "Danh sách",
+  "Cancelled": "Đã hủy",
+  "Action": "Hoạt động",
+  "Refund": "Đền bù",
+  "Expired": "Hết hạn",
+  "Result": "Kết quả",
+  "Per Mint": "mỗi bạc hà",
+  "USD Denominated": "Bằng USD",
+  "Scriptions": "Kinh thánh"
 }

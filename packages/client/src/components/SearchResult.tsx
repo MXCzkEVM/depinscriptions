@@ -1,5 +1,6 @@
 import { Tab, Tabs } from '@mui/material'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import DataGridTokens from './DataGridTokens'
 import DataGridScriptions from './DataGridScriptions'
 import Refresh from './Refresh'
@@ -10,12 +11,13 @@ export interface SearchResultProps {
 
 export function SearchResult(props: SearchResultProps) {
   const [tab, setTab] = useState(0)
+  const { t } = useTranslation()
   return (
     <>
       <div className="flex">
         <Tabs value={tab} onChange={(event, value) => setTab(value)}>
-          <Tab label="Tokens" />
-          <Tab className="personal_page_step_3" label="Scriptions" />
+          <Tab label={t('Tokens')} />
+          <Tab label={t('Scriptions')} className="personal_page_step_3" />
         </Tabs>
         <div className="ml-12 flex items-center">
           <Refresh />

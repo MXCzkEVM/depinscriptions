@@ -139,6 +139,17 @@ export async function getOrder(query: Types.GetOrderQuery, config?: RequestInit)
  * @method get
  * @tags app-controller
  */
+export async function getOrderRecord(query: Types.GetOrderRecordQuery, config?: RequestInit) {
+  const _query_ = `?${new URLSearchParams(Object.entries(query)).toString()}`;
+  const response = await fetch(`${baseURL}/order/record${_query_}`, {
+    ...config,
+  });
+  return response.json() as Promise<Types.OrderPageResponseDto>;
+}
+/**
+ * @method get
+ * @tags app-controller
+ */
 export async function getOrderListed(query: Types.GetOrderListedQuery, config?: RequestInit) {
   const _query_ = `?${new URLSearchParams(Object.entries(query)).toString()}`;
   const response = await fetch(`${baseURL}/order/listed${_query_}`, {

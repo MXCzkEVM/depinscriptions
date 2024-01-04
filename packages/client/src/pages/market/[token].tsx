@@ -1,4 +1,4 @@
-import { ArrowBackSharp } from '@ricons/ionicons5'
+import { ArrowBackSharp, SwapHorizontalOutline } from '@ricons/ionicons5'
 import { useRouter } from 'next/router'
 import { ReactElement, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -35,7 +35,7 @@ function Page() {
   const [holderListMl, openListModal] = useInjectHolder<ListDialogProps, { hash: string }>(ListDialog)
   const [holderWaitingMl, openWaitingIndexModal] = useInjectHolder(WaitingIndexModal)
   const [tab, setTab] = useState('listed')
-  const [perMint, _setPerMint] = useState(true)
+  const [perMint, setPerMint] = useState(true)
   const { value: data, loading } = useAsync(async () => token && getMarketId({ id: token || '' }), [token])
 
   if (!data)
@@ -87,6 +87,9 @@ function Page() {
         <Price label="Owners" value={data.holders} />
         <Divider className="hidden md:block" orientation="vertical" flexItem />
         <Price label="Sales" value={data.sales} />
+        <Icon size="22" className="cursor-pointer" onClick={() => setPerMint(!perMint)}>
+          <SwapHorizontalOutline />
+        </Icon>
       </div>
       <div className="flex justify-between items-center border-b mb-8">
         <Tabs
