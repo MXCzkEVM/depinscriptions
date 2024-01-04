@@ -137,5 +137,8 @@
   "Per Mint": "За монетный двор",
   "USD Denominated": "Номинирован в долларах США",
   "Scriptions": "Сценарии",
-  "All Markets": "Все рынки"
+  "All Markets": "Все рынки",
+  "Unit Price": "Цена за единицу товара",
+  "Volume": "Объем",
+  "Sales": "Продажи"
 }

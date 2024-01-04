@@ -137,5 +137,8 @@
   "Per Mint": "민트당",
   "USD Denominated": "USD 표시",
   "Scriptions": "스크립트",
-  "All Markets": "모든 시장"
+  "All Markets": "모든 시장",
+  "Unit Price": "단가",
+  "Volume": "용량",
+  "Sales": "매상"
 }

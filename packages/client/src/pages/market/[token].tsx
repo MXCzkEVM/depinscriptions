@@ -67,26 +67,26 @@ function Page() {
         <Icon>
           <ArrowBackSharp />
         </Icon>
-        <Typography variant="h6">{t('Tokens / Detail')}</Typography>
+        <Typography variant="h6">{t('Tokens . Detail')}</Typography>
       </div>
       <div className="flex mb-5">
         <Typography variant="h6">{token}</Typography>
         <Flag size="32" find={token} />
       </div>
       <div className="flex gap-3 flex-wrap mb-10">
-        <Price label="Floor Price" symbol="mxc" value={floorPrice} />
+        <Price label={t('Floor Price')} symbol="mxc" value={floorPrice} />
         <Divider className="hidden md:block" orientation="vertical" flexItem />
         {
           perMint
-            ? <Price label="Per Mint" symbol="usd" value={usdMintPrice} />
-            : <Price label="Unit Price" symbol="usd" value={usdUnitPrice} />
+            ? <Price label={t('Per Mint')} symbol="usd" value={usdMintPrice} />
+            : <Price label={t('Unit Price')} symbol="usd" value={usdUnitPrice} />
         }
         <Divider className="hidden md:block" orientation="vertical" flexItem />
-        <Price label="Volume" symbol="mxc" value={data.volume} />
+        <Price label={t('Volume')} symbol="mxc" value={data.volume} />
         <Divider className="hidden md:block" orientation="vertical" flexItem />
-        <Price label="Owners" value={data.holders} />
+        <Price label={t('Owners')} value={data.holders} />
         <Divider className="hidden md:block" orientation="vertical" flexItem />
-        <Price label="Sales" value={data.sales} />
+        <Price label={t('Sales')} value={data.sales} />
         <Icon size="22" className="cursor-pointer" onClick={() => setPerMint(!perMint)}>
           <SwapHorizontalOutline />
         </Icon>

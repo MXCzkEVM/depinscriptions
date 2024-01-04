@@ -136,5 +136,8 @@
   "Per Mint": "造幣局ごと",
   "USD Denominated": "米ドル建て",
   "Scriptions": "スクリプト",
-  "All Markets": "すべての市場"
+  "All Markets": "すべての市場",
+  "Unit Price": "単価",
+  "Volume": "音量",
+  "Sales": "販売"
 }
