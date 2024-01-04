@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { BigNum } from '@/utils'
 
 export interface NumberStateOptions {
   min?: string | number | bigint
@@ -14,10 +15,11 @@ export function useNumberState(init: string, options: NumberStateOptions = {}) {
       return
     if (min === 0 && value === '-')
       return
-    if (BigInt(value === '-' ? '0' : value) < BigInt(min))
+
+    if (BigNum(value).lt(min.toString()))
       return setValue(min.toString())
 
-    if (max !== Number.POSITIVE_INFINITY && BigInt(value) > BigInt(max))
+    if (max !== Number.POSITIVE_INFINITY && BigNum(value).gt(max.toString()))
       return setValue(max.toString())
 
     setValue(value)

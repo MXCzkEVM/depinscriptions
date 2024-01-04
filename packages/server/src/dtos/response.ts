@@ -1,6 +1,6 @@
 import { ApiProperty, getSchemaPath } from '@nestjs/swagger'
 import { Hexagon, Holder, Inscription, Tick } from '@prisma/client'
-import { HexagonDto, HolderDto, InscriptionDto, TickDto } from './source'
+import { HexagonDto, HolderDto, InscriptionDto, OrderDto, TickDto } from './source'
 import { MarketRawDto } from './query-raw'
 
 export class PaginationResponseDto {
@@ -48,6 +48,14 @@ export class MarketPageResponseDto extends PaginationResponseDto {
 
   @ApiProperty()
   price: string
+}
+
+export class OrderPageResponseDto extends PaginationResponseDto {
+  @ApiProperty({
+    type: 'array',
+    items: { $ref: getSchemaPath(OrderDto) },
+  })
+  data: OrderDto[]
 }
 
 export class InscriptionResponseDto {

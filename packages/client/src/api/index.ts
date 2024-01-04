@@ -125,6 +125,28 @@ export async function getMarketId(paths: Types.GetMarketIdPath, config?: Request
   return response.json() as Promise<Types.MarketDetailDto>;
 }
 /**
+ * @method get
+ * @tags app-controller
+ */
+export async function getOrder(query: Types.GetOrderQuery, config?: RequestInit) {
+  const _query_ = `?${new URLSearchParams(Object.entries(query)).toString()}`;
+  const response = await fetch(`${baseURL}/order${_query_}`, {
+    ...config,
+  });
+  return response.json() as Promise<Types.OrderPageResponseDto>;
+}
+/**
+ * @method get
+ * @tags app-controller
+ */
+export async function getOrderListed(query: Types.GetOrderListedQuery, config?: RequestInit) {
+  const _query_ = `?${new URLSearchParams(Object.entries(query)).toString()}`;
+  const response = await fetch(`${baseURL}/order/listed${_query_}`, {
+    ...config,
+  });
+  return response.json() as Promise<Types.OrderPageResponseDto>;
+}
+/**
  * @method post
  * @tags app-controller
  */

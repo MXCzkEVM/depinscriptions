@@ -160,7 +160,11 @@ function ListDialog(props: ListDialogProps) {
             </Field>
             <Field label="Service Fee">2%</Field>
             <Field label="Total Revenue">
-              <Price symbol="usd" value={usdRevenue.toFixed()} />
+              <div className="flex gap-2 items-center">
+                <Price symbol="mxc" value={mxcRevenue.toFixed()} />
+                <span>|</span>
+                <Price symbol="usd" value={usdRevenue.toFixed()} />
+              </div>
             </Field>
           </div>
         </DialogContentText>
@@ -172,7 +176,7 @@ function ListDialog(props: ListDialogProps) {
           variant="contained"
           onClick={onResolve}
         >
-          {t('Deploy')}
+          {t('List')}
         </LoadingButton>
       </DialogActions>
     </Dialog>

@@ -3,22 +3,32 @@ import { useTranslation } from 'react-i18next'
 import BigNumber from 'bignumber.js'
 import { useSnapshot } from 'valtio'
 import { utils } from 'ethers'
+import { useContext } from 'react'
 import Block from './Block'
 import Flag from './Flag'
 import Price from './Price'
-import { cover, thousandBitSeparator } from '@/utils'
+import { BigNum, cover, thousandBitSeparator } from '@/utils'
 import store from '@/store'
+import { MarketDetailDto, OrderDto } from '@/api/index.type'
+import MarketContext from '@/ui/market/Context'
 
-function BlockOrder(props: { data: any }) {
+export interface BlockOrderProps {
+  data: OrderDto
+}
+
+function BlockOrder(props: BlockOrderProps) {
   const { t } = useTranslation()
   const config = useSnapshot(store.config)
-  const unit = new BigNumber(props.data.price).div(props.data.amount)
-  const mxc = unit.toString()
-  const usd = new BigNumber(mxc).div(config.price).toFixed(4)
+  const { limit, mode } = useContext(MarketContext)
+
+  const unitPrice = BigNum(props.data.price).div(props.data.amount)
+  const limitPrice = BigNum(limit).multipliedBy(unitPrice)
+
+  const mxc = mode === 'unit' ? unitPrice : limitPrice
+  const usd = BigNum(mxc).multipliedBy(config.price).toFixed(4)
 
   function renderFooter() {
-    const mxc = utils.formatEther(props.data.price)
-    const usd = new BigNumber(mxc).div(config.price).toFixed(4)
+    const usd = BigNum(props.data.price).multipliedBy(config.price).toFixed(4)
     return (
       <>
         <div className="flex justify-between text-sm">
@@ -30,7 +40,7 @@ function BlockOrder(props: { data: any }) {
         </div>
         <Divider className="my-4" />
         <div className="flex justify-between text-sm mb-4">
-          <Price symbol="mxc" value={mxc} />
+          <Price symbol="mxc" value={props.data.price} />
           <Price symbol="usd" value={usd} />
         </div>
         <Button variant="outlined" className="w-full">{t('Buy')}</Button>
@@ -48,8 +58,8 @@ function BlockOrder(props: { data: any }) {
       </div>
       <div className="text-[#6300ff] gap-2 flex justify-center mb-3">
         <Price symbol="mxc" value={mxc} />
-        <span>/</span>
-        <span>{props.data.tick}</span>
+        <span> / </span>
+        <span>Per Mint</span>
       </div>
       <div className="flex justify-center text-sm text-[#e5e7eb]">
         <Price symbol="usd" value={usd} />

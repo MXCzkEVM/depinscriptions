@@ -1,5 +1,4 @@
 import { useMount } from 'react-use'
-import { LoadingButton } from '@mui/lab'
 import { useAccount } from 'wagmi'
 import { useState } from 'react'
 import Condition from './Condition'
@@ -49,11 +48,6 @@ function DataGridTokens(props: DataGridTokensProps) {
     >
       <InfiniteScroll
         loaded={state.loaded}
-        loader={(
-          <div className="flex justify-center py-2">
-            <LoadingButton />
-          </div>
-        )}
         next={next}
       >
         <Blocks>

@@ -1,6 +1,12 @@
 import { Injectable } from '@nestjs/common'
-import { Prisma } from '@prisma/client'
+import { Order, Prisma } from '@prisma/client'
 import { PrismaService } from './prisma.service'
+
+export interface OrderByFloorPriceParams {
+  tick: string
+  page: number
+  limit: number
+}
 
 @Injectable()
 export class OrderService {
@@ -12,6 +18,15 @@ export class OrderService {
 
   async lists(params: Prisma.OrderFindManyArgs) {
     return this.prisma.order.findMany(params)
+  }
+
+  async listsOrderByFloorPrice(params: OrderByFloorPriceParams) {
+    return this.prisma.$queryRaw<Order[]>`
+      SELECT * FROM  \`Order\`
+      WHERE tick = ${params.tick} AND status = 0
+      ORDER BY (price - amount) DESC
+      LIMIT ${params.limit} OFFSET ${(params.page - 1) * params.limit};
+    `
   }
 
   async update(hash: string, data: Prisma.OrderUpdateInput) {

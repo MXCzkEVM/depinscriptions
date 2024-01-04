@@ -1,6 +1,7 @@
 import { PropsWithChildren, ReactNode, useEffect, useRef } from 'react'
 import { useAsyncFn, useMount } from 'react-use'
 import { delay } from '@hairy/utils'
+import { LoadingButton } from '@mui/lab'
 import { useWhenever } from '@/hooks/useWhenever'
 
 interface InfiniteScrollProps extends PropsWithChildren {
@@ -8,9 +9,18 @@ interface InfiniteScrollProps extends PropsWithChildren {
   loader?: ReactNode
   loaded?: boolean
 }
+
+function defaultLoader() {
+  return (
+    <div className="flex justify-center py-2">
+      <LoadingButton />
+    </div>
+  )
+}
 function InfiniteScroll(props: InfiniteScrollProps) {
   const [state, next] = useAsyncFn(props.next, [props.next])
   const locked = useRef(false)
+  const loader = props.loader || defaultLoader()
 
   async function loadToScroll() {
     if (locked.current)
@@ -56,7 +66,7 @@ function InfiniteScroll(props: InfiniteScrollProps) {
   return (
     <>
       {props.children}
-      {state.loading && props.loader}
+      {state.loading && loader}
     </>
   )
 }

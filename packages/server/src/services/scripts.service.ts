@@ -210,6 +210,12 @@ export class ScriptsService {
       expiration: new Date(Date.now() + Number(inscription.exp)),
       status: 0,
     })
+
+    const fromLogText = yellow(transaction.from.slice(0, 12))
+    const toLogText = yellow(transaction.to.slice(0, 12))
+    const amtLogText = cyan(`${inscription.amt} ${tick.tick}`)
+    const hashLogText = yellow(transaction.hash.slice(0, 12))
+    this.logger.log(reset(`${bgWhite('[listed]')} - transfer ${amtLogText} from ${fromLogText} to ${toLogText} in ${hashLogText}`))
   }
 
   async cancel(

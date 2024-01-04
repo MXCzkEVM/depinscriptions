@@ -19,6 +19,7 @@ import store from '@/store'
 import { BigNum } from '@/utils'
 import WaitingIndexModal from '@/components/WaitingIndexModal'
 import { ListDialogProps } from '@/components/ListDialog'
+import MarketContext from '@/ui/market/Context'
 
 const mappings = {
   listed: () => <Listed />,
@@ -35,8 +36,7 @@ function Page() {
   const [holderWaitingMl, openWaitingIndexModal] = useInjectHolder(WaitingIndexModal)
   const [tab, setTab] = useState('listed')
   const [perMint, _setPerMint] = useState(true)
-
-  const { value: data, loading } = useAsync(async () => getMarketId({ id: token }))
+  const { value: data, loading } = useAsync(async () => token && getMarketId({ id: token || '' }), [token])
 
   if (!data)
     return <Empty loading={loading} />
@@ -52,7 +52,12 @@ function Page() {
     await openWaitingIndexModal({ hash })
   }
   return (
-    <>
+    <MarketContext.Provider
+      value={{
+        mode: perMint ? 'mint' : 'unit',
+        limit: data.limit,
+      }}
+    >
       {holderListMl}
       {holderWaitingMl}
       <div
@@ -101,7 +106,8 @@ function Page() {
         </div>
       </div>
       {mappings[tab]()}
-    </>
+    </MarketContext.Provider>
+
   )
 }
 

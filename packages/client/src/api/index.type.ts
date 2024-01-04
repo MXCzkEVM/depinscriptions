@@ -5,6 +5,18 @@
  * @version 1.0.0
  */
 
+export interface OrderDto {
+  number: number;
+  hash: string;
+  tick: string;
+  maker: string;
+  amount: number;
+  price: string;
+  status: number;
+  time: string;
+  lastTime: string;
+  expiration: string;
+}
 export interface MarketRawDto {
   tick: string;
   price: string;
@@ -105,6 +117,10 @@ export interface MarketDetailDto {
   limit: string;
   limitPrice: string;
 }
+export interface OrderPageResponseDto {
+  total: number;
+  data: OrderDto[];
+}
 export interface GetInscriptionQuery {
   owner?: string;
   limit?: number;
@@ -146,4 +162,15 @@ export interface GetMarketQuery {
 }
 export interface GetMarketIdPath {
   id: string;
+}
+export interface GetOrderQuery {
+  tick?: string;
+  status?: string[];
+  limit?: number;
+  page: number;
+}
+export interface GetOrderListedQuery {
+  tick?: string;
+  limit?: number;
+  page: number;
 }

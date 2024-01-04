@@ -1,5 +1,4 @@
 import { useMount } from 'react-use'
-import { LoadingButton } from '@mui/lab'
 import Condition from './Condition'
 import Blocks from './Blocks'
 import { BlockScription, Empty, InfiniteScroll } from '.'
@@ -22,11 +21,6 @@ function DataGridScriptions(props: DataGridScriptionsProps) {
   return (
     <Condition is={state.value.length} else={<Empty loading={state.loading} />}>
       <InfiniteScroll
-        loader={(
-          <div className="flex justify-center py-2">
-            <LoadingButton />
-          </div>
-        )}
         next={next}
         loaded={state.loaded}
       >

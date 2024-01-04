@@ -1,7 +1,7 @@
 import { Order, Prisma } from '@prisma/client'
-import { Injectable } from '@nestjs/common'
-import { MarketRawDto } from 'src/dtos/query-raw'
+import { Injectable, NotFoundException } from '@nestjs/common'
 import BigNumber from 'bignumber.js'
+import { MarketRawDto } from '../dtos'
 import { PrismaService } from './prisma.service'
 
 @Injectable()
@@ -48,8 +48,6 @@ export class TickService {
   }
 
   async detailByMarkets(page: number, limit: number) {
-    // 当前的 order 所计算出来的 1个 tick 等于多少美元，然后把上架和购买的数量
-    // 上架和购买的 price 相加
     return await this.prisma.$queryRaw<MarketRawDto[]>`
       SELECT
           T.tick as tick,
@@ -59,8 +57,8 @@ export class TickService {
           COUNT(DISTINCT H.owner) as holders,
           COALESCE(sold.volume, 0) as totalVolume,
           COALESCE(sold.sales, 0) as totalSales,
-          listOrSold.marketCap as marketCap,
-          list.listed as listed
+          COALESCE(listOrSold.marketCap, 0) as marketCap,
+          COALESCE(list.listed, 0) as listed
       FROM
           Tick as T
       LEFT JOIN Holder as H ON T.tick = H.tick
@@ -103,6 +101,9 @@ export class TickService {
 
   async detailByMarket(id: string) {
     const tick = await this.detail({ tick: id })
+
+    if (!tick)
+      throw new NotFoundException(`Not found Tick [${id}]`)
     const { _sum: { price: volume } } = await this.prisma.order.aggregate({
       where: { status: { in: [0, 1] } },
       _sum: {
@@ -115,6 +116,7 @@ export class TickService {
         hash: true,
       },
     })
+
     const [order] = await this.prisma.$queryRaw<Order[]>`
       SELECT * FROM  \`Order\` 
       WHERE tick = ${id}

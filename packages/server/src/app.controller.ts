@@ -10,6 +10,8 @@ import {
   InscriptionPageResponseDto,
   InscriptionResponseDto,
   MarketPageResponseDto,
+  OrderDto,
+  OrderPageResponseDto,
   RecoveryBodyDto,
   SomeResponseDto,
   TickDeployedResponseDto,
@@ -33,6 +35,7 @@ import { OrderService } from './services/order.service'
 @ApiExtraModels(HexagonDto)
 @ApiExtraModels(RecoveryBodyDto)
 @ApiExtraModels(MarketRawDto)
+@ApiExtraModels(OrderDto)
 export class AppController {
   constructor(
     private readonly inscriptionService: InscriptionService,
@@ -233,6 +236,56 @@ export class AppController {
     if (!data)
       throw new NotFoundException(`Not found Tick [${id}]`)
     return data
+  }
+
+  @Get('order')
+  @ApiConsumes('application/json')
+  @ApiQuery({ name: 'page', type: 'number' })
+  @ApiQuery({ name: 'limit', type: 'number', required: false })
+  @ApiQuery({ name: 'status', type: 'string', isArray: true, required: false })
+  @ApiQuery({ name: 'tick', required: false })
+  @ApiConsumes('application/json')
+  @ApiResponse({ status: 200, type: OrderPageResponseDto, description: 'Market' })
+  async getOrders(
+    @Query('page') page = 1,
+    @Query('limit') limit = 15,
+    @Query('status') status = [0, 1, 2, 3],
+    @Query('tick') tick?: string,
+  ) {
+    const total = await this.orderService.count({
+      where: { status: { in: status.map(Number) }, tick },
+    })
+    const data = await this.orderService.lists({
+      where: { status: { in: status.map(Number) }, tick },
+      orderBy: { lastTime: 'desc' },
+      skip: (page - 1) * limit,
+      take: +limit,
+    })
+
+    return {
+      data,
+      total,
+    }
+  }
+
+  @Get('order/listed')
+  @ApiConsumes('application/json')
+  @ApiQuery({ name: 'page', type: 'number' })
+  @ApiQuery({ name: 'limit', type: 'number', required: false })
+  @ApiQuery({ name: 'tick', required: false })
+  @ApiResponse({ status: 200, type: OrderPageResponseDto, description: 'Market' })
+  async getOrdersByFloorPrice(
+    @Query('tick') tick: string, @Query('page') page = 1, @Query('limit') limit = 15) {
+    const total = await this.orderService.count({ where: { status: 0, tick } })
+    const data = await this.orderService.listsOrderByFloorPrice({
+      limit,
+      page,
+      tick,
+    })
+    return {
+      data,
+      total,
+    }
   }
 
   @Post('recovery/tick')
