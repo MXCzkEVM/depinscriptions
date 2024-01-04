@@ -263,10 +263,11 @@ export class AppController {
   ) {
     const where: Prisma.OrderWhereInput = {
       status: { in: (status || '0,1,2,3').split(',').map(Number) },
-      tick,
     }
     if (owner)
       where.OR = [{ maker: owner }, { buyer: owner }]
+    if (tick)
+      where.tick = tick
 
     const total = await this.orderService.count({ where })
     const data = await this.orderService.lists({

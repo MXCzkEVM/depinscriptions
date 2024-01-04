@@ -10,7 +10,7 @@ import { useSnapshot } from 'valtio'
 import MarketContext from './Context'
 import CancelButton from './components/CancelButton'
 import { ChainLink, Condition, CountryFlag, Empty, Icon, Price, Refresh } from '@/components'
-import { useGridPaginationFields, useRouterQuery, useServerPagination } from '@/hooks'
+import { useGridPaginationFields, useRouterQuery, useServerPagination, useWatch } from '@/hooks'
 import { getOrder, getToken } from '@/api'
 import { useWhenever } from '@/hooks/useWhenever'
 import { OrderDto } from '@/api/index.type'
@@ -22,6 +22,7 @@ const EXPLORER_URL = process.env.NEXT_PUBLIC_EXPLORER!
 
 function MyOrder() {
   const [denominated, changeDenominated] = useState(false)
+  const [allMarkets, setAllMarkets] = useState(false)
   const [status, setStatus] = useState<any[]>([0, 1, 2])
 
   const { limit, mode } = useContext(MarketContext)
@@ -151,7 +152,11 @@ function MyOrder() {
   ]
 
   const [state, controls] = useServerPagination({
-    resolve: model => getOrder({ ...model, status, tick }),
+    resolve: model => getOrder({
+      ...model,
+      tick: allMarkets ? '' : tick,
+      status,
+    }),
     limit: 10,
   })
 
@@ -160,7 +165,10 @@ function MyOrder() {
     load: controls.load,
   })
 
-  useWhenever(tick, controls.reload)
+  useWatch([tick, allMarkets], () => {
+    if (tick)
+      controls.reload()
+  })
   return (
     <>
       <div className="flex items-center justify-between gap-2 mb-5">
@@ -170,6 +178,12 @@ function MyOrder() {
               <Switch checked={denominated} onChange={(_, value) => changeDenominated(value)} />
             }
             label={t('USD Denominated')}
+          />
+          <FormControlLabel
+            control={
+              <Switch checked={allMarkets} onChange={(_, value) => setAllMarkets(value)} />
+            }
+            label={t('All Markets')}
           />
           <Refresh onClick={controls.reload} hideText />
         </div>
