@@ -1,4 +1,4 @@
 packages:
-  - packages/server
-  - packages/client
+  - packages/nestjs
+  - packages/nextjs
   - packages/hardhat
