@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 import { useMount } from 'react-use'
 import { utils } from 'ethers'
 import { Layout } from '@/layout'
-import { Condition, CountryFlag, Empty, Price, SearchTextField } from '@/components'
+import { Condition, Empty, Flag, Price, TextFieldSearch } from '@/components'
 import store from '@/store'
 import { BigNum, thousandBitSeparator } from '@/utils'
 import { useGridPaginationFields, useServerPagination } from '@/hooks'
@@ -26,7 +26,7 @@ function Page() {
       minWidth: 90,
       flex: 1,
       renderCell(params) {
-        return <CountryFlag find={params.row.tick} />
+        return <Flag find={params.row.tick} />
       },
     },
     {
@@ -142,7 +142,7 @@ function Page() {
         <CardContent className="token_page_step_0_5">
           <div className="mb-4 flex justify-between items-center">
             <Typography variant="h6">{t('Trending Tokens')}</Typography>
-            <SearchTextField
+            <TextFieldSearch
               value={keyword}
               onChange={event => setKeyword(event.target.value)}
               placeholder={t('Token')}

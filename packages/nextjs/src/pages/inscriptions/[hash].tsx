@@ -6,7 +6,14 @@ import { useAsync } from 'react-use'
 import dayjs from 'dayjs'
 import { useTranslation } from 'react-i18next'
 import { Layout } from '@/layout'
-import { ChainLink, Condition, CountryFlag, Empty, FieldCol, LocationForHexagon } from '@/components'
+import {
+  ChainLink,
+  Condition,
+  Empty,
+  Flag,
+  LocationForHexagon,
+  TextColumn,
+} from '@/components'
 import { useRouterQuery } from '@/hooks'
 import { getInscriptionHash } from '@/api'
 import { noop, thousandBitSeparator } from '@/utils'
@@ -64,25 +71,25 @@ function Page() {
             </pre>
           </div>
           <div className="grid grid-cols-2 gap-y-6">
-            <FieldCol dir="col" label="Scription Number">
+            <TextColumn dir="col" label="Scription Number">
               {data.number}
-            </FieldCol>
-            <FieldCol dir="col" label="Creator">
+            </TextColumn>
+            <TextColumn dir="col" label="Creator">
               <ChainLink type="address" href={data.from} />
-            </FieldCol>
-            <FieldCol dir="col" label="Owner">
+            </TextColumn>
+            <TextColumn dir="col" label="Owner">
               <ChainLink type="address" href={data.from} />
-            </FieldCol>
-            <FieldCol dir="col" label="Mime Type">
+            </TextColumn>
+            <TextColumn dir="col" label="Mime Type">
               text/plain
-            </FieldCol>
-            <FieldCol dir="col" label="Created">
+            </TextColumn>
+            <TextColumn dir="col" label="Created">
               {dayjs(data.time).fromNow()}
-            </FieldCol>
+            </TextColumn>
             <Condition is={inscription.hex}>
-              <FieldCol dir="col" label="Location">
+              <TextColumn dir="col" label="Location">
                 <LocationForHexagon hexagon={inscription.hex} />
-              </FieldCol>
+              </TextColumn>
             </Condition>
           </div>
         </CardContent>
@@ -91,7 +98,7 @@ function Page() {
         <CardContent className="p-6">
           <div className="flex items-center mb-6">
             <span className="font-bold text-2xl mr-1">
-              <CountryFlag find={data.tick} />
+              <Flag find={data.tick} />
             </span>
             <span className="text-gray-400">
               #
@@ -99,15 +106,15 @@ function Page() {
             </span>
           </div>
           <div className="flex mb-8">
-            <FieldCol className="flex-1" dir="col" label="Supply">
+            <TextColumn className="flex-1" dir="col" label="Supply">
               {thousandBitSeparator(data.supply)}
-            </FieldCol>
-            <FieldCol className="flex-1" dir="col" label="Holders">
+            </TextColumn>
+            <TextColumn className="flex-1" dir="col" label="Holders">
               {thousandBitSeparator(data.holders)}
-            </FieldCol>
-            <FieldCol className="flex-1" dir="col" label="Creator">
+            </TextColumn>
+            <TextColumn className="flex-1" dir="col" label="Creator">
               <ChainLink type="address" href={data.from} />
-            </FieldCol>
+            </TextColumn>
           </div>
           <div className="flex items-center mb-4 font-bold text-2xl">
             {t('Activity')}

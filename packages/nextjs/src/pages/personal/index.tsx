@@ -1,13 +1,13 @@
 import { ReactElement } from 'react'
 import { useAccount } from 'wagmi'
 import { Layout } from '@/layout'
-import { SearchResult } from '@/components/SearchResult'
+import { SearchByAddress } from '@/components'
 
 function Page() {
   const { address } = useAccount()
   return (
     <div className="mt-6">
-      <SearchResult address={address} />
+      <SearchByAddress address={address} />
     </div>
   )
 }

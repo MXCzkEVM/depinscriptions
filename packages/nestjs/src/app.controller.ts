@@ -271,10 +271,10 @@ export class AppController {
 
     const total = await this.orderService.count({ where })
     const data = await this.orderService.lists({
-      where,
       orderBy: { lastTime: 'desc' },
       skip: (page - 1) * limit,
       take: +limit,
+      where,
     })
 
     return {

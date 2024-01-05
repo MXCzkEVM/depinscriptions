@@ -6,10 +6,9 @@ import dayjs from 'dayjs'
 import { ArrowRedoCircleOutline } from '@ricons/ionicons5'
 import { useSnapshot } from 'valtio'
 import MarketContext from './Context'
-import { ChainLink, Condition, CountryFlag, Empty, Icon, Price, Refresh } from '@/components'
+import { ChainLink, Condition, Empty, Flag, Icon, Price, Refresh } from '@/components'
 import { useEventBus, useGridPaginationFields, useRouterQuery, useServerPagination, useWatch } from '@/hooks'
 import { getOrderRecord } from '@/api'
-import { useWhenever } from '@/hooks/useWhenever'
 import { OrderDto } from '@/api/index.type'
 import { BigNum, formatEther } from '@/utils'
 import store from '@/store'
@@ -57,7 +56,7 @@ function Activities() {
       headerName: t('Token'),
       minWidth: 90,
       renderCell(params) {
-        return <CountryFlag find={params.row.tick} />
+        return <Flag find={params.row.tick} />
       },
     },
     {

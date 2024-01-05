@@ -1,54 +1,54 @@
-import BN from 'bn.js';
-import BigNumber from 'bignumber.js';
+import BN from 'bn.js'
+import BigNumber from 'bignumber.js'
 import {
+  EventData,
+  EventResponse,
   PromiEvent,
   TransactionReceipt,
-  EventResponse,
-  EventData,
   Web3ContractContext,
-} from 'ethereum-abi-types-generator';
+} from 'ethereum-abi-types-generator'
 
 export interface CallOptions {
-  from?: string;
-  gasPrice?: string;
-  gas?: number;
+  from?: string
+  gasPrice?: string
+  gas?: number
 }
 
 export interface SendOptions {
-  from: string;
-  value?: number | string | BN | BigNumber;
-  gasPrice?: string;
-  gas?: number;
+  from: string
+  value?: number | string | BN | BigNumber
+  gasPrice?: string
+  gas?: number
 }
 
 export interface EstimateGasOptions {
-  from?: string;
-  value?: number | string | BN | BigNumber;
-  gas?: number;
+  from?: string
+  value?: number | string | BN | BigNumber
+  gas?: number
 }
 
 export interface MethodPayableReturnContext {
-  send(options: SendOptions): PromiEvent<TransactionReceipt>;
+  send(options: SendOptions): PromiEvent<TransactionReceipt>
   send(
     options: SendOptions,
     callback: (error: Error, result: any) => void
-  ): PromiEvent<TransactionReceipt>;
-  estimateGas(options: EstimateGasOptions): Promise<number>;
+  ): PromiEvent<TransactionReceipt>
+  estimateGas(options: EstimateGasOptions): Promise<number>
   estimateGas(
     options: EstimateGasOptions,
     callback: (error: Error, result: any) => void
-  ): Promise<number>;
-  encodeABI(): string;
+  ): Promise<number>
+  encodeABI(): string
 }
 
 export interface MethodConstantReturnContext<TCallReturn> {
-  call(): Promise<TCallReturn>;
-  call(options: CallOptions): Promise<TCallReturn>;
+  call(): Promise<TCallReturn>
+  call(options: CallOptions): Promise<TCallReturn>
   call(
     options: CallOptions,
     callback: (error: Error, result: TCallReturn) => void
-  ): Promise<TCallReturn>;
-  encodeABI(): string;
+  ): Promise<TCallReturn>
+  encodeABI(): string
 }
 
 export interface MethodReturnContext extends MethodPayableReturnContext {}
@@ -58,56 +58,56 @@ export type ContractContext = Web3ContractContext<
   MarketMethodNames,
   MarketEventsContext,
   MarketEvents
->;
+>
 export type MarketEvents =
   | 'Initialized'
   | 'OwnershipTransferred'
   | 'Upgraded'
-  | 'inscription_msc20_transfer';
+  | 'inscription_msc20_transfer'
 export interface MarketEventsContext {
   Initialized(
     parameters: {
-      filter?: {};
-      fromBlock?: number;
-      toBlock?: 'latest' | number;
-      topics?: string[];
+      filter?: any
+      fromBlock?: number
+      toBlock?: 'latest' | number
+      topics?: string[]
     },
     callback?: (error: Error, event: EventData) => void
-  ): EventResponse;
+  ): EventResponse
   OwnershipTransferred(
     parameters: {
       filter?: {
-        previousOwner?: string | string[];
-        newOwner?: string | string[];
-      };
-      fromBlock?: number;
-      toBlock?: 'latest' | number;
-      topics?: string[];
+        previousOwner?: string | string[]
+        newOwner?: string | string[]
+      }
+      fromBlock?: number
+      toBlock?: 'latest' | number
+      topics?: string[]
     },
     callback?: (error: Error, event: EventData) => void
-  ): EventResponse;
+  ): EventResponse
   Upgraded(
     parameters: {
-      filter?: { implementation?: string | string[] };
-      fromBlock?: number;
-      toBlock?: 'latest' | number;
-      topics?: string[];
+      filter?: { implementation?: string | string[] }
+      fromBlock?: number
+      toBlock?: 'latest' | number
+      topics?: string[]
     },
     callback?: (error: Error, event: EventData) => void
-  ): EventResponse;
+  ): EventResponse
   inscription_msc20_transfer(
     parameters: {
       filter?: {
-        filter?: string | string[];
-        from?: string | string[];
-        to?: string | string[];
-      };
-      fromBlock?: number;
-      toBlock?: 'latest' | number;
-      topics?: string[];
+        filter?: string | string[]
+        from?: string | string[]
+        to?: string | string[]
+      }
+      fromBlock?: number
+      toBlock?: 'latest' | number
+      topics?: string[]
     },
     callback?: (error: Error, event: EventData) => void
-  ): EventResponse;
+  ): EventResponse
 }
 export type MarketMethodNames =
   | 'new'
@@ -121,33 +121,33 @@ export type MarketMethodNames =
   | 'renounceOwnership'
   | 'transferOwnership'
   | 'upgradeToAndCall'
-  | 'withdraw';
+  | 'withdraw'
 export interface InitializedEventEmittedResponse {
-  version: string;
+  version: string
 }
 export interface OwnershipTransferredEventEmittedResponse {
-  previousOwner: string;
-  newOwner: string;
+  previousOwner: string
+  newOwner: string
 }
 export interface UpgradedEventEmittedResponse {
-  implementation: string;
+  implementation: string
 }
 export interface Inscription_msc20_transferEventEmittedResponse {
-  filter: string;
-  id: string;
-  from: string;
-  to: string;
-  value: string;
+  filter: string
+  id: string
+  from: string
+  to: string
+  value: string
 }
 export interface OrdersRequest {
-  id: string;
-  tick: string;
-  maker: string;
-  amount: string;
-  price: string;
-  r: string | number[];
-  s: string | number[];
-  v: string | number;
+  id: string
+  tick: string
+  maker: string
+  amount: string
+  price: string
+  r: string | number[]
+  s: string | number[]
+  v: string | number
 }
 export interface Market {
   /**
@@ -156,14 +156,14 @@ export interface Market {
    * StateMutability: nonpayable
    * Type: constructor
    */
-  'new'(): MethodReturnContext;
+  'new'(): MethodReturnContext
   /**
    * Payable: false
    * Constant: true
    * StateMutability: view
    * Type: function
    */
-  UPGRADE_INTERFACE_VERSION(): MethodConstantReturnContext<string>;
+  UPGRADE_INTERFACE_VERSION(): MethodConstantReturnContext<string>
   /**
    * Payable: false
    * Constant: true
@@ -171,7 +171,7 @@ export interface Market {
    * Type: function
    * @param price Type: uint256, Indexed: false
    */
-  fee(price: string): MethodConstantReturnContext<string>;
+  fee(price: string): MethodConstantReturnContext<string>
   /**
    * Payable: false
    * Constant: false
@@ -185,21 +185,21 @@ export interface Market {
     initialOwner: string,
     initialVerifier: string,
     initialFeeBps: string
-  ): MethodReturnContext;
+  ): MethodReturnContext
   /**
    * Payable: false
    * Constant: true
    * StateMutability: view
    * Type: function
    */
-  owner(): MethodConstantReturnContext<string>;
+  owner(): MethodConstantReturnContext<string>
   /**
    * Payable: false
    * Constant: true
    * StateMutability: view
    * Type: function
    */
-  proxiableUUID(): MethodConstantReturnContext<string>;
+  proxiableUUID(): MethodConstantReturnContext<string>
   /**
    * Payable: true
    * Constant: false
@@ -223,7 +223,7 @@ export interface Market {
     r: string | number[],
     s: string | number[],
     v: string | number
-  ): MethodPayableReturnContext;
+  ): MethodPayableReturnContext
   /**
    * Payable: true
    * Constant: false
@@ -231,14 +231,14 @@ export interface Market {
    * Type: function
    * @param orders Type: tuple[], Indexed: false
    */
-  purchases(orders: OrdersRequest[]): MethodPayableReturnContext;
+  purchases(orders: OrdersRequest[]): MethodPayableReturnContext
   /**
    * Payable: false
    * Constant: false
    * StateMutability: nonpayable
    * Type: function
    */
-  renounceOwnership(): MethodReturnContext;
+  renounceOwnership(): MethodReturnContext
   /**
    * Payable: false
    * Constant: false
@@ -246,7 +246,7 @@ export interface Market {
    * Type: function
    * @param newOwner Type: address, Indexed: false
    */
-  transferOwnership(newOwner: string): MethodReturnContext;
+  transferOwnership(newOwner: string): MethodReturnContext
   /**
    * Payable: true
    * Constant: false
@@ -258,12 +258,12 @@ export interface Market {
   upgradeToAndCall(
     newImplementation: string,
     data: string | number[]
-  ): MethodPayableReturnContext;
+  ): MethodPayableReturnContext
   /**
    * Payable: false
    * Constant: false
    * StateMutability: nonpayable
    * Type: function
    */
-  withdraw(): MethodReturnContext;
+  withdraw(): MethodReturnContext
 }

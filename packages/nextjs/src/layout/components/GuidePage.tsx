@@ -4,9 +4,9 @@ import { useTranslation } from 'react-i18next'
 import { useRef } from 'react'
 import { useRouter } from 'next/router'
 import { delay } from '@hairy/utils'
-import ReactJoyride, { JoyrideRef, JoyrideTrigger } from '@/components/ReactJoyride'
+import { JoyrideRef, JoyrideTrigger, ReactJoyride } from '@/components'
 import { useEventBus } from '@/hooks'
-import { useWhenever } from '@/hooks/useWhenever'
+import { useWhenever } from '@/hooks'
 
 type GuideOptions = Record<string, {
   steps: Step[]

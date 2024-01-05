@@ -5,18 +5,18 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import { useTranslation } from 'react-i18next'
 import dayjs from 'dayjs'
 import { ArrowRedoCircleOutline } from '@ricons/ionicons5'
-import { useInjectHolder } from '@overlays/react'
 import { useSnapshot } from 'valtio'
 import { useAccount } from 'wagmi'
+
 import MarketContext from './Context'
-import CancelButton from './components/CancelButton'
-import { ChainLink, Condition, CountryFlag, Empty, Icon, Price, Refresh } from '@/components'
-import { useEventBus, useGridPaginationFields, useRouterQuery, useServerPagination, useWatch } from '@/hooks'
-import { getOrder, getToken } from '@/api'
-import { useWhenever } from '@/hooks/useWhenever'
-import { OrderDto } from '@/api/index.type'
+import { CancelButton } from './components'
+
+import { ChainLink, Condition, Empty, Flag, Icon, Price, Refresh } from '@/components'
+import { useEventBus, useGridPaginationFields, useRouterQuery, useServerPagination, useWatch, useWhenever } from '@/hooks'
 import { BigNum, formatEther } from '@/utils'
-import WaitingIndexModal from '@/components/WaitingIndexModal'
+import { getOrder } from '@/api'
+import { OrderDto } from '@/api/index.type'
+
 import store from '@/store'
 
 const EXPLORER_URL = process.env.NEXT_PUBLIC_EXPLORER!
@@ -64,7 +64,7 @@ function MyOrder() {
       headerName: t('Token'),
       minWidth: 90,
       renderCell(params) {
-        return <CountryFlag find={params.row.tick} />
+        return <Flag find={params.row.tick} />
       },
     },
     {

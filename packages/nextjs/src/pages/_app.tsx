@@ -1,28 +1,28 @@
 import '@rainbow-me/rainbowkit/styles.css'
 import '@/styles/globals.scss'
-import { RainbowKitProvider } from '@rainbow-me/rainbowkit'
+
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
 import NextHead from 'next/head'
 import React from 'react'
+
+import { RainbowKitProvider } from '@rainbow-me/rainbowkit'
 import { WagmiConfig, useAccount } from 'wagmi'
 import { I18nextProvider } from 'react-i18next'
 import { ThemeProvider } from '@mui/material/styles'
-import dayjs from 'dayjs'
-import relativeTime from 'dayjs/plugin/relativeTime'
 import { useMount } from 'react-use'
-import { useSnapshot } from 'valtio'
+
 import { chains, client } from '@/utils/wagmi'
 import { FetchResponseInterceptFn, fetchResponseIntercept, i18n } from '@/plugins'
-import { MountsProvider, NoSSR, PleaseConnectWallet } from '@/components'
-import type { AppPropsWithLayout } from '@/types'
+import { MountsProvider, NoSSR } from '@/components'
 import { darkTheme, fontInter } from '@/config'
 import { helperGetSimplePrice } from '@/service'
+import { PleaseConnectWallet } from '@/ui/app'
 import store from '@/store'
 
 dayjs.extend(relativeTime)
 
-// If wallet is connected -> display app
-// Else -> display connect prompt
-export default function App({ Component, pageProps }: AppPropsWithLayout) {
+export default function App({ Component, pageProps }: any) {
   const { isConnected } = useAccount()
   const mounted = useMounted()
 

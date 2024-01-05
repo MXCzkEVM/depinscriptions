@@ -1,8 +1,7 @@
 import type { ReactElement } from 'react'
 import { useRouter } from 'next/router'
 import { Layout } from '@/layout'
-import { FieldTickInput } from '@/components'
-import { SearchResult } from '@/components/SearchResult'
+import { SearchByAddress, TextFieldTick } from '@/components'
 
 function Page() {
   const router = useRouter()
@@ -10,8 +9,8 @@ function Page() {
 
   return (
     <>
-      <FieldTickInput onSearch={addr => router.push(`/tokens/query?address=${addr}`)} />
-      {address && <SearchResult address={address} />}
+      <TextFieldTick onSearch={addr => router.push(`/tokens/query?address=${addr}`)} />
+      {address && <SearchByAddress address={address} />}
     </>
   )
 }

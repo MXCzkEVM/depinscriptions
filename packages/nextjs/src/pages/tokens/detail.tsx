@@ -7,7 +7,16 @@ import { useAsyncFn, useMount } from 'react-use'
 import dayjs from 'dayjs'
 import { useTranslation } from 'react-i18next'
 import { Layout } from '@/layout'
-import { ChainLink, CountryFlag, DataTableHexagons, DataTableHolders, FieldCol, Icon, LinearProgressWithLabel, MintButton } from '@/components'
+import {
+  ChainLink,
+  DataTableHexagons,
+  DataTableHolders,
+  Flag,
+  Icon,
+  LinearProgressWithLabel,
+  MintButton,
+  TextColumn,
+} from '@/components'
 import { useEventBus, useRouterParams } from '@/hooks'
 import { getTokenId } from '@/api'
 import { percentage, thousandBitSeparator } from '@/utils'
@@ -37,7 +46,7 @@ function Page() {
           <ArrowBackSharp />
         </Icon>
         <span className="text-2xl">
-          <CountryFlag find={tokenId} />
+          <Flag find={tokenId} />
         </span>
         <div className="bg-white text-xs py-[2px] px-[4px] rounded-lg bg-opacity-30">
           MSC-20
@@ -53,38 +62,38 @@ function Page() {
             {!token?.completedTime && <MintButton className="token_detail_page_step_1" token={token} />}
           </div>
           <Divider />
-          <FieldCol label={t('Scription ID')} skeleton={isPageLoading}>
+          <TextColumn label={t('Scription ID')} skeleton={isPageLoading}>
             <ChainLink type="hash" href={token?.deployHash} />
-          </FieldCol>
-          <FieldCol label={t('Total Supply')} skeleton={isPageLoading}>
+          </TextColumn>
+          <TextColumn label={t('Total Supply')} skeleton={isPageLoading}>
             {thousandBitSeparator(token?.total)}
-          </FieldCol>
-          <FieldCol label={t('Minted')} skeleton={isPageLoading}>
+          </TextColumn>
+          <TextColumn label={t('Minted')} skeleton={isPageLoading}>
             {thousandBitSeparator(token?.minted)}
-          </FieldCol>
-          <FieldCol label={t('Limit Per Mint')} skeleton={isPageLoading}>
+          </TextColumn>
+          <TextColumn label={t('Limit Per Mint')} skeleton={isPageLoading}>
             {thousandBitSeparator(token?.limit)}
-          </FieldCol>
-          {/* <FieldCol label="Decimal" skeleton={isPageLoading}>
+          </TextColumn>
+          {/* <TextColumn label="Decimal" skeleton={isPageLoading}>
             0
-          </FieldCol> */}
-          <FieldCol label={t('Deploy By')} skeleton={isPageLoading}>
+          </TextColumn> */}
+          <TextColumn label={t('Deploy By')} skeleton={isPageLoading}>
             <ChainLink type="address" href={token?.creator} />
-          </FieldCol>
-          <FieldCol label={t('Deploy Time')} skeleton={isPageLoading}>
+          </TextColumn>
+          <TextColumn label={t('Deploy Time')} skeleton={isPageLoading}>
             {dayjs(token?.deployTime).format('YYYY/MM/DD HH:mm:ss')}
-          </FieldCol>
-          <FieldCol label={t('Completed Time')} skeleton={isPageLoading}>
+          </TextColumn>
+          <TextColumn label={t('Completed Time')} skeleton={isPageLoading}>
             {token?.completedTime
               ? dayjs(token?.completedTime).format('YYYY/MM/DD HH:mm:ss')
               : '-'}
-          </FieldCol>
-          <FieldCol label={t('Holders')} skeleton={isPageLoading}>
+          </TextColumn>
+          <TextColumn label={t('Holders')} skeleton={isPageLoading}>
             {thousandBitSeparator(token?.holders)}
-          </FieldCol>
-          {/* <FieldCol label={t('Total Transactions')} skeleton={!token}>
+          </TextColumn>
+          {/* <TextColumn label={t('Total Transactions')} skeleton={!token}>
             {thousandBitSeparator(token?.trxs)}
-          </FieldCol> */}
+          </TextColumn> */}
         </CardContent>
       </Card>
       <Card style={{ background: 'rgb(22 21 21 / 20%)' }}>

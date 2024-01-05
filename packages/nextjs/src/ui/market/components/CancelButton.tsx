@@ -3,14 +3,14 @@ import { useTranslation } from 'react-i18next'
 import { useAsyncFn } from 'react-use'
 import { OrderDto } from '@/api/index.type'
 import { useSendSatsTransaction } from '@/hooks'
-import { helperWaitInscriptionHash } from '@/service/helperWaitInscriptionHash'
+import { helperWaitInscriptionHash } from '@/service'
 
-interface CancelButtonProps {
+export interface CancelButtonProps {
   data: OrderDto
   onCancelled?: (data: any) => void
 }
 
-function CancelButton(props: CancelButtonProps) {
+export function CancelButton(props: CancelButtonProps) {
   const [state, wait] = useAsyncFn(helperWaitInscriptionHash)
   const { sendTransaction, isLoading } = useSendSatsTransaction({
     data: {
@@ -35,5 +35,3 @@ function CancelButton(props: CancelButtonProps) {
     </LoadingButton>
   )
 }
-
-export default CancelButton

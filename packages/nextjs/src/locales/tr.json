@@ -1,8 +1,4 @@
 {
-  "i18n-ally.localesPaths": [
-    "src/locales"
-  ],
-  "i18n-ally.keystyle": "nested",
   "Please connect your wallet": "Lütfen cüzdanınızı bağlayın",
   "Latest Scriptions": "En Son Senaryolar",
   "Refresh": "Yenile",

@@ -5,7 +5,7 @@ export interface EventBusListener<T = any> {
   (event: T): void
 }
 
-const emitter = mitt()
+const emitter = mitt() as any
 
 export function useEventBus<T>(key: string) {
   const onRef = useRef<EventBusListener>()

@@ -9,12 +9,12 @@ import { useInjectHolder } from '@overlays/react'
 import { useTranslation } from 'react-i18next'
 import { Search } from '@ricons/ionicons5'
 import { Deferred } from '@hairy/utils'
-import { Condition, CountryFlag, DeployDialog, Empty, FieldTickInput, Icon, LinearProgressWithLabel, Refresh, SearchTextField } from '@/components'
+import { Condition, DeployDialog, Empty, Flag, Icon, LinearProgressWithLabel, Refresh, TextFieldSearch, TextFieldTick, WaitIndexDialog } from '@/components'
 import { Layout } from '@/layout'
 import { TickDto } from '@/api/index.type'
 import { percentage } from '@/utils'
 import { getToken } from '@/api'
-import WaitingIndexModal from '@/components/WaitingIndexModal'
+
 import { useEventBus, useGridPaginationFields, useRouterParams, useServerPagination, useWatch } from '@/hooks'
 
 // Retrieve tokens deployed by a user
@@ -25,7 +25,7 @@ function Page() {
 
   const [keyword, setKeyword] = useState('')
   const [holderDeployMl, openDeployModal] = useInjectHolder<unknown, { hash: string }>(DeployDialog)
-  const [holderWaitingMl, openWaitingIndexModal] = useInjectHolder(WaitingIndexModal)
+  const [holderWaitingMl, openWaitIndexDialog] = useInjectHolder(WaitIndexDialog)
 
   const columns: GridColDef<TickDto>[] = [
     {
@@ -34,7 +34,7 @@ function Page() {
       minWidth: 90,
       flex: 1,
       renderCell(params) {
-        return <CountryFlag find={params.row.tick} />
+        return <Flag find={params.row.tick} />
       },
     },
     {
@@ -94,7 +94,7 @@ function Page() {
   async function deploy() {
     const instance = openDeployModal()
     const { hash } = await instance
-    await openWaitingIndexModal({ hash })
+    await openWaitIndexDialog({ hash })
     await controls.reload()
   }
 
@@ -104,7 +104,7 @@ function Page() {
 
   return (
     <>
-      <FieldTickInput onSearch={addr => router.push(`/tokens/query?address=${addr}`)} />
+      <TextFieldTick onSearch={addr => router.push(`/tokens/query?address=${addr}`)} />
       <div className="mb-4 flex justify-between items-center">
         <Typography className="text-base sm:text-lg" variant="h6" component="span">
           {t('The full list of tokens')}
@@ -126,7 +126,7 @@ function Page() {
             <div className="flex-1 flex justify-end md:mr-6">
               <Refresh onClick={controls.reload} />
             </div>
-            <SearchTextField
+            <TextFieldSearch
               value={keyword}
               onChange={event => setKeyword(event.target.value)}
               placeholder={t('Token')}

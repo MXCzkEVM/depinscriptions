@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react'
+import { createContext } from 'react'
 
 const MarketContext = createContext({
   mode: 'mint' as 'mint' | 'unit',

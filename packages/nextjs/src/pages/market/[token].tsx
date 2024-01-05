@@ -4,23 +4,21 @@ import { ReactElement, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button, Divider, Tab, Tabs, Typography } from '@mui/material'
 import { useInjectHolder } from '@overlays/react'
-import { useAsync, useAsyncFn, useMount } from 'react-use'
+import { useAsyncFn } from 'react-use'
 import { useSnapshot } from 'valtio'
 import { utils } from 'ethers'
-import { Empty, Icon, ListDialog, Price } from '@/components'
+import { Empty, Flag, Icon, ListDialog, ListDialogProps, ListDialogResolved, Price, WaitIndexDialog } from '@/components'
 import { Layout } from '@/layout'
-import Flag from '@/components/Flag'
-import { useEventBus, useRouterQuery } from '@/hooks'
+
+import { useEventBus, useRouterQuery, useWhenever } from '@/hooks'
 import Listed from '@/ui/market/Listed'
 import Activities from '@/ui/market/Activities'
 import MyOrder from '@/ui/market/MyOrder'
 import { getMarketId } from '@/api'
 import store from '@/store'
 import { BigNum } from '@/utils'
-import WaitingIndexModal from '@/components/WaitingIndexModal'
-import { ListDialogProps } from '@/components/ListDialog'
+
 import MarketContext from '@/ui/market/Context'
-import { useWhenever } from '@/hooks/useWhenever'
 
 const mappings = {
   listed: () => <Listed />,
@@ -34,8 +32,8 @@ function Page() {
   const { emit: reloadPage } = useEventBus('reload:page')
 
   const { t } = useTranslation()
-  const [holderListMl, openListModal] = useInjectHolder<ListDialogProps, { hash: string }>(ListDialog)
-  const [holderWaitingMl, openWaitingIndexModal] = useInjectHolder(WaitingIndexModal)
+  const [holderListMl, openListModal] = useInjectHolder<ListDialogProps, ListDialogResolved>(ListDialog)
+  const [holderWaitingMl, openWaitIndexDialog] = useInjectHolder(WaitIndexDialog)
   const [tab, setTab] = useState('listed')
   const [perMint, setPerMint] = useState(true)
   const [{ value: data, loading }, reload] = useAsyncFn(async () => token && getMarketId({ id: token || '' }), [token])
@@ -56,7 +54,7 @@ function Page() {
     if (!data)
       return
     const { hash } = await openListModal({ data })
-    await openWaitingIndexModal({ hash })
+    await openWaitIndexDialog({ hash })
     await reload()
     reloadPage()
   }
@@ -81,7 +79,7 @@ function Page() {
       </div>
       <div className="flex mb-5">
         <Typography variant="h6">{token}</Typography>
-        <Flag size="32" find={token} />
+        <Flag text={false} size="32" find={token} />
       </div>
       <div className="flex gap-3 flex-wrap mb-10">
         <Price label={t('Floor Price')} symbol="mxc" value={Number(floorPrice) <= 0 ? '-' : floorPrice} />
