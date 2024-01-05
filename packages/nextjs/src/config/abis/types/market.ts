@@ -67,7 +67,7 @@ export type MarketEvents =
 export interface MarketEventsContext {
   Initialized(
     parameters: {
-      filter?: unknown
+      filter?: {}
       fromBlock?: number
       toBlock?: 'latest' | number
       topics?: string[]
@@ -98,7 +98,7 @@ export interface MarketEventsContext {
   inscription_msc20_transfer(
     parameters: {
       filter?: {
-        id?: string | string[]
+        filter?: string | string[]
         from?: string | string[]
         to?: string | string[]
       }
@@ -121,6 +121,7 @@ export type MarketMethodNames =
   | 'renounceOwnership'
   | 'transferOwnership'
   | 'upgradeToAndCall'
+  | 'verify'
   | 'withdraw'
 export interface InitializedEventEmittedResponse {
   version: string
@@ -133,16 +134,25 @@ export interface UpgradedEventEmittedResponse {
   implementation: string
 }
 export interface Inscription_msc20_transferEventEmittedResponse {
+  filter: string
   id: string
   from: string
   to: string
   value: string
 }
+export interface OrderRequest {
+  id: string
+  maker: string
+  amount: string
+  price: string
+  tick: string
+}
 export interface OrdersRequest {
   id: string
-  buyer: string
   maker: string
-  value: string
+  amount: string
+  price: string
+  tick: string
 }
 export interface Market {
   /**
@@ -195,15 +205,9 @@ export interface Market {
    * Constant: false
    * StateMutability: payable
    * Type: function
-   * @param id Type: string, Indexed: false
-   * @param maker Type: address, Indexed: false
-   * @param value Type: uint256, Indexed: false
+   * @param order Type: tuple, Indexed: false
    */
-  purchase(
-    id: string,
-    maker: string,
-    value: string
-  ): MethodPayableReturnContext
+  purchase(order: OrderRequest): MethodPayableReturnContext
   /**
    * Payable: true
    * Constant: false
@@ -239,6 +243,18 @@ export interface Market {
     newImplementation: string,
     data: string | number[]
   ): MethodPayableReturnContext
+  /**
+   * Payable: false
+   * Constant: true
+   * StateMutability: view
+   * Type: function
+   * @param msgHash Type: bytes32, Indexed: false
+   * @param signature Type: bytes, Indexed: false
+   */
+  verify(
+    msgHash: string | number[],
+    signature: string | number[]
+  ): MethodConstantReturnContext<boolean>
   /**
    * Payable: false
    * Constant: false

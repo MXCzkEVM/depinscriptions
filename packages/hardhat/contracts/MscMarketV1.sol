@@ -25,11 +25,12 @@ contract MscMarketV1 is Initializable, UUPSUpgradeable, OwnableUpgradeable, Reen
 
     function _authorizeUpgrade(address) internal override {}
 
-    struct Order {
-        string id;
-        address buyer;
-        address maker;
-        uint256 value;
+    struct MarketStorage {
+      string id;
+      address maker;
+      uint256 amount;
+      uint256 price;
+      string tick;
     }
 
     address private administrator;
@@ -50,29 +51,24 @@ contract MscMarketV1 is Initializable, UUPSUpgradeable, OwnableUpgradeable, Reen
       uint256 value
     );
 
+
     fallback() external payable {}
 
     receive() external payable {}
 
-    function purchase(
-        string memory id,
-        address maker,
-        uint256 value
-    ) external payable nonReentrant {
+    function purchase(MarketStorage calldata order) external payable nonReentrant {
         if (!featureIsEnabled["buy"])
           revert MscMarket__FeatureDisabled("buy");
-        if (msg.value < value)
+        if (msg.value < order.price)
           revert MscMarket__PurchaseFailed();
-
-        (bool success,) = maker.call{ value: value - fee(value) }("");
-
+        (bool success,) = order.maker.call{ value: order.price - fee(order.price) }("");
         if (!success) {
           revert MscMarket__PurchaseFailed();
         }
-        emit inscription_msc20_transfer(id, id, msg.sender, maker, value);
+        emit inscription_msc20_transfer(order.id, order.id, msg.sender, order.maker, order.price);
     }
 
-    function purchases(Order[] calldata orders) external payable nonReentrant {
+    function purchases(MarketStorage[] calldata orders) external payable nonReentrant {
       if (!featureIsEnabled["buy"])
           revert MscMarket__FeatureDisabled("buy");
       for (uint256 i = 0; i < orders.length; i++) {
@@ -84,7 +80,7 @@ contract MscMarketV1 is Initializable, UUPSUpgradeable, OwnableUpgradeable, Reen
 
       for (uint256 i = 0; i < orders.length; i++) {
         processing[orders[i].id] = true;
-        total += orders[i].value;
+        total += orders[i].price;
       }
 
       if (msg.value < total)
@@ -92,7 +88,7 @@ contract MscMarketV1 is Initializable, UUPSUpgradeable, OwnableUpgradeable, Reen
       
       for (uint256 i = 0; i < orders.length; i++) {
         string memory id = orders[i].id;
-        uint256 value = orders[i].value;
+        uint256 value = orders[i].price;
         address maker = orders[i].maker;
         (bool success, ) = orders[i].maker.call{ value: value - fee(value) }("");
         if (!success)
@@ -114,8 +110,16 @@ contract MscMarketV1 is Initializable, UUPSUpgradeable, OwnableUpgradeable, Reen
       return (price * uint256(feeBps)) / 100;
     }
 
-    function verify() {
-      
+    function verify(bytes32 msgHash, bytes memory signature) external view returns(bool) {
+      require(signature.length == 65, "invalid signature length");
+      bytes32 r;
+      bytes32 s;
+      uint8 v;
+      assembly {
+          r := mload(add(signature, 0x20))
+          s := mload(add(signature, 0x40))
+          v := byte(0, mload(add(signature, 0x60)))
+      }
+      return ecrecover(msgHash, v, r, s) == administrator;
     }
-
 }

@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common'
-import { TransactionResponse } from 'ethers'
+import { EventLog, TransactionResponse } from 'ethers'
 import { bgWhite, cyan, reset, yellow } from 'chalk'
 import { ConfigService } from '@nestjs/config'
 import { SchedulerRegistry } from '@nestjs/schedule'
@@ -49,12 +49,10 @@ export interface ScanCancelJSON {
 export interface ScanBuyJSON {
   p: 'msc-20'
   op: 'buy'
-  tick: string
   hash: string
 }
 
 export interface ScriptLogOptions {
-
   from: string
   to?: string
   hash?: string
@@ -73,9 +71,7 @@ export class ScriptsService {
     private orderService: OrderService,
     private inscriptionService: InscriptionService,
     private config: ConfigService,
-  ) {
-
-  }
+  ) {}
 
   private log(type: string, options: ScriptLogOptions) {
     const {
@@ -287,12 +283,39 @@ export class ScriptsService {
     })
   }
 
-  async buy(
+  async buys(
     _block: BlockWithTransactions,
-    _transaction: TransactionResponse,
-    _inscription: ScanCancelJSON,
+    transaction: TransactionResponse,
+    events: EventLog[],
   ) {
+    const contract = this.config.get('NEST_MARKET_CONTRACT')
+    const [{ from: buyer, id: hash, maker }] = events
+      .map(e => e.args?.toObject?.())
+      .filter(Boolean)
 
+    const order = await this.orderService.detail({ hash })
+    if (!order)
+      throw new Error('Attempt to purchase non-existent orders')
+    await this.holderService.incrementValue(
+      { owner: buyer, tick: order.tick },
+      { value: BigInt(order.amount) },
+    )
+    await this.holderService.decrementValue(
+      { owner: contract, tick: order.tick },
+      { value: BigInt(order.amount) },
+    )
+    await this.orderService.update(hash, {
+      status: 1,
+      hash,
+      buyer,
+    })
+    this.log('purchased', {
+      desc: `buy`,
+      amount: `${order.amount} ${order.tick}`,
+      from: buyer,
+      to: maker,
+      hash: transaction.hash,
+    })
   }
 
   async refund(order: Order) {

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
-import { Block, BlockTag, Contract, EventLog, FetchRequest, JsonRpcProvider, TransactionResponse, Wallet, solidityPackedKeccak256 } from 'ethers'
+import { Block, BlockTag, Contract, EventLog, FetchRequest, JsonRpcProvider, Log, TransactionResponse } from 'ethers'
 import { arange } from '@hairy/utils'
 import { httpsOverHttp } from 'tunnel'
 import { marketFragment } from '../config'
@@ -23,15 +23,10 @@ export interface BlockWithTransactions extends Omit<Block, 'transactions'> {
 export class JsonProviderService {
   private provider: JsonRpcProvider
   private contract: Contract
-  private wallet: Wallet
+  private logsMappings: Record<number, Record<string, (Log | EventLog)[]>> = {}
   constructor(private config: ConfigService) {
     this.provider = new JsonRpcProvider(config.get('NEST_PROVIDER_URL'))
     this.contract = new Contract(config.get('NEST_MARKET_CONTRACT'), marketFragment, { provider: this.provider })
-    this.contract.queryFilter('inscription_msc20_transfer')
-      .then(([log]: EventLog[]) => {
-        console.log(log.args.toObject())
-      })
-    this.wallet = new Wallet(config.get('NEST_PRIVATE_KEY'), this.provider)
   }
 
   async getLastBlockNumber() {
@@ -60,5 +55,20 @@ export class JsonProviderService {
 
   async getTransaction(hash: string) {
     return this.provider.getTransaction(hash)
+  }
+
+  async queryFilterByBlock(event: string, blockNumber: number) {
+    if (this.logsMappings?.[blockNumber]?.[event])
+      return this.logsMappings[blockNumber][event]
+    const logs = await this.contract.queryFilter(event, blockNumber, blockNumber)
+    if (!this.logsMappings[blockNumber])
+      this.logsMappings[blockNumber] = {}
+    return this.logsMappings[blockNumber][event] = logs
+  }
+
+  async queryFilterByHash(event: string, hash: string) {
+    const detail = await this.getTransaction(hash)
+    const logs = await this.queryFilterByBlock(event, detail.blockNumber)
+    return logs.filter(l => l.transactionHash === detail.hash) as EventLog[]
   }
 }

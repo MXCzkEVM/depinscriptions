@@ -166,6 +166,12 @@
       {
         "indexed": true,
         "internalType": "string",
+        "name": "filter",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
         "name": "id",
         "type": "string"
       },
@@ -190,6 +196,10 @@
     ],
     "name": "inscription_msc20_transfer",
     "type": "event"
+  },
+  {
+    "stateMutability": "payable",
+    "type": "fallback"
   },
   {
     "inputs": [],
@@ -270,19 +280,36 @@
   {
     "inputs": [
       {
-        "internalType": "string",
-        "name": "id",
-        "type": "string"
-      },
-      {
-        "internalType": "address",
-        "name": "maker",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "value",
-        "type": "uint256"
+        "components": [
+          {
+            "internalType": "string",
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "maker",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "price",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "tick",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct MscMarketV1.MarketStorage",
+        "name": "order",
+        "type": "tuple"
       }
     ],
     "name": "purchase",
@@ -301,21 +328,26 @@
           },
           {
             "internalType": "address",
-            "name": "buyer",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
             "name": "maker",
             "type": "address"
           },
           {
             "internalType": "uint256",
-            "name": "value",
+            "name": "amount",
             "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "price",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "tick",
+            "type": "string"
           }
         ],
-        "internalType": "struct MscMarketV1.Order[]",
+        "internalType": "struct MscMarketV1.MarketStorage[]",
         "name": "orders",
         "type": "tuple[]"
       }
@@ -364,10 +396,38 @@
     "type": "function"
   },
   {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "msgHash",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes",
+        "name": "signature",
+        "type": "bytes"
+      }
+    ],
+    "name": "verify",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [],
     "name": "withdraw",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
+  },
+  {
+    "stateMutability": "payable",
+    "type": "receive"
   }
 ]

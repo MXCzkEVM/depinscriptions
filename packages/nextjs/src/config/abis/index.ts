@@ -1,5 +1,4 @@
-import { ContractInterface } from 'ethers'
-import _marketFragment from './jsonc/market.json'
+import _marketFragment from './jsonc/market'
 
 export type { Market as MarketContract } from './types/market'
 

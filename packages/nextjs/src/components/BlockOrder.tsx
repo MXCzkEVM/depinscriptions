@@ -1,18 +1,22 @@
 import { Button, Divider } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { useSnapshot } from 'valtio'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { useAccount, useChainId, useContract, useContractWrite, useSendTransaction } from 'wagmi'
 import { Contract, providers } from 'ethers'
+import { useInjectHolder } from '@overlays/react'
+import { LoadingButton } from '@mui/lab'
 import Block from './Block'
 import Flag from './Flag'
 import Price from './Price'
+import WaitingIndexModal from './WaitingIndexModal'
 import { BigNum, cover, thousandBitSeparator } from '@/utils'
 import store from '@/store'
 import { OrderDto } from '@/api/index.type'
 import MarketContext from '@/ui/market/Context'
 import { chains } from '@/config'
 import { MarketContract, marketFragment } from '@/config/abis'
+import { useEventBus } from '@/hooks'
 
 export interface BlockOrderProps {
   data: OrderDto
@@ -21,9 +25,12 @@ export interface BlockOrderProps {
 function BlockOrder(props: BlockOrderProps) {
   const { t } = useTranslation()
   const config = useSnapshot(store.config)
-  const { limit, mode } = useContext(MarketContext)
   const chainId = useChainId()
+  const { limit, mode } = useContext(MarketContext)
   const { address } = useAccount()
+  const [loading, setLoading] = useState(false)
+  const [holderWaitingMl, openWaitingIndexModal] = useInjectHolder(WaitingIndexModal)
+  const { emit: reloadPage } = useEventBus('reload:page')
 
   const unitPrice = BigNum(props.data.price).div(props.data.amount)
   const limitPrice = BigNum(limit).multipliedBy(unitPrice)
@@ -36,16 +43,33 @@ function BlockOrder(props: BlockOrderProps) {
   })
 
   async function onPurchase() {
+    setLoading(true)
     const value = BigNum(props.data.price).multipliedBy(10 ** 18).toFixed(0)
     const contract = getMarketContractWithSinger(chainId, address!)
     const singer = getSinger(chainId, address!)
-    const preTransaction = await contract.populateTransaction.purchase(
-      props.data.hash,
-      props.data.maker,
-      value,
-    )
-    const transaction = await singer.populateTransaction({ ...preTransaction, value })
-    sendTransactionAsync({ recklesslySetUnpreparedRequest: transaction })
+    try {
+      const preTransaction = await contract.populateTransaction.purchase({
+        tick: props.data.tick,
+        amount: props.data.amount,
+        id: props.data.hash,
+        maker: props.data.maker,
+        price: value,
+      })
+      const transaction = await singer.populateTransaction({
+        ...preTransaction,
+        type: 2,
+        chainId,
+        value,
+      })
+      const { hash } = await sendTransactionAsync({ recklesslySetUnpreparedRequest: transaction })
+      await openWaitingIndexModal({ hash })
+      reloadPage()
+      setLoading(true)
+    }
+    catch (error) {
+      setLoading(false)
+      console.error(error)
+    }
   }
 
   function renderFooter() {
@@ -64,12 +88,13 @@ function BlockOrder(props: BlockOrderProps) {
           <Price symbol="mxc" value={props.data.price} />
           <Price symbol="usd" value={usd} />
         </div>
-        <Button variant="outlined" className="w-full" onClick={onPurchase}>{t('Buy')}</Button>
+        <LoadingButton loading={loading} variant="outlined" className="w-full" onClick={onPurchase}>{t('Buy')}</LoadingButton>
       </>
     )
   }
   return (
     <Block footer={renderFooter()}>
+      {holderWaitingMl}
       <div className="flex items-center">
         <span>{props.data.tick}</span>
         <Flag find={props.data.tick} />

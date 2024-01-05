@@ -4,13 +4,13 @@ import { ReactElement, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button, Divider, Tab, Tabs, Typography } from '@mui/material'
 import { useInjectHolder } from '@overlays/react'
-import { useAsync } from 'react-use'
+import { useAsync, useAsyncFn, useMount } from 'react-use'
 import { useSnapshot } from 'valtio'
 import BigNumber from 'bignumber.js'
 import { Empty, Icon, ListDialog, Price } from '@/components'
 import { Layout } from '@/layout'
 import Flag from '@/components/Flag'
-import { useRouterQuery } from '@/hooks'
+import { useEventBus, useRouterQuery } from '@/hooks'
 import Listed from '@/ui/market/Listed'
 import Activities from '@/ui/market/Activities'
 import MyOrder from '@/ui/market/MyOrder'
@@ -20,6 +20,7 @@ import { BigNum } from '@/utils'
 import WaitingIndexModal from '@/components/WaitingIndexModal'
 import { ListDialogProps } from '@/components/ListDialog'
 import MarketContext from '@/ui/market/Context'
+import { useWhenever } from '@/hooks/useWhenever'
 
 const mappings = {
   listed: () => <Listed />,
@@ -30,13 +31,16 @@ function Page() {
   const router = useRouter()
   const token = useRouterQuery('token')
   const config = useSnapshot(store.config)
+  const { emit: reloadPage } = useEventBus('reload:page')
 
   const { t } = useTranslation()
   const [holderListMl, openListModal] = useInjectHolder<ListDialogProps, { hash: string }>(ListDialog)
   const [holderWaitingMl, openWaitingIndexModal] = useInjectHolder(WaitingIndexModal)
   const [tab, setTab] = useState('listed')
   const [perMint, setPerMint] = useState(true)
-  const { value: data, loading } = useAsync(async () => token && getMarketId({ id: token || '' }), [token])
+  const [{ value: data, loading }, reload] = useAsyncFn(async () => token && getMarketId({ id: token || '' }), [token])
+
+  useWhenever(token, reload)
 
   if (!data)
     return <Empty loading={loading} />
@@ -50,7 +54,10 @@ function Page() {
       return
     const { hash } = await openListModal({ data })
     await openWaitingIndexModal({ hash })
+    await reload()
+    reloadPage()
   }
+
   return (
     <MarketContext.Provider
       value={{

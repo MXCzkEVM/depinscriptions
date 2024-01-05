@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { getOrderListed } from '@/api'
 import { BlockOrder, Blocks, Condition, Empty, InfiniteScroll, Refresh, SearchTextField } from '@/components'
-import { useRouterQuery, useServerPaginationConcat } from '@/hooks'
+import { useEventBus, useRouterQuery, useServerPaginationConcat } from '@/hooks'
 import { useWhenever } from '@/hooks/useWhenever'
 
 function Listed() {
@@ -12,6 +12,7 @@ function Listed() {
   })
 
   useWhenever(tick, reload)
+  useEventBus('reload:page').on(reload)
   return (
     <>
       <div className="flex items-center justify-between gap-2">

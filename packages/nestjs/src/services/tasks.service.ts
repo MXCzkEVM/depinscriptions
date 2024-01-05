@@ -2,6 +2,7 @@ import { Injectable, Logger } from '@nestjs/common'
 import { Cron, Interval } from '@nestjs/schedule'
 import { toUtf8String } from 'ethers'
 import { cyan, dim, gray, reset } from 'chalk'
+import { ConfigService } from '@nestjs/config'
 import { getIndexerLastBlock, setIndexerLastBlock } from '../utils'
 
 import { JsonProviderService } from './provider.service'
@@ -16,6 +17,7 @@ export class TasksService {
     private provider: JsonProviderService,
     private scripts: ScriptsService,
     private inscription: InscriptionService,
+    private config: ConfigService,
   ) {}
 
   private readonly logger = new Logger(TasksService.name)
@@ -47,8 +49,27 @@ export class TasksService {
 
   async nextBlocks(start: number, end: number) {
     const blocks = await this.provider.getBlockByArangeWithTransactions(start, end)
+
     for (const block of blocks) {
       for (const transaction of block.transactions) {
+        const events = await this.provider.queryFilterByHash(
+          'inscription_msc20_transfer',
+          transaction.hash,
+        )
+
+        if (transaction.to === this.config.get('NEST_MARKET_CONTRACT') && events.length) {
+          await this.scripts.buys(block, transaction, events)
+          await this.inscription.create({
+            from: transaction.from,
+            to: transaction.to,
+            hash: transaction.hash,
+            op: 'buy',
+            tick: 'none',
+            time: new Date(block.timestamp * 1000),
+            json: '{}',
+          })
+        }
+
         if (!transaction.data.startsWith('0x7b2270223a226d73632d323022'))
           continue
         const receipt = await transaction.wait()
@@ -73,6 +94,7 @@ export class TasksService {
             await this.scripts.mint(block, transaction, inscription)
           if (inscription.op === 'list')
             await this.scripts.list(block, transaction, inscription)
+
           await this.inscription.create({
             from: transaction.from,
             to: transaction.to,

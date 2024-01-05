@@ -34,8 +34,9 @@ export class OrderService {
     `
   }
 
-  async update(hash: string, data: Prisma.OrderUpdateInput) {
-    return this.record(await this.prisma.order.update({ where: { hash }, data }))
+  async update(hash: string, data: Partial<Order>) {
+    const order = await this.prisma.order.update({ where: { hash }, data })
+    return this.record({ ...order, ...data })
   }
 
   async detail(where: Prisma.OrderWhereUniqueInput) {

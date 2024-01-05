@@ -10,7 +10,7 @@ import { useSnapshot } from 'valtio'
 import MarketContext from './Context'
 import CancelButton from './components/CancelButton'
 import { ChainLink, Condition, CountryFlag, Empty, Icon, Price, Refresh } from '@/components'
-import { useGridPaginationFields, useRouterQuery, useServerPagination, useWatch } from '@/hooks'
+import { useEventBus, useGridPaginationFields, useRouterQuery, useServerPagination, useWatch } from '@/hooks'
 import { getOrder, getToken } from '@/api'
 import { useWhenever } from '@/hooks/useWhenever'
 import { OrderDto } from '@/api/index.type'
@@ -169,6 +169,8 @@ function MyOrder() {
     if (tick)
       controls.reload()
   })
+  useEventBus('reload:page').on(controls.reload)
+
   return (
     <>
       <div className="flex items-center justify-between gap-2 mb-5">
