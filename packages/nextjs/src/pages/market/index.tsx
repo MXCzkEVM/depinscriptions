@@ -5,6 +5,7 @@ import { useSnapshot } from 'valtio'
 import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import { useRouter } from 'next/router'
 import { useMount } from 'react-use'
+import { utils } from 'ethers'
 import { Layout } from '@/layout'
 import { Condition, CountryFlag, Empty, Price, SearchTextField } from '@/components'
 import store from '@/store'
@@ -34,7 +35,8 @@ function Page() {
       minWidth: 120,
       flex: 1,
       renderCell(params) {
-        const usd = BigNum(params.row.price).multipliedBy(config.price)
+        const mxc = utils.formatEther(params.row.price)
+        const usd = BigNum(mxc).multipliedBy(config.price)
         return <Price symbol="usd" value={usd.toFixed(6)} />
       },
     },
@@ -44,7 +46,8 @@ function Page() {
       minWidth: 150,
       flex: 1,
       renderCell(params) {
-        return <Price symbol="mxc" value={params.row.volume} />
+        const mxc = utils.formatEther(params.row.volume)
+        return <Price symbol="mxc" value={mxc} />
       },
     },
     {
@@ -71,7 +74,8 @@ function Page() {
       minWidth: 120,
       flex: 1,
       renderCell(params) {
-        return <Price symbol="mxc" value={params.row.totalVolume} />
+        const mxc = utils.formatEther(params.row.totalVolume)
+        return <Price symbol="mxc" value={mxc} />
       },
     },
     {
@@ -89,7 +93,7 @@ function Page() {
       minWidth: 120,
       flex: 1,
       renderCell(params) {
-        const usd = BigNum(params.row.marketCap).multipliedBy(config.price)
+        const usd = BigNum(utils.formatEther(params.row.marketCap)).multipliedBy(config.price)
         return <Price symbol="usd" value={usd} />
       },
     },
@@ -123,11 +127,13 @@ function Page() {
 
   useMount(controls.reload)
 
+  const marketCap = BigNum(utils.formatEther(price)).multipliedBy(config.price).toFixed(4)
+
   return (
     <>
       <div className="mx-auto mt-9 mb-14 w-full text-center">
         <span className="md:text-3xl text-center mt-[41px] mp:mb-[18px] select-none text-[#6300ff]">
-          {t('Total MXC-20 Market Cap', { price: thousandBitSeparator(BigNum(price).multipliedBy(config.price)) })}
+          {t('Total MXC-20 Market Cap', { price: thousandBitSeparator(marketCap) })}
         </span>
       </div>
       <Card style={{ background: 'rgb(22 21 21 / 20%)' }}>

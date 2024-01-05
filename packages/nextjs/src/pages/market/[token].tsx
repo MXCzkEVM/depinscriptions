@@ -6,7 +6,7 @@ import { Button, Divider, Tab, Tabs, Typography } from '@mui/material'
 import { useInjectHolder } from '@overlays/react'
 import { useAsync, useAsyncFn, useMount } from 'react-use'
 import { useSnapshot } from 'valtio'
-import BigNumber from 'bignumber.js'
+import { utils } from 'ethers'
 import { Empty, Icon, ListDialog, Price } from '@/components'
 import { Layout } from '@/layout'
 import Flag from '@/components/Flag'
@@ -45,9 +45,12 @@ function Page() {
   if (!data)
     return <Empty loading={loading} />
 
-  const floorPrice = perMint ? data.limitPrice : data.price
-  const usdUnitPrice = BigNum(data.price).multipliedBy(config.price).toString()
-  const usdMintPrice = BigNum(data.limitPrice).multipliedBy(config.price).toString()
+  const limitPrice = BigNum(utils.formatEther(data.limitPrice)).toFixed(2)
+  const price = BigNum(utils.formatEther(data.price).toString()).toFixed(2)
+  const volume = BigNum(utils.formatEther(data.volume)).toFixed(2)
+  const floorPrice = perMint ? limitPrice : price
+  const usdUnitPrice = BigNum(price).multipliedBy(config.price).toFixed(4)
+  const usdMintPrice = BigNum(limitPrice).multipliedBy(config.price).toFixed(4)
 
   async function list() {
     if (!data)
@@ -89,7 +92,7 @@ function Page() {
             : <Price label={t('Unit Price')} symbol="usd" value={usdUnitPrice} />
         }
         <Divider className="hidden md:block" orientation="vertical" flexItem />
-        <Price label={t('Volume')} symbol="mxc" value={data.volume} />
+        <Price label={t('Volume')} symbol="mxc" value={volume} />
         <Divider className="hidden md:block" orientation="vertical" flexItem />
         <Price label={t('Owners')} value={data.holders} />
         <Divider className="hidden md:block" orientation="vertical" flexItem />

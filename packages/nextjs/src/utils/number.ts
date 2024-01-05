@@ -1,4 +1,5 @@
 import BigNumber from 'bignumber.js'
+import { BigNumberish, utils } from 'ethers'
 
 export interface ThousandBitSeparatorOptions {
   integer?: boolean
@@ -32,7 +33,12 @@ export function percentage(total: string | number, count: string | number, decim
 
 const Big = BigNumber.clone({
   DECIMAL_PLACES: 18,
+  ROUNDING_MODE: BigNumber.ROUND_DOWN,
 })
 export function BigNum(n: BigNumber.Value) {
   return new Big(n)
+}
+
+export function formatEther(wei: BigNumberish) {
+  return BigNum(utils.formatEther(wei))
 }

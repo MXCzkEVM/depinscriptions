@@ -32,7 +32,7 @@ function BlockOrder(props: BlockOrderProps) {
   const [holderWaitingMl, openWaitingIndexModal] = useInjectHolder(WaitingIndexModal)
   const { emit: reloadPage } = useEventBus('reload:page')
 
-  const unitPrice = BigNum(props.data.price).div(props.data.amount)
+  const unitPrice = BigNum(utils.formatEther(props.data.price)).div(props.data.amount)
   const limitPrice = BigNum(limit).multipliedBy(unitPrice)
 
   const mxc = mode === 'unit' ? unitPrice : limitPrice
@@ -44,7 +44,6 @@ function BlockOrder(props: BlockOrderProps) {
 
   async function onPurchase() {
     setLoading(true)
-    const value = BigNum(props.data.price).multipliedBy(10 ** 18).toFixed(0)
     const contract = getMarketContractWithSinger(chainId, address!)
     const singer = getSinger(chainId, address!)
     try {
@@ -61,10 +60,10 @@ function BlockOrder(props: BlockOrderProps) {
         v,
       )
       const transaction = await singer.populateTransaction({
+        value: props.data.price,
         ...preTransaction,
         type: 2,
         chainId,
-        value,
       })
       const { hash } = await sendTransactionAsync({ recklesslySetUnpreparedRequest: transaction })
       await openWaitingIndexModal({ hash })
@@ -78,7 +77,8 @@ function BlockOrder(props: BlockOrderProps) {
   }
 
   function renderFooter() {
-    const usd = BigNum(props.data.price).multipliedBy(config.price).toFixed(4)
+    const price = utils.formatEther(props.data.price)
+    const usd = BigNum(price).multipliedBy(config.price).toFixed(4)
     return (
       <>
         <div className="flex justify-between text-sm">
@@ -90,7 +90,7 @@ function BlockOrder(props: BlockOrderProps) {
         </div>
         <Divider className="my-4" />
         <div className="flex justify-between text-sm mb-4">
-          <Price symbol="mxc" value={props.data.price} />
+          <Price symbol="mxc" value={price} />
           <Price symbol="usd" value={usd} />
         </div>
         <LoadingButton loading={loading} variant="outlined" className="w-full" onClick={onPurchase}>{t('Buy')}</LoadingButton>

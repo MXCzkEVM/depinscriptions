@@ -69,22 +69,22 @@ export class ScriptsService {
     private provider: ProviderService,
     private config: ConfigService,
   ) {
-    const messageHash = solidityPackedKeccak256(
-      ['string', 'string', 'address', 'uint256', 'uint256'],
-      [
-        '0x9e45b41f72d569bae3c8ec59f44993186b8a90bf34ff9587f0b492e7cd144b0e',
-        'ETH',
-        '0x0795D90c6d60F7c77041862E9aE5059B4d5e0d7A',
-        '700',
-        '1400',
-      ],
-    )
-    provider.signMessage(toBeArray(messageHash)).then((message) => {
-      const r = message.slice(0, 66)
-      const s = `0x${message.slice(66, 130)}`
-      const v = Number.parseInt(message.slice(130, 132), 16)
-      console.log({ message, r, s, v })
-    })
+    // const messageHash = solidityPackedKeccak256(
+    //   ['string', 'string', 'address', 'uint256', 'uint256'],
+    //   [
+    //     '0x9e45b41f72d569bae3c8ec59f44993186b8a90bf34ff9587f0b492e7cd144b0e',
+    //     'ETH',
+    //     '0x0795D90c6d60F7c77041862E9aE5059B4d5e0d7A',
+    //     '700',
+    //     '1400',
+    //   ],
+    // )
+    // provider.signMessage(toBeArray(messageHash)).then((message) => {
+    //   const r = message.slice(0, 66)
+    //   const s = `0x${message.slice(66, 130)}`
+    //   const v = Number.parseInt(message.slice(130, 132), 16)
+    //   console.log({ message, r, s, v })
+    // })
   }
 
   private log(type: string, options: ScriptLogOptions) {

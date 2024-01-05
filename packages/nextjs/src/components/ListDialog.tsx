@@ -55,7 +55,7 @@ function ListDialog(props: ListDialogProps) {
       p: 'msc-20',
       op: 'list',
       tick: props.data.tick,
-      pre: mxcRevenue.toString(),
+      pre: mxcRevenue.multipliedBy(10 ** 18).toFixed(0),
       amt: amount,
       exp: expiration === 'month'
         ? monthTimestamp

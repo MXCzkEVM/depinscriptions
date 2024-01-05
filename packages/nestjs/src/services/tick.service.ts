@@ -124,12 +124,11 @@ export class TickService {
         (price - amount) DESC 
       LIMIT 1;
     `
-
     const price = order
-      ? new BigNumber(order.price.toString()).div(order.amount.toString()).toString()
+      ? new BigNumber(order.price.toString()).div(order.amount.toString()).toFixed(0)
       : '0'
 
-    const limitPrice = new BigNumber(tick.limit.toString()).multipliedBy(price.toString()).toString()
+    const limitPrice = new BigNumber(tick.limit.toString()).multipliedBy(price.toString()).toFixed(0)
 
     return {
       tick: tick.tick,
