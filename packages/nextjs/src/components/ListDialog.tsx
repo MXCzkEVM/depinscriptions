@@ -13,7 +13,7 @@ import ListDialogFill from './ListDialogFill'
 import Price from './Price'
 import { MarketDetailDto } from '@/api/index.type'
 import store from '@/store'
-import { BigNum } from '@/utils'
+import { BigNum, formatEther } from '@/utils'
 import { useNumberState, useSendSatsTransaction } from '@/hooks'
 import { getHolder } from '@/api'
 
@@ -47,6 +47,7 @@ function ListDialog(props: ListDialogProps) {
   const usdMint = BigNum(config.price).multipliedBy(mxcMint || 0)
   const mxcRevenue = BigNum(mxcMint || 0).div(props.data.limit).multipliedBy(amount || 0)
   const usdRevenue = mxcRevenue.multipliedBy(config.price)
+  const limitPrice = formatEther(props.data.limitPrice).toString()
 
   const { sendTransaction, isLoading } = useSendSatsTransaction({
     onSuccess: data => resolve(data),
@@ -131,8 +132,8 @@ function ListDialog(props: ListDialogProps) {
             <div className="mt-5 text-center mb-5">
               {t('Floor price')}
               {' '}
-              <Link className="cursor-pointer" onClick={() => setMxcMint(props.data.limitPrice)}>
-                {props.data.limitPrice}
+              <Link className="cursor-pointer" onClick={() => setMxcMint(limitPrice)}>
+                {limitPrice}
                 {' '}
                 MXC
               </Link>

@@ -127,7 +127,7 @@
   "Please enter the price": "請輸入價格",
   "Order total amount should be greater than 10": "訂單總金額應大於 10 美元",
   "You dont have enough tick": "您沒有足夠的 {{token}}。",
-  "Sold": "賣",
+  "Sold": "售出",
   "Listing": "上架中",
   "Cancelled": "取消",
   "Action": "操作",
@@ -140,5 +140,6 @@
   "All Markets": "所有市場",
   "Unit Price": "單價",
   "Volume": "總價",
-  "Sales": "銷售量"
+  "Sales": "銷售量",
+  "Purchased": "已購"
 }

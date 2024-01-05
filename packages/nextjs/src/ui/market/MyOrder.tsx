@@ -7,6 +7,7 @@ import dayjs from 'dayjs'
 import { ArrowRedoCircleOutline } from '@ricons/ionicons5'
 import { useInjectHolder } from '@overlays/react'
 import { useSnapshot } from 'valtio'
+import { useAccount } from 'wagmi'
 import MarketContext from './Context'
 import CancelButton from './components/CancelButton'
 import { ChainLink, Condition, CountryFlag, Empty, Icon, Price, Refresh } from '@/components'
@@ -14,7 +15,7 @@ import { useEventBus, useGridPaginationFields, useRouterQuery, useServerPaginati
 import { getOrder, getToken } from '@/api'
 import { useWhenever } from '@/hooks/useWhenever'
 import { OrderDto } from '@/api/index.type'
-import { BigNum } from '@/utils'
+import { BigNum, formatEther } from '@/utils'
 import WaitingIndexModal from '@/components/WaitingIndexModal'
 import store from '@/store'
 
@@ -25,6 +26,7 @@ function MyOrder() {
   const [allMarkets, setAllMarkets] = useState(false)
   const [status, setStatus] = useState<any[]>([0, 1, 2])
 
+  const { address } = useAccount()
   const { limit, mode } = useContext(MarketContext)
   const { t } = useTranslation()
 
@@ -48,7 +50,9 @@ function MyOrder() {
       renderCell(params) {
         const mappings = {
           0: <span style={{ color: 'rgb(134,239,172)' }}>{t('Listing')}</span>,
-          1: <span style={{ color: 'rgb(252,165,165)' }}>{t('Sold')}</span>,
+          1: params.row.maker === address
+            ? <span style={{ color: 'rgb(252,165,165)' }}>{t('Sold')}</span>
+            : <span style={{ color: 'rgb(252,165,165)' }}>{t('Purchased')}</span>,
           2: <span style={{ color: 'rgb(100,116,139)' }}>{t('Cancelled')}</span>,
           3: <span style={{ color: 'rgb(100,116,139)' }}>{t('Expired')}</span>,
         }
@@ -67,7 +71,7 @@ function MyOrder() {
       field: 'price',
       headerName: t('Price'),
       renderCell(params) {
-        const unitPrice = BigNum(params.row.price).div(params.row.amount)
+        const unitPrice = formatEther(params.row.price).div(params.row.amount)
         const limitPrice = BigNum(limit).multipliedBy(unitPrice)
         const mxcPrice = mode === 'mint' ? limitPrice : unitPrice
         const usdPrice = BigNum(mxcPrice).multipliedBy(config.price)
@@ -85,7 +89,7 @@ function MyOrder() {
       field: 'total',
       headerName: t('Total'),
       renderCell(params) {
-        const mxcPrice = params.row.price
+        const mxcPrice = formatEther(params.row.price)
         const usdPrice = BigNum(mxcPrice).multipliedBy(config.price)
         return <Price symbol={symbol} value={denominated ? usdPrice : mxcPrice} />
       },
@@ -165,9 +169,8 @@ function MyOrder() {
     load: controls.load,
   })
 
-  useWatch([tick, allMarkets], () => {
-    if (tick)
-      controls.reload()
+  useWatch([tick, allMarkets, status], () => {
+    tick && controls.reload()
   })
   useEventBus('reload:page').on(controls.reload)
 

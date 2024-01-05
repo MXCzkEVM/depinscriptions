@@ -85,10 +85,9 @@ contract MscMarketV1 is Initializable, UUPSUpgradeable, OwnableUpgradeable, Reen
 
       lockeds[id] = true;
 
-      (bool success,) = maker.call{ value: price - fee(price) }("");
-      if (!success) {
+      (bool sent,) = maker.call{ value: msg.value - fee(price) }("");
+      if (!sent)
         revert MscMarket__PurchaseFailed();
-      }
       emit inscription_msc20_transfer(id, id, msg.sender, maker, price);
     }
 

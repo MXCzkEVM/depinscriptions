@@ -328,8 +328,8 @@ export class ScriptsService {
       { value: BigInt(order.amount) },
     )
     await this.orderService.update(hash, {
+      hash: transaction.hash,
       status: 1,
-      hash,
       buyer,
     })
     this.log('purchased', {

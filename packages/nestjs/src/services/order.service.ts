@@ -68,6 +68,6 @@ export class OrderService {
       where: { status: { in: [0, 1] } },
       _sum: { price: true },
     })
-    return _sum.price
+    return _sum.price || '0'
   }
 }

@@ -7,11 +7,11 @@ import { ArrowRedoCircleOutline } from '@ricons/ionicons5'
 import { useSnapshot } from 'valtio'
 import MarketContext from './Context'
 import { ChainLink, Condition, CountryFlag, Empty, Icon, Price, Refresh } from '@/components'
-import { useEventBus, useGridPaginationFields, useRouterQuery, useServerPagination } from '@/hooks'
+import { useEventBus, useGridPaginationFields, useRouterQuery, useServerPagination, useWatch } from '@/hooks'
 import { getOrderRecord } from '@/api'
 import { useWhenever } from '@/hooks/useWhenever'
 import { OrderDto } from '@/api/index.type'
-import { BigNum } from '@/utils'
+import { BigNum, formatEther } from '@/utils'
 import store from '@/store'
 
 export interface ActivitiesProps {
@@ -64,7 +64,7 @@ function Activities() {
       field: 'price',
       headerName: t('Price'),
       renderCell(params) {
-        const unitPrice = BigNum(params.row.price).div(params.row.amount)
+        const unitPrice = formatEther(params.row.price).div(params.row.amount)
         const limitPrice = BigNum(limit).multipliedBy(unitPrice)
         const mxcPrice = mode === 'mint' ? limitPrice : unitPrice
         const usdPrice = BigNum(mxcPrice).multipliedBy(config.price)
@@ -82,7 +82,7 @@ function Activities() {
       field: 'total',
       headerName: t('Total'),
       renderCell(params) {
-        const mxcPrice = params.row.price
+        const mxcPrice = formatEther(params.row.price)
         const usdPrice = BigNum(mxcPrice).multipliedBy(config.price)
         return <Price symbol={symbol} value={denominated ? usdPrice : mxcPrice} />
       },
@@ -142,8 +142,9 @@ function Activities() {
     pagination: state.pagination,
     load: controls.load,
   })
-
-  useWhenever(tick, controls.reload)
+  useWatch([tick, status], () => {
+    tick && controls.reload()
+  })
   useEventBus('reload:page').on(controls.reload)
   return (
     <>
