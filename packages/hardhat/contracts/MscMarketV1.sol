@@ -50,12 +50,11 @@ contract MscMarketV1 is Initializable, UUPSUpgradeable, OwnableUpgradeable, Reen
     error MscMarket__OrderIsLocked();
     error MscMarket__WithdrawFailed();
 
-    event inscription_msc20_transfer(
-      string indexed filter,
-      string id,
-      address indexed from,
-      address indexed to,
-      uint256 value
+    event inscription_msc20_transferForListing(
+      string indexed filterId,
+      address indexed buyer,
+      address indexed maker,
+      string id
     );
 
 
@@ -88,7 +87,7 @@ contract MscMarketV1 is Initializable, UUPSUpgradeable, OwnableUpgradeable, Reen
       (bool sent,) = maker.call{ value: msg.value - fee(price) }("");
       if (!sent)
         revert MscMarket__PurchaseFailed();
-      emit inscription_msc20_transfer(id, id, msg.sender, maker, price);
+      emit inscription_msc20_transferForListing(id, msg.sender, maker, id);
     }
 
     function purchases(OrderStorage[] calldata orders) external payable nonReentrant {
@@ -116,7 +115,7 @@ contract MscMarketV1 is Initializable, UUPSUpgradeable, OwnableUpgradeable, Reen
         (bool success, ) = orders[i].maker.call{ value: value - fee(value) }("");
         if (!success)
           revert MscMarket__PurchaseFailed();
-        emit inscription_msc20_transfer(id, id, msg.sender, maker, value);
+        emit inscription_msc20_transferForListing(id, msg.sender, maker, id);
         lockeds[orders[i].id] = true;
       }
     }

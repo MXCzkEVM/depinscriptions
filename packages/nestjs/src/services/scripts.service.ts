@@ -58,7 +58,7 @@ export interface ScriptLogOptions {
 
 @Injectable()
 export class ScriptsService {
-  private readonly logger = new Logger('TasksService')
+  private readonly logger = new Logger('Task')
 
   constructor(
     private holderService: HolderService,
@@ -69,22 +69,7 @@ export class ScriptsService {
     private provider: ProviderService,
     private config: ConfigService,
   ) {
-    // const messageHash = solidityPackedKeccak256(
-    //   ['string', 'string', 'address', 'uint256', 'uint256'],
-    //   [
-    //     '0x9e45b41f72d569bae3c8ec59f44993186b8a90bf34ff9587f0b492e7cd144b0e',
-    //     'ETH',
-    //     '0x0795D90c6d60F7c77041862E9aE5059B4d5e0d7A',
-    //     '700',
-    //     '1400',
-    //   ],
-    // )
-    // provider.signMessage(toBeArray(messageHash)).then((message) => {
-    //   const r = message.slice(0, 66)
-    //   const s = `0x${message.slice(66, 130)}`
-    //   const v = Number.parseInt(message.slice(130, 132), 16)
-    //   console.log({ message, r, s, v })
-    // })
+
   }
 
   private log(type: string, options: ScriptLogOptions) {
@@ -306,39 +291,47 @@ export class ScriptsService {
     })
   }
 
-  async buys(
+  async buyMany(
     _block: BlockWithTransactions,
     transaction: TransactionResponse,
     events: EventLog[],
   ) {
     const contract = this.config.get('NEST_MARKET_CONTRACT')
-    const [{ from: buyer, id: hash, maker }] = events
+    const processes = events
       .map(e => e.args?.toObject?.())
       .filter(Boolean)
 
-    const order = await this.orderService.detail({ hash })
-    if (!order)
-      throw new Error('Attempt to purchase non-existent orders')
-    await this.holderService.incrementValue(
-      { owner: buyer, tick: order.tick },
-      { value: BigInt(order.amount) },
-    )
-    await this.holderService.decrementValue(
-      { owner: contract, tick: order.tick },
-      { value: BigInt(order.amount) },
-    )
-    await this.orderService.update(hash, {
-      hash: transaction.hash,
-      status: 1,
-      buyer,
-    })
-    this.log('purchased', {
-      desc: `buy`,
-      amount: `${order.amount} ${order.tick}`,
-      from: buyer,
-      to: maker,
-      hash: transaction.hash,
-    })
+    for (const { id: hash, maker, buyer } of processes) {
+      const order = await this.orderService.detail({ hash })
+      if (!order) {
+        this.logger.warn('Attempt to purchase non-existent orders')
+        continue
+      }
+      if (order.status !== 0) {
+        this.logger.warn('Order has expired')
+        continue
+      }
+      await this.holderService.incrementValue(
+        { owner: buyer, tick: order.tick },
+        { value: BigInt(order.amount) },
+      )
+      await this.holderService.decrementValue(
+        { owner: contract, tick: order.tick },
+        { value: BigInt(order.amount) },
+      )
+      await this.orderService.update(hash, {
+        hash: transaction.hash,
+        status: 1,
+        buyer,
+      })
+      this.log('purchased', {
+        desc: `buy`,
+        amount: `${order.amount} ${order.tick}`,
+        from: buyer,
+        to: maker,
+        hash: transaction.hash,
+      })
+    }
   }
 
   async refund(order: Order) {

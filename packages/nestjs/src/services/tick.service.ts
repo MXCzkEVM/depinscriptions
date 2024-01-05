@@ -51,7 +51,7 @@ export class TickService {
     return await this.prisma.$queryRaw<MarketRawDto[]>`
       SELECT
           T.tick as tick,
-          COALESCE(MIN(O.price), 0) as price,
+          COALESCE(list.price, 0) as price,
           COALESCE(sold24h.volume, 0) as volume,
           COALESCE(sold24h.sales, 0) as sales,
           COUNT(DISTINCT H.owner) as holders,
@@ -62,17 +62,16 @@ export class TickService {
       FROM
           Tick as T
       LEFT JOIN Holder as H ON T.tick = H.tick
-      LEFT JOIN \`Order\` as O ON T.tick = O.tick
       LEFT JOIN
         (
-          SELECT tick, COUNT(*) AS listed
+          SELECT tick, MIN(price) as price, COUNT(*) AS listed
           FROM \`Order\`
           WHERE status = 0
           GROUP BY tick
         ) AS list ON T.tick = list.tick
       LEFT JOIN
         (
-          SELECT tick, SUM(price) AS marketCap 
+          SELECT tick,  SUM(price) AS marketCap 
           FROM \`Order\`
           WHERE status = 0 OR status = 1
           GROUP BY tick
@@ -80,7 +79,7 @@ export class TickService {
       LEFT JOIN
         (
           SELECT tick, SUM(price) AS volume, COUNT(*) as sales 
-          FROM \`Order\` 
+          FROM \`Order\`
           WHERE time >= DATE_SUB(NOW(), INTERVAL 24 HOUR) AND status = 1
           GROUP BY tick
         ) AS sold24h ON T.tick = sold24h.tick
@@ -105,13 +104,13 @@ export class TickService {
     if (!tick)
       throw new NotFoundException(`Not found Tick [${id}]`)
     const { _sum: { price: volume } } = await this.prisma.order.aggregate({
-      where: { status: { in: [0, 1] } },
+      where: { tick: id, status: { in: [0, 1] } },
       _sum: {
         price: true,
       },
     })
     const { _count: { hash: sales } } = await this.prisma.order.aggregate({
-      where: { status: 1 },
+      where: { tick: id, status: 1 },
       _count: {
         hash: true,
       },
@@ -119,7 +118,7 @@ export class TickService {
 
     const [order] = await this.prisma.$queryRaw<Order[]>`
       SELECT * FROM  \`Order\` 
-      WHERE tick = ${id}
+      WHERE tick = ${id} AND status = 0
       ORDER BY 
         (price - amount) DESC 
       LIMIT 1;

@@ -12,13 +12,22 @@ function Price(props: PriceProps) {
     mxc: () => <img className="mr-1 w-4 rounded-full overflow-hidden flex-shrink-0" src="/mxc.png" />,
     usd: () => <span className="mr-1">$</span>,
   }
+
   return (
     <div className="inline-flex items-center">
       {props.label && (
         <span className="text-[#999999] flex-1 mr-2">{props.label}</span>
       )}
-      {mappings[props.symbol || '']?.()}
-      <Decimal value={props.value} />
+      {
+        props.value !== '-'
+          ? (
+            <>
+              {mappings[props.symbol || '']?.()}
+              <Decimal value={props.value} />
+            </>
+            )
+          : '-'
+      }
     </div>
   )
 }

@@ -84,12 +84,12 @@ function Page() {
         <Flag size="32" find={token} />
       </div>
       <div className="flex gap-3 flex-wrap mb-10">
-        <Price label={t('Floor Price')} symbol="mxc" value={floorPrice} />
+        <Price label={t('Floor Price')} symbol="mxc" value={Number(floorPrice) <= 0 ? '-' : floorPrice} />
         <Divider className="hidden md:block" orientation="vertical" flexItem />
         {
           perMint
-            ? <Price label={t('Per Mint')} symbol="usd" value={usdMintPrice} />
-            : <Price label={t('Unit Price')} symbol="usd" value={usdUnitPrice} />
+            ? <Price label={t('Per Mint')} symbol="usd" value={Number(usdMintPrice) <= 0 ? '-' : usdMintPrice} />
+            : <Price label={t('Unit Price')} symbol="usd" value={Number(usdUnitPrice) <= 0 ? '-' : usdUnitPrice} />
         }
         <Divider className="hidden md:block" orientation="vertical" flexItem />
         <Price label={t('Volume')} symbol="mxc" value={volume} />

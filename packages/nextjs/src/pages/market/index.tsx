@@ -37,6 +37,8 @@ function Page() {
       renderCell(params) {
         const mxc = utils.formatEther(params.row.price)
         const usd = BigNum(mxc).multipliedBy(config.price)
+        if (Number(usd) <= 0)
+          return '-'
         return <Price symbol="usd" value={usd.toFixed(6)} />
       },
     },

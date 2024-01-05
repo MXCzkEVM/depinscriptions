@@ -1,15 +1,15 @@
 import { Injectable, Logger } from '@nestjs/common'
 import { Cron, Interval } from '@nestjs/schedule'
-import { toUtf8String } from 'ethers'
+import { TransactionResponse, toUtf8String } from 'ethers'
 import { cyan, dim, gray, reset } from 'chalk'
 import { ConfigService } from '@nestjs/config'
 import { getIndexerLastBlock, setIndexerLastBlock } from '../utils'
 
-import { ProviderService } from './provider.service'
+import { BlockWithTransactions, ProviderService } from './provider.service'
 import { InscriptionService } from './inscription.service'
-import { ScanDeployJSON, ScanListJSON, ScanMintJSON, ScanTransferJSON, ScriptsService } from './scripts.service'
+import { ScanCancelJSON, ScanDeployJSON, ScanListJSON, ScanMintJSON, ScanTransferJSON, ScriptsService } from './scripts.service'
 
-type InscriptionJSON = ScanDeployJSON | ScanMintJSON | ScanTransferJSON | ScanListJSON
+type InscriptionJSON = ScanDeployJSON | ScanMintJSON | ScanTransferJSON | ScanListJSON | ScanCancelJSON
 
 @Injectable()
 export class TasksService {
@@ -20,11 +20,11 @@ export class TasksService {
     private config: ConfigService,
   ) {}
 
-  private readonly logger = new Logger(TasksService.name)
+  private readonly logger = new Logger('Task')
   private locked = false
 
   @Interval(3000)
-  async loadBlocks() {
+  async indexer() {
     if (this.locked)
       return
     this.locked = true
@@ -41,82 +41,101 @@ export class TasksService {
     const rangeLogText = startBlockNumber !== endBlockNumber
       ? `${cyan(`${startBlockNumber} ${gray('to')} ${endBlockNumber}`)} ${gray('blocks')}`
       : `${cyan(startBlockNumber)} ${gray('block')}`
+
     this.logger.log(`${titleLogText} ${rangeLogText}`)
-    await this.nextBlocks(startBlockNumber, endBlockNumber)
+
+    await this.processBlocksTransactions(startBlockNumber, endBlockNumber)
     await setIndexerLastBlock(endBlockNumber + 1)
     this.locked = false
   }
 
-  async nextBlocks(start: number, end: number) {
+  @Cron('0 */5 * * * *')
+  async inspector() {
+    await this.scripts.checks()
+  }
+
+  async processBlocksTransactions(start: number, end: number) {
     const blocks = await this.provider.getBlockByArangeWithTransactions(start, end)
 
     for (const block of blocks) {
       for (const transaction of block.transactions) {
-        const events = await this.provider.queryFilterByHash(
-          'inscription_msc20_transfer',
-          transaction.hash,
-        )
-
-        if (transaction.to === this.config.get('NEST_MARKET_CONTRACT') && events.length) {
-          await this.scripts.buys(block, transaction, events)
-          await this.inscription.create({
-            from: transaction.from,
-            to: transaction.to,
-            hash: transaction.hash,
-            op: 'buy',
-            tick: 'none',
-            time: new Date(block.timestamp * 1000),
-            json: '{}',
-          })
-        }
-
-        if (!transaction.data.startsWith('0x7b2270223a226d73632d323022'))
-          continue
-        const receipt = await transaction.wait()
-        if (receipt.status !== 1)
+        if ((await transaction.wait()).status !== 1)
           continue
 
-        try {
-          const json = toUtf8String(transaction.data)
-          const inscription = JSON.parse(json) as InscriptionJSON
+        if (transaction.to === this.config.get('NEST_MARKET_CONTRACT'))
+          await this.processMarketContractTransaction(block, transaction)
 
-          const existInscription = await this.inscription.some(transaction.hash)
-          if (existInscription)
-            throw new Error(`[inscription] - Attempting to record existing inscription(${transaction.hash.slice(0, 12)})`)
-
-          this.logger.log(reset(`Transaction hash: ${dim(transaction.hash)}`))
-          this.logger.log(reset(`Inscription json: ${dim(json)}`))
-          if (inscription.op === 'deploy')
-            await this.scripts.deploy(block, transaction, inscription)
-          if (inscription.op === 'transfer')
-            await this.scripts.transfer(block, transaction, inscription)
-          if (inscription.op === 'mint')
-            await this.scripts.mint(block, transaction, inscription)
-          if (inscription.op === 'list')
-            await this.scripts.list(block, transaction, inscription)
-
-          await this.inscription.create({
-            from: transaction.from,
-            to: transaction.to,
-            hash: transaction.hash,
-            op: inscription.op,
-            tick: String(inscription.tick),
-            time: new Date(block.timestamp * 1000),
-            json,
-          })
-        }
-        catch (error) {
-          if (error.name.startsWith('Prisma'))
-            this.logger.warn(error.message || `[prisma:${error?.code}] ${error?.name}: ${error.meta?.modelName} - ${error.meta?.target}`)
-          else
-            this.logger.warn(error.message)
-        }
+        if (transaction.data.startsWith('0x7b2270223a226d73632d323022'))
+          this.processInscriptionTransaction(block, transaction)
       }
     }
   }
 
-  @Cron('0 */5 * * * *')
-  async timeoutOrders() {
-    await this.scripts.checks()
+  async processMarketContractTransaction(block: BlockWithTransactions, transaction: TransactionResponse) {
+    const events = await this.provider.queryFilterByHash(
+      'inscription_msc20_transferForListing',
+      transaction.hash,
+    )
+
+    if (!events.length)
+      return
+
+    await this.scripts.buyMany(block, transaction, events)
+    await this.inscription.create({
+      from: transaction.from,
+      to: transaction.to,
+      hash: transaction.hash,
+      op: 'buy',
+      tick: 'none',
+      time: new Date(block.timestamp * 1000),
+      json: '{}',
+    })
+  }
+
+  async processInscriptionTransaction(block: BlockWithTransactions, transaction: TransactionResponse) {
+    try {
+      const json = toUtf8String(transaction.data)
+      const inscription = JSON.parse(json) as InscriptionJSON
+      const existInscription = await this.inscription.some(transaction.hash)
+      if (existInscription)
+        throw new Error(`[inscription] - Attempting to record existing inscription(${transaction.hash.slice(0, 12)})`)
+
+      this.logger.log(reset(`Transaction hash: ${dim(transaction.hash)}`))
+      this.logger.log(reset(`Inscription json: ${dim(json)}`))
+
+      switch (inscription.op) {
+        case 'deploy':
+          await this.scripts.deploy(block, transaction, inscription)
+          break
+        case 'transfer':
+          await this.scripts.transfer(block, transaction, inscription)
+          break
+        case 'mint':
+          await this.scripts.mint(block, transaction, inscription)
+          break
+        case 'list':
+          await this.scripts.list(block, transaction, inscription)
+          break
+        case 'cancel':
+          await this.scripts.cancel(block, transaction, inscription)
+          break
+      }
+
+      await this.inscription.create({
+        from: transaction.from,
+        to: transaction.to,
+        hash: transaction.hash,
+        op: inscription.op,
+        tick: String(inscription.tick),
+        time: new Date(block.timestamp * 1000),
+        json,
+      })
+    }
+    catch (error) {
+      if (error.name.startsWith('Prisma'))
+        this.logger.warn(error.message || `[prisma:${error?.code}] ${error?.name}: ${error.meta?.modelName} - ${error.meta?.target}`)
+      else
+        this.logger.warn(error.message)
+    }
   }
 }
