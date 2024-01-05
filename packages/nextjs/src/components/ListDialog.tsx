@@ -6,7 +6,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import BigNumber from 'bignumber.js'
 import { useSnapshot } from 'valtio'
 import { useAsync } from 'react-use'
-import { useAccount } from 'wagmi'
+import { useAccount, useSignMessage } from 'wagmi'
 import toast from 'react-hot-toast'
 import CountryFlag from './CountryFlag'
 import ListDialogFill from './ListDialogFill'
@@ -50,7 +50,7 @@ function ListDialog(props: ListDialogProps) {
 
   const { sendTransaction, isLoading } = useSendSatsTransaction({
     onSuccess: data => resolve(data),
-    to: process.env.NEXT_PUBLIC_MARKET_CONTRACT || '',
+    to: process.env.NEXT_PUBLIC_MARKET_CONTRACT!,
     data: {
       p: 'msc-20',
       op: 'list',
@@ -86,7 +86,7 @@ function ListDialog(props: ListDialogProps) {
       toast.error(t('You dont have enough tick', { token: props.data.tick }), { position: 'top-center' })
       return
     }
-
+    console.log(sendTransaction)
     sendTransaction?.()
   }
 

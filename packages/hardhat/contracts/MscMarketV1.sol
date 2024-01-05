@@ -43,33 +43,33 @@ contract MscMarketV1 is Initializable, UUPSUpgradeable, OwnableUpgradeable, Reen
     error MscMarket__WithdrawFailed();
 
     event inscription_msc20_transfer(
-      string indexed id,
+      string indexed filter,
+      string id,
       address indexed from,
       address indexed to,
       uint256 value
     );
+
+    fallback() external payable {}
+
+    receive() external payable {}
 
     function purchase(
         string memory id,
         address maker,
         uint256 value
     ) external payable nonReentrant {
-        if (processing[id]) 
-          revert MscMarket__OrderIsProcessing();
         if (!featureIsEnabled["buy"])
           revert MscMarket__FeatureDisabled("buy");
         if (msg.value < value)
           revert MscMarket__PurchaseFailed();
-        processing[id] = true;
 
         (bool success,) = maker.call{ value: value - fee(value) }("");
 
         if (!success) {
-          processing[id] = false;
           revert MscMarket__PurchaseFailed();
         }
-
-        emit inscription_msc20_transfer(id, msg.sender, maker, value);
+        emit inscription_msc20_transfer(id, id, msg.sender, maker, value);
     }
 
     function purchases(Order[] calldata orders) external payable nonReentrant {
@@ -97,7 +97,8 @@ contract MscMarketV1 is Initializable, UUPSUpgradeable, OwnableUpgradeable, Reen
         (bool success, ) = orders[i].maker.call{ value: value - fee(value) }("");
         if (!success)
           revert MscMarket__PurchaseFailed();
-        emit inscription_msc20_transfer(id, msg.sender, maker, value);
+        emit inscription_msc20_transfer(id, id, msg.sender, maker, value);
+        processing[orders[i].id] = true;
       }
     }
 
@@ -111,6 +112,10 @@ contract MscMarketV1 is Initializable, UUPSUpgradeable, OwnableUpgradeable, Reen
 
     function fee(uint256 price) public view returns (uint256) {
       return (price * uint256(feeBps)) / 100;
+    }
+
+    function verify() {
+      
     }
 
 }

@@ -53,8 +53,19 @@ export interface ScanBuyJSON {
   hash: string
 }
 
+export interface ScriptLogOptions {
+
+  from: string
+  to?: string
+  hash?: string
+  amount?: string
+  desc?: string
+}
+
 @Injectable()
 export class ScriptsService {
+  private readonly logger = new Logger('TasksService')
+
   constructor(
     private holderService: HolderService,
     private tickService: TickService,
@@ -63,9 +74,33 @@ export class ScriptsService {
     private inscriptionService: InscriptionService,
     private config: ConfigService,
   ) {
+
   }
 
-  private readonly logger = new Logger('TasksService')
+  private log(type: string, options: ScriptLogOptions) {
+    const {
+      from,
+      hash,
+      to,
+      amount,
+      desc,
+    } = options
+    const fromLogText = yellow(from.slice(0, 12))
+    const toLogText = to ? yellow(to.slice(0, 12)) : ''
+    const hashLogText = yellow(hash.slice(0, 12))
+    const amtLogText = amount ? ` ${cyan(`${amount}`)} from ` : ''
+    const logs = [
+      bgWhite(`[${type}]`),
+      ' - ',
+      desc,
+      amtLogText,
+      fromLogText,
+      toLogText,
+      ' in ',
+      hashLogText,
+    ]
+    this.logger.log(reset(logs.join('')))
+  }
 
   async deploy(
     block: BlockWithTransactions,
@@ -133,10 +168,12 @@ export class ScriptsService {
         { completedTime: new Date(block.timestamp * 1000) },
       )
     }
-    const fromLogText = yellow(transaction.from.slice(0, 12))
-    const hashLogText = yellow(transaction.hash.slice(0, 12))
     const amtLogText = cyan(`${inscription.amt} ${tick.tick}`)
-    this.logger.log(reset(`${bgWhite('[minted]')} - ${amtLogText} were minted at ${fromLogText} in ${hashLogText}`))
+    this.log('minted', {
+      desc: `${amtLogText} were minted at `,
+      from: transaction.from,
+      hash: transaction.hash,
+    })
   }
 
   async transfer(
@@ -164,12 +201,13 @@ export class ScriptsService {
       { value: amount, number: tick.number },
     )
 
-    const fromLogText = yellow(transaction.from.slice(0, 12))
-    const toLogText = yellow(transaction.to.slice(0, 12))
-    const amtLogText = cyan(`${inscription.amt} ${tick.tick}`)
-    const hashLogText = yellow(transaction.hash.slice(0, 12))
-
-    this.logger.log(reset(`${bgWhite('[transferred]')} - transfer ${amtLogText} from ${fromLogText} to ${toLogText} in ${hashLogText}`))
+    this.log('transferred', {
+      desc: `transfer`,
+      amount: `${inscription.amt} ${tick.tick}`,
+      from: transaction.from,
+      to: transaction.to,
+      hash: transaction.hash,
+    })
   }
 
   async list(
@@ -211,11 +249,13 @@ export class ScriptsService {
       status: 0,
     })
 
-    const fromLogText = yellow(transaction.from.slice(0, 12))
-    const toLogText = yellow(transaction.to.slice(0, 12))
-    const amtLogText = cyan(`${inscription.amt} ${tick.tick}`)
-    const hashLogText = yellow(transaction.hash.slice(0, 12))
-    this.logger.log(reset(`${bgWhite('[listed]')} - transfer ${amtLogText} from ${fromLogText} to ${toLogText} in ${hashLogText}`))
+    this.log('listed', {
+      desc: `list`,
+      amount: `${inscription.amt} ${tick.tick}`,
+      from: transaction.from,
+      to: transaction.to,
+      hash: transaction.hash,
+    })
   }
 
   async cancel(
@@ -237,6 +277,14 @@ export class ScriptsService {
     })
 
     await this.refund(order)
+
+    this.log('cancelled', {
+      desc: `refund`,
+      amount: `${order.amount} ${order.tick}`,
+      from: transaction.from,
+      to: transaction.to,
+      hash: transaction.hash,
+    })
   }
 
   async buy(

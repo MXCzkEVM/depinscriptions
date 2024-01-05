@@ -1,16 +1,18 @@
 import { Button, Divider } from '@mui/material'
 import { useTranslation } from 'react-i18next'
-import BigNumber from 'bignumber.js'
 import { useSnapshot } from 'valtio'
-import { utils } from 'ethers'
 import { useContext } from 'react'
+import { useAccount, useChainId, useContract, useContractWrite, useSendTransaction } from 'wagmi'
+import { Contract, providers } from 'ethers'
 import Block from './Block'
 import Flag from './Flag'
 import Price from './Price'
 import { BigNum, cover, thousandBitSeparator } from '@/utils'
 import store from '@/store'
-import { MarketDetailDto, OrderDto } from '@/api/index.type'
+import { OrderDto } from '@/api/index.type'
 import MarketContext from '@/ui/market/Context'
+import { chains } from '@/config'
+import { MarketContract, marketFragment } from '@/config/abis'
 
 export interface BlockOrderProps {
   data: OrderDto
@@ -20,12 +22,31 @@ function BlockOrder(props: BlockOrderProps) {
   const { t } = useTranslation()
   const config = useSnapshot(store.config)
   const { limit, mode } = useContext(MarketContext)
+  const chainId = useChainId()
+  const { address } = useAccount()
 
   const unitPrice = BigNum(props.data.price).div(props.data.amount)
   const limitPrice = BigNum(limit).multipliedBy(unitPrice)
 
   const mxc = mode === 'unit' ? unitPrice : limitPrice
   const usd = BigNum(mxc).multipliedBy(config.price).toFixed(4)
+
+  const { sendTransactionAsync } = useSendTransaction({
+    mode: 'recklesslyUnprepared',
+  })
+
+  async function onPurchase() {
+    const value = BigNum(props.data.price).multipliedBy(10 ** 18).toFixed(0)
+    const contract = getMarketContractWithSinger(chainId, address!)
+    const singer = getSinger(chainId, address!)
+    const preTransaction = await contract.populateTransaction.purchase(
+      props.data.hash,
+      props.data.maker,
+      value,
+    )
+    const transaction = await singer.populateTransaction({ ...preTransaction, value })
+    sendTransactionAsync({ recklesslySetUnpreparedRequest: transaction })
+  }
 
   function renderFooter() {
     const usd = BigNum(props.data.price).multipliedBy(config.price).toFixed(4)
@@ -43,7 +64,7 @@ function BlockOrder(props: BlockOrderProps) {
           <Price symbol="mxc" value={props.data.price} />
           <Price symbol="usd" value={usd} />
         </div>
-        <Button variant="outlined" className="w-full">{t('Buy')}</Button>
+        <Button variant="outlined" className="w-full" onClick={onPurchase}>{t('Buy')}</Button>
       </>
     )
   }
@@ -68,4 +89,16 @@ function BlockOrder(props: BlockOrderProps) {
   )
 }
 
+function getMarketContractWithSinger(chainId: number, address: string) {
+  const contract = process.env.NEXT_PUBLIC_MARKET_CONTRACT as `0x${string}`
+  const singer = getSinger(chainId, address)
+  const market = new Contract(contract, marketFragment, singer)
+  return market as Contract & MarketContract
+}
+function getSinger(chainId: number, address: string) {
+  const rpc = chains[chainId].rpcUrls.default.http[0]
+  const name = chains[chainId].name
+  const jsonProvider = new providers.JsonRpcProvider(rpc, { chainId, name })
+  return jsonProvider.getSigner(address)
+}
 export default BlockOrder

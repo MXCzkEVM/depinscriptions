@@ -16,7 +16,7 @@ export class TasksService {
     private provider: JsonProviderService,
     private scripts: ScriptsService,
     private inscription: InscriptionService,
-  ) { }
+  ) {}
 
   private readonly logger = new Logger(TasksService.name)
   private locked = false
@@ -34,6 +34,7 @@ export class TasksService {
       this.locked = false
       return
     }
+
     const titleLogText = `${reset.underline('[scan]')} ${gray('- regularly scan blockchain')}`
     const rangeLogText = startBlockNumber !== endBlockNumber
       ? `${cyan(`${startBlockNumber} ${gray('to')} ${endBlockNumber}`)} ${gray('blocks')}`
