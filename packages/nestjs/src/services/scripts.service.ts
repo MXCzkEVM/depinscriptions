@@ -1,10 +1,9 @@
 import { Injectable, Logger } from '@nestjs/common'
-import { EventLog, TransactionResponse } from 'ethers'
+import { AbiCoder, EventLog, Signature, TransactionResponse, solidityPackedKeccak256, toBeArray } from 'ethers'
 import { bgWhite, cyan, reset, yellow } from 'chalk'
 import { ConfigService } from '@nestjs/config'
-import { SchedulerRegistry } from '@nestjs/schedule'
 import { Order } from '@prisma/client'
-import { BlockWithTransactions } from './provider.service'
+import { BlockWithTransactions, ProviderService } from './provider.service'
 import { HolderService } from './holder.service'
 import { TickService } from './tick.service'
 import { HexagonService } from './hexagon.service'
@@ -38,17 +37,14 @@ export interface ScanListJSON {
   amt: string
   pre: string
   exp: string
+  r: string
+  s: string
+  v: number
 }
-
 export interface ScanCancelJSON {
   p: 'msc-20'
   op: 'cancel'
   tick: string
-  hash: string
-}
-export interface ScanBuyJSON {
-  p: 'msc-20'
-  op: 'buy'
   hash: string
 }
 
@@ -70,8 +66,26 @@ export class ScriptsService {
     private hexagonService: HexagonService,
     private orderService: OrderService,
     private inscriptionService: InscriptionService,
+    private provider: ProviderService,
     private config: ConfigService,
-  ) {}
+  ) {
+    const messageHash = solidityPackedKeccak256(
+      ['string', 'string', 'address', 'uint256', 'uint256'],
+      [
+        '0x9e45b41f72d569bae3c8ec59f44993186b8a90bf34ff9587f0b492e7cd144b0e',
+        'ETH',
+        '0x0795D90c6d60F7c77041862E9aE5059B4d5e0d7A',
+        '700',
+        '1400',
+      ],
+    )
+    provider.signMessage(toBeArray(messageHash)).then((message) => {
+      const r = message.slice(0, 66)
+      const s = `0x${message.slice(66, 130)}`
+      const v = Number.parseInt(message.slice(130, 132), 16)
+      console.log({ message, r, s, v })
+    })
+  }
 
   private log(type: string, options: ScriptLogOptions) {
     const {
@@ -219,7 +233,7 @@ export class ScriptsService {
     if (!tick)
       throw new Error(`[list] - Attempting to transfer into non-existent tick( ${inscription.tick} )`)
 
-    if (transaction.to !== contract)
+    if (transaction.to.toLowerCase() !== contract.toLowerCase())
       throw new Error(`[list] - Listing exception, listing through an unverified address`)
 
     if (expiration > yearTimestamp)
@@ -235,6 +249,14 @@ export class ScriptsService {
       { value: BigInt(inscription.amt), number: tick.number },
     )
 
+    const messageHash = solidityPackedKeccak256(
+      ['string', 'string', 'address', 'uint256', 'uint256'],
+      [transaction.hash, inscription.tick, transaction.from, inscription.amt, inscription.pre],
+    )
+    const messageByte = toBeArray(messageHash)
+    const message = await this.provider.signMessage(messageByte)
+    const { r, s, v } = Signature.from(message)
+
     await this.orderService.create({
       amount: BigInt(inscription.amt),
       price: inscription.pre,
@@ -242,6 +264,7 @@ export class ScriptsService {
       hash: transaction.hash,
       maker: transaction.from,
       expiration: new Date(Date.now() + Number(inscription.exp)),
+      json: JSON.stringify({ r, s, v }),
       status: 0,
     })
 

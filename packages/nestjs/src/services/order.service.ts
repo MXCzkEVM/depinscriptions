@@ -58,7 +58,7 @@ export class OrderService {
 
   async record(data: Order) {
     await this.prisma.orderRecord.create({
-      data: omit(data, ['lastTime', 'time']),
+      data: omit(data, ['lastTime', 'time', 'json']),
     })
     return data
   }

@@ -124,4 +124,7 @@ export class OrderDto {
 
   @ApiProperty()
   buyer: string
+
+  @ApiProperty()
+  json: string
 }

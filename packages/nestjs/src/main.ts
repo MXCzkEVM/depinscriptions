@@ -4,6 +4,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import { Logger } from '@nestjs/common'
 import { Decimal } from '@prisma/client/runtime/library'
 import BigNumber from 'bignumber.js'
+import { Wallet } from 'ethers'
 import { AppModule } from './app.module'
 
 Object.defineProperty(Decimal.prototype, 'toString', {

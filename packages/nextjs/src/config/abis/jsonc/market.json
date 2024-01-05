@@ -54,7 +54,12 @@
   },
   {
     "inputs": [],
-    "name": "MscMarket__OrderIsProcessing",
+    "name": "MscMarket__InvalidSignature",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "MscMarket__OrderIsLocked",
     "type": "error"
   },
   {
@@ -241,6 +246,11 @@
         "type": "address"
       },
       {
+        "internalType": "address",
+        "name": "initialVerifier",
+        "type": "address"
+      },
+      {
         "internalType": "uint96",
         "name": "initialFeeBps",
         "type": "uint96"
@@ -280,36 +290,44 @@
   {
     "inputs": [
       {
-        "components": [
-          {
-            "internalType": "string",
-            "name": "id",
-            "type": "string"
-          },
-          {
-            "internalType": "address",
-            "name": "maker",
-            "type": "address"
-          },
-          {
-            "internalType": "uint256",
-            "name": "amount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "price",
-            "type": "uint256"
-          },
-          {
-            "internalType": "string",
-            "name": "tick",
-            "type": "string"
-          }
-        ],
-        "internalType": "struct MscMarketV1.MarketStorage",
-        "name": "order",
-        "type": "tuple"
+        "internalType": "string",
+        "name": "id",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "tick",
+        "type": "string"
+      },
+      {
+        "internalType": "address",
+        "name": "maker",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "price",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "r",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "s",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "uint8",
+        "name": "v",
+        "type": "uint8"
       }
     ],
     "name": "purchase",
@@ -327,6 +345,11 @@
             "type": "string"
           },
           {
+            "internalType": "string",
+            "name": "tick",
+            "type": "string"
+          },
+          {
             "internalType": "address",
             "name": "maker",
             "type": "address"
@@ -342,12 +365,22 @@
             "type": "uint256"
           },
           {
-            "internalType": "string",
-            "name": "tick",
-            "type": "string"
+            "internalType": "bytes32",
+            "name": "r",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "s",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint8",
+            "name": "v",
+            "type": "uint8"
           }
         ],
-        "internalType": "struct MscMarketV1.MarketStorage[]",
+        "internalType": "struct MscMarketV1.OrderStorage[]",
         "name": "orders",
         "type": "tuple[]"
       }
@@ -393,30 +426,6 @@
     "name": "upgradeToAndCall",
     "outputs": [],
     "stateMutability": "payable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "bytes32",
-        "name": "msgHash",
-        "type": "bytes32"
-      },
-      {
-        "internalType": "bytes",
-        "name": "signature",
-        "type": "bytes"
-      }
-    ],
-    "name": "verify",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "view",
     "type": "function"
   },
   {

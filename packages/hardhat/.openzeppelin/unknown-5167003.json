@@ -2,30 +2,45 @@
   "manifestVersion": "3.2",
   "proxies": [
     {
-      "address": "0xCd8286Ab3f40ECCDA7E1642140056735EbAEb1c1",
-      "txHash": "0x8cf94be326ce568b9ba1ff199dc4af84c9ff26c7dd8b3f35f4f6bae6550469be",
+      "address": "0x4E5922ea523DD2D8C60449d45f5AD013D6AaD74a",
+      "txHash": "0xece4bec4fb35d6c3328643ecaeceb912b3f3fbc063eae40bf75ade5ecc49c14f",
       "kind": "uups"
     },
     {
-      "address": "0xCd8286Ab3f40ECCDA7E1642140056735EbAEb1c1",
-      "txHash": "0xd75f8c3f3549d88ae8803f6dda98eb07482d4baaebd89404f90b192f734fc48e",
+      "address": "0xC6Fc7A9FcDb8dfE06eD52Ebe0C18f5d1C984d05E",
+      "txHash": "0xe9c80920607d25a00087396d57c959e699cb2564cd5d031f62b5cb5069ea2e38",
       "kind": "uups"
     },
     {
-      "address": "0xAb58F4F376186f457E7CA47971E281953FccBeff",
-      "txHash": "0x390162c2d235c80e8354c35356ab38d45c0d400d327206a9e1f56b19fbb92fcf",
+      "address": "0xEC50440B4e02043d73a2bBbb12e0aDD85d340d81",
+      "txHash": "0xb8d0225c310483e6d12c7ef163fbdc20b967e04f5e3bc8fe5361406149618c3c",
       "kind": "uups"
     },
     {
-      "address": "0x37e4D5ACe6D22d3BB9AFe92514cAFb47DEC18d2d",
-      "txHash": "0xcde05260d75f6e1b1547ade2aa01b5c029afd80dae39d3ae2f182fc59c62e1bf",
+      "address": "0x7567953E9400b05449cFe25C5c73F197a90A94A4",
+      "txHash": "0xa7ba7535e5a333d66f6297ff00bff025901c3ae1877b1b098d3d401352401635",
+      "kind": "uups"
+    },
+    {
+      "address": "0x06BbE39E9aE251FBC0bdD5d43c0D7dEBA2E519aD",
+      "txHash": "0x87b9d4764c05d4787073e472abdde60e96ad8d107c21c65a10ec679dc2b48a8d",
+      "kind": "uups"
+    },
+    {
+      "address": "0x24ED85Aa359d887D297C8ea619153683444a6DA7",
+      "txHash": "0x846728528dcafcd8137a07d8f6a9b55633d73b262cb21d7117ddf5a111927339",
+      "kind": "uups"
+    },
+    {
+      "address": "0xd8EB6E24e81B3b6222e1d1C8753efCD676c72855",
+      "txHash": "0x319c68f47eb524061f070be203d030bb862acd07f5f842c9a3e15372d1b7323c",
       "kind": "uups"
     }
   ],
   "impls": {
-    "d6f2afdd1a60d7610e78b2dbd64e7a9432308546677ff45460191f9fa45f67d1": {
-      "address": "0x13bEfC2FDD57186338746D84Fa4b1c46dF355d6F",
-      "txHash": "0x82b310da826768235604400eb6ea1dbb0a100db0c489fe60bc4cf29f1cb6a095",
+    "cedf35eb706684007ee665a4b85db2422a4abd6d34d0a4e555557deb31fc2f96": {
+      "address": "0xC8F666E46E385057248fF42fdafdC1249756e001",
+      "txHash": "0xb908f224ffa6b929e98c4390aea7c9915c4cae096bf450d57a84d970db5e465e",
       "layout": {
         "solcVersion": "0.8.20",
         "storage": [
@@ -35,31 +50,39 @@
             "slot": "0",
             "type": "t_address",
             "contract": "MscMarketV1",
-            "src": "contracts\\MscMarketV1.sol:35"
+            "src": "contracts\\MscMarketV1.sol:41"
+          },
+          {
+            "label": "verifier",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_address",
+            "contract": "MscMarketV1",
+            "src": "contracts\\MscMarketV1.sol:42"
           },
           {
             "label": "feeBps",
             "offset": 20,
-            "slot": "0",
+            "slot": "1",
             "type": "t_uint96",
             "contract": "MscMarketV1",
-            "src": "contracts\\MscMarketV1.sol:36"
+            "src": "contracts\\MscMarketV1.sol:43"
           },
           {
-            "label": "processing",
-            "offset": 0,
-            "slot": "1",
-            "type": "t_mapping(t_string_memory_ptr,t_bool)",
-            "contract": "MscMarketV1",
-            "src": "contracts\\MscMarketV1.sol:37"
-          },
-          {
-            "label": "featureIsEnabled",
+            "label": "lockeds",
             "offset": 0,
             "slot": "2",
             "type": "t_mapping(t_string_memory_ptr,t_bool)",
             "contract": "MscMarketV1",
-            "src": "contracts\\MscMarketV1.sol:38"
+            "src": "contracts\\MscMarketV1.sol:44"
+          },
+          {
+            "label": "featureIsEnabled",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_mapping(t_string_memory_ptr,t_bool)",
+            "contract": "MscMarketV1",
+            "src": "contracts\\MscMarketV1.sol:45"
           }
         ],
         "types": {
@@ -179,9 +202,9 @@
         }
       }
     },
-    "08b636ef257022e145554c2918afc3f3f49529553b6bac264c4bc67e3699fef1": {
-      "address": "0x4797fE1B5c00F49f2499dF34c71Ae3a0eb00A9fB",
-      "txHash": "0x1caa6d011bce8fd93522d35fb2176d91977c26027b85bca3314ad25dbed0ee7a",
+    "77bb2071b10a37b4de3478a9e9e215b948e0296bf464a48a429a74ad264b0bb0": {
+      "address": "0xF342b9dc8917E14Cb03d144dDa89FB7b5aF16A81",
+      "txHash": "0x0e136d4091ed0578168ae923183048a53e640727a556c9b1b0002e3902881044",
       "layout": {
         "solcVersion": "0.8.20",
         "storage": [
@@ -191,31 +214,39 @@
             "slot": "0",
             "type": "t_address",
             "contract": "MscMarketV1",
-            "src": "contracts\\MscMarketV1.sol:35"
+            "src": "contracts\\MscMarketV1.sol:41"
+          },
+          {
+            "label": "verifier",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_address",
+            "contract": "MscMarketV1",
+            "src": "contracts\\MscMarketV1.sol:42"
           },
           {
             "label": "feeBps",
             "offset": 20,
-            "slot": "0",
+            "slot": "1",
             "type": "t_uint96",
             "contract": "MscMarketV1",
-            "src": "contracts\\MscMarketV1.sol:36"
+            "src": "contracts\\MscMarketV1.sol:43"
           },
           {
-            "label": "processing",
-            "offset": 0,
-            "slot": "1",
-            "type": "t_mapping(t_string_memory_ptr,t_bool)",
-            "contract": "MscMarketV1",
-            "src": "contracts\\MscMarketV1.sol:37"
-          },
-          {
-            "label": "featureIsEnabled",
+            "label": "lockeds",
             "offset": 0,
             "slot": "2",
             "type": "t_mapping(t_string_memory_ptr,t_bool)",
             "contract": "MscMarketV1",
-            "src": "contracts\\MscMarketV1.sol:38"
+            "src": "contracts\\MscMarketV1.sol:44"
+          },
+          {
+            "label": "featureIsEnabled",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_mapping(t_string_memory_ptr,t_bool)",
+            "contract": "MscMarketV1",
+            "src": "contracts\\MscMarketV1.sol:45"
           }
         ],
         "types": {
@@ -335,9 +366,9 @@
         }
       }
     },
-    "256be26896646ef1a10f011d162ec0961c3a571f0cbf51c33e2cf2af849c42d3": {
-      "address": "0xC4677647e1cE54E5289d880Ca8e8d4b07cc8E3a0",
-      "txHash": "0x628025ddbd6cf9092731ce393f57d8b32b866e9aa6e28d1278bd0d5dd1f684d8",
+    "76d2d549fabf0f6b3b9e80b0d3bb4849cf613e6c7319c1549f0ff6f8d2408764": {
+      "address": "0x9faE6526E40954A58B8fAcf2a03c7076A82034e6",
+      "txHash": "0x9d7030e5c5925a9765b83d392d004b0f5cf72b19b7395d6a7279c413e43af029",
       "layout": {
         "solcVersion": "0.8.20",
         "storage": [
@@ -347,31 +378,39 @@
             "slot": "0",
             "type": "t_address",
             "contract": "MscMarketV1",
-            "src": "contracts\\MscMarketV1.sol:35"
+            "src": "contracts\\MscMarketV1.sol:41"
+          },
+          {
+            "label": "verifier",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_address",
+            "contract": "MscMarketV1",
+            "src": "contracts\\MscMarketV1.sol:42"
           },
           {
             "label": "feeBps",
             "offset": 20,
-            "slot": "0",
+            "slot": "1",
             "type": "t_uint96",
             "contract": "MscMarketV1",
-            "src": "contracts\\MscMarketV1.sol:36"
+            "src": "contracts\\MscMarketV1.sol:43"
           },
           {
-            "label": "processing",
-            "offset": 0,
-            "slot": "1",
-            "type": "t_mapping(t_string_memory_ptr,t_bool)",
-            "contract": "MscMarketV1",
-            "src": "contracts\\MscMarketV1.sol:37"
-          },
-          {
-            "label": "featureIsEnabled",
+            "label": "lockeds",
             "offset": 0,
             "slot": "2",
             "type": "t_mapping(t_string_memory_ptr,t_bool)",
             "contract": "MscMarketV1",
-            "src": "contracts\\MscMarketV1.sol:38"
+            "src": "contracts\\MscMarketV1.sol:44"
+          },
+          {
+            "label": "featureIsEnabled",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_mapping(t_string_memory_ptr,t_bool)",
+            "contract": "MscMarketV1",
+            "src": "contracts\\MscMarketV1.sol:45"
           }
         ],
         "types": {
@@ -491,9 +530,9 @@
         }
       }
     },
-    "682a4b3805481d1fa7c5c8e0ff3ef5d88a1118c54b7654cb6c9f4512bf5199db": {
-      "address": "0x947D2A3208866Be9d90c090424B7D0cD42Dc1e69",
-      "txHash": "0xf0fa77271945a50797d2190144936c8d770ed246df9fc0050401ae09baacc5b1",
+    "eb21a28bdc6403699f79a533a2fcc51592aed23936da9e797d2d8488135976e9": {
+      "address": "0x4067D84A37aD992d163c6cA2f2e8360e97b55964",
+      "txHash": "0x1d540c44f399ffb736cd0ed76b2b1281f81ca03f120854dd2c1728fff111efbe",
       "layout": {
         "solcVersion": "0.8.20",
         "storage": [
@@ -503,31 +542,39 @@
             "slot": "0",
             "type": "t_address",
             "contract": "MscMarketV1",
-            "src": "contracts\\MscMarketV1.sol:36"
+            "src": "contracts\\MscMarketV1.sol:41"
+          },
+          {
+            "label": "verifier",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_address",
+            "contract": "MscMarketV1",
+            "src": "contracts\\MscMarketV1.sol:42"
           },
           {
             "label": "feeBps",
             "offset": 20,
-            "slot": "0",
+            "slot": "1",
             "type": "t_uint96",
             "contract": "MscMarketV1",
-            "src": "contracts\\MscMarketV1.sol:37"
+            "src": "contracts\\MscMarketV1.sol:43"
           },
           {
-            "label": "processing",
-            "offset": 0,
-            "slot": "1",
-            "type": "t_mapping(t_string_memory_ptr,t_bool)",
-            "contract": "MscMarketV1",
-            "src": "contracts\\MscMarketV1.sol:38"
-          },
-          {
-            "label": "featureIsEnabled",
+            "label": "lockeds",
             "offset": 0,
             "slot": "2",
             "type": "t_mapping(t_string_memory_ptr,t_bool)",
             "contract": "MscMarketV1",
-            "src": "contracts\\MscMarketV1.sol:39"
+            "src": "contracts\\MscMarketV1.sol:44"
+          },
+          {
+            "label": "featureIsEnabled",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_mapping(t_string_memory_ptr,t_bool)",
+            "contract": "MscMarketV1",
+            "src": "contracts\\MscMarketV1.sol:45"
           }
         ],
         "types": {

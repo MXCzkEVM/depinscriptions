@@ -4,15 +4,16 @@ import { ethers, getNamedAccounts, upgrades } from 'hardhat'
 async function main() {
   const Market = await ethers.getContractFactory('MscMarketV1')
   console.log('正在发布 MSCMarket...')
-
   const options: DeployProxyOptions = {
     initializer: 'initialize',
     kind: 'uups',
   }
-  const { owner } = await getNamedAccounts()
+  const { owner, verifier } = await getNamedAccounts()
 
-  const proxy = await upgrades.deployProxy(Market, [owner, 4], options)
+  const proxy = await upgrades.deployProxy(Market, [owner, verifier, 2], options)
 
+  console.log('拥有者: ', owner)
+  console.log('验证者: ', verifier)
   console.log('代理合约地址: ', proxy.target)
 }
 

@@ -5,7 +5,7 @@ import { cyan, dim, gray, reset } from 'chalk'
 import { ConfigService } from '@nestjs/config'
 import { getIndexerLastBlock, setIndexerLastBlock } from '../utils'
 
-import { JsonProviderService } from './provider.service'
+import { ProviderService } from './provider.service'
 import { InscriptionService } from './inscription.service'
 import { ScanDeployJSON, ScanListJSON, ScanMintJSON, ScanTransferJSON, ScriptsService } from './scripts.service'
 
@@ -14,7 +14,7 @@ type InscriptionJSON = ScanDeployJSON | ScanMintJSON | ScanTransferJSON | ScanLi
 @Injectable()
 export class TasksService {
   constructor(
-    private provider: JsonProviderService,
+    private provider: ProviderService,
     private scripts: ScriptsService,
     private inscription: InscriptionService,
     private config: ConfigService,

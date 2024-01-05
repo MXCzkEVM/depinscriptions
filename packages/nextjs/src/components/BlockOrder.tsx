@@ -2,8 +2,8 @@ import { Button, Divider } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { useSnapshot } from 'valtio'
 import { useContext, useState } from 'react'
-import { useAccount, useChainId, useContract, useContractWrite, useSendTransaction } from 'wagmi'
-import { Contract, providers } from 'ethers'
+import { useAccount, useChainId, useSendTransaction } from 'wagmi'
+import { Contract, providers, utils } from 'ethers'
 import { useInjectHolder } from '@overlays/react'
 import { LoadingButton } from '@mui/lab'
 import Block from './Block'
@@ -48,13 +48,18 @@ function BlockOrder(props: BlockOrderProps) {
     const contract = getMarketContractWithSinger(chainId, address!)
     const singer = getSinger(chainId, address!)
     try {
-      const preTransaction = await contract.populateTransaction.purchase({
-        tick: props.data.tick,
-        amount: props.data.amount,
-        id: props.data.hash,
-        maker: props.data.maker,
-        price: value,
-      })
+      const { r, s, v } = JSON.parse(props.data.json)
+
+      const preTransaction = await contract.populateTransaction.purchase(
+        props.data.hash,
+        props.data.tick,
+        props.data.maker,
+        props.data.amount,
+        props.data.price,
+        r,
+        s,
+        v,
+      )
       const transaction = await singer.populateTransaction({
         ...preTransaction,
         type: 2,

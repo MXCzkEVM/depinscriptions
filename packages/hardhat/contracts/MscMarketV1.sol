@@ -13,11 +13,13 @@ contract MscMarketV1 is Initializable, UUPSUpgradeable, OwnableUpgradeable, Reen
 
     function initialize(
         address initialOwner,
+        address initialVerifier,
         uint96 initialFeeBps
     ) public initializer {
         __Ownable_init(initialOwner);
         __UUPSUpgradeable_init();
         administrator = initialOwner;
+        verifier = initialVerifier;
         feeBps = initialFeeBps;
         featureIsEnabled["buy"] = true;
         featureIsEnabled["withdraw"] = true;
@@ -25,22 +27,27 @@ contract MscMarketV1 is Initializable, UUPSUpgradeable, OwnableUpgradeable, Reen
 
     function _authorizeUpgrade(address) internal override {}
 
-    struct MarketStorage {
+    struct OrderStorage {
       string id;
+      string tick;
       address maker;
       uint256 amount;
       uint256 price;
-      string tick;
+      bytes32 r;
+      bytes32 s;
+      uint8 v;
     }
 
     address private administrator;
+    address private verifier;
     uint96 private feeBps;
-    mapping(string id => bool enabled) processing;
+    mapping(string id => bool enabled) lockeds;
     mapping(string feature => bool enabled) featureIsEnabled;
 
     error MscMarket__FeatureDisabled(string featurePoint);
     error MscMarket__PurchaseFailed();
-    error MscMarket__OrderIsProcessing();
+    error MscMarket__InvalidSignature();
+    error MscMarket__OrderIsLocked();
     error MscMarket__WithdrawFailed();
 
     event inscription_msc20_transfer(
@@ -56,30 +63,47 @@ contract MscMarketV1 is Initializable, UUPSUpgradeable, OwnableUpgradeable, Reen
 
     receive() external payable {}
 
-    function purchase(MarketStorage calldata order) external payable nonReentrant {
-        if (!featureIsEnabled["buy"])
-          revert MscMarket__FeatureDisabled("buy");
-        if (msg.value < order.price)
-          revert MscMarket__PurchaseFailed();
-        (bool success,) = order.maker.call{ value: order.price - fee(order.price) }("");
-        if (!success) {
-          revert MscMarket__PurchaseFailed();
-        }
-        emit inscription_msc20_transfer(order.id, order.id, msg.sender, order.maker, order.price);
+    function purchase(
+      string memory id,
+      string memory tick,
+      address maker,
+      uint256 amount,
+      uint256 price,
+      bytes32 r,
+      bytes32 s,
+      uint8 v
+    ) external payable nonReentrant {
+      bytes32 message = keccak256(abi.encodePacked(id, tick, maker, amount, price));
+      if (!verify(message, r, s, v))
+        revert MscMarket__InvalidSignature();
+      if (!featureIsEnabled["buy"])
+        revert MscMarket__FeatureDisabled("buy");
+      if (msg.value < price)
+        revert MscMarket__PurchaseFailed();
+      if (lockeds[id])
+        revert MscMarket__OrderIsLocked();
+
+      lockeds[id] = true;
+
+      (bool success,) = maker.call{ value: price - fee(price) }("");
+      if (!success) {
+        revert MscMarket__PurchaseFailed();
+      }
+      emit inscription_msc20_transfer(id, id, msg.sender, maker, price);
     }
 
-    function purchases(MarketStorage[] calldata orders) external payable nonReentrant {
+    function purchases(OrderStorage[] calldata orders) external payable nonReentrant {
       if (!featureIsEnabled["buy"])
-          revert MscMarket__FeatureDisabled("buy");
+        revert MscMarket__FeatureDisabled("buy");
       for (uint256 i = 0; i < orders.length; i++) {
-        if (processing[orders[i].id])
-          revert MscMarket__OrderIsProcessing();
+        if (lockeds[orders[i].id])
+          revert MscMarket__OrderIsLocked();
       }
 
       uint256 total = 0;
 
       for (uint256 i = 0; i < orders.length; i++) {
-        processing[orders[i].id] = true;
+        lockeds[orders[i].id] = true;
         total += orders[i].price;
       }
 
@@ -94,7 +118,7 @@ contract MscMarketV1 is Initializable, UUPSUpgradeable, OwnableUpgradeable, Reen
         if (!success)
           revert MscMarket__PurchaseFailed();
         emit inscription_msc20_transfer(id, id, msg.sender, maker, value);
-        processing[orders[i].id] = true;
+        lockeds[orders[i].id] = true;
       }
     }
 
@@ -110,16 +134,8 @@ contract MscMarketV1 is Initializable, UUPSUpgradeable, OwnableUpgradeable, Reen
       return (price * uint256(feeBps)) / 100;
     }
 
-    function verify(bytes32 msgHash, bytes memory signature) external view returns(bool) {
-      require(signature.length == 65, "invalid signature length");
-      bytes32 r;
-      bytes32 s;
-      uint8 v;
-      assembly {
-          r := mload(add(signature, 0x20))
-          s := mload(add(signature, 0x40))
-          v := byte(0, mload(add(signature, 0x60)))
-      }
-      return ecrecover(msgHash, v, r, s) == administrator;
+    function verify(bytes32 message, bytes32 r, bytes32 s, uint8 v) public view returns(bool) {
+      bytes32 digest = keccak256(abi.encodePacked("\x19Ethereum Signed Message:\n32", message));
+      return ecrecover(digest, v, r, s) == verifier;
     }
 }

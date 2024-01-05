@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
-import { Block, BlockTag, Contract, EventLog, FetchRequest, JsonRpcProvider, Log, TransactionResponse } from 'ethers'
+import { Block, BlockTag, Contract, EventLog, FetchRequest, JsonRpcProvider, Log, TransactionResponse, Wallet } from 'ethers'
 import { arange } from '@hairy/utils'
 import { httpsOverHttp } from 'tunnel'
 import { marketFragment } from '../config'
@@ -19,14 +19,25 @@ FetchRequest.registerGetUrl(fetchRequest)
 export interface BlockWithTransactions extends Omit<Block, 'transactions'> {
   transactions: Array<TransactionResponse>
 }
+
 @Injectable()
-export class JsonProviderService {
+export class ProviderService {
   private provider: JsonRpcProvider
   private contract: Contract
-  private logsMappings: Record<number, Record<string, (Log | EventLog)[]>> = {}
+  private mappings: Record<number, Record<string, (Log | EventLog)[]>> = {}
+  private wallet: Wallet
   constructor(private config: ConfigService) {
     this.provider = new JsonRpcProvider(config.get('NEST_PROVIDER_URL'))
-    this.contract = new Contract(config.get('NEST_MARKET_CONTRACT'), marketFragment, { provider: this.provider })
+    this.contract = new Contract(
+      config.get('NEST_MARKET_CONTRACT'),
+      marketFragment,
+      { provider: this.provider },
+    )
+    this.wallet = new Wallet(
+      config.get('NEST_VERIFIER_PRIVATE_KEY'),
+      this.provider,
+    )
+    console.log('this.wallet.address: ', this.wallet.address)
   }
 
   async getLastBlockNumber() {
@@ -58,17 +69,21 @@ export class JsonProviderService {
   }
 
   async queryFilterByBlock(event: string, blockNumber: number) {
-    if (this.logsMappings?.[blockNumber]?.[event])
-      return this.logsMappings[blockNumber][event]
+    if (this.mappings?.[blockNumber]?.[event])
+      return this.mappings[blockNumber][event]
     const logs = await this.contract.queryFilter(event, blockNumber, blockNumber)
-    if (!this.logsMappings[blockNumber])
-      this.logsMappings[blockNumber] = {}
-    return this.logsMappings[blockNumber][event] = logs
+    if (!this.mappings[blockNumber])
+      this.mappings[blockNumber] = {}
+    return this.mappings[blockNumber][event] = logs
   }
 
   async queryFilterByHash(event: string, hash: string) {
     const detail = await this.getTransaction(hash)
     const logs = await this.queryFilterByBlock(event, detail.blockNumber)
     return logs.filter(l => l.transactionHash === detail.hash) as EventLog[]
+  }
+
+  async signMessage(message: string | Uint8Array) {
+    return this.wallet.signMessage(message)
   }
 }

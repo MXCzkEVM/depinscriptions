@@ -7,7 +7,7 @@ import { TasksService } from './services/tasks.service'
 import { HolderService } from './services/holder.service'
 import { InscriptionService } from './services/inscription.service'
 import { TickService } from './services/tick.service'
-import { JsonProviderService } from './services/provider.service'
+import { ProviderService } from './services/provider.service'
 import { HexagonService } from './services/hexagon.service'
 import { ScriptsService } from './services/scripts.service'
 import { RecoveryService } from './services/recovery.service'
@@ -22,7 +22,7 @@ import { OrderService } from './services/order.service'
     HolderService,
     InscriptionService,
     TickService,
-    JsonProviderService,
+    ProviderService,
     HexagonService,
     ScriptsService,
     RecoveryService,

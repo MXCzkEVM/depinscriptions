@@ -53,6 +53,7 @@ model Order {
   time       DateTime @default(now())
   lastTime   DateTime @updatedAt
   expiration DateTime
+  json       String
 }
 
 model OrderRecord {

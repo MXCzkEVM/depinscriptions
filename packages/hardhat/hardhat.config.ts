@@ -4,23 +4,21 @@ import '@openzeppelin/hardhat-upgrades'
 import 'hardhat-deploy'
 import 'dotenv/config'
 
-const PRIVATE_KEY_TESTNET = process.env.PRIVATE_KEY_TESTNET!
-const PRIVATE_KEY_MAINNET = process.env.PRIVATE_KEY_MAINNET!
+const envs = process.env as Record<string, string>
+const {
+  OWNER_PRIVATE_KEY_TESTNET,
+  OWNER_PRIVATE_KEY_MAINNET,
+  VERIFIER_PRIVATE_KEY_TESTNET,
+  VERIFIER_PRIVATE_KEY_MAINNET,
+} = envs
 
 const config: HardhatUserConfig = {
   solidity: '0.8.20',
   defaultNetwork: 'hardhat',
   namedAccounts: {
-    deployer: {
-      default: 0,
-      5167003: 0,
-      1337: 0,
-    },
-    owner: {
-      default: 0,
-      5167003: 0,
-      1337: 0,
-    },
+    deployer: { default: 0 },
+    owner: { default: 0 },
+    verifier: { default: 1 },
   },
   networks: {
     hardhat: {
@@ -32,14 +30,14 @@ const config: HardhatUserConfig = {
     testnet: {
       url: 'http://144.202.111.198:8545',
       chainId: 5167003,
-      accounts: [PRIVATE_KEY_TESTNET],
+      accounts: [OWNER_PRIVATE_KEY_TESTNET, VERIFIER_PRIVATE_KEY_TESTNET],
       saveDeployments: true,
       allowUnlimitedContractSize: true,
     },
     mainnet: {
       url: 'http://207.246.101.30:8545',
       chainId: 18686,
-      accounts: [PRIVATE_KEY_MAINNET],
+      accounts: [OWNER_PRIVATE_KEY_MAINNET, VERIFIER_PRIVATE_KEY_MAINNET],
       saveDeployments: true,
       allowUnlimitedContractSize: true,
     },
