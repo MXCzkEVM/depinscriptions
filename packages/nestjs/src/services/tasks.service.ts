@@ -3,6 +3,7 @@ import { Cron, Interval } from '@nestjs/schedule'
 import { TransactionResponse, toUtf8String } from 'ethers'
 import { cyan, dim, gray, reset } from 'chalk'
 import { ConfigService } from '@nestjs/config'
+import { omit } from 'lodash'
 import { getIndexerLastBlock, setIndexerLastBlock } from '../utils'
 
 import { BlockWithTransactions, ProviderService } from './provider.service'
@@ -79,6 +80,13 @@ export class TasksService {
 
     if (!events.length)
       return
+    const data = events
+      .map(e => e.args?.toObject?.())
+      .filter(Boolean)
+      .map(o => omit(o, ['filterId']))
+    const json = JSON.stringify(data)
+
+    this.logger.log(reset(`Transaction hash: ${dim(transaction.hash)}`))
 
     await this.scripts.buyMany(block, transaction, events)
     await this.inscription.create({
@@ -88,7 +96,7 @@ export class TasksService {
       op: 'buy',
       tick: 'none',
       time: new Date(block.timestamp * 1000),
-      json: '{}',
+      json,
     })
   }
 

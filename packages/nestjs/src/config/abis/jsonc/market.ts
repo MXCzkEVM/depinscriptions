@@ -54,7 +54,12 @@ export default [
   },
   {
     inputs: [],
-    name: 'MscMarket__OrderIsProcessing',
+    name: 'MscMarket__InvalidSignature',
+    type: 'error',
+  },
+  {
+    inputs: [],
+    name: 'MscMarket__OrderIsLocked',
     type: 'error',
   },
   {
@@ -166,8 +171,20 @@ export default [
       {
         indexed: true,
         internalType: 'string',
-        name: 'filter',
+        name: 'filterId',
         type: 'string',
+      },
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'buyer',
+        type: 'address',
+      },
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'maker',
+        type: 'address',
       },
       {
         indexed: false,
@@ -175,26 +192,8 @@ export default [
         name: 'id',
         type: 'string',
       },
-      {
-        indexed: true,
-        internalType: 'address',
-        name: 'from',
-        type: 'address',
-      },
-      {
-        indexed: true,
-        internalType: 'address',
-        name: 'to',
-        type: 'address',
-      },
-      {
-        indexed: false,
-        internalType: 'uint256',
-        name: 'value',
-        type: 'uint256',
-      },
     ],
-    name: 'inscription_msc20_transfer',
+    name: 'inscription_msc20_transferForListing',
     type: 'event',
   },
   {
@@ -241,6 +240,11 @@ export default [
         type: 'address',
       },
       {
+        internalType: 'address',
+        name: 'initialVerifier',
+        type: 'address',
+      },
+      {
         internalType: 'uint96',
         name: 'initialFeeBps',
         type: 'uint96',
@@ -280,36 +284,44 @@ export default [
   {
     inputs: [
       {
-        components: [
-          {
-            internalType: 'string',
-            name: 'id',
-            type: 'string',
-          },
-          {
-            internalType: 'address',
-            name: 'maker',
-            type: 'address',
-          },
-          {
-            internalType: 'uint256',
-            name: 'amount',
-            type: 'uint256',
-          },
-          {
-            internalType: 'uint256',
-            name: 'price',
-            type: 'uint256',
-          },
-          {
-            internalType: 'string',
-            name: 'tick',
-            type: 'string',
-          },
-        ],
-        internalType: 'struct MscMarketV1.MarketStorage',
-        name: 'order',
-        type: 'tuple',
+        internalType: 'string',
+        name: 'id',
+        type: 'string',
+      },
+      {
+        internalType: 'string',
+        name: 'tick',
+        type: 'string',
+      },
+      {
+        internalType: 'address',
+        name: 'maker',
+        type: 'address',
+      },
+      {
+        internalType: 'uint256',
+        name: 'amount',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: 'price',
+        type: 'uint256',
+      },
+      {
+        internalType: 'bytes32',
+        name: 'r',
+        type: 'bytes32',
+      },
+      {
+        internalType: 'bytes32',
+        name: 's',
+        type: 'bytes32',
+      },
+      {
+        internalType: 'uint8',
+        name: 'v',
+        type: 'uint8',
       },
     ],
     name: 'purchase',
@@ -327,6 +339,11 @@ export default [
             type: 'string',
           },
           {
+            internalType: 'string',
+            name: 'tick',
+            type: 'string',
+          },
+          {
             internalType: 'address',
             name: 'maker',
             type: 'address',
@@ -342,12 +359,22 @@ export default [
             type: 'uint256',
           },
           {
-            internalType: 'string',
-            name: 'tick',
-            type: 'string',
+            internalType: 'bytes32',
+            name: 'r',
+            type: 'bytes32',
+          },
+          {
+            internalType: 'bytes32',
+            name: 's',
+            type: 'bytes32',
+          },
+          {
+            internalType: 'uint8',
+            name: 'v',
+            type: 'uint8',
           },
         ],
-        internalType: 'struct MscMarketV1.MarketStorage[]',
+        internalType: 'struct MscMarketV1.OrderStorage[]',
         name: 'orders',
         type: 'tuple[]',
       },
@@ -399,13 +426,23 @@ export default [
     inputs: [
       {
         internalType: 'bytes32',
-        name: 'msgHash',
+        name: 'message',
         type: 'bytes32',
       },
       {
-        internalType: 'bytes',
-        name: 'signature',
-        type: 'bytes',
+        internalType: 'bytes32',
+        name: 'r',
+        type: 'bytes32',
+      },
+      {
+        internalType: 'bytes32',
+        name: 's',
+        type: 'bytes32',
+      },
+      {
+        internalType: 'uint8',
+        name: 'v',
+        type: 'uint8',
       },
     ],
     name: 'verify',

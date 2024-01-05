@@ -80,7 +80,7 @@ export class ScriptsService {
       amount,
       desc,
     } = options
-    const fromLogText = yellow(from.slice(0, 12))
+    const fromLogText = from ? yellow(from.slice(0, 12)) : ''
     const toLogText = to ? yellow(to.slice(0, 12)) : ''
     const hashLogText = yellow(hash.slice(0, 12))
     const amtLogText = amount ? ` ${cyan(`${amount}`)} from ` : ''
@@ -301,7 +301,7 @@ export class ScriptsService {
       .map(e => e.args?.toObject?.())
       .filter(Boolean)
 
-    for (const { id: hash, maker, buyer } of processes) {
+    for (const { id: hash, buyer } of processes) {
       const order = await this.orderService.detail({ hash })
       if (!order) {
         this.logger.warn('Attempt to purchase non-existent orders')
@@ -327,8 +327,8 @@ export class ScriptsService {
       this.log('purchased', {
         desc: `buy`,
         amount: `${order.amount} ${order.tick}`,
+        to: order.maker,
         from: buyer,
-        to: maker,
         hash: transaction.hash,
       })
     }
