@@ -35,7 +35,6 @@ const config: HardhatUserConfig = {
       accounts: [PRIVATE_KEY_TESTNET],
       saveDeployments: true,
       allowUnlimitedContractSize: true,
-      gasPrice: 6000000000000,
     },
     mainnet: {
       url: 'http://207.246.101.30:8545',
@@ -43,7 +42,6 @@ const config: HardhatUserConfig = {
       accounts: [PRIVATE_KEY_MAINNET],
       saveDeployments: true,
       allowUnlimitedContractSize: true,
-      gasPrice: 100000000000000,
     },
   },
 }
