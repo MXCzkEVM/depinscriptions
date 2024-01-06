@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
 import { useSnapshot } from 'valtio'
-import { useAsyncFn } from 'react-use'
 import { Skeleton } from '@mui/material'
 import { cellToLatLng } from 'h3-js'
 import { Condition } from '../utils'
 import { LocationDetail } from './LocationForHexagon.type'
 import { proxyWithPersistant } from '@/utils'
+import { useAsyncCallback } from '@/hooks'
 
 const mappings = proxyWithPersistant<Record<string, string>>('__valtio_mappings', {})
 const baseURL = 'https://nominatim.openstreetmap.org/reverse.php'
@@ -17,7 +17,7 @@ export interface LocationForHexProps {
 export function LocationForHexagon(props: LocationForHexProps) {
   const mappingsSnapshot = useSnapshot(mappings)
 
-  const [state, fetchLocation] = useAsyncFn(async (hexagon: string) => {
+  const [loading, fetchLocation] = useAsyncCallback(async (hexagon: string) => {
     const [lat, lon] = cellToLatLng(hexagon)
     const params = { lat: String(lat), lon: String(lon), zoom: '18', format: 'jsonv2' }
     const suffix = `?${new URLSearchParams(Object.entries(params)).toString()}`
@@ -40,7 +40,7 @@ export function LocationForHexagon(props: LocationForHexProps) {
 
   return (
     <Condition
-      is={name && !state.loading}
+      is={name && !loading}
       if={(
         <div className="w-full truncate" onClick={event => event.stopPropagation()}>{name}</div>
       )}

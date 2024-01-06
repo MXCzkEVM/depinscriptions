@@ -43,8 +43,8 @@ export class TasksService {
       this.locked = false
     }
     catch (error) {
+      this.logger.warn(error.message)
       this.locked = false
-      throw error
     }
   }
 
@@ -55,17 +55,19 @@ export class TasksService {
 
   async processBlocksTransactions(start: number, end: number) {
     const blocks = await this.provider.getBlockByArangeWithTransactions(start, end)
-
     for (const block of blocks) {
       for (const transaction of block.transactions) {
-        if ((await transaction.wait()).status !== 1)
-          continue
-
-        if (transaction.to === this.config.get('NEST_MARKET_CONTRACT'))
-          await this.processMarketContractTransaction(block, transaction)
-
-        if (transaction.data.startsWith('0x7b2270223a226d73632d323022'))
-          this.processInscriptionTransaction(block, transaction)
+        try {
+          if ((await transaction.wait()).status !== 1)
+            continue
+          if (transaction.to === this.config.get('NEST_MARKET_CONTRACT'))
+            await this.processMarketContractTransaction(block, transaction)
+          if (transaction.data.startsWith('0x7b2270223a226d73632d323022'))
+            this.processInscriptionTransaction(block, transaction)
+        }
+        catch (error) {
+          this.logger.error(error)
+        }
       }
     }
   }
@@ -99,50 +101,42 @@ export class TasksService {
   }
 
   async processInscriptionTransaction(block: BlockWithTransactions, transaction: TransactionResponse) {
-    try {
-      const json = toUtf8String(transaction.data)
-      const inscription = JSON.parse(json) as InscriptionJSON
-      const existInscription = await this.inscription.some(transaction.hash)
-      if (existInscription)
-        throw new Error(`[inscription] - Attempting to record existing inscription(${transaction.hash.slice(0, 12)})`)
+    const json = toUtf8String(transaction.data)
+    const inscription = JSON.parse(json) as InscriptionJSON
+    const existInscription = await this.inscription.some(transaction.hash)
+    if (existInscription)
+      throw new Error(`[inscription] - Attempting to record existing inscription(${transaction.hash.slice(0, 12)})`)
 
-      this.logger.log(reset(`Transaction hash: ${dim(transaction.hash)}`))
-      this.logger.log(reset(`Inscription json: ${dim(json)}`))
+    this.logger.log(reset(`Transaction hash: ${dim(transaction.hash)}`))
+    this.logger.log(reset(`Inscription json: ${dim(json)}`))
 
-      switch (inscription.op) {
-        case 'deploy':
-          await this.scripts.deploy(block, transaction, inscription)
-          break
-        case 'transfer':
-          await this.scripts.transfer(block, transaction, inscription)
-          break
-        case 'mint':
-          await this.scripts.mint(block, transaction, inscription)
-          break
-        case 'list':
-          await this.scripts.list(block, transaction, inscription)
-          break
-        case 'cancel':
-          await this.scripts.cancel(block, transaction, inscription)
-          break
-      }
-
-      await this.inscription.create({
-        from: transaction.from,
-        to: transaction.to,
-        hash: transaction.hash,
-        op: inscription.op,
-        tick: String(inscription.tick),
-        time: new Date(block.timestamp * 1000),
-        json,
-      })
+    switch (inscription.op) {
+      case 'deploy':
+        await this.scripts.deploy(block, transaction, inscription)
+        break
+      case 'transfer':
+        await this.scripts.transfer(block, transaction, inscription)
+        break
+      case 'mint':
+        await this.scripts.mint(block, transaction, inscription)
+        break
+      case 'list':
+        await this.scripts.list(block, transaction, inscription)
+        break
+      case 'cancel':
+        await this.scripts.cancel(block, transaction, inscription)
+        break
     }
-    catch (error) {
-      if (error.name.startsWith('Prisma'))
-        throw error
-      else
-        this.logger.warn(error.message)
-    }
+
+    await this.inscription.create({
+      from: transaction.from,
+      to: transaction.to,
+      hash: transaction.hash,
+      op: inscription.op,
+      tick: String(inscription.tick),
+      time: new Date(block.timestamp * 1000),
+      json,
+    })
   }
 
   async printlnBeforeParseBlockArange(start: number, end: number) {

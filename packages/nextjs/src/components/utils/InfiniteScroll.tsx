@@ -2,7 +2,7 @@ import { PropsWithChildren, ReactNode, useEffect, useRef } from 'react'
 import { useAsyncFn, useMount } from 'react-use'
 import { delay } from '@hairy/utils'
 import { LoadingButton } from '@mui/lab'
-import { useWhenever } from '@/hooks'
+import { useAsyncCallback, useWhenever } from '@/hooks'
 
 export interface InfiniteScrollProps extends PropsWithChildren {
   next: () => Promise<void>
@@ -11,7 +11,7 @@ export interface InfiniteScrollProps extends PropsWithChildren {
 }
 
 export function InfiniteScroll(props: InfiniteScrollProps) {
-  const [state, next] = useAsyncFn(props.next, [props.next])
+  const [loading, next] = useAsyncCallback(props.next)
   const locked = useRef(false)
   const loader = props.loader || defaultLoader()
 
@@ -32,7 +32,7 @@ export function InfiniteScroll(props: InfiniteScrollProps) {
   }
 
   async function onScroll() {
-    if (state.loading || locked.current || props.loaded)
+    if (loading || locked.current || props.loaded)
       return
     const scrollTop
       = document.documentElement.scrollTop || document.body.scrollTop
@@ -59,7 +59,7 @@ export function InfiniteScroll(props: InfiniteScrollProps) {
   return (
     <>
       {props.children}
-      {state.loading && loader}
+      {loading && loader}
     </>
   )
 }

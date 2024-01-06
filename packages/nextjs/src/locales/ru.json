@@ -141,5 +141,12 @@
   "Unit Price": "Цена за единицу товара",
   "Volume": "Объем",
   "Sales": "Продажи",
-  "Purchased": "Куплено"
+  "Purchased": "Куплено",
+  "Limit order": "Лимитный ордер",
+  "Limit price": "Лимитная цена",
+  "orders": "{{total}} заказов",
+  "Price lower than": "Цена ниже, чем",
+  "Payment": "Оплата",
+  "Purchase successful": "Покупка прошла успешно!",
+  "Insufficient Balance": "Недостаточный баланс"
 }

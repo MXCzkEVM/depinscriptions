@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { Order, Prisma } from '@prisma/client'
 import { omit } from 'lodash'
+import BigNumber from 'bignumber.js'
 import { PrismaService } from '../common'
 
 export interface OrderByFloorPriceParams {
@@ -41,10 +42,15 @@ export class OrderService {
 
   async listOrderByBelowLimitPrice(params: OrderByBelowLimitPriceParams) {
     const token = await this.prisma.tick.findUnique({ where: { tick: params.tick } })
-    const cond = `((price / amount) * ${token.limit}) < ${params.price}`
+    const price = new BigNumber(params.price)
+      .multipliedBy(10 ** 18)
+      .toFixed(0)
     return this.prisma.$queryRaw<Order[]>`
       SELECT * FROM  \`Order\`
-      WHERE tick = ${params.tick} AND status = 0 AND ${cond};
+      WHERE
+        tick = ${params.tick} AND 
+        status = 0 AND 
+        ((price / amount) * ${token.limit}) <= ${price}
     `
   }
 
@@ -72,7 +78,10 @@ export class OrderService {
 
   async record(data: Order) {
     await this.prisma.orderRecord.create({
-      data: omit(data, ['lastTime', 'time', 'json']),
+      data: {
+        ...omit(data, ['lastTime', 'time', 'json', 'finalHash']),
+        hash: data.finalHash || data.hash,
+      },
     })
     return data
   }

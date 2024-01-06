@@ -141,5 +141,12 @@
   "Unit Price": "Unit Price",
   "Volume": "Volume",
   "Sales": "Sales",
-  "Purchased": "Purchased"
+  "Purchased": "Purchased",
+  "Limit order": "Limit order",
+  "Limit price": "Limit price",
+  "orders": "{{total}} orders",
+  "Price lower than": "Price lower than",
+  "Payment": "Payment",
+  "Purchase successful": "Purchase successful!",
+  "Insufficient Balance": "Insufficient Balance"
 }

@@ -3,32 +3,31 @@ import { useTranslation } from 'react-i18next'
 import { useSnapshot } from 'valtio'
 import { useContext, useState } from 'react'
 import { useAccount, useChainId, useSendTransaction } from 'wagmi'
-import { Contract, providers, utils } from 'ethers'
+import { utils } from 'ethers'
 import { useInjectHolder } from '@overlays/react'
 import { LoadingButton } from '@mui/lab'
+import { toast } from 'react-hot-toast'
+import { delay } from '@hairy/utils'
 import { WaitIndexDialog } from '../dialog'
 import Block from './CardDefault'
 import { Flag } from './Flag'
 import { Price } from './Price'
-import { BigNum, cover, thousandBitSeparator } from '@/utils'
+import { BigNum, cover, getMarketContractWithSinger, getProviderBySinger, thousandBitSeparator } from '@/utils'
 import store from '@/store'
 import { Order } from '@/api/index.type'
 import MarketContext from '@/ui/market/Context'
-import { chains } from '@/config'
-import { MarketContract, marketFragment } from '@/config/abis'
-import { useEventBus } from '@/hooks'
+import { useAsyncCallback, useEventBus } from '@/hooks'
 
 export interface CardOrderProps {
   data: Order
 }
 
 export function CardOrder(props: CardOrderProps) {
-  const { t } = useTranslation()
   const config = useSnapshot(store.config)
   const chainId = useChainId()
+  const { t } = useTranslation()
   const { limit, mode } = useContext(MarketContext)
   const { address } = useAccount()
-  const [loading, setLoading] = useState(false)
   const [holderWaitingMl, openWaitIndexDialog] = useInjectHolder(WaitIndexDialog)
   const { emit: reloadPage } = useEventBus('reload:page')
 
@@ -42,39 +41,34 @@ export function CardOrder(props: CardOrderProps) {
     mode: 'recklesslyUnprepared',
   })
 
-  async function onPurchase() {
-    setLoading(true)
+  const [loading, purchase] = useAsyncCallback(async () => {
     const contract = getMarketContractWithSinger(chainId, address!)
-    const singer = getSinger(chainId, address!)
-    try {
-      const { r, s, v } = JSON.parse(props.data.json)
-
-      const preTransaction = await contract.populateTransaction.purchase(
-        props.data.hash,
-        props.data.tick,
-        props.data.maker,
-        props.data.amount,
-        props.data.price,
-        r,
-        s,
-        v,
-      )
-      const transaction = await singer.populateTransaction({
-        value: props.data.price,
-        ...preTransaction,
-        type: 2,
-        chainId,
-      })
-      const { hash } = await sendTransactionAsync({ recklesslySetUnpreparedRequest: transaction })
-      await openWaitIndexDialog({ hash })
-      reloadPage()
-      setLoading(true)
-    }
-    catch (error) {
-      setLoading(false)
-      console.error(error)
-    }
-  }
+    const singer = getProviderBySinger(chainId, address!)
+    const { r, s, v } = JSON.parse(props.data.json)
+    const preTransaction = await contract.populateTransaction.purchase(
+      props.data.hash,
+      props.data.tick,
+      props.data.maker,
+      props.data.amount,
+      props.data.price,
+      r,
+      s,
+      v,
+    )
+    const transaction = await singer.populateTransaction({
+      value: props.data.price,
+      ...preTransaction,
+      type: 2,
+      chainId,
+    })
+    const { hash } = await sendTransactionAsync({
+      recklesslySetUnpreparedRequest: transaction,
+    })
+    await openWaitIndexDialog({ hash })
+    toast.success(t('Purchase successful'), { position: 'top-center' })
+    await delay(500)
+    reloadPage()
+  })
 
   function renderFooter() {
     const price = utils.formatEther(props.data.price)
@@ -93,7 +87,7 @@ export function CardOrder(props: CardOrderProps) {
           <Price symbol="mxc" value={price} />
           <Price symbol="usd" value={usd} />
         </div>
-        <LoadingButton loading={loading} variant="outlined" className="w-full" onClick={onPurchase}>{t('Buy')}</LoadingButton>
+        <LoadingButton loading={loading} variant="outlined" className="w-full" onClick={purchase}>{t('Buy')}</LoadingButton>
       </>
     )
   }
@@ -117,17 +111,4 @@ export function CardOrder(props: CardOrderProps) {
       </div>
     </Block>
   )
-}
-
-function getMarketContractWithSinger(chainId: number, address: string) {
-  const contract = process.env.NEXT_PUBLIC_MARKET_CONTRACT as `0x${string}`
-  const singer = getSinger(chainId, address)
-  const market = new Contract(contract, marketFragment, singer)
-  return market as Contract & MarketContract
-}
-function getSinger(chainId: number, address: string) {
-  const rpc = chains[chainId].rpcUrls.default.http[0]
-  const name = chains[chainId].name
-  const jsonProvider = new providers.JsonRpcProvider(rpc, { chainId, name })
-  return jsonProvider.getSigner(address)
 }

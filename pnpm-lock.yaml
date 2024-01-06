@@ -238,6 +238,9 @@ importers:
       i18next-browser-languagedetector:
         specifier: ^7.2.0
         version: 7.2.0
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
       mitt:
         specifier: ^3.0.1
         version: 3.0.1
@@ -275,6 +278,9 @@ importers:
       '@genapi/swag-fetch-ts':
         specifier: ^1.1.1
         version: 1.1.1
+      '@types/lodash':
+        specifier: ^4.14.202
+        version: 4.14.202
       '@types/node':
         specifier: ^17.0.31
         version: 17.0.45

@@ -141,5 +141,12 @@
   "Unit Price": "Preț unitar",
   "Volume": "Volum",
   "Sales": "Vânzări",
-  "Purchased": "Cumparat"
+  "Purchased": "Cumparat",
+  "Limit order": "Ordine limită",
+  "Limit price": "Preț limită",
+  "orders": "{{total}} comenzi",
+  "Price lower than": "Pret mai mic decat",
+  "Payment": "Plată",
+  "Purchase successful": "Achiziție reușită!",
+  "Insufficient Balance": "Echilibru insuficient"
 }

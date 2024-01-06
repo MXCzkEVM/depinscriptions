@@ -30,6 +30,7 @@
     "h3-js": "^4.1.0",
     "i18next": "^23.7.11",
     "i18next-browser-languagedetector": "^7.2.0",
+    "lodash": "^4.17.21",
     "mitt": "^3.0.1",
     "next": "^13.0.0",
     "react": "^18.2.0",
@@ -44,6 +45,7 @@
   "devDependencies": {
     "@genapi/cli": "^0.5.1",
     "@genapi/swag-fetch-ts": "^1.1.1",
+    "@types/lodash": "^4.14.202",
     "@types/node": "^17.0.31",
     "@types/react": "^18.0.9",
     "@types/react-dom": "^18.0.3",

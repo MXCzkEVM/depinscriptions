@@ -141,5 +141,12 @@
   "Unit Price": "Birim fiyat",
   "Volume": "Hacim",
   "Sales": "Satış",
-  "Purchased": "satın alındı"
+  "Purchased": "satın alındı",
+  "Limit order": "Siparişi sınırla",
+  "Limit price": "Limit fiyatı",
+  "orders": "{{total}} sipariş",
+  "Price lower than": "Fiyat daha düşük",
+  "Payment": "Ödeme",
+  "Purchase successful": "Satın alma başarılı",
+  "Insufficient Balance": "Yetersiz bakiye"
 }

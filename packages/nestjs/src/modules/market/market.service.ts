@@ -15,50 +15,28 @@ export class MarketService {
   async detailByMarkets(page: number, limit: number) {
     return await this.prisma.$queryRaw<MarketRaw[]>`
       SELECT
-          T.tick as tick,
-          COALESCE(list.price, 0) as price,
-          COALESCE(sold24h.volume, 0) as volume,
-          COALESCE(sold24h.sales, 0) as sales,
-          COUNT(DISTINCT H.owner) as holders,
-          COALESCE(sold.volume, 0) as totalVolume,
-          COALESCE(sold.sales, 0) as totalSales,
-          COALESCE(listOrSold.marketCap, 0) as marketCap,
-          COALESCE(list.listed, 0) as listed
-      FROM
-          Tick as T
+        T.tick as tick,
+        T.limit as \`limit\`,
+        COALESCE(list.price, 0) as price,
+        COALESCE(sold24h.volume, 0) as volume,
+        COALESCE(sold24h.sales, 0) as sales,
+        COALESCE(sold.volume, 0) as totalVolume,
+        COALESCE(sold.sales, 0) as totalSales,
+        COALESCE(listOrSold.marketCap, 0) as marketCap,
+        COALESCE(list.listed, 0) as listed,
+        COUNT(DISTINCT H.owner) as holders
+      FROM Tick as T
       LEFT JOIN Holder as H ON T.tick = H.tick
       LEFT JOIN
-        (
-          SELECT tick, MIN(price) as price, COUNT(*) AS listed
-          FROM \`Order\`
-          WHERE status = 0
-          GROUP BY tick
-        ) AS list ON T.tick = list.tick
+        (SELECT tick, MIN(price) as price, COUNT(*) AS listed FROM \`Order\` WHERE status = 0 GROUP BY tick) AS list ON T.tick = list.tick
       LEFT JOIN
-        (
-          SELECT tick,  SUM(price) AS marketCap 
-          FROM \`Order\`
-          WHERE status = 0 OR status = 1
-          GROUP BY tick
-        ) AS listOrSold ON T.tick = listOrSold.tick
+        (SELECT tick,  SUM(price) AS marketCap  FROM \`Order\` WHERE status = 0 OR status = 1 GROUP BY tick) AS listOrSold ON T.tick = listOrSold.tick
       LEFT JOIN
-        (
-          SELECT tick, SUM(price) AS volume, COUNT(*) as sales 
-          FROM \`Order\`
-          WHERE time >= DATE_SUB(NOW(), INTERVAL 24 HOUR) AND status = 1
-          GROUP BY tick
-        ) AS sold24h ON T.tick = sold24h.tick
+        (SELECT tick, SUM(price) AS volume, COUNT(*) as sales  FROM \`Order\` WHERE time >= DATE_SUB(NOW(), INTERVAL 24 HOUR) AND status = 1 GROUP BY tick) AS sold24h ON T.tick = sold24h.tick
       LEFT JOIN
-        (
-          SELECT tick, SUM(price) AS volume, COUNT(*) as sales
-          FROM \`Order\` 
-          WHERE status = 1
-          GROUP BY tick
-        ) AS sold ON T.tick = sold.tick
-      GROUP BY
-          T.tick
-      ORDER BY
-        marketCap DESC
+        (SELECT tick, SUM(price) AS volume, COUNT(*) as sales FROM \`Order\`  WHERE status = 1 GROUP BY tick) AS sold ON T.tick = sold.tick
+      GROUP BY T.tick
+      ORDER BY marketCap DESC
       LIMIT ${limit} OFFSET ${(page - 1) * limit};
     `
   }

@@ -6,6 +6,7 @@ export interface FlagProps {
   find?: string
   size?: string
   text?: boolean
+  className?: string
 }
 
 export function Flag(props: FlagProps) {
@@ -18,7 +19,7 @@ export function Flag(props: FlagProps) {
   if (!country?.image)
     return ''
   return (
-    <div className="inline-flex items-center">
+    <div className={`inline-flex items-center ${props.className || ''}`}>
       <Condition is={props.text !== false}>
         <span className="min-w-8 mr-2">{country.code || props.find}</span>
       </Condition>

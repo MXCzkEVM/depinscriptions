@@ -141,5 +141,12 @@
   "Unit Price": "Harga satuan",
   "Volume": "Volume",
   "Sales": "Penjualan",
-  "Purchased": "Dibeli"
+  "Purchased": "Dibeli",
+  "Limit order": "Batasi pesanan",
+  "Limit price": "Batasi harga",
+  "orders": "{{total}} pesanan",
+  "Price lower than": "Harga lebih rendah dari",
+  "Payment": "Pembayaran",
+  "Purchase successful": "Pembelian berhasil!",
+  "Insufficient Balance": "Saldo Tidak Cukup"
 }

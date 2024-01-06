@@ -141,5 +141,12 @@
   "Unit Price": "Đơn giá",
   "Volume": "Âm lượng",
   "Sales": "Việc bán hàng",
-  "Purchased": "Đã mua"
+  "Purchased": "Đã mua",
+  "Limit order": "Lệnh giới hạn",
+  "Limit price": "Giới hạn giá",
+  "orders": "{{total}} đơn đặt hàng",
+  "Price lower than": "Giá thấp hơn",
+  "Payment": "Sự chi trả",
+  "Purchase successful": "Mua thành công!",
+  "Insufficient Balance": "Thiếu cân bằng"
 }

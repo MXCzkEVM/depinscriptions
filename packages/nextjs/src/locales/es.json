@@ -141,5 +141,12 @@
   "Unit Price": "Precio unitario",
   "Volume": "Volumen",
   "Sales": "Ventas",
-  "Purchased": "Comprado"
+  "Purchased": "Comprado",
+  "Limit order": "Orden límite",
+  "Limit price": "precio límite",
+  "orders": "{{total}} pedidos",
+  "Price lower than": "Precio inferior al",
+  "Payment": "Pago",
+  "Purchase successful": "Compra exitosa!",
+  "Insufficient Balance": "Saldo insuficiente"
 }

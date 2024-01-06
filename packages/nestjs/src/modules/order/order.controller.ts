@@ -104,6 +104,10 @@ export class OrderController {
   @ApiConsumes('application/json')
   @ApiResponse({ status: 200, type: OrderPageResponse, description: 'Market' })
   async getOrdersByLessThan(@Query('tick') tick: string, @Query('price') price: string) {
-    return this.orderService.listOrderByBelowLimitPrice({ tick, price })
+    const data = await this.orderService.listOrderByBelowLimitPrice({ tick, price })
+    return {
+      total: data.length,
+      data,
+    }
   }
 }

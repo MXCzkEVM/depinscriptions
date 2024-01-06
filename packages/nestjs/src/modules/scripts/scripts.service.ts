@@ -232,6 +232,7 @@ export class ScriptsService {
       throw new Error(`the order has been processed`)
 
     await this.orderService.update(inscription.hash, {
+      finalHash: transaction.hash,
       status: 2,
     })
 
@@ -255,7 +256,6 @@ export class ScriptsService {
     const processes = events
       .map(e => e.args?.toObject?.())
       .filter(Boolean)
-
     for (const { id: hash, buyer } of processes) {
       const order = await this.orderService.detail({ hash })
       if (!order) {
@@ -275,7 +275,7 @@ export class ScriptsService {
         { value: BigInt(order.amount) },
       )
       await this.orderService.update(hash, {
-        hash: transaction.hash,
+        finalHash: transaction.hash,
         status: 1,
         buyer,
       })
@@ -312,6 +312,7 @@ export class ScriptsService {
       if (order.expiration.valueOf() > current)
         continue
       this.orderService.update(order.hash, {
+        finalHash: order.hash,
         status: 3,
       })
       await this.refund(order)

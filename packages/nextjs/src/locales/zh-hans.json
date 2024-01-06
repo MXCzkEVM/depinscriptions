@@ -113,7 +113,7 @@
   "No": "编号",
   "Event": "事件",
   "Price": "价格",
-  "Total": "全部",
+  "Total": "总共",
   "From": "从",
   "Time": "时间",
   "Tokens": "代币",
@@ -141,5 +141,12 @@
   "Unit Price": "单价",
   "Volume": "价值",
   "Sales": "销售量",
-  "Purchased": "已购"
+  "Purchased": "已购",
+  "Limit order": "限价",
+  "Limit price": "限定价格",
+  "orders": "{{total}}个订单",
+  "Price lower than": "价格低于",
+  "Payment": "支付",
+  "Purchase successful": "购买成功!",
+  "Insufficient Balance": "余额不足"
 }

@@ -43,11 +43,12 @@ model Holder {
 model Order {
   number     Int      @id @default(autoincrement())
   hash       String   @unique
-  tick       String
-  maker      String
+  finalHash  String?
   buyer      String?
+  maker      String
+  tick       String
   amount     BigInt
-  price      Decimal  @db.Decimal(65, 18)
+  price      Decimal  @db.Decimal(65, 0)
   // 0:listing | 1:sold | 2:cancelled | 3:expired
   status     Int      @default(0)
   time       DateTime @default(now())
@@ -60,9 +61,9 @@ model OrderRecord {
   id         Int      @id @default(autoincrement())
   number     Int      
   hash       String
+  buyer      String?
   tick       String
   maker      String
-  buyer      String?
   amount     BigInt
   price      Decimal  @db.Decimal(65, 0)
   // 0:listing | 1:sold | 2:cancelled | 3:expired
