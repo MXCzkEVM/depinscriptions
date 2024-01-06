@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger'
 
-export class Tick {
+export class Token {
   @ApiProperty()
   number: number
 

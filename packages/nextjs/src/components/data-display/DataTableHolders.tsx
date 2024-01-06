@@ -3,13 +3,13 @@ import { useTranslation } from 'react-i18next'
 import { LinearProgressWithLabel } from '../feedback'
 import { ChainLink, Condition, Empty } from '../utils'
 
-import { HolderDto, TickDto } from '@/api/index.type'
+import { HolderDto, Token } from '@/api/index.type'
 import { getHolder } from '@/api'
 import { percentage, thousandBitSeparator } from '@/utils'
 import { useEventBus, useGridPaginationFields, useServerPagination, useWhenever } from '@/hooks'
 
 export interface DataTableHoldersProps {
-  token?: TickDto
+  token?: Token
 }
 
 export function DataTableHolders(props: DataTableHoldersProps) {

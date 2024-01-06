@@ -1,6 +1,6 @@
-import { Injectable, Module } from '@nestjs/common'
+import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
-import { Interval, ScheduleModule } from '@nestjs/schedule'
+import { ScheduleModule } from '@nestjs/schedule'
 import { AppController } from './app.controller'
 import {
   CommonModule,

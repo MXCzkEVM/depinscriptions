@@ -1,9 +1,12 @@
 import { Controller, Get, Query } from '@nestjs/common'
-import { ApiQuery, ApiResponse } from '@nestjs/swagger'
+import { ApiExtraModels, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { HexagonService } from './hexagon.service'
 import { HexagonPageResponse } from './dtos'
+import { Hexagon } from './entities'
 
+@ApiTags('hexagon')
 @Controller('hexagon')
+@ApiExtraModels(Hexagon)
 export class HexagonController {
   constructor(private readonly hexagonService: HexagonService) {}
 

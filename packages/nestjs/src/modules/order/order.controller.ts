@@ -1,10 +1,13 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common'
-import { ApiConsumes, ApiQuery, ApiResponse } from '@nestjs/swagger'
+import { ApiConsumes, ApiExtraModels, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { Prisma } from '@prisma/client'
 import { OrderService } from './order.service'
 import { OrderPageResponse } from './dtos'
+import { Order } from './entities'
 
+@ApiTags('order')
 @Controller('order')
+@ApiExtraModels(Order)
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 

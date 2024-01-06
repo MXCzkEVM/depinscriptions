@@ -5,12 +5,12 @@ import { LoadingButton } from '@mui/lab'
 import { useTranslation } from 'react-i18next'
 import { LocationDialog, WaitIndexDialog } from '../dialog'
 
-import { TickDto } from '@/api/index.type'
+import { Token } from '@/api/index.type'
 import { useEventBus, useSendSatsTransaction } from '@/hooks'
 import { getCurrentPosition } from '@/utils'
 
 export interface MintButtonProps {
-  token?: TickDto
+  token?: Token
   className?: string
 }
 

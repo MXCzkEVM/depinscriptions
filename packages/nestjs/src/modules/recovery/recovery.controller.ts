@@ -1,8 +1,9 @@
 import { Body, Controller, Post } from '@nestjs/common'
-import { ApiBody, ApiConsumes, ApiResponse } from '@nestjs/swagger'
+import { ApiBody, ApiConsumes, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { RecoveryService } from './recovery.service'
 import { RecoveryBody } from './dto'
 
+@ApiTags('recovery')
 @Controller('recovery')
 export class RecoveryController {
   constructor(private readonly recoveryService: RecoveryService) {}

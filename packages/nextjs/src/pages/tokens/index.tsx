@@ -11,7 +11,7 @@ import { Search } from '@ricons/ionicons5'
 import { Deferred } from '@hairy/utils'
 import { Condition, DeployDialog, Empty, Flag, Icon, LinearProgressWithLabel, Refresh, TextFieldSearch, TextFieldTick, WaitIndexDialog } from '@/components'
 import { Layout } from '@/layout'
-import { TickDto } from '@/api/index.type'
+import { Token } from '@/api/index.type'
 import { percentage } from '@/utils'
 import { getToken } from '@/api'
 
@@ -27,7 +27,7 @@ function Page() {
   const [holderDeployMl, openDeployModal] = useInjectHolder<unknown, { hash: string }>(DeployDialog)
   const [holderWaitingMl, openWaitIndexDialog] = useInjectHolder(WaitIndexDialog)
 
-  const columns: GridColDef<TickDto>[] = [
+  const columns: GridColDef<Token>[] = [
     {
       field: 'tick',
       headerName: t('Token'),

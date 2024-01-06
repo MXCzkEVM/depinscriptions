@@ -1,12 +1,14 @@
 import { Controller, Get, NotFoundException, Param, Query } from '@nestjs/common'
-import { ApiConsumes, ApiQuery, ApiResponse } from '@nestjs/swagger'
+import { ApiConsumes, ApiExtraModels, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { TokenService } from '../token'
 import { OrderService } from '../order'
 import { MarketService } from './market.service'
-import { MarketDetail } from './entities'
+import { MarketDetail, MarketRaw } from './entities'
 import { MarketPageResponse } from './dtos'
 
+@ApiTags('market')
 @Controller('market')
+@ApiExtraModels(MarketRaw)
 export class MarketController {
   constructor(
     private readonly marketService: MarketService,

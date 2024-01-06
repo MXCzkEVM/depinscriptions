@@ -10,7 +10,7 @@ import { useAccount } from 'wagmi'
 import toast from 'react-hot-toast'
 import { Flag, Price } from '../surfaces'
 import { ListFill } from './ListFill'
-import { MarketDetailDto } from '@/api/index.type'
+import { MarketDetail } from '@/api/index.type'
 import store from '@/store'
 import { BigNum, formatEther } from '@/utils'
 import { useNumberState, useSendSatsTransaction } from '@/hooks'
@@ -20,7 +20,7 @@ const monthTimestamp = 24 * 3600 * 1000 * 30
 const yearTimestamp = 24 * 3600 * 1000 * 365
 
 export interface ListDialogProps {
-  data: MarketDetailDto
+  data: MarketDetail
 }
 export interface ListDialogResolved {
   hash: string

@@ -1,12 +1,14 @@
 import { Body, Controller, Delete, Get, NotFoundException, Param, Patch, Post, Query } from '@nestjs/common'
-import { ApiConsumes, ApiQuery, ApiResponse } from '@nestjs/swagger'
+import { ApiConsumes, ApiExtraModels, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { Prisma } from '@prisma/client'
 import { ExistResponse } from '../common'
 import { TokenService } from './token.service'
-import { TickDeployedResponse, TickPageResponse } from './dtos'
-import { Tick } from './entities'
+import { TokenDeployedResponse, TokenPageResponse } from './dtos'
+import { Token } from './entities'
 
+@ApiTags('token')
 @Controller('token')
+@ApiExtraModels(Token)
 export class TokenController {
   constructor(private readonly tokenService: TokenService) {}
 
@@ -16,7 +18,7 @@ export class TokenController {
   @ApiQuery({ name: 'type', type: 'number' })
   @ApiQuery({ name: 'limit', type: 'number', required: false })
   @ApiConsumes('application/json')
-  @ApiResponse({ status: 200, type: TickPageResponse, description: 'Ticks' })
+  @ApiResponse({ status: 200, type: TokenPageResponse, description: 'Ticks' })
   async getTicks(
     @Query('keyword') keyword = '',
     // 1:all, 2:in-progress, 3:completed
@@ -41,7 +43,7 @@ export class TokenController {
 
   @Get('deployed')
   @ApiConsumes('application/json')
-  @ApiResponse({ status: 200, type: TickDeployedResponse, description: 'Ticks' })
+  @ApiResponse({ status: 200, type: TokenDeployedResponse, description: 'Ticks' })
   async getTicksByDeployed() {
     const data = await this.tokenService.lists({
       select: { tick: true },
@@ -62,7 +64,7 @@ export class TokenController {
 
   @Get(':id')
   @ApiConsumes('application/json')
-  @ApiResponse({ status: 200, type: Tick, description: 'Ticks' })
+  @ApiResponse({ status: 200, type: Token, description: 'Ticks' })
   async getTick(@Param('id') id: string) {
     const data = await this.tokenService.detail({ tick: id })
     if (!data)

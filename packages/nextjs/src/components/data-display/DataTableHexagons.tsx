@@ -4,14 +4,14 @@ import { LinearProgressWithLabel } from '../feedback'
 import { Condition, Empty } from '../utils'
 import { LocationForHexagon } from './LocationForHexagon'
 import { ejectBlankPage, percentage } from '@/utils'
-import { HexagonDto, TickDto } from '@/api/index.type'
+import { Hexagon, Token } from '@/api/index.type'
 import { getHexagon } from '@/api'
 import { useEventBus, useGridPaginationFields, useServerPagination, useWhenever } from '@/hooks'
 
 const EXPLORER_URL = process.env.NEXT_PUBLIC_EXPLORER!
 
 export interface DataTableHexagonsProps {
-  token?: TickDto
+  token?: Token
 }
 
 export function DataTableHexagons(props: DataTableHexagonsProps) {
@@ -30,7 +30,7 @@ export function DataTableHexagons(props: DataTableHexagonsProps) {
     load: controls.load,
   })
 
-  const columns: GridColDef<HexagonDto>[] = [
+  const columns: GridColDef<Hexagon>[] = [
     {
       field: 'hex',
       headerName: t('Location'),

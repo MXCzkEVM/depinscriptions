@@ -12,6 +12,7 @@
     "deploy:mainnet": "hardhat run scripts/deploy.ts --network mainnet",
     "node": "hardhat node"
   },
+  "peerDependencies": {},
   "dependencies": {
     "@openzeppelin/contracts": "^5.0.1",
     "@openzeppelin/contracts-upgradeable": "^5.0.1",

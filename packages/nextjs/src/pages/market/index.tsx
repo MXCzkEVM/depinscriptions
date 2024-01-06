@@ -12,14 +12,14 @@ import store from '@/store'
 import { BigNum, thousandBitSeparator } from '@/utils'
 import { useGridPaginationFields, useServerPagination } from '@/hooks'
 import { getMarket, getToken } from '@/api'
-import { MarketRawDto } from '@/api/index.type'
+import { MarketRaw } from '@/api/index.type'
 
 function Page() {
   const { t } = useTranslation()
   const config = useSnapshot(store.config)
   const router = useRouter()
 
-  const columns: GridColDef<MarketRawDto>[] = [
+  const columns: GridColDef<MarketRaw>[] = [
     {
       field: 'tick',
       headerName: t('Token'),

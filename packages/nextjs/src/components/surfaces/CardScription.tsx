@@ -1,10 +1,10 @@
 import dayjs from 'dayjs'
 import { useRouter } from 'next/router'
 import Block from './CardDefault'
-import { InscriptionDto } from '@/api/index.type'
+import { Inscription } from '@/api/index.type'
 import { cover } from '@/utils'
 
-export function CardScription(props: { data: InscriptionDto }) {
+export function CardScription(props: { data: Inscription }) {
   const router = useRouter()
 
   function renderFooter() {

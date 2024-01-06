@@ -1,13 +1,16 @@
 import { Controller, Get, NotFoundException, Param, Query } from '@nestjs/common'
-import { ApiConsumes, ApiQuery, ApiResponse } from '@nestjs/swagger'
+import { ApiConsumes, ApiExtraModels, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { Prisma } from '@prisma/client'
 import { TokenService } from '../token'
 import { HolderService } from '../holder'
 import { ExistResponse } from '../common'
 import { InscriptionService } from './inscription.service'
 import { InscriptionPageResponse, InscriptionResponse } from './dtos'
+import { Inscription } from './entities'
 
+@ApiTags('inscription')
 @Controller('inscription')
+@ApiExtraModels(Inscription)
 export class InscriptionController {
   constructor(
     private readonly inscriptionService: InscriptionService,

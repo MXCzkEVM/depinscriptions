@@ -9,7 +9,7 @@ import MarketContext from './Context'
 import { ChainLink, Condition, Empty, Flag, Icon, Price, Refresh } from '@/components'
 import { useEventBus, useGridPaginationFields, useRouterQuery, useServerPagination, useWatch } from '@/hooks'
 import { getOrderRecord } from '@/api'
-import { OrderDto } from '@/api/index.type'
+import { Order } from '@/api/index.type'
 import { BigNum, formatEther } from '@/utils'
 import store from '@/store'
 
@@ -30,7 +30,7 @@ function Activities() {
 
   const symbol = denominated ? 'usd' : 'mxc'
 
-  const columns: GridColDef<OrderDto>[] = [
+  const columns: GridColDef<Order>[] = [
     {
       field: 'number',
       headerName: 'No.',

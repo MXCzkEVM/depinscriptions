@@ -15,7 +15,7 @@ import { ChainLink, Condition, Empty, Flag, Icon, Price, Refresh } from '@/compo
 import { useEventBus, useGridPaginationFields, useRouterQuery, useServerPagination, useWatch, useWhenever } from '@/hooks'
 import { BigNum, formatEther } from '@/utils'
 import { getOrder } from '@/api'
-import { OrderDto } from '@/api/index.type'
+import { Order } from '@/api/index.type'
 
 import store from '@/store'
 
@@ -35,7 +35,7 @@ function MyOrder() {
 
   const symbol = denominated ? 'usd' : 'mxc'
 
-  const columns: GridColDef<OrderDto>[] = [
+  const columns: GridColDef<Order>[] = [
     {
       field: 'number',
       headerName: 'No.',

@@ -12,14 +12,14 @@ import { Flag } from './Flag'
 import { Price } from './Price'
 import { BigNum, cover, thousandBitSeparator } from '@/utils'
 import store from '@/store'
-import { OrderDto } from '@/api/index.type'
+import { Order } from '@/api/index.type'
 import MarketContext from '@/ui/market/Context'
 import { chains } from '@/config'
 import { MarketContract, marketFragment } from '@/config/abis'
 import { useEventBus } from '@/hooks'
 
 export interface CardOrderProps {
-  data: OrderDto
+  data: Order
 }
 
 export function CardOrder(props: CardOrderProps) {

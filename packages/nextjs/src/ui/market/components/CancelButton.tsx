@@ -1,12 +1,12 @@
 import { LoadingButton } from '@mui/lab'
 import { useTranslation } from 'react-i18next'
 import { useAsyncFn } from 'react-use'
-import { OrderDto } from '@/api/index.type'
+import { Order } from '@/api/index.type'
 import { useSendSatsTransaction } from '@/hooks'
 import { helperWaitInscriptionHash } from '@/service'
 
 export interface CancelButtonProps {
-  data: OrderDto
+  data: Order
   onCancelled?: (data: any) => void
 }
 

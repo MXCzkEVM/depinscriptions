@@ -1,16 +1,16 @@
 import { ApiProperty, getSchemaPath } from '@nestjs/swagger'
 import { PaginationResponse } from '../../common'
-import { Tick } from '../entities'
+import { Token } from '../entities'
 
-export class TickPageResponse extends PaginationResponse {
+export class TokenPageResponse extends PaginationResponse {
   @ApiProperty({
     type: 'array',
-    items: { $ref: getSchemaPath(Tick) },
+    items: { $ref: getSchemaPath(Token) },
   })
-  data: Tick[]
+  data: Token[]
 }
 
-export class TickDeployedResponse {
+export class TokenDeployedResponse {
   @ApiProperty({
     type: 'array',
     items: { type: 'string' },

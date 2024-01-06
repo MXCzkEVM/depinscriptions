@@ -1,10 +1,13 @@
 import { Controller, Get, Query } from '@nestjs/common'
-import { ApiConsumes, ApiQuery, ApiResponse } from '@nestjs/swagger'
+import { ApiConsumes, ApiExtraModels, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { Prisma } from '@prisma/client'
 import { HolderService } from './holder.service'
 import { HolderPageResponseDto } from './dtos'
+import { Holder } from './entities'
 
+@ApiTags('holder')
 @Controller('holder')
+@ApiExtraModels(Holder)
 export class HolderController {
   constructor(private readonly holderService: HolderService) {}
 
