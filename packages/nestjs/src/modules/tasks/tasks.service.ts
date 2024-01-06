@@ -17,7 +17,7 @@ export class TasksService {
     private scripts: ScriptsService,
     private inscription: InscriptionService,
     private config: ConfigService,
-  ) {}
+  ) { }
 
   private readonly logger = new Logger('Task')
   private locked = false
@@ -28,24 +28,24 @@ export class TasksService {
       return
     this.locked = true
 
-    const lastBlockNumber = await this.provider.getLastBlockNumber()
-    const startBlockNumber = await getIndexerLastBlock()
-    const endBlockNumber = Math.min(startBlockNumber + 10, lastBlockNumber)
-    if (startBlockNumber > endBlockNumber) {
+    try {
+      const lastBlockNumber = await this.provider.getLastBlockNumber()
+      const startBlockNumber = await getIndexerLastBlock()
+      const endBlockNumber = Math.min(startBlockNumber + 10, lastBlockNumber)
+      if (startBlockNumber > endBlockNumber) {
+        this.locked = false
+        return
+      }
+
+      await this.printlnBeforeParseBlockArange(startBlockNumber, endBlockNumber)
+      await this.processBlocksTransactions(startBlockNumber, endBlockNumber)
+      await setIndexerLastBlock(endBlockNumber + 1)
       this.locked = false
-      return
     }
-
-    const titleLogText = `${reset.underline('[scan]')} ${gray('- regularly scan blockchain')}`
-    const rangeLogText = startBlockNumber !== endBlockNumber
-      ? `${cyan(`${startBlockNumber} ${gray('to')} ${endBlockNumber}`)} ${gray('blocks')}`
-      : `${cyan(startBlockNumber)} ${gray('block')}`
-
-    this.logger.log(`${titleLogText} ${rangeLogText}`)
-
-    await this.processBlocksTransactions(startBlockNumber, endBlockNumber)
-    await setIndexerLastBlock(endBlockNumber + 1)
-    this.locked = false
+    catch (error) {
+      this.locked = false
+      throw error
+    }
   }
 
   @Cron('0 */5 * * * *')
@@ -139,9 +139,17 @@ export class TasksService {
     }
     catch (error) {
       if (error.name.startsWith('Prisma'))
-        this.logger.warn(error.message || `[prisma:${error?.code}] ${error?.name}: ${error.meta?.modelName} - ${error.meta?.target}`)
+        throw error
       else
         this.logger.warn(error.message)
     }
+  }
+
+  async printlnBeforeParseBlockArange(start: number, end: number) {
+    const titleLogText = `${reset.underline('[scan]')} ${gray('- regularly scan blockchain')}`
+    const rangeLogText = start !== end
+      ? `${cyan(`${start} ${gray('to')} ${end}`)} ${gray('blocks')}`
+      : `${cyan(start)} ${gray('block')}`
+    this.logger.log(`${titleLogText} ${rangeLogText}`)
   }
 }

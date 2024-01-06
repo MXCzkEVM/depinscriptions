@@ -5,6 +5,17 @@
  * @version 1.0.0
  */
 
+export interface Holder {
+  id: number;
+  tick: string;
+  number: number;
+  owner: string;
+  value: number;
+}
+export interface HolderPageResponseDto {
+  total: number;
+  data: Holder[];
+}
 export interface Hexagon {
   hex: string;
   tik: string;
@@ -112,21 +123,28 @@ export interface TokenPageResponse {
 export interface TokenDeployedResponse {
   data: string[];
 }
+export interface GetHolderQuery {
+  tick?: string;
+  owner?: string;
+  order?: string;
+  limit?: number;
+  page: number;
+}
 export interface GetHexagonQuery {
   tick: string;
   limit?: number;
   page: number;
 }
-export interface GetInscriptionInscriptionQuery {
+export interface GetInscriptionQuery {
   owner?: string;
   op?: string[];
   limit?: number;
   page: number;
 }
-export interface GetInscriptionInscriptionHashPath {
+export interface GetInscriptionHashPath {
   hash: string;
 }
-export interface GetInscriptionInscriptionSomeHashPath {
+export interface GetInscriptionSomeHashPath {
   hash: string;
 }
 export interface GetMarketQuery {
@@ -153,6 +171,10 @@ export interface GetOrderListedQuery {
   tick?: string;
   limit?: number;
   page: number;
+}
+export interface GetOrderBelowQuery {
+  tick?: string;
+  price: string;
 }
 export interface GetTokenQuery {
   limit?: number;

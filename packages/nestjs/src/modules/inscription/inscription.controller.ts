@@ -18,7 +18,7 @@ export class InscriptionController {
     private readonly holderService: HolderService,
   ) {}
 
-  @Get('inscription')
+  @Get()
   @ApiQuery({ name: 'page', type: 'number' })
   @ApiQuery({ name: 'limit', type: 'number', required: false })
   @ApiQuery({ name: 'owner', type: 'string', required: false })
@@ -44,7 +44,7 @@ export class InscriptionController {
     return { total, data }
   }
 
-  @Get('inscription/:hash')
+  @Get(':hash')
   @ApiConsumes('application/json')
   @ApiResponse({ status: 200, type: InscriptionResponse, description: 'Inscription' })
   async getInscription(@Param('hash') hash: string) {
@@ -73,7 +73,7 @@ export class InscriptionController {
     }
   }
 
-  @Get('inscription/some/:hash')
+  @Get('some/:hash')
   @ApiConsumes('application/json')
   @ApiResponse({ status: 200, type: ExistResponse, description: 'InscriptionSome' })
   async getInscriptionSome(@Param('hash') hash: string) {

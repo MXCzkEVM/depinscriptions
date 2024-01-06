@@ -5,6 +5,7 @@ import { AppController } from './app.controller'
 import {
   CommonModule,
   HexagonModule,
+  HolderModule,
   InscriptionModule,
   MarketModule,
   OrderModule,
@@ -18,6 +19,7 @@ import {
     ScheduleModule.forRoot(),
     ConfigModule.forRoot({ isGlobal: true }),
     CommonModule,
+    HolderModule,
     HexagonModule,
     InscriptionModule,
     MarketModule,

@@ -79,10 +79,10 @@ export class OrderController {
   }
 
   @Get('listed')
-  @ApiConsumes('application/json')
   @ApiQuery({ name: 'page', type: 'number' })
   @ApiQuery({ name: 'limit', type: 'number', required: false })
   @ApiQuery({ name: 'tick', required: false })
+  @ApiConsumes('application/json')
   @ApiResponse({ status: 200, type: OrderPageResponse, description: 'Market' })
   async getOrdersByFloorPrice(
     @Query('tick') tick: string, @Query('page') page = 1, @Query('limit') limit = 15) {
@@ -96,5 +96,14 @@ export class OrderController {
       data,
       total,
     }
+  }
+
+  @Get('below')
+  @ApiQuery({ name: 'tick', required: false })
+  @ApiQuery({ name: 'price' })
+  @ApiConsumes('application/json')
+  @ApiResponse({ status: 200, type: OrderPageResponse, description: 'Market' })
+  async getOrdersByLessThan(@Query('tick') tick: string, @Query('price') price: string) {
+    return this.orderService.listOrderByBelowLimitPrice({ tick, price })
   }
 }

@@ -9,6 +9,11 @@ export interface OrderByFloorPriceParams {
   limit: number
 }
 
+export interface OrderByBelowLimitPriceParams {
+  tick: string
+  price: string
+}
+
 @Injectable()
 export class OrderService {
   constructor(private prisma: PrismaService) {}
@@ -31,6 +36,15 @@ export class OrderService {
       WHERE tick = ${params.tick} AND status = 0
       ORDER BY (price - amount) DESC
       LIMIT ${params.limit} OFFSET ${(params.page - 1) * params.limit};
+    `
+  }
+
+  async listOrderByBelowLimitPrice(params: OrderByBelowLimitPriceParams) {
+    const token = await this.prisma.tick.findUnique({ where: { tick: params.tick } })
+    const cond = `((price / amount) * ${token.limit}) < ${params.price}`
+    return this.prisma.$queryRaw<Order[]>`
+      SELECT * FROM  \`Order\`
+      WHERE tick = ${params.tick} AND status = 0 AND ${cond};
     `
   }
 
