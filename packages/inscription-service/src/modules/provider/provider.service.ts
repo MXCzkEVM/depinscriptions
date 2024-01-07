@@ -13,16 +13,12 @@ export class ProviderService {
   private wallet: Wallet
   constructor(private config: ConfigService) {
     this.provider = new JsonRpcProvider(config.get('NEST_PROVIDER_URL'))
+    this.wallet = new Wallet(config.get('NEST_VERIFIER_PRIVATE_KEY'), this.provider)
     this.contract = new Contract(
       config.get('NEST_MARKET_CONTRACT'),
       marketFragment,
       { provider: this.provider },
     )
-    this.wallet = new Wallet(
-      config.get('NEST_VERIFIER_PRIVATE_KEY'),
-      this.provider,
-    )
-    console.log('this.wallet.address: ', this.wallet.address)
   }
 
   async getLastBlockNumber() {
