@@ -5,7 +5,7 @@ import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/utils/ReentrancyGuardUpgradeable.sol";
-contract MscMarketV1 is Initializable, UUPSUpgradeable, OwnableUpgradeable, ReentrancyGuardUpgradeable {
+contract MSC20Market is Initializable, UUPSUpgradeable, OwnableUpgradeable, ReentrancyGuardUpgradeable {
     /// @custom:oz-upgrades-unsafe-allow constructor
     constructor() {
         _disableInitializers();
@@ -41,7 +41,7 @@ contract MscMarketV1 is Initializable, UUPSUpgradeable, OwnableUpgradeable, Reen
     address private administrator;
     address private verifier;
     uint96 private feeBps;
-    mapping(string id => bool enabled) lockeds;
+    mapping(string id => bool enabled) filleds;
     mapping(string feature => bool enabled) featureIsEnabled;
 
     error MscMarket__FeatureDisabled(string featurePoint);
@@ -49,6 +49,8 @@ contract MscMarketV1 is Initializable, UUPSUpgradeable, OwnableUpgradeable, Reen
     error MscMarket__InvalidSignature();
     error MscMarket__OrderIsLocked();
     error MscMarket__WithdrawFailed();
+    error MscMarket__NoOrdersMatched();
+    error MscMarket__ETHTransferFailed();
 
     event inscription_msc20_transferForListing(
       string indexed filterId,
@@ -62,6 +64,8 @@ contract MscMarketV1 is Initializable, UUPSUpgradeable, OwnableUpgradeable, Reen
 
     receive() external payable {}
 
+    
+
     function purchase(
       string memory id,
       string memory tick,
@@ -72,52 +76,44 @@ contract MscMarketV1 is Initializable, UUPSUpgradeable, OwnableUpgradeable, Reen
       bytes32 s,
       uint8 v
     ) external payable nonReentrant {
-      bytes32 message = keccak256(abi.encodePacked(id, tick, maker, amount, price));
-      if (!verify(message, r, s, v))
-        revert MscMarket__InvalidSignature();
       if (!featureIsEnabled["buy"])
         revert MscMarket__FeatureDisabled("buy");
       if (msg.value < price)
         revert MscMarket__PurchaseFailed();
-      if (lockeds[id])
-        revert MscMarket__OrderIsLocked();
-
-      lockeds[id] = true;
-
-      (bool sent,) = maker.call{ value: msg.value - fee(price) }("");
-      if (!sent)
-        revert MscMarket__PurchaseFailed();
-      emit inscription_msc20_transferForListing(id, msg.sender, maker, id);
+      _purchase(id, tick, maker, amount, price, r, s, v);
     }
 
     function purchases(OrderStorage[] calldata orders) external payable nonReentrant {
       if (!featureIsEnabled["buy"])
         revert MscMarket__FeatureDisabled("buy");
-      for (uint256 i = 0; i < orders.length; i++) {
-        if (lockeds[orders[i].id])
-          revert MscMarket__OrderIsLocked();
-      }
-
-      uint256 total = 0;
+   
+      uint256 balance = msg.value;
+      uint16 matched = 0;
 
       for (uint256 i = 0; i < orders.length; i++) {
-        lockeds[orders[i].id] = true;
-        total += orders[i].price;
-      }
+        if (filleds[orders[i].id])
+          continue;
 
-      if (msg.value < total)
-        revert MscMarket__PurchaseFailed();
-      
-      for (uint256 i = 0; i < orders.length; i++) {
-        string memory id = orders[i].id;
-        uint256 value = orders[i].price;
-        address maker = orders[i].maker;
-        (bool success, ) = orders[i].maker.call{ value: value - fee(value) }("");
-        if (!success)
-          revert MscMarket__PurchaseFailed();
-        emit inscription_msc20_transferForListing(id, msg.sender, maker, id);
-        lockeds[orders[i].id] = true;
+        require(balance >= orders[i].price, "Insufficient balance");
+        balance -= orders[i].price;
+
+        _purchase(
+          orders[i].id, 
+          orders[i].tick, 
+          orders[i].maker,
+          orders[i].amount, 
+          orders[i].price, 
+          orders[i].r, 
+          orders[i].s, 
+          orders[i].v
+        );
+        matched++;
       }
+      if (matched == 0)
+        revert MscMarket__NoOrdersMatched();
+      // refund balance
+      if (balance >  0)
+        _transferETH(msg.sender, balance);
     }
 
     function withdraw() external onlyOwner {
@@ -132,8 +128,40 @@ contract MscMarketV1 is Initializable, UUPSUpgradeable, OwnableUpgradeable, Reen
       return (price * uint256(feeBps)) / 100;
     }
 
-    function verify(bytes32 message, bytes32 r, bytes32 s, uint8 v) public view returns(bool) {
+    function _verify(bytes32 message, bytes32 r, bytes32 s, uint8 v) internal view {
       bytes32 digest = keccak256(abi.encodePacked("\x19Ethereum Signed Message:\n32", message));
-      return ecrecover(digest, v, r, s) == verifier;
+      if (ecrecover(digest, v, r, s) != verifier)
+        revert MscMarket__InvalidSignature();
+    }
+
+    function _purchase(
+      string memory id,
+      string memory tick,
+      address maker,
+      uint256 amount,
+      uint256 price,
+      bytes32 r,
+      bytes32 s,
+      uint8 v
+    ) internal {
+      if (filleds[id])
+        revert MscMarket__OrderIsLocked();
+
+      _verify(keccak256(abi.encodePacked(id, tick, maker, amount, price)), r, s, v);
+
+      // Verify the recipient is not address(0)
+      require(msg.sender != address(0), "invalid recipient");
+
+      filleds[id] = true;
+
+      _transferETH(maker, price - fee(price));
+
+      emit inscription_msc20_transferForListing(id, msg.sender, maker, id);
+    }
+
+    function _transferETH(address to, uint256 amount) internal {
+      (bool sent,) = to.call{ value: amount }("");
+      if (!sent)
+        revert MscMarket__ETHTransferFailed();
     }
 }

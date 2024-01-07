@@ -5,9 +5,9 @@ const options: DeployProxyOptions = {
   initializer: 'initialize',
   kind: 'uups',
 }
-describe('Add', () => {
+describe('MSC20Market', () => {
   it('should return the sum of two numbers', async () => {
-    const Market = await ethers.getContractFactory('MscMarketV1')
+    const Market = await ethers.getContractFactory('MSC20Market')
 
     const market = await upgrades.deployProxy(Market, ['0x8808D84e7c7d0221fFa4474a2Bc56d3eA0555e26', '0x8808D84e7c7d0221fFa4474a2Bc56d3eA0555e26', 2], options)
     // {

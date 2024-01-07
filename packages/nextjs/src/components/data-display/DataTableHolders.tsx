@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { LinearProgressWithLabel } from '../feedback'
 import { ChainLink, Condition, Empty } from '../utils'
 
-import { HolderDto, Token } from '@/api/index.type'
+import { Holder, Token } from '@/api/index.type'
 import { getHolder } from '@/api'
 import { percentage, thousandBitSeparator } from '@/utils'
 import { useEventBus, useGridPaginationFields, useServerPagination, useWhenever } from '@/hooks'
@@ -30,7 +30,7 @@ export function DataTableHolders(props: DataTableHoldersProps) {
     },
   })
 
-  const columns: GridColDef<HolderDto & { index: number }>[] = [
+  const columns: GridColDef<Holder & { index: number }>[] = [
     {
       field: 'rank',
       headerName: t('Rank'),

@@ -42,6 +42,11 @@ export default [
     type: 'error',
   },
   {
+    inputs: [],
+    name: 'MscMarket__ETHTransferFailed',
+    type: 'error',
+  },
+  {
     inputs: [
       {
         internalType: 'string',
@@ -55,6 +60,11 @@ export default [
   {
     inputs: [],
     name: 'MscMarket__InvalidSignature',
+    type: 'error',
+  },
+  {
+    inputs: [],
+    name: 'MscMarket__NoOrdersMatched',
     type: 'error',
   },
   {
@@ -374,7 +384,7 @@ export default [
             type: 'uint8',
           },
         ],
-        internalType: 'struct MscMarketV1.OrderStorage[]',
+        internalType: 'struct MSC20Market.OrderStorage[]',
         name: 'orders',
         type: 'tuple[]',
       },
@@ -420,40 +430,6 @@ export default [
     name: 'upgradeToAndCall',
     outputs: [],
     stateMutability: 'payable',
-    type: 'function',
-  },
-  {
-    inputs: [
-      {
-        internalType: 'bytes32',
-        name: 'message',
-        type: 'bytes32',
-      },
-      {
-        internalType: 'bytes32',
-        name: 'r',
-        type: 'bytes32',
-      },
-      {
-        internalType: 'bytes32',
-        name: 's',
-        type: 'bytes32',
-      },
-      {
-        internalType: 'uint8',
-        name: 'v',
-        type: 'uint8',
-      },
-    ],
-    name: 'verify',
-    outputs: [
-      {
-        internalType: 'bool',
-        name: '',
-        type: 'bool',
-      },
-    ],
-    stateMutability: 'view',
     type: 'function',
   },
   {

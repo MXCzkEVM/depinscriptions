@@ -2,7 +2,7 @@ import { DeployProxyOptions } from '@openzeppelin/hardhat-upgrades/dist/utils'
 import { ethers, getNamedAccounts, upgrades } from 'hardhat'
 
 async function main() {
-  const Market = await ethers.getContractFactory('MscMarketV1')
+  const Market = await ethers.getContractFactory('MSC20Market')
   console.log('正在发布 MSCMarket...')
   const options: DeployProxyOptions = {
     initializer: 'initialize',
