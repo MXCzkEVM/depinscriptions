@@ -142,11 +142,12 @@
   "Volume": "Volume",
   "Sales": "Sales",
   "Purchased": "Purchased",
-  "Limit order": "Limit order",
   "Limit price": "Limit price",
   "orders": "{{total}} orders",
   "Price lower than": "Price lower than",
   "Payment": "Payment",
   "Purchase successful": "Purchase successful!",
-  "Insufficient Balance": "Insufficient Balance"
+  "Insufficient Balance": "Insufficient Balance",
+  "Limit Order": "Limit Order",
+  "Limit Order Help": "Limit prices(Per Mint) to purchase multiple orders, If there is a change in the status of any orders during the process, the MXC consumed in this particular part will be automatically refunded."
 }

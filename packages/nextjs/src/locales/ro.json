@@ -142,11 +142,12 @@
   "Volume": "Volum",
   "Sales": "Vânzări",
   "Purchased": "Cumparat",
-  "Limit order": "Ordine limită",
   "Limit price": "Preț limită",
   "orders": "{{total}} comenzi",
   "Price lower than": "Pret mai mic decat",
   "Payment": "Plată",
   "Purchase successful": "Achiziție reușită!",
-  "Insufficient Balance": "Echilibru insuficient"
+  "Insufficient Balance": "Echilibru insuficient",
+  "Limit Order": "Ordine limită",
+  "Limit Order Help": "Prețuri limită (pe monetă) pentru achiziționarea mai multor comenzi, dacă există o modificare a stării oricăror comenzi în timpul procesului, MXC consumat în această parte anume va fi rambursat automat."
 }

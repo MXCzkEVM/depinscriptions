@@ -142,11 +142,12 @@
   "Volume": "Volume",
   "Sales": "Penjualan",
   "Purchased": "Dibeli",
-  "Limit order": "Batasi pesanan",
   "Limit price": "Batasi harga",
   "orders": "{{total}} pesanan",
   "Price lower than": "Harga lebih rendah dari",
   "Payment": "Pembayaran",
   "Purchase successful": "Pembelian berhasil!",
-  "Insufficient Balance": "Saldo Tidak Cukup"
+  "Insufficient Balance": "Saldo Tidak Cukup",
+  "Limit Order": "Batasi pesanan",
+  "Limit Order Help": "Batasi harga (Per Mint) untuk membeli beberapa pesanan, Jika ada perubahan status pesanan selama proses berlangsung, MXC yang dikonsumsi pada bagian tertentu ini akan dikembalikan secara otomatis."
 }

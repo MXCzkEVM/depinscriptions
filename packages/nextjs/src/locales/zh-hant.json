@@ -142,11 +142,12 @@
   "Volume": "總價",
   "Sales": "銷售量",
   "Purchased": "已購",
-  "Limit order": "限價",
   "Limit price": "限定價格",
   "orders": "{{total}}個訂單",
   "Price lower than": "價格低於",
   "Payment": "支付",
   "Purchase successful": "購買成功!",
-  "Insufficient Balance": "餘額不足"
+  "Insufficient Balance": "餘額不足",
+  "Limit Order": "限價",
+  "Limit Order Help": "限價（每鑄造）購買多筆訂單，如果過程中任意訂單狀態發生變化，該部分消耗的MXC將自動退還。"
 }

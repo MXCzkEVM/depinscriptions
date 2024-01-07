@@ -142,11 +142,12 @@
   "Volume": "Volume",
   "Sales": "Ventes",
   "Purchased": "Acheté",
-  "Limit order": "Ordre limité",
   "Limit price": "Prix ​​limite",
   "orders": "{{total}} commandes",
   "Price lower than": "Prix ​​inférieur à",
   "Payment": "Paiement",
   "Purchase successful": "Achat réussi!",
-  "Insufficient Balance": "Solde insuffisant"
+  "Insufficient Balance": "Solde insuffisant",
+  "Limit Order": "Ordre limité",
+  "Limit Order Help": "Prix ​​​​limités (par menthe) pour acheter plusieurs commandes. S'il y a un changement dans le statut d'une commande au cours du processus, le MXC consommé dans cette partie particulière sera automatiquement remboursé."
 }

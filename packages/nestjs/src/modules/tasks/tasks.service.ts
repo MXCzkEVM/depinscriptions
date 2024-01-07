@@ -80,23 +80,20 @@ export class TasksService {
 
     if (!events.length)
       return
-    const data = events
-      .map(e => e.args?.toObject?.())
-      .filter(Boolean)
-      .map(o => omit(o, ['filterId']))
-    const json = JSON.stringify(data)
-
     this.logger.log(reset(`Transaction hash: ${dim(transaction.hash)}`))
 
-    await this.scripts.buyMany(block, transaction, events)
+    const orders = await this.scripts.buyMany(block, transaction, events)
+    const amount = orders.reduce((n, o) => n + o.amount, 0n)
+    const token = orders[0].tick
+
     await this.inscription.create({
+      json: `{"p":"msc-20","op":"buy","tick":"${token}","amt":"${amount}"}`,
       from: transaction.from,
       to: transaction.to,
       hash: transaction.hash,
       op: 'buy',
-      tick: 'none',
+      tick: token,
       time: new Date(block.timestamp * 1000),
-      json,
     })
   }
 

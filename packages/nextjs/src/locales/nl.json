@@ -142,11 +142,12 @@
   "Volume": "Volume",
   "Sales": "verkoop",
   "Purchased": "Gekocht",
-  "Limit order": "Limietvolgorde",
   "Limit price": "Limiet prijs",
   "orders": "{{total}} bestellingen",
   "Price lower than": "Prijs lager dan",
   "Payment": "Betaling",
   "Purchase successful": "Aankoop succesvol!",
-  "Insufficient Balance": "Onvoldoende saldo"
+  "Insufficient Balance": "Onvoldoende saldo",
+  "Limit Order": "Limietvolgorde",
+  "Limit Order Help": "Beperk de prijzen (per munt) om meerdere bestellingen te kopen. Als er tijdens het proces een wijziging optreedt in de status van bestellingen, wordt de MXC die in dit specifieke onderdeel is verbruikt automatisch terugbetaald."
 }

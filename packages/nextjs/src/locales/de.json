@@ -142,11 +142,12 @@
   "Volume": "Volumen",
   "Sales": "Verkäufe",
   "Purchased": "Gekauft",
-  "Limit order": "Limit-Order",
   "Limit price": "Limitpreis",
   "orders": "{{total}} Bestellungen",
   "Price lower than": "Preis niedriger als",
   "Payment": "Zahlung",
   "Purchase successful": "Kauf erfolgreich!",
-  "Insufficient Balance": "Mangelhaftes Gleichgewicht"
+  "Insufficient Balance": "Mangelhaftes Gleichgewicht",
+  "Limit Order": "Limit-Order",
+  "Limit Order Help": "Begrenzen Sie die Preise (pro Minze) für den Kauf mehrerer Bestellungen. Wenn sich der Status einer Bestellung während des Vorgangs ändert, wird der in diesem bestimmten Teil verbrauchte MXC automatisch zurückerstattet."
 }

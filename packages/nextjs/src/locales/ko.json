@@ -142,11 +142,12 @@
   "Volume": "용량",
   "Sales": "매상",
   "Purchased": "구매 한",
-  "Limit order": "제한 주문",
   "Limit price": "가격 제한",
   "orders": "{{total}} 주문",
   "Price lower than": "다음보다 낮은 가격",
   "Payment": "지불",
   "Purchase successful": "구매 성공!",
-  "Insufficient Balance": "잔액 불충분"
+  "Insufficient Balance": "잔액 불충분",
+  "Limit Order": "제한 주문",
+  "Limit Order Help": "여러 주문을 구매할 수 있는 가격(민트당)을 제한하며, 진행 중 주문 상태에 변경이 있는 경우 해당 부품에 소비된 MXC가 자동으로 환불됩니다."
 }

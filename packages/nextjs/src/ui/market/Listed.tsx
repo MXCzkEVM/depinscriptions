@@ -47,7 +47,7 @@ function Listed() {
           onClick={purchases}
           variant="contained"
         >
-          {t('Limit order')}
+          {t('Limit Order')}
         </Button>
       </div>
       <Condition is={state.value.length} else={<Empty loading={state.loading} />}>

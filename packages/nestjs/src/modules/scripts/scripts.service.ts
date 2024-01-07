@@ -256,12 +256,14 @@ export class ScriptsService {
     const processes = events
       .map(e => e.args?.toObject?.())
       .filter(Boolean)
+    const orders: Order[] = []
     for (const { id: hash, buyer } of processes) {
       const order = await this.orderService.detail({ hash })
       if (!order) {
         this.logger.warn('Attempt to purchase non-existent orders')
         continue
       }
+
       if (order.status !== 0) {
         this.logger.warn('Order has expired')
         continue
@@ -279,6 +281,9 @@ export class ScriptsService {
         status: 1,
         buyer,
       })
+
+      orders.push(order)
+
       this.log('purchased', {
         desc: `buy`,
         amount: `${order.amount} ${order.tick}`,
@@ -287,6 +292,7 @@ export class ScriptsService {
         hash: transaction.hash,
       })
     }
+    return orders
   }
 
   async refund(order: Order) {

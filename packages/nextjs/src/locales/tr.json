@@ -142,11 +142,12 @@
   "Volume": "Hacim",
   "Sales": "Satış",
   "Purchased": "satın alındı",
-  "Limit order": "Siparişi sınırla",
   "Limit price": "Limit fiyatı",
   "orders": "{{total}} sipariş",
   "Price lower than": "Fiyat daha düşük",
   "Payment": "Ödeme",
   "Purchase successful": "Satın alma başarılı",
-  "Insufficient Balance": "Yetersiz bakiye"
+  "Insufficient Balance": "Yetersiz bakiye",
+  "Limit Order": "Siparişi sınırla",
+  "Limit Order Help": "Birden fazla sipariş satın almak için fiyatları (Dakika Başına) sınırlayın. Süreç sırasında herhangi bir siparişin durumunda değişiklik olması durumunda, bu bölümde tüketilen MXC otomatik olarak iade edilecektir."
 }

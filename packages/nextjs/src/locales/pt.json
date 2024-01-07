@@ -142,11 +142,12 @@
   "Volume": "Volume",
   "Sales": "Vendas",
   "Purchased": "Comprado",
-  "Limit order": "Ordem limite",
   "Limit price": "Preço limite",
   "orders": "{{total}} pedidos",
   "Price lower than": "Preço inferior a",
   "Payment": "Pagamento",
   "Purchase successful": "Compra bem-sucedida!",
-  "Insufficient Balance": "Saldo insuficiente"
+  "Insufficient Balance": "Saldo insuficiente",
+  "Limit Order": "Ordem limite",
+  "Limit Order Help": "Preços limites (por hortelã) para compra de vários pedidos. Caso haja alteração no status de algum pedido durante o processo, o MXC consumido nesta parte específica será automaticamente reembolsado."
 }

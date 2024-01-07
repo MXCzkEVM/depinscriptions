@@ -1,4 +1,4 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, OutlinedInput, Skeleton } from '@mui/material'
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, OutlinedInput, Skeleton, Tooltip } from '@mui/material'
 import { useOverlay } from '@overlays/react'
 import { useTranslation } from 'react-i18next'
 import { useAsync, useAsyncFn } from 'react-use'
@@ -7,8 +7,9 @@ import { DetailedHTMLProps, HTMLAttributes, ReactNode, useCallback } from 'react
 import { LoadingButton } from '@mui/lab'
 import { useAccount, useBalance, useChainId, useSendTransaction } from 'wagmi'
 import toast from 'react-hot-toast'
+import { HelpCircleOutline } from '@ricons/ionicons5'
 import { Flag, Price } from '../surfaces'
-import { Condition } from '../utils'
+import { Condition, Icon } from '../utils'
 import { useAsyncCallback, useDebounce, useNumberState, useWatch, useWhenever } from '@/hooks'
 import { getOrderBelow } from '@/api'
 import { BigNum, formatEther, getMarketContractWithSinger, getProviderBySinger } from '@/utils'
@@ -80,9 +81,16 @@ export function LimitOrderDialog(props: LimitOrderDialogProps) {
 
   return (
     <Dialog open={visible} onClose={() => reject()}>
-      <DialogTitle id="limit-order-dialog-title">
-        {t('Limit order')}
-        <Flag className="ml-2" find={props.token} />
+      <DialogTitle id="limit-order-dialog-title" className="flex items-center gap-2">
+        <div>
+          <span className="mr-2">{t('Limit Order')}</span>
+          <span>{props.token}</span>
+        </div>
+        <Tooltip title={t('Limit Order Help')}>
+          <Icon tag="button" className="cursor-pointer" size={18}>
+            <HelpCircleOutline />
+          </Icon>
+        </Tooltip>
       </DialogTitle>
       <DialogContent>
         <DialogContentText id="limit-order-dialog-description" className="max-w-[480px] md:min-w-[480px]">

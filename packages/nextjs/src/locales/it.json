@@ -142,11 +142,12 @@
   "Volume": "Volume",
   "Sales": "Saldi",
   "Purchased": "Acquistato",
-  "Limit order": "Ordine limite",
   "Limit price": "Prezzo limite",
   "orders": "{{totale}} ordini",
   "Price lower than": "Prezzo inferiore a",
   "Payment": "Pagamento",
   "Purchase successful": "Acquisto riuscito!",
-  "Insufficient Balance": "Equilibrio insufficiente"
+  "Insufficient Balance": "Equilibrio insufficiente",
+  "Limit Order": "Ordine limite",
+  "Limit Order Help": "Limita i prezzi (al menta) per acquistare più ordini. Se si verifica un cambiamento nello stato di qualsiasi ordine durante il processo, l'MXC consumato in questa particolare parte verrà automaticamente rimborsato."
 }

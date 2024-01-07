@@ -141,11 +141,12 @@
   "Volume": "音量",
   "Sales": "販売",
   "Purchased": "購入した",
-  "Limit order": "指値注文",
   "Limit price": "指値価格",
   "orders": "{{total}} 件の注文",
   "Price lower than": "以下よりも安い価格",
   "Payment": "支払い",
   "Purchase successful": "購入が成功しました!",
-  "Insufficient Balance": "残高不足"
+  "Insufficient Balance": "残高不足",
+  "Limit Order": "指値注文",
+  "Limit Order Help": "複数の注文を購入するための制限価格（ミントあたり）。プロセス中に注文のステータスに変更があった場合、この特定の部分で消費されたMXCは自動的に返金されます。"
 }

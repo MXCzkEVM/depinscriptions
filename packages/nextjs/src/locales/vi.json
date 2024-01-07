@@ -142,11 +142,12 @@
   "Volume": "Âm lượng",
   "Sales": "Việc bán hàng",
   "Purchased": "Đã mua",
-  "Limit order": "Lệnh giới hạn",
   "Limit price": "Giới hạn giá",
   "orders": "{{total}} đơn đặt hàng",
   "Price lower than": "Giá thấp hơn",
   "Payment": "Sự chi trả",
   "Purchase successful": "Mua thành công!",
-  "Insufficient Balance": "Thiếu cân bằng"
+  "Insufficient Balance": "Thiếu cân bằng",
+  "Limit Order": "Lệnh giới hạn",
+  "Limit Order Help": "Giới hạn giá (mỗi lần đúc) để mua nhiều đơn hàng. Nếu có thay đổi về trạng thái của bất kỳ đơn hàng nào trong quá trình này, MXC đã tiêu thụ trong phần cụ thể này sẽ tự động được hoàn lại."
 }
