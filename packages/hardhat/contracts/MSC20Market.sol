@@ -59,12 +59,9 @@ contract MSC20Market is Initializable, UUPSUpgradeable, OwnableUpgradeable, Reen
       string id
     );
 
-
     fallback() external payable {}
 
     receive() external payable {}
-
-    
 
     function purchase(
       string memory id,
@@ -91,6 +88,7 @@ contract MSC20Market is Initializable, UUPSUpgradeable, OwnableUpgradeable, Reen
       uint16 matched = 0;
 
       for (uint256 i = 0; i < orders.length; i++) {
+        // Don't throw error
         if (filleds[orders[i].id])
           continue;
 
