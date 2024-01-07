@@ -13,6 +13,7 @@ const {
 } = envs
 
 const config: HardhatUserConfig = {
+  paths: { sources: './src' },
   solidity: '0.8.20',
   defaultNetwork: 'hardhat',
   namedAccounts: {
