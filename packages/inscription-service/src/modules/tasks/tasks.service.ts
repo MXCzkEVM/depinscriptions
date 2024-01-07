@@ -66,7 +66,7 @@ export class TasksService {
             this.processInscriptionTransaction(block, transaction)
         }
         catch (error) {
-          this.logger.error(error)
+          this.logger.warn(error)
         }
       }
     }
