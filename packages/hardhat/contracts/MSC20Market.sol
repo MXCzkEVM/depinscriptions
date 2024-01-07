@@ -101,7 +101,7 @@ contract MSC20Market is Initializable, UUPSUpgradeable, OwnableUpgradeable, Reen
           orders[i].maker,
           orders[i].amount, 
           orders[i].price, 
-          orders[i].r, 
+          orders[i].r,
           orders[i].s, 
           orders[i].v
         );

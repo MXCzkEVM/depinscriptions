@@ -21,6 +21,7 @@ function Listed() {
 
   async function purchases() {
     const { hash } = await openLimitOrderDialog({ token: tick })
+    console.log('hash: ', hash)
     await openWaitIndexDialog({ hash })
     toast.success(t('Purchase successful'), { position: 'top-center' })
     await delay(500)

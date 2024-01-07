@@ -70,7 +70,7 @@ export function LimitOrderDialog(props: LimitOrderDialogProps) {
     const { hash } = await sendTransactionAsync({
       recklesslySetUnpreparedRequest: transaction,
     })
-    resolve(hash)
+    resolve({ hash })
   })
 
   useWatch([debouncePrice], fetch)

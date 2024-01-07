@@ -91,7 +91,7 @@ export function ListDialog(props: ListDialogProps) {
       toast.error(t('You dont have enough tick', { token: props.data.tick }), { position: 'top-center' })
       return
     }
-    console.log(sendTransaction)
+
     sendTransaction?.()
   }
 
