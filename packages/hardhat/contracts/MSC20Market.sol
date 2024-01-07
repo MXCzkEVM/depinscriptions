@@ -94,6 +94,7 @@ contract MSC20Market is Initializable, UUPSUpgradeable, OwnableUpgradeable, Reen
 
         require(balance >= orders[i].price, "Insufficient balance");
         balance -= orders[i].price;
+        matched++;
 
         _purchase(
           orders[i].id, 
@@ -105,7 +106,7 @@ contract MSC20Market is Initializable, UUPSUpgradeable, OwnableUpgradeable, Reen
           orders[i].s, 
           orders[i].v
         );
-        matched++;
+        
       }
       if (matched == 0)
         revert MscMarket__NoOrdersMatched();
