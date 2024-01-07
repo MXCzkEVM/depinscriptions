@@ -63,10 +63,10 @@ export class TasksService {
           if (transaction.to === this.config.get('NEST_MARKET_CONTRACT'))
             await this.processMarketContractTransaction(block, transaction)
           if (transaction.data.startsWith('0x7b2270223a226d73632d323022'))
-            this.processInscriptionTransaction(block, transaction)
+            await this.processInscriptionTransaction(block, transaction)
         }
         catch (error) {
-          this.logger.warn(error)
+          this.logger.error(error)
         }
       }
     }
