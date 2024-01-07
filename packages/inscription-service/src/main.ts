@@ -6,8 +6,6 @@ async function bootstrap() {
   const { NEST_LISTEN_SERVER_PORT, NODE_ENV } = process.env
   const app = await NestFactory.create(AppModule)
 
-  console.log('process.env.NODE_ENV: ', process.env.NODE_ENV)
-
   if (NODE_ENV === 'development')
     withEthersHttpProxy({ host: '127.0.0.1', port: 7890 })
   withNestjsRepairDecimal(app)
