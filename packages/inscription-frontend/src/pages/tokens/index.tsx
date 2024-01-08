@@ -127,6 +127,7 @@ function Page() {
               <Refresh onClick={controls.reload} />
             </div>
             <TextFieldSearch
+              className="hidden sm:inline-block"
               value={keyword}
               onChange={event => setKeyword(event.target.value)}
               placeholder={t('Token')}
