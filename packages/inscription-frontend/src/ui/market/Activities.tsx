@@ -42,9 +42,9 @@ function Activities() {
           <Refresh onClick={controls.reload} hideText />
         </div>
         <Select value={status} onChange={setStatus} label={t('Event')}>
-          <MenuItem value={0}>Listed</MenuItem>
-          <MenuItem value={2}>Cancelled</MenuItem>
-          <MenuItem value={1}>Sold</MenuItem>
+          <MenuItem value={0}>{t('Listed')}</MenuItem>
+          <MenuItem value={2}>{t('Cancelled')}</MenuItem>
+          <MenuItem value={1}>{t('Sold')}</MenuItem>
         </Select>
       </div>
       <DataTable
