@@ -22,6 +22,7 @@ model Tick {
   deployTime    DateTime
   lastTime      DateTime  @updatedAt
   completedTime DateTime?
+  market        Boolean   @default(false)
   trxs          BigInt    @default(0)
 }
 

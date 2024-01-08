@@ -26,6 +26,7 @@ export class MarketService {
         COALESCE(list.listed, 0) as listed,
         COUNT(DISTINCT H.owner) as holders
       FROM Tick as T
+      
       LEFT JOIN Holder as H ON T.tick = H.tick
       LEFT JOIN
         (SELECT tick, MIN(price) as price, COUNT(*) AS listed FROM \`Order\` WHERE status = 0 GROUP BY tick) AS list ON T.tick = list.tick
@@ -35,6 +36,7 @@ export class MarketService {
         (SELECT tick, SUM(price) AS volume, COUNT(*) as sales  FROM \`Order\` WHERE time >= DATE_SUB(NOW(), INTERVAL 24 HOUR) AND status = 1 GROUP BY tick) AS sold24h ON T.tick = sold24h.tick
       LEFT JOIN
         (SELECT tick, SUM(price) AS volume, COUNT(*) as sales FROM \`Order\`  WHERE status = 1 GROUP BY tick) AS sold ON T.tick = sold.tick
+      WHERE T.market
       GROUP BY T.tick
       ORDER BY marketCap DESC
       LIMIT ${limit} OFFSET ${(page - 1) * limit};

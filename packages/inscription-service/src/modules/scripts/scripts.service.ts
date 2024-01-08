@@ -165,16 +165,19 @@ export class ScriptsService {
     transaction: TransactionResponse,
     inscription: ScanListJSON,
   ) {
-    const tick = await this.tickService.detail({ tick: String(inscription.tick) })
+    const token = await this.tickService.detail({ tick: String(inscription.tick) })
     const contract = this.config.get('NEST_MARKET_CONTRACT')
     const yearTimestamp = 24 * 3600 * 1000 * 365
     const expiration = Number(inscription.exp)
 
-    if (!tick)
+    if (!token)
       throw new Error(`[list] - Attempting to transfer into non-existent tick( ${inscription.tick} )`)
 
     if (transaction.to.toLowerCase() !== contract.toLowerCase())
       throw new Error(`[list] - Listing exception, listing through an unverified address`)
+
+    if (!token.market)
+      throw new Error(`[list] - ${token.tick} not allowed to be listed`)
 
     if (expiration > yearTimestamp)
       throw new Error(`Exceeded the time limit for listing`)
@@ -186,7 +189,7 @@ export class ScriptsService {
 
     await this.holderService.incrementValue(
       { owner: transaction.to, tick: inscription.tick },
-      { value: BigInt(inscription.amt), number: tick.number },
+      { value: BigInt(inscription.amt), number: token.number },
     )
 
     const messageHash = solidityPackedKeccak256(
@@ -210,7 +213,7 @@ export class ScriptsService {
 
     this.log('listed', {
       desc: `list`,
-      amount: `${inscription.amt} ${tick.tick}`,
+      amount: `${inscription.amt} ${token.tick}`,
       from: transaction.from,
       to: transaction.to,
       hash: transaction.hash,
