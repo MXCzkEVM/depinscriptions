@@ -80,6 +80,10 @@ export interface MarketDetail {
   limit: string;
   limitPrice: string;
 }
+export interface AuthorizationBody {
+  password: string;
+  value: string;
+}
 export interface Order {
   number: number;
   hash: string;
@@ -97,10 +101,6 @@ export interface Order {
 export interface OrderPageResponse {
   total: number;
   data: Order[];
-}
-export interface RecoveryBody {
-  password: string;
-  value: string;
 }
 export interface Token {
   number: number;
@@ -144,7 +144,7 @@ export interface GetInscriptionQuery {
 export interface GetInscriptionHashPath {
   hash: string;
 }
-export interface GetInscriptionSomeHashPath {
+export interface GetInscriptionHashSomePath {
   hash: string;
 }
 export interface GetMarketQuery {
@@ -182,7 +182,7 @@ export interface GetTokenQuery {
   keyword: string;
   page: number;
 }
-export interface GetTokenSomeIdPath {
+export interface GetTokenIdSomePath {
   id: string;
 }
 export interface GetTokenIdPath {
