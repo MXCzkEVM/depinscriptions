@@ -13,7 +13,7 @@ import { Flag } from '../surfaces'
 import { DeployIsoHelpDialog } from './DeployIsoHelp'
 import { useEventBus, useNumberState, useSendSatsTransaction } from '@/hooks'
 import { countries as _countries } from '@/config'
-import { getTokenDeployed, getTokenSomeId } from '@/api'
+import { getTokenDeployed, getTokenIdSome } from '@/api'
 
 export function DeployDialog() {
   const { visible, resolve, reject } = useOverlay({
@@ -59,7 +59,7 @@ export function DeployDialog() {
     setErrors(helpers)
     if (helpers.limit || helpers.tick || helpers.total)
       return
-    const { data: isSomeToken } = await getTokenSomeId({ id: country })
+    const { data: isSomeToken } = await getTokenIdSome({ id: country })
     if (isSomeToken) {
       toast.error(t(`has been deployed`, { tick: country }), { position: 'top-center' })
       return
