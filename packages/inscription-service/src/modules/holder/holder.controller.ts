@@ -28,6 +28,7 @@ export class HolderController {
     if (owner)
       where.owner = owner
     order && (orderBy[order] = 'desc')
+
     const total = await this.holderService.count({ where })
     const data = await this.holderService.lists({
       skip: (page - 1) * limit,
