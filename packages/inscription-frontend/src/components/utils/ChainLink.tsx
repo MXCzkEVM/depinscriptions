@@ -32,15 +32,15 @@ export function ChainLink(props: ChainLinkProps) {
     toast.success(t('Copy Success'), { position: 'top-center' })
   }
   return (
-    <div className="flex items-center w-full">
+    <div className="flex items-center w-full text-xs sm:text-base">
       <Link className="truncate" color="inherit" {...props} href={href}>
         {props.children || (
           props.type === 'address'
-            ? data || cover(props.href, [6, 3, 4])
-            : cover(props.href, [6, 3, 4])
+            ? data || cover(props.href, [4, 3, 4])
+            : cover(props.href, [4, 3, 4])
         )}
       </Link>
-      <Icon className="ml-2 mt-[1px] cursor-pointer" size="16px" onClick={onCopy}>
+      <Icon className="ml-2 mt-[1px] cursor-pointer text-xs" onClick={onCopy}>
         <Copy />
       </Icon>
     </div>
