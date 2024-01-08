@@ -13,15 +13,10 @@ export class RecoveryService {
     private hexagonService: HexagonService,
   ) {}
 
-  private retryPasswords = 0
-
   async tick(password: string, tick: string) {
-    if (this.retryPasswords >= 5)
-      throw new Error('Exceeded retry attempts')
-    if (password !== process.env.NEST_RECOVERY_PASSWORD) {
-      this.retryPasswords++
+    if (password !== process.env.NEST_RECOVERY_PASSWORD)
       throw new Error('password is incorrect')
-    }
+
     await this.tokenService.delete({ tick })
     await this.holderService.delete({ tick })
     await this.hexagonService.delete({ tik: tick })
@@ -29,12 +24,8 @@ export class RecoveryService {
   }
 
   async inscription(password: string, hash: string) {
-    if (this.retryPasswords >= 5)
-      throw new Error('Exceeded retry attempts')
-    if (password !== process.env.NEST_RECOVERY_PASSWORD) {
-      this.retryPasswords++
+    if (password !== process.env.NEST_RECOVERY_PASSWORD)
       throw new Error('password is incorrect')
-    }
     await this.inscriptionService.delete({ hash })
   }
 }

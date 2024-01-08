@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, NotFoundException, Param, Patch, Post, Query } from '@nestjs/common'
+import { Body, Controller, Get, NotFoundException, Param, Query } from '@nestjs/common'
 import { ApiConsumes, ApiExtraModels, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { Prisma } from '@prisma/client'
 import { ExistResponse } from '../common'
@@ -53,7 +53,7 @@ export class TokenController {
     }
   }
 
-  @Get('some/:id')
+  @Get(':id/some')
   @ApiConsumes('application/json')
   @ApiResponse({ status: 200, type: ExistResponse, description: 'InscriptionSome' })
   async getTickBySome(@Param('id') id: string) {

@@ -9,3 +9,11 @@ export class ExistResponse {
   @ApiProperty()
   data: boolean
 }
+
+export class AuthorizationBody {
+  @ApiProperty()
+  password: string
+
+  @ApiProperty()
+  value: string
+}

@@ -73,7 +73,7 @@ export class InscriptionController {
     }
   }
 
-  @Get('some/:hash')
+  @Get(':hash/some')
   @ApiConsumes('application/json')
   @ApiResponse({ status: 200, type: ExistResponse, description: 'InscriptionSome' })
   async getInscriptionSome(@Param('hash') hash: string) {
