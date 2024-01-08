@@ -6,6 +6,7 @@ import { Condition, Empty } from '../utils'
 
 export type DataTableColDef<R extends GridValidRowModel> = GridColDef<R> & {
   hiddenHeaderName?: boolean
+  hidden?: (row: R) => boolean
 }
 
 interface DataTableExtends<R extends GridValidRowModel> {
@@ -52,6 +53,18 @@ export function DataTable<T extends GridValidRowModel>(props: DataTableProps<T>)
   }
 
   function renderSmallRow(row: T) {
+    function renderCol(col: DataTableColDef<T>, index: number) {
+      if (col.hidden?.(row) === true)
+        return null
+      return (
+        <div className="text-sm flex flex-col" key={index}>
+          <Condition is={col.hiddenHeaderName !== true}>
+            <div className="text-[#bbbbbb] mb-[6px]">{col.headerName}</div>
+          </Condition>
+          <div className="text-xs flex-1 flex items-center">{col.renderCell?.({ row } as any)}</div>
+        </div>
+      )
+    }
     return (
       <div
         className="grid grid-cols-3 gap-2 p-4 rounded-md bg-[rgb(48,52,61)]"
@@ -62,16 +75,7 @@ export function DataTable<T extends GridValidRowModel>(props: DataTableProps<T>)
           {} as any,
         )}
       >
-        {props.columns.map((col, index) => {
-          return (
-            <div className="text-sm" key={index}>
-              <Condition is={col.hiddenHeaderName !== true}>
-                <div className="text-[#bbbbbb] mb-1">{col.headerName}</div>
-              </Condition>
-              <span className="text-xs">{col.renderCell?.({ row } as any)}</span>
-            </div>
-          )
-        })}
+        {props.columns.map(renderCol).filter(Boolean)}
       </div>
     )
   }
