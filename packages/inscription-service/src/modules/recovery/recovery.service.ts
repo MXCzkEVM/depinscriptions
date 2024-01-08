@@ -14,7 +14,7 @@ export class RecoveryService {
   ) {}
 
   async tick(password: string, tick: string) {
-    if (password !== process.env.NEST_RECOVERY_PASSWORD)
+    if (password !== process.env.NEST_ADMIN_PASSWORD)
       throw new Error('password is incorrect')
 
     await this.tokenService.delete({ tick })
@@ -24,7 +24,7 @@ export class RecoveryService {
   }
 
   async inscription(password: string, hash: string) {
-    if (password !== process.env.NEST_RECOVERY_PASSWORD)
+    if (password !== process.env.NEST_ADMIN_PASSWORD)
       throw new Error('password is incorrect')
     await this.inscriptionService.delete({ hash })
   }

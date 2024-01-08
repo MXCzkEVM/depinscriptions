@@ -47,7 +47,7 @@ export class MarketController {
   @ApiConsumes('application/json')
   @ApiResponse({ status: 200, description: 'RecoveryInscription' })
   async authMarket(@Body() body: AuthorizationBody) {
-    if (body.password !== process.env.NEST_RECOVERY_PASSWORD)
+    if (body.password !== process.env.NEST_ADMIN_PASSWORD)
       throw new Error('password is incorrect')
     this.tokenService.update(body.value, { market: true })
   }
