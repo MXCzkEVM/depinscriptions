@@ -56,8 +56,8 @@ export async function getInscriptionHash(paths: Types.GetInscriptionHashPath, co
  * @method get
  * @tags inscription
  */
-export async function getInscriptionSomeHash(paths: Types.GetInscriptionSomeHashPath, config?: RequestInit) {
-  const response = await fetch(`${baseURL}/inscription/some/${paths.hash}`, {
+export async function getInscriptionHashSome(paths: Types.GetInscriptionHashSomePath, config?: RequestInit) {
+  const response = await fetch(`${baseURL}/inscription/${paths.hash}/some`, {
     ...config,
   });
   return response.json() as Promise<Types.ExistResponse>;
@@ -82,6 +82,16 @@ export async function getMarketId(paths: Types.GetMarketIdPath, config?: Request
     ...config,
   });
   return response.json() as Promise<Types.MarketDetail>;
+}
+/**
+ * @method post
+ * @tags market
+ */
+export async function postMarketAuthorize(config?: RequestInit) {
+  const response = await fetch(`${baseURL}/market/authorize`, {
+    ...config,
+  });
+  return response.json() as Promise<any>;
 }
 /**
  * @method get
@@ -172,8 +182,8 @@ export async function getTokenDeployed(config?: RequestInit) {
  * @method get
  * @tags token
  */
-export async function getTokenSomeId(paths: Types.GetTokenSomeIdPath, config?: RequestInit) {
-  const response = await fetch(`${baseURL}/token/some/${paths.id}`, {
+export async function getTokenIdSome(paths: Types.GetTokenIdSomePath, config?: RequestInit) {
+  const response = await fetch(`${baseURL}/token/${paths.id}/some`, {
     ...config,
   });
   return response.json() as Promise<Types.ExistResponse>;
