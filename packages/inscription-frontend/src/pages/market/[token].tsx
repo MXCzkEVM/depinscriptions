@@ -69,7 +69,7 @@ function Page() {
       {holderListMl}
       {holderWaitingMl}
       <div
-        className="flex items-center mt-[3.125rem] mb-[2.25rem] gap-2 cursor-pointer"
+        className="flex items-center mt-4 mb-4 sm:mt-[3.125rem] sm:mb-[2.25rem] gap-2 cursor-pointer"
         onClick={() => router.replace('/market')}
       >
         <Icon>
