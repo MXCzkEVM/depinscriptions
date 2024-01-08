@@ -166,9 +166,9 @@ export function ListDialog(props: ListDialogProps) {
             <Field label="Service Fee">2%</Field>
             <Field label="Total Revenue">
               <div className="flex gap-2 items-center">
-                <Price symbol="mxc" value={mxcRevenue.toFixed()} />
-                <span>|</span>
-                <Price symbol="usd" value={usdRevenue.toFixed()} />
+                <Price className="hidden sm:inline-flex" symbol="mxc" decimal={4} value={mxcRevenue.toFixed()} />
+                <span className="hidden sm:inline-block">|</span>
+                <Price symbol="usd" value={usdRevenue.toFixed()} decimal={4} />
               </div>
             </Field>
           </div>
