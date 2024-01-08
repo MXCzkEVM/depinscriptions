@@ -7,11 +7,11 @@ import { Condition } from '../utils'
 import { TransferDialog, TransferDialogProps, TransferDialogResolved, WaitIndexDialog } from '../dialog'
 
 import { Flag } from './Flag'
-import { HolderDto } from '@/api/index.type'
+import { Holder } from '@/api/index.type'
 import { thousandBitSeparator } from '@/utils'
 import { useEventBus } from '@/hooks'
 
-export function CardToken(props: { data: HolderDto, guide?: boolean }) {
+export function CardToken(props: { data: Holder, guide?: boolean }) {
   const { t } = useTranslation()
   const { address } = useAccount()
   const [holderTransferMl, openTransferModal] = useInjectHolder<TransferDialogProps, TransferDialogResolved>(TransferDialog)
@@ -36,7 +36,7 @@ export function CardToken(props: { data: HolderDto, guide?: boolean }) {
             <Condition is={address === props.data.owner}>
               <div className="flex gap-3 relative z-10">
                 <Link className={classnames([props.guide && 'personal_page_step_1', 'cursor-pointer text-sm min-w-min'])} onClick={transfer}>{t('Transfer')}</Link>
-                <Link className={classnames([props.guide && 'personal_page_step_2', 'cursor-pointer text-sm min-w-min'])}>{t('List')}</Link>
+                {/* <Link className={classnames([props.guide && 'personal_page_step_2', 'cursor-pointer text-sm min-w-min'])}>{t('List')}</Link> */}
               </div>
             </Condition>
           </div>
