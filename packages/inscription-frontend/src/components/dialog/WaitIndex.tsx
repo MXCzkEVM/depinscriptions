@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useInterval } from 'react-use'
 import { Condition } from '../utils'
-import { getInscriptionSomeHash } from '@/api'
+import { getInscriptionHashSome } from '@/api'
 
 export interface WaitIndexDialogProps {
   hash: string
@@ -20,7 +20,7 @@ export function WaitIndexDialog(props: WaitIndexDialogProps) {
   async function load() {
     if (isIndexed)
       return
-    const { data } = await getInscriptionSomeHash({ hash: props.hash })
+    const { data } = await getInscriptionHashSome({ hash: props.hash })
     setIsIndexed(data)
     setProgress(100)
   }
