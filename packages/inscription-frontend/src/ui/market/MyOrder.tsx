@@ -51,7 +51,7 @@ function MyOrder() {
     return (
       <div className="w-full flex justify-between">
         <div className="flex-1">
-          <Condition is={row.status === 0}>
+          <Condition is={row.status === 0} else="-">
             <CancelButton data={row} onCancelled={controls.reload} />
           </Condition>
         </div>
