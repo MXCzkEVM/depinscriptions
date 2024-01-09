@@ -30,7 +30,6 @@ export function useColumnsByOrders(options: UseColumnsByOrdersOptions = {}) {
     {
       field: 'number',
       headerName: 'No.',
-      minWidth: 60,
       renderCell(params) {
         return `#${params.row.number}`
       },
@@ -50,7 +49,6 @@ export function useColumnsByOrders(options: UseColumnsByOrdersOptions = {}) {
     {
       field: 'tick',
       headerName: t('Token'),
-      minWidth: 90,
       renderCell(params) {
         return <Flag find={params.row.tick} />
       },
@@ -111,25 +109,27 @@ export function useColumnsByOrders(options: UseColumnsByOrdersOptions = {}) {
         return !(row.status === 1 ? row.maker : row.buyer)
       },
     },
-    {
-      field: 'hex',
-      headerName: t('Location'),
-      hidden: row => options.hideHexagon || row.status !== 0,
-      minWidth: 140,
-      flex: 1,
-      renderCell(params) {
-        const hexagon = JSON.parse(params.row.json || '{}')?.hex
-        return (
-          <Condition is={hexagon} else="-">
-            <LocationForHexagon hexagon={hexagon} />
-          </Condition>
-        )
-      },
-    },
+    ...options.hideHexagon !== true
+      ? [{
+          field: 'hex',
+          headerName: t('Location'),
+          hidden: row => row.status !== 0,
+          minWidth: 100,
+          flex: 1,
+          renderCell(params) {
+            const hexagon = JSON.parse(params.row.json || '{}')?.hex
+            return (
+              <Condition is={hexagon} else="-">
+                <LocationForHexagon hexagon={hexagon} />
+              </Condition>
+            )
+          },
+        }]
+      : [],
     {
       field: 'time',
       headerName: t('Time'),
-      minWidth: 160,
+      minWidth: 120,
       flex: 1,
       renderCell(params) {
         return (

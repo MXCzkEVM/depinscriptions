@@ -26,7 +26,7 @@ function MyOrder() {
       renderCell: params => renderColumnByAction(params.row),
       field: 'action',
       headerName: t('Action'),
-      minWidth: 140,
+      minWidth: 120,
       flex: 1,
     }],
   })
