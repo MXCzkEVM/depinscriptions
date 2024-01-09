@@ -86,8 +86,8 @@ export function CardOrder(props: CardOrderProps) {
         </div>
         <Divider className="my-2 sm:my-4" />
         <div className="flex justify-between text-sm mb-4">
-          <Price symbol="mxc" value={price} />
-          <Price symbol="usd" value={usd} />
+          <Price symbol="mxc" value={price} decimal={2} />
+          <Price symbol="usd" value={usd} decimal={2} />
         </div>
         <LoadingButton loading={loading} variant="outlined" className="w-full" onClick={purchase}>{t('Buy')}</LoadingButton>
       </>
@@ -111,12 +111,12 @@ export function CardOrder(props: CardOrderProps) {
         {thousandBitSeparator(props.data.amount)}
       </div>
       <div className="text-[#6300ff] gap-2 flex justify-center mb-3">
-        <Price symbol="mxc" value={mxc} decimal={4} />
+        <Price symbol="mxc" value={mxc} decimal={mode !== 'unit' ? 2 : undefined} />
         <span> / </span>
         <span>{mode === 'mint' ? t('Per Mint') : props.data.tick}</span>
       </div>
       <div className="flex justify-center text-sm text-[#e5e7eb]">
-        <Price symbol="usd" value={usd} />
+        <Price symbol="usd" value={usd} decimal={mode !== 'unit' ? 2 : undefined} />
       </div>
     </CardDefault>
   )
