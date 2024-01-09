@@ -44,10 +44,10 @@ function Page() {
   if (!data)
     return <Empty loading={loading} />
 
-  const limitPrice = BigNum(utils.formatEther(data.limitPrice)).toFixed(2)
-  const price = BigNum(utils.formatEther(data.price).toString()).toFixed(2)
+  const limitPrice = BigNum(utils.formatEther(data.limitPrice))
+  const price = BigNum(utils.formatEther(data.price).toString())
   const volume = BigNum(utils.formatEther(data.volume)).toFixed(2)
-  const floorPrice = perMint ? limitPrice : price
+  const floorPrice = perMint ? limitPrice.toFixed(2) : price
   const usdUnitPrice = BigNum(price).multipliedBy(config.price).toFixed(4)
   const usdMintPrice = BigNum(limitPrice).multipliedBy(config.price).toFixed(4)
 
