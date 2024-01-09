@@ -51,7 +51,7 @@ function Activities() {
         className="border-none"
         {...gridPaginationFields}
         loading={state.loading}
-        getRowId={row => row.number}
+        getRowId={(row: any) => row.id}
         rows={state.value}
         columns={columns}
       />
