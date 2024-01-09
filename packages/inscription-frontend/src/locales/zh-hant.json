@@ -95,7 +95,7 @@
   "personal_page_step_2": "在市場上列出您的 DePINscription，請注意，如果您的銘文尚未在市場上列出，則不會被索引，一旦可以交易，您將能夠將其下架。",
   "personal_page_step_3": "點擊銘文可查看您最近的 DePINscription 資料。",
   "token_page_step_0_5": "查看DePINscriptions的所有鑄幣進度",
-  "Total MXC-20 Market Cap": "MXC-20 總市值 ${{price}}",
+  "Total MSC-20 Market Cap": "MSC-20 總市值 ${{price}}",
   "Trending Tokens": "熱門代幣",
   "Floor Price": "底價",
   "24h Volume": "24小時交易價",
@@ -149,5 +149,11 @@
   "Purchase successful": "購買成功!",
   "Insufficient Balance": "餘額不足",
   "Limit Order": "限價",
-  "Limit Order Help": "限價（每鑄造）購買多筆訂單，如果過程中任意訂單狀態發生變化，該部分消耗的MXC將自動退還。"
+  "Limit Order Help": "限價（每鑄造）購買多筆訂單，如果過程中任意訂單狀態發生變化，該部分消耗的MXC將自動退還。",
+  "market_page_step_1": "找到您喜歡的銘文，然後訪問相關市場進行交易。\n如果清單中沒有您鑄造的銘文，您需要激勵社區完成鑄造過程直至達到 100%，或者增加您自己的活動以在市場上獲得一席之地！",
+  "market_detail_step_1": "在這裡您可以看到銘文的底價，還有鑄造成本",
+  "market_detail_step_2": "單獨購買銘文。\n只需點擊您想要獲得的每個銘文的“購買”即可。",
+  "market_detail_step_3": "使用限價訂單有效地一次購買多個銘文，讓您同時獲得所有想要的銘文。",
+  "market_detail_step_4": "您可以列出您鑄造的銘文進行出售，並以 MXC 美元設定您的首選價格",
+  "market_detail_step_5": "可以查看和監控所有列出的銘文，以及它們的定價和購買歷史記錄。"
 }

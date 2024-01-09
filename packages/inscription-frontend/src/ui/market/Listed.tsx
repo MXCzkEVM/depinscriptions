@@ -44,6 +44,7 @@ function Listed() {
           <Refresh onClick={reload} hideText />
         </div>
         <Button
+          className="market_detail_step_3"
           onClick={purchases}
           variant="contained"
         >

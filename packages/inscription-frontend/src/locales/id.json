@@ -95,7 +95,7 @@
   "personal_page_step_2": "Cantumkan DePINscription Anda di Marketplace, harap dicatat bahwa jika prasasti Anda belum terdaftar di Marketplace, maka tidak akan terindeks, Anda akan dapat menghapusnya setelah dapat diperdagangkan.",
   "personal_page_step_3": "Klik prasasti untuk melihat data DePINscription terbaru Anda.",
   "token_page_step_0_5": "Periksa semua kemajuan pencetakan DePINscriptions",
-  "Total MXC-20 Market Cap": "Total Kapitalisasi Pasar MXC-20 ${{price}}",
+  "Total MSC-20 Market Cap": "Total Kapitalisasi Pasar MSC-20 ${{price}}",
   "Trending Tokens": "Token yang Sedang Tren",
   "Floor Price": "Harga Lantai",
   "24h Volume": "Volume 24 jam",
@@ -149,5 +149,11 @@
   "Purchase successful": "Pembelian berhasil!",
   "Insufficient Balance": "Saldo Tidak Cukup",
   "Limit Order": "Batasi pesanan",
-  "Limit Order Help": "Batasi harga (Per Mint) untuk membeli beberapa pesanan, Jika ada perubahan status pesanan selama proses berlangsung, MXC yang dikonsumsi pada bagian tertentu ini akan dikembalikan secara otomatis."
+  "Limit Order Help": "Batasi harga (Per Mint) untuk membeli beberapa pesanan, Jika ada perubahan status pesanan selama proses berlangsung, MXC yang dikonsumsi pada bagian tertentu ini akan dikembalikan secara otomatis.",
+  "market_page_step_1": "Temukan prasasti pilihan Anda, lalu kunjungi pasar terkait untuk terlibat dalam perdagangan. \nJika prasasti yang Anda cetak tidak ada dalam daftar, Anda harus memotivasi komunitas untuk menyelesaikan proses pencetakan hingga mencapai 100% atau meningkatkan aktivitas Anda sendiri untuk mengamankan tempat di pasar!",
+  "market_detail_step_1": "Di sini Anda dapat melihat harga dasar prasasti, juga biaya pencetakan",
+  "market_detail_step_2": "untuk membeli prasasti satu per satu. \nCukup klik 'Beli' untuk setiap prasasti yang ingin Anda peroleh.",
+  "market_detail_step_3": "secara efisien membeli beberapa prasasti sekaligus menggunakan pesanan terbatas, memungkinkan Anda memperoleh semua prasasti yang diinginkan secara bersamaan.",
+  "market_detail_step_4": "Anda berkesempatan untuk mencantumkan prasasti yang Anda cetak untuk dijual, dengan menetapkan harga pilihan Anda dalam $MXC",
+  "market_detail_step_5": "dapat melihat dan memantau semua prasasti yang Anda daftarkan, beserta harga dan riwayat pembeliannya."
 }

@@ -148,12 +148,12 @@ function Page() {
     <>
       <div className="mx-auto mt-9 mb-14 w-full text-center">
         <span className="text-2xl md:text-3xl text-center select-none text-[#6300ff]">
-          {t('Total MXC-20 Market Cap', { price: thousandBitSeparator(marketCap) })}
+          {t('Total MSC-20 Market Cap', { price: thousandBitSeparator(marketCap) })}
         </span>
       </div>
       <DataTable
         {...gridPaginationFields}
-        contentClass="token_page_step_0_5"
+        tableClass="market_page_step_1"
         toolbar={renderToolbar()}
         loading={state.loading}
         getRowId={row => row.tick}

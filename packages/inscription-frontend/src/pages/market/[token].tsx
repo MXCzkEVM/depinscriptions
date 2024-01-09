@@ -90,7 +90,7 @@ function Page() {
         <Typography variant="h6">{token}</Typography>
         <Flag text={false} size="32" find={token} />
       </div>
-      <div className="flex gap-3 flex-wrap mb-10">
+      <div className="flex gap-3 flex-wrap mb-10 market_detail_step_1">
         <Price label={t('Floor Price')} symbol="mxc" value={Number(floorPrice) <= 0 ? '-' : floorPrice} />
         <Divider className="hidden md:block" orientation="vertical" flexItem />
         {
@@ -117,10 +117,10 @@ function Page() {
         >
           <Tab disableRipple value="listed" label={t('Listed')} />
           <Tab disableRipple value="activities" label={t('Activities')} />
-          <Tab disableRipple value="myOrders" label={t('My Orders')} />
+          <Tab className="market_detail_step_5" disableRipple value="myOrders" label={t('My Orders')} />
         </Tabs>
         <div>
-          <Button type="button" variant="contained" onClick={list}>
+          <Button className="market_detail_step_4" type="button" variant="contained" onClick={list}>
             {t('List')}
           </Button>
         </div>

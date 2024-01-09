@@ -95,7 +95,7 @@
   "personal_page_step_2": "Plaats uw DePINscription op de marktplaats. Houd er rekening mee dat als uw inschrijving nog niet op de marktplaats staat, deze niet wordt geïndexeerd. U kunt deze verwijderen zodra deze kan worden verhandeld.",
   "personal_page_step_3": "Klik op inschrijvingen om uw recente DePINscription-gegevens te bekijken.",
   "token_page_step_0_5": "Controleer alle voortgang bij het maken van de DePINscriptions",
-  "Total MXC-20 Market Cap": "Totale marktkapitalisatie MXC-20 ${{price}}",
+  "Total MSC-20 Market Cap": "Totale marktkapitalisatie MSC-20 ${{price}}",
   "Trending Tokens": "Populaire tokens",
   "Floor Price": "Vloerprijs",
   "24h Volume": "24 uur volume",
@@ -149,5 +149,11 @@
   "Purchase successful": "Aankoop succesvol!",
   "Insufficient Balance": "Onvoldoende saldo",
   "Limit Order": "Limietvolgorde",
-  "Limit Order Help": "Beperk de prijzen (per munt) om meerdere bestellingen te kopen. Als er tijdens het proces een wijziging optreedt in de status van bestellingen, wordt de MXC die in dit specifieke onderdeel is verbruikt automatisch terugbetaald."
+  "Limit Order Help": "Beperk de prijzen (per munt) om meerdere bestellingen te kopen. Als er tijdens het proces een wijziging optreedt in de status van bestellingen, wordt de MXC die in dit specifieke onderdeel is verbruikt automatisch terugbetaald.",
+  "market_page_step_1": "Zoek de inscripties van uw voorkeur en bezoek vervolgens de relevante marktplaats om deel te nemen aan de handel. \nMochten uw geslagen inscripties niet in de lijsten voorkomen, dan moet u de community motiveren om het muntproces te voltooien totdat deze 100% bereikt, of uw eigen activiteit verhogen om een ​​plek op de marktplaats veilig te stellen!",
+  "market_detail_step_1": "Hier kunt u de minimumprijs van de inscriptie zien, evenals de muntkosten",
+  "market_detail_step_2": "om inscripties afzonderlijk te kopen. \nKlik eenvoudig op 'Kopen' voor elke inschrijving die u wilt aanschaffen.",
+  "market_detail_step_3": "efficiënt meerdere inscripties in één keer kopen met behulp van een limietorder, waardoor u alle gewenste inscripties tegelijkertijd kunt verkrijgen.",
+  "market_detail_step_4": "u kunt uw geslagen inscripties te koop aanbieden, waarbij u uw voorkeursprijzen in $ MXC instelt",
+  "market_detail_step_5": "kan al uw vermelde inschrijvingen bekijken en volgen, samen met hun prijzen en aankoopgeschiedenis."
 }

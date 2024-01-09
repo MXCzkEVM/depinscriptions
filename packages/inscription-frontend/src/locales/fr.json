@@ -95,7 +95,7 @@
   "personal_page_step_2": "Listez votre DePINscription sur la place de marché, veuillez noter que si votre inscription n'est pas encore répertoriée sur la place de marché, elle ne sera pas indexée, vous pourrez la supprimer une fois qu'elle pourra être échangée.",
   "personal_page_step_3": "Cliquez sur inscriptions pour afficher vos données DePINscription récentes.",
   "token_page_step_0_5": "Vérifiez toute la progression de la frappe des DePINscriptions",
-  "Total MXC-20 Market Cap": "Capitalisation boursière totale du MXC-20 ${{price}}",
+  "Total MSC-20 Market Cap": "Capitalisation boursière totale du MSC-20 ${{price}}",
   "Trending Tokens": "Jetons tendance",
   "Floor Price": "Prix ​​plancher",
   "24h Volume": "Volume 24h",
@@ -149,5 +149,11 @@
   "Purchase successful": "Achat réussi!",
   "Insufficient Balance": "Solde insuffisant",
   "Limit Order": "Ordre limité",
-  "Limit Order Help": "Prix ​​​​limités (par menthe) pour acheter plusieurs commandes. S'il y a un changement dans le statut d'une commande au cours du processus, le MXC consommé dans cette partie particulière sera automatiquement remboursé."
+  "Limit Order Help": "Prix ​​​​limités (par menthe) pour acheter plusieurs commandes. S'il y a un changement dans le statut d'une commande au cours du processus, le MXC consommé dans cette partie particulière sera automatiquement remboursé.",
+  "market_page_step_1": "Trouvez vos inscriptions préférées, puis visitez le marché concerné pour vous lancer dans le trading. \nSi vos inscriptions frappées sont absentes des listes, vous devrez soit motiver la communauté à terminer le processus de frappe jusqu'à ce qu'il atteigne 100 %, soit augmenter votre propre activité pour vous assurer une place sur le marché !",
+  "market_detail_step_1": "Ici vous pouvez voir le prix plancher de l'inscription, ainsi que le coût de frappe.",
+  "market_detail_step_2": "pour acheter des inscriptions individuellement. \nCliquez simplement sur 'Acheter' pour chaque inscription que vous souhaitez acquérir.",
+  "market_detail_step_3": "achetez efficacement plusieurs inscriptions en une seule fois en utilisant un ordre limité, vous permettant d'acquérir simultanément toutes les inscriptions souhaitées.",
+  "market_detail_step_4": "vous avez la possibilité de mettre en vente vos inscriptions frappées, en définissant vos prix préférés en $ MXC",
+  "market_detail_step_5": "peut afficher et surveiller toutes vos inscriptions répertoriées, ainsi que leurs prix et leur historique d'achat."
 }

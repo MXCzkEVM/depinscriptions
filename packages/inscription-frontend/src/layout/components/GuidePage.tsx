@@ -5,8 +5,7 @@ import { useRef } from 'react'
 import { useRouter } from 'next/router'
 import { delay } from '@hairy/utils'
 import { JoyrideRef, JoyrideTrigger, ReactJoyride } from '@/components'
-import { useEventBus } from '@/hooks'
-import { useWhenever } from '@/hooks'
+import { useEventBus, useWhenever } from '@/hooks'
 
 type GuideOptions = Record<string, {
   steps: Step[]
@@ -144,6 +143,40 @@ function GuidePage() {
         window.scrollTo({ top: 0 })
         setShowPersonalExample(false)
       },
+    },
+    '/market': {
+      steps: [
+        {
+          target: '.market_page_step_1',
+          content: t('market_page_step_1'),
+          disableBeacon: true,
+        },
+      ],
+    },
+    '/market/[token]': {
+      steps: [
+        {
+          target: '.market_detail_step_1',
+          content: t('market_detail_step_1'),
+          disableBeacon: true,
+        },
+        {
+          target: '.market_detail_step_2',
+          content: t('market_detail_step_2'),
+        },
+        {
+          target: '.market_detail_step_3',
+          content: t('market_detail_step_3'),
+        },
+        {
+          target: '.market_detail_step_4',
+          content: t('market_detail_step_4'),
+        },
+        {
+          target: '.market_detail_step_5',
+          content: t('market_detail_step_5'),
+        },
+      ],
     },
   }
 

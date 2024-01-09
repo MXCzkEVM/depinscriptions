@@ -95,7 +95,7 @@
   "personal_page_step_2": "Listen Sie Ihre DePIN-Einschreibung auf dem Marktplatz auf. Bitte beachten Sie, dass Ihre Eintragung, wenn sie noch nicht auf dem Marktplatz gelistet ist, nicht indexiert wird. Sie können sie jedoch aus der Liste entfernen, sobald sie gehandelt werden kann.",
   "personal_page_step_3": "Klicken Sie auf Einträge, um Ihre aktuellen DePINscription-Daten anzuzeigen.",
   "token_page_step_0_5": "Überprüfen Sie den gesamten Prägefortschritt der DePINscriptions",
-  "Total MXC-20 Market Cap": "Gesamtmarktkapitalisierung MXC-20 ${{price}}",
+  "Total MSC-20 Market Cap": "Gesamtmarktkapitalisierung MSC-20 ${{price}}",
   "Trending Tokens": "Trend-Token",
   "Floor Price": "Mindestpreis",
   "24h Volume": "24-Stunden-Volumen",
@@ -149,5 +149,11 @@
   "Purchase successful": "Kauf erfolgreich!",
   "Insufficient Balance": "Mangelhaftes Gleichgewicht",
   "Limit Order": "Limit-Order",
-  "Limit Order Help": "Begrenzen Sie die Preise (pro Minze) für den Kauf mehrerer Bestellungen. Wenn sich der Status einer Bestellung während des Vorgangs ändert, wird der in diesem bestimmten Teil verbrauchte MXC automatisch zurückerstattet."
+  "Limit Order Help": "Begrenzen Sie die Preise (pro Minze) für den Kauf mehrerer Bestellungen. Wenn sich der Status einer Bestellung während des Vorgangs ändert, wird der in diesem bestimmten Teil verbrauchte MXC automatisch zurückerstattet.",
+  "market_page_step_1": "Finden Sie Ihre bevorzugten Inschriften und besuchen Sie dann den entsprechenden Marktplatz, um am Handel teilzunehmen. \nSollten Ihre geprägten Inschriften nicht in den Listen enthalten sein, müssen Sie entweder die Community dazu motivieren, den Prägevorgang bis zum Erreichen von 100 % abzuschließen, oder Ihre eigene Aktivität erhöhen, um sich einen Platz auf dem Marktplatz zu sichern!",
+  "market_detail_step_1": "Hier sehen Sie den Mindestpreis der Inschrift sowie die Prägekosten",
+  "market_detail_step_2": "Inschriften einzeln zu erwerben. \nKlicken Sie einfach für jede Inschrift, die Sie erwerben möchten, auf „Kaufen“.",
+  "market_detail_step_3": "Kaufen Sie effizient mehrere Inschriften auf einmal mit einer Limitbestellung, sodass Sie alle gewünschten Inschriften gleichzeitig erwerben können.",
+  "market_detail_step_4": "Sie haben die Möglichkeit, Ihre geprägten Inschriften zum Verkauf anzubieten und Ihre bevorzugten Preise in MXC festzulegen",
+  "market_detail_step_5": "Sie können alle Ihre aufgelisteten Inschriften zusammen mit deren Preis und Kaufhistorie anzeigen und überwachen."
 }
