@@ -28,11 +28,11 @@ export function DataTable<T extends GridValidRowModel>(props: DataTableProps<T>)
     const pageSize = props.paginationModel?.pageSize || 0
     const page = props.paginationModel?.page || 0
     const rowCount = props.rowCount || 0
-    const currentCount = ((page - 1) * rowCount) + 1
+    // const currentCount = ((page - 1) * rowCount) + 1
 
     return (
       <div className="flex items-center justify-center md:justify-end mt-4">
-        <span className="hidden md:block mr-6">
+        {/* <span className="hidden md:block mr-6">
           {(currentCount === -1 ? 0 : currentCount)}
           -
           {currentCount + props.rows.length}
@@ -40,7 +40,7 @@ export function DataTable<T extends GridValidRowModel>(props: DataTableProps<T>)
           of
           {' '}
           {rowCount}
-        </span>
+        </span> */}
         <Pagination
           disabled={props.loading}
           className="table-pagination-with-hidden-select"
