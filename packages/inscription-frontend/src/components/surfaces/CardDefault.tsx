@@ -17,6 +17,7 @@ function CardDefault(props: CardDefaultProps) {
         'hover:border-purple-500 overflow-hidden',
         'flex flex-col rounded-lg shadow-md',
         'text-sm sm:text-base',
+        'market_detail_step_2',
         props.className,
       ])}
     >

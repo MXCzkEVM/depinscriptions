@@ -95,7 +95,7 @@
   "personal_page_step_2": "Listați-vă DePINscription pe piață, vă rugăm să rețineți că, dacă înscrierea dvs. nu este încă listată pe piață, nu va fi indexată, veți putea să o eliminați după ce va putea fi tranzacționată.",
   "personal_page_step_3": "Faceți clic pe inscripții pentru a vedea datele dvs. recente DePINscription.",
   "token_page_step_0_5": "Verificați tot progresul de batere a DePINscriptions",
-  "Total MXC-20 Market Cap": "Total MXC-20 Market Cap ${{price}}",
+  "Total MSC-20 Market Cap": "Total MSC-20 Market Cap ${{price}}",
   "Trending Tokens": "Jetoane de tendințe",
   "Floor Price": "Pret etaj",
   "24h Volume": "Volum 24h",
@@ -149,5 +149,11 @@
   "Purchase successful": "Achiziție reușită!",
   "Insufficient Balance": "Echilibru insuficient",
   "Limit Order": "Ordine limită",
-  "Limit Order Help": "Prețuri limită (pe monetă) pentru achiziționarea mai multor comenzi, dacă există o modificare a stării oricăror comenzi în timpul procesului, MXC consumat în această parte anume va fi rambursat automat."
+  "Limit Order Help": "Prețuri limită (pe monetă) pentru achiziționarea mai multor comenzi, dacă există o modificare a stării oricăror comenzi în timpul procesului, MXC consumat în această parte anume va fi rambursat automat.",
+  "market_page_step_1": "Găsiți inscripțiile preferate, apoi vizitați piața relevantă pentru a vă angaja în tranzacționare. \nÎn cazul în care inscripțiile tale batate lipsesc din listări, va trebui fie să motivați comunitatea să finalizeze procesul de batere până când ajunge la 100%, fie să vă creșteți propria activitate pentru a vă asigura un loc pe piață!",
+  "market_detail_step_1": "Aici puteți vedea prețul de etaj al inscripției, precum și costul de batere",
+  "market_detail_step_2": "pentru a cumpăra inscripții individual. \nPur și simplu faceți clic pe „Cumpărați” pentru fiecare inscripție pe care doriți să o achiziționați.",
+  "market_detail_step_3": "achiziționați eficient mai multe inscripții dintr-o singură mișcare folosind un ordin limită, permițându-vă să achiziționați toate inscripțiile dorite simultan.",
+  "market_detail_step_4": "aveți ocazia să vă listați inscripțiile batate pentru vânzare, stabilind prețurile preferate în $MXC",
+  "market_detail_step_5": "poate vizualiza și monitoriza toate inscripțiile listate, împreună cu prețurile și istoricul achizițiilor."
 }

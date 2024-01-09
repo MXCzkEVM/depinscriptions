@@ -95,7 +95,7 @@
   "personal_page_step_2": "在市场上列出您的 DePINscription，请注意，如果您的铭文尚未在市场上列出，则不会被索引，一旦可以交易，您将能够将其下架。",
   "personal_page_step_3": "单击铭文可查看您最近的 DePINscription 数据。",
   "token_page_step_0_5": "查看DePINscriptions的所有铸币进度",
-  "Total MXC-20 Market Cap": "MXC-20 总市值 ${{price}}",
+  "Total MSC-20 Market Cap": "MSC-20 总市值 ${{price}}",
   "Trending Tokens": "热门代币",
   "Floor Price": "底价",
   "24h Volume": "24小时交易价",
@@ -149,5 +149,11 @@
   "Purchase successful": "购买成功!",
   "Insufficient Balance": "余额不足",
   "Limit Order": "限价",
-  "Limit Order Help": "限价（每铸造）购买多笔订单，如果过程中任意订单状态发生变化，该部分消耗的MXC将自动退还。"
+  "Limit Order Help": "限价（每铸造）购买多笔订单，如果过程中任意订单状态发生变化，该部分消耗的MXC将自动退还。",
+  "market_page_step_1": "找到您喜欢的铭文，然后访问相关市场进行交易。\n如果列表中没有您铸造的铭文，您需要激励社区完成铸造过程直至达到 100%，或者增加您自己的活动以在市场上获得一席之地！",
+  "market_detail_step_1": "在这里您可以看到铭文的底价，还有铸造成本",
+  "market_detail_step_2": "单独购买铭文。\n只需点击您想要获得的每个铭文的“购买”即可。",
+  "market_detail_step_3": "使用限价订单有效地一次性购买多个铭文，让您同时获得所有想要的铭文。",
+  "market_detail_step_4": "您可以列出您铸造的铭文进行出售，并以 MXC 美元设置您的首选价格",
+  "market_detail_step_5": "可以查看和监控所有列出的铭文，以及它们的定价和购买历史记录。"
 }

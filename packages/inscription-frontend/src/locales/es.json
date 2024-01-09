@@ -95,7 +95,7 @@
   "personal_page_step_2": "Incluya su descripción DePIN en el mercado. Tenga en cuenta que si su inscripción aún no figura en el mercado, no se indexará y podrá eliminarla de la lista una vez que pueda comercializarse.",
   "personal_page_step_3": "Haga clic en las inscripciones para ver sus datos recientes de DePINscription.",
   "token_page_step_0_5": "Consulta todo el progreso de acuñación de las DePINscriptions",
-  "Total MXC-20 Market Cap": "Capitalización de mercado total de MXC-20 ${{price}}",
+  "Total MSC-20 Market Cap": "Capitalización de mercado total de MSC-20 ${{price}}",
   "Trending Tokens": "Fichas de tendencia",
   "Floor Price": "Precio mínimo",
   "24h Volume": "Volumen 24h",
@@ -149,5 +149,11 @@
   "Purchase successful": "Compra exitosa!",
   "Insufficient Balance": "Saldo insuficiente",
   "Limit Order": "Orden límite",
-  "Limit Order Help": "Limite los precios (por menta) para comprar varios pedidos. Si hay un cambio en el estado de algún pedido durante el proceso, el MXC consumido en esta parte en particular se reembolsará automáticamente."
+  "Limit Order Help": "Limite los precios (por menta) para comprar varios pedidos. Si hay un cambio en el estado de algún pedido durante el proceso, el MXC consumido en esta parte en particular se reembolsará automáticamente.",
+  "market_page_step_1": "Encuentre sus inscripciones preferidas y luego visite el mercado correspondiente para participar en el comercio. \nSi sus inscripciones acuñadas no aparecen en los listados, deberá motivar a la comunidad para que complete el proceso de acuñación hasta que alcance el 100 % o aumentar su propia actividad para asegurarse un lugar en el mercado.",
+  "market_detail_step_1": "Aquí puedes ver el precio mínimo de la inscripción, también el coste de acuñación.",
+  "market_detail_step_2": "para adquirir inscripciones individualmente. \nSimplemente haz clic en 'Comprar' por cada inscripción que desees adquirir.",
+  "market_detail_step_3": "compre eficientemente varias inscripciones de una sola vez utilizando una orden limitada, lo que le permitirá adquirir todas las inscripciones deseadas simultáneamente.",
+  "market_detail_step_4": "Tienes la oportunidad de poner a la venta tus inscripciones acuñadas, estableciendo tus precios preferidos en $MXC.",
+  "market_detail_step_5": "Puede ver y monitorear todas las inscripciones listadas, junto con sus precios e historial de compras."
 }

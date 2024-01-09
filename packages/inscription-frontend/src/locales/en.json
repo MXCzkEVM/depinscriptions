@@ -95,7 +95,7 @@
   "personal_page_step_2": "List your DePINscription on the marketplace, please note that if your inscription is not yet listed on the marketplace it won’t be indexed, you will be able to delist it once it can be traded.",
   "personal_page_step_3": "Click inscriptions to view your recent DePINscription data.",
   "token_page_step_0_5": "Check all the minting progress of the DePINscriptions",
-  "Total MXC-20 Market Cap": "Total MXC-20 Market Cap ${{price}}",
+  "Total MSC-20 Market Cap": "Total MSC-20 Market Cap ${{price}}",
   "Trending Tokens": "Trending Tokens",
   "Floor Price": "Floor Price",
   "24h Volume": "24h Volume",
@@ -149,5 +149,11 @@
   "Purchase successful": "Purchase successful!",
   "Insufficient Balance": "Insufficient Balance",
   "Limit Order": "Limit Order",
-  "Limit Order Help": "Limit prices(Per Mint) to purchase multiple orders, If there is a change in the status of any orders during the process, the MXC consumed in this particular part will be automatically refunded."
+  "Limit Order Help": "Limit prices(Per Mint) to purchase multiple orders, If there is a change in the status of any orders during the process, the MXC consumed in this particular part will be automatically refunded.",
+  "market_page_step_1": "Find your preferred inscriptions, then visit the relevant marketplace to engage in trading. Should your minted inscriptions be absent from the listings, you'll need to either motivate the community to complete the minting process until it reaches 100% or increase your own activity to secure a spot on the marketplace!",
+  "market_detail_step_1": "Here you can see the floor price of the inscription,also the minting cost",
+  "market_detail_step_2": "to purchase inscriptions individually. Simply click on 'Buy' for each inscription you wish to acquire.",
+  "market_detail_step_3": "efficiently purchase multiple inscriptions in one go using a limit order, allowing you to acquire all the desired inscriptions simultaneously.",
+  "market_detail_step_4": "you can the opportunity to list your minted inscriptions for sale, setting your preferred prices in $MXC",
+  "market_detail_step_5": "can view and monitor all your listed inscriptions, along with their pricing and purchase history."
 }

@@ -95,7 +95,7 @@
   "personal_page_step_2": "DePINscription'ınızı piyasada listeleyin; yazıtınız henüz piyasada listelenmemişse indekslenmeyeceğini, işlem görmeye başladıktan sonra onu listeden çıkarabileceğinizi lütfen unutmayın.",
   "personal_page_step_3": "En son DePINscription verilerinizi görüntülemek için yazılara tıklayın.",
   "token_page_step_0_5": "DePINscriptions'ın tüm basım ilerlemesini kontrol edin",
-  "Total MXC-20 Market Cap": "Toplam MXC-20 Piyasa Değeri ${{price}}",
+  "Total MSC-20 Market Cap": "Toplam MSC-20 Piyasa Değeri ${{price}}",
   "Trending Tokens": "Trend Tokenları",
   "Floor Price": "Taban Fiyat",
   "24h Volume": "24 saatlik Hacim",
@@ -149,5 +149,11 @@
   "Purchase successful": "Satın alma başarılı",
   "Insufficient Balance": "Yetersiz bakiye",
   "Limit Order": "Siparişi sınırla",
-  "Limit Order Help": "Birden fazla sipariş satın almak için fiyatları (Dakika Başına) sınırlayın. Süreç sırasında herhangi bir siparişin durumunda değişiklik olması durumunda, bu bölümde tüketilen MXC otomatik olarak iade edilecektir."
+  "Limit Order Help": "Birden fazla sipariş satın almak için fiyatları (Dakika Başına) sınırlayın. Süreç sırasında herhangi bir siparişin durumunda değişiklik olması durumunda, bu bölümde tüketilen MXC otomatik olarak iade edilecektir.",
+  "market_page_step_1": "Tercih ettiğiniz yazıtları bulun, ardından ticarete katılmak için ilgili pazarı ziyaret edin. \nBasılan yazıtlarınız listelerde bulunmuyorsa, ya topluluğu %100'e ulaşana kadar basım sürecini tamamlamaya motive etmeniz ya da pazarda bir yer edinmek için kendi etkinliğinizi artırmanız gerekir!",
+  "market_detail_step_1": "Burada yazıtın taban fiyatını ve ayrıca basım maliyetini görebilirsiniz.",
+  "market_detail_step_2": "yazıtları ayrı ayrı satın almak için. \nAlmak istediğiniz her yazıt için 'Satın Al'a tıklamanız yeterlidir.",
+  "market_detail_step_3": "Bir limit emri kullanarak tek seferde birden fazla yazıtı verimli bir şekilde satın alarak istediğiniz tüm yazıları aynı anda elde edebilirsiniz.",
+  "market_detail_step_4": "Tercih ettiğiniz fiyatları $MXC cinsinden belirleyerek, basılmış yazılarınızı satılık olarak listeleme fırsatını yakalayabilirsiniz.",
+  "market_detail_step_5": "listelenen tüm yazılarınızı fiyatlandırma ve satın alma geçmişleriyle birlikte görüntüleyebilir ve izleyebilirsiniz."
 }

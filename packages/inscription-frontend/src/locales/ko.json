@@ -95,7 +95,7 @@
   "personal_page_step_2": "DePINscription을 마켓플레이스에 등록하세요. 귀하의 비문이 아직 마켓플레이스에 등록되지 않은 경우 색인이 생성되지 않으며 거래가 가능해지면 등록을 취소할 수 있습니다.",
   "personal_page_step_3": "최근 DePINscription 데이터를 보려면 비문을 클릭하세요.",
   "token_page_step_0_5": "DePINscriptions의 모든 발행 진행 상황을 확인하세요.",
-  "Total MXC-20 Market Cap": "총 MXC-20 시가총액 ${{price}}",
+  "Total MSC-20 Market Cap": "총 MSC-20 시가총액 ${{price}}",
   "Trending Tokens": "인기 토큰",
   "Floor Price": "가격 하한선",
   "24h Volume": "24시간 볼륨",
@@ -149,5 +149,11 @@
   "Purchase successful": "구매 성공!",
   "Insufficient Balance": "잔액 불충분",
   "Limit Order": "제한 주문",
-  "Limit Order Help": "여러 주문을 구매할 수 있는 가격(민트당)을 제한하며, 진행 중 주문 상태에 변경이 있는 경우 해당 부품에 소비된 MXC가 자동으로 환불됩니다."
+  "Limit Order Help": "여러 주문을 구매할 수 있는 가격(민트당)을 제한하며, 진행 중 주문 상태에 변경이 있는 경우 해당 부품에 소비된 MXC가 자동으로 환불됩니다.",
+  "market_page_step_1": "선호하는 비문을 찾은 다음 관련 시장을 방문하여 거래에 참여하세요. \n귀하가 작성한 비문이 목록에 없으면 100%에 도달할 때까지 발행 과정을 완료하도록 커뮤니티에 동기를 부여하거나 자신의 활동을 늘려 시장에서 자리를 확보해야 합니다!",
+  "market_detail_step_1": "여기에서 비문의 최저 가격과 주조 비용을 확인할 수 있습니다.",
+  "market_detail_step_2": "비문을 개별적으로 구매하려면 \n획득하려는 각 문자에 대해 '구매'를 클릭하기만 하면 됩니다.",
+  "market_detail_step_3": "지정가 주문을 사용하여 여러 비문을 한 번에 효율적으로 구매하여 원하는 모든 비문을 동시에 획득할 수 있습니다.",
+  "market_detail_step_4": "$MXC로 원하는 가격을 설정하여 판매용으로 발행된 비문을 나열할 수 있는 기회를 얻을 수 있습니다.",
+  "market_detail_step_5": "가격 및 구매 내역과 함께 나열된 모든 비문을 보고 모니터링할 수 있습니다."
 }

@@ -95,7 +95,7 @@
   "personal_page_step_2": "Liste sua inscrição DePIN no mercado, observe que se sua inscrição ainda não estiver listada no mercado, ela não será indexada, você poderá removê-la assim que puder ser negociada.",
   "personal_page_step_3": "Clique nas inscrições para visualizar seus dados DePINscription recentes.",
   "token_page_step_0_5": "Verifique todo o andamento da cunhagem dos DePINscriptions",
-  "Total MXC-20 Market Cap": "Valor de mercado total do MXC-20 ${{price}}",
+  "Total MSC-20 Market Cap": "Valor de mercado total do MSC-20 ${{price}}",
   "Trending Tokens": "Tokens populares",
   "Floor Price": "Preço mínimo",
   "24h Volume": "Volume 24h",
@@ -149,5 +149,11 @@
   "Purchase successful": "Compra bem-sucedida!",
   "Insufficient Balance": "Saldo insuficiente",
   "Limit Order": "Ordem limite",
-  "Limit Order Help": "Preços limites (por hortelã) para compra de vários pedidos. Caso haja alteração no status de algum pedido durante o processo, o MXC consumido nesta parte específica será automaticamente reembolsado."
+  "Limit Order Help": "Preços limites (por hortelã) para compra de vários pedidos. Caso haja alteração no status de algum pedido durante o processo, o MXC consumido nesta parte específica será automaticamente reembolsado.",
+  "market_page_step_1": "Encontre suas inscrições preferidas e visite o mercado relevante para negociar. \nCaso suas inscrições cunhadas estejam ausentes das listagens, você precisará motivar a comunidade a concluir o processo de cunhagem até atingir 100% ou aumentar sua própria atividade para garantir um lugar no mercado!",
+  "market_detail_step_1": "Aqui você pode ver o preço mínimo da inscrição, também o custo da cunhagem",
+  "market_detail_step_2": "para comprar inscrições individualmente. \nBasta clicar em 'Comprar' para cada inscrição que deseja adquirir.",
+  "market_detail_step_3": "compre com eficiência várias inscrições de uma só vez usando um pedido com limite, permitindo adquirir todas as inscrições desejadas simultaneamente.",
+  "market_detail_step_4": "você tem a oportunidade de listar suas inscrições cunhadas para venda, definindo seus preços preferidos em $MXC",
+  "market_detail_step_5": "pode visualizar e monitorar todas as suas inscrições listadas, juntamente com seus preços e histórico de compras."
 }

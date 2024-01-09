@@ -2,6 +2,7 @@ import { Card, CardContent, Pagination, TablePagination } from '@mui/material'
 import { DataGrid, DataGridProps, GridColDef, GridValidRowModel } from '@mui/x-data-grid'
 import classNames from 'classnames'
 import { ReactNode } from 'react'
+import { useWindowSize } from 'react-use'
 import { Condition, Empty } from '../utils'
 
 export type DataTableColDef<R extends GridValidRowModel> = GridColDef<R> & {
@@ -13,6 +14,7 @@ interface DataTableExtends<R extends GridValidRowModel> {
   toolbar?: ReactNode
   toolbarClass?: string
   contentClass?: string
+  tableClass?: string
   columns: readonly DataTableColDef<R>[]
 }
 
@@ -80,6 +82,8 @@ export function DataTable<T extends GridValidRowModel>(props: DataTableProps<T>)
     )
   }
 
+  const { width } = useWindowSize()
+
   return (
     <div className="data-table">
       <Card className="hidden md:block" style={{ background: 'rgb(22 21 21 / 20%)' }}>
@@ -87,9 +91,9 @@ export function DataTable<T extends GridValidRowModel>(props: DataTableProps<T>)
           <div className={classNames(['mb-4', props.toolbarClass])}>
             {props.toolbar}
           </div>
-          <Condition is={props.rows.length} else={<Empty loading={props.loading} />}>
+          <Condition is={props.rows.length && width > 768} else={<Empty loading={props.loading} />}>
             <DataGrid
-              className="border-none data-grid-with-row-pointer data-grid-with-hidden-footer"
+              className={classNames(['border-none data-grid-with-row-pointer data-grid-with-hidden-footer', props.tableClass])}
               hideFooterPagination
               {...props}
             />
@@ -102,7 +106,7 @@ export function DataTable<T extends GridValidRowModel>(props: DataTableProps<T>)
           {props.toolbar}
         </div>
         <Condition is={props.rows.length} else={<Empty loading={props.loading} />}>
-          <div className="flex flex-col gap-3">
+          <div className={classNames(['flex flex-col gap-3', props.tableClass])}>
             {props.rows.map(row => renderSmallRow(row))}
           </div>
           {renderPagination()}

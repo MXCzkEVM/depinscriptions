@@ -95,7 +95,7 @@
   "personal_page_step_2": "Elenca la tua DePINscription sul marketplace, tieni presente che se la tua iscrizione non è ancora elencata sul marketplace non verrà indicizzata, potrai rimuoverla una volta che potrà essere scambiata.",
   "personal_page_step_3": "Fai clic sulle iscrizioni per visualizzare i dati DePINscription recenti.",
   "token_page_step_0_5": "Controlla tutti i progressi del conio delle DePINscription",
-  "Total MXC-20 Market Cap": "Capitalizzazione di mercato totale MXC-20 ${{price}}",
+  "Total MSC-20 Market Cap": "Capitalizzazione di mercato totale MSC-20 ${{price}}",
   "Trending Tokens": "Token di tendenza",
   "Floor Price": "Prezzo al piano",
   "24h Volume": "Volume 24 ore",
@@ -149,5 +149,11 @@
   "Purchase successful": "Acquisto riuscito!",
   "Insufficient Balance": "Equilibrio insufficiente",
   "Limit Order": "Ordine limite",
-  "Limit Order Help": "Limita i prezzi (al menta) per acquistare più ordini. Se si verifica un cambiamento nello stato di qualsiasi ordine durante il processo, l'MXC consumato in questa particolare parte verrà automaticamente rimborsato."
+  "Limit Order Help": "Limita i prezzi (al menta) per acquistare più ordini. Se si verifica un cambiamento nello stato di qualsiasi ordine durante il processo, l'MXC consumato in questa particolare parte verrà automaticamente rimborsato.",
+  "market_page_step_1": "Trova le tue iscrizioni preferite, quindi visita il mercato pertinente per dedicarti al trading. \nSe le tue iscrizioni coniate fossero assenti dagli elenchi, dovrai motivare la comunità a completare il processo di conio fino a raggiungere il 100% o aumentare la tua attività per assicurarti un posto sul mercato!",
+  "market_detail_step_1": "Qui puoi vedere il prezzo minimo dell'iscrizione, anche il costo di conio",
+  "market_detail_step_2": "per acquistare le iscrizioni singolarmente. \nBasta fare clic su \"Acquista\" per ciascuna iscrizione che desideri acquisire.",
+  "market_detail_step_3": "acquistare in modo efficiente più iscrizioni in una volta sola utilizzando un ordine limite, consentendoti di acquisire tutte le iscrizioni desiderate contemporaneamente.",
+  "market_detail_step_4": "puoi avere l'opportunità di mettere in vendita le tue iscrizioni coniate, impostando i tuoi prezzi preferiti in $ MXC",
+  "market_detail_step_5": "può visualizzare e monitorare tutte le iscrizioni elencate, insieme ai relativi prezzi e alla cronologia degli acquisti."
 }

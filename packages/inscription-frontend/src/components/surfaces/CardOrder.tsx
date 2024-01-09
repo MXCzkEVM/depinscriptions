@@ -111,7 +111,7 @@ export function CardOrder(props: CardOrderProps) {
         {thousandBitSeparator(props.data.amount)}
       </div>
       <div className="text-[#6300ff] gap-2 flex justify-center mb-3">
-        <Price symbol="mxc" value={mxc} />
+        <Price symbol="mxc" value={mxc} decimal={4} />
         <span> / </span>
         <span>{mode === 'mint' ? t('Per Mint') : props.data.tick}</span>
       </div>
