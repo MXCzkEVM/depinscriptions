@@ -63,7 +63,7 @@ export function useColumnsByOrders(options: UseColumnsByOrdersOptions = {}) {
         const limitPrice = BigNum(limit).multipliedBy(unitPrice)
         const mxcPrice = mode === 'mint' ? limitPrice : unitPrice
         const usdPrice = BigNum(mxcPrice).multipliedBy(config.price)
-        return <Price decimal={2} symbol={symbol} value={denominated ? usdPrice : mxcPrice} />
+        return <Price symbol={symbol} decimal={mode === 'mint' ? 2 : undefined} value={denominated ? usdPrice : mxcPrice} />
       },
     },
     {
