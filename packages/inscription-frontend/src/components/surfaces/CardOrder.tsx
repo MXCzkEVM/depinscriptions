@@ -9,7 +9,7 @@ import { LoadingButton } from '@mui/lab'
 import { toast } from 'react-hot-toast'
 import { delay } from '@hairy/utils'
 import { WaitIndexDialog } from '../dialog'
-import Block from './CardDefault'
+import CardDefault from './CardDefault'
 import { Flag } from './Flag'
 import { Price } from './Price'
 import { BigNum, cover, getMarketContractWithSinger, getProviderBySinger, thousandBitSeparator } from '@/utils'
@@ -82,7 +82,7 @@ export function CardOrder(props: CardOrderProps) {
           </span>
           <span>{cover(props.data.maker, [4, 3, 4])}</span>
         </div>
-        <Divider className="my-4" />
+        <Divider className="my-2 sm:my-4" />
         <div className="flex justify-between text-sm mb-4">
           <Price symbol="mxc" value={price} />
           <Price symbol="usd" value={usd} />
@@ -92,13 +92,13 @@ export function CardOrder(props: CardOrderProps) {
     )
   }
   return (
-    <Block footer={renderFooter()}>
+    <CardDefault footer={renderFooter()}>
       {holderWaitingMl}
       <div className="flex items-center">
         <span>{props.data.tick}</span>
         <Flag text={false} find={props.data.tick} />
       </div>
-      <div className="mt-3 mb-4 flex justify-center items-center text-lg font-bold">
+      <div className="my-2 sm:mt-3 sm:mb-4 flex justify-center items-center text-lg font-bold">
         {thousandBitSeparator(props.data.amount)}
       </div>
       <div className="text-[#6300ff] gap-2 flex justify-center mb-3">
@@ -109,6 +109,6 @@ export function CardOrder(props: CardOrderProps) {
       <div className="flex justify-center text-sm text-[#e5e7eb]">
         <Price symbol="usd" value={usd} />
       </div>
-    </Block>
+    </CardDefault>
   )
 }

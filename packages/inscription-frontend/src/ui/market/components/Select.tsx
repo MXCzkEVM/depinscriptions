@@ -11,6 +11,7 @@ export function Select<T>(props: SelectProps<T>) {
       <InputLabel id={`${props.id}__label`}>{props.label}</InputLabel>
       <MSelect
         {...props}
+        size="small"
         multiple
         labelId={`${props.id}__label`}
         placeholder="all"

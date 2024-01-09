@@ -9,7 +9,7 @@ export function Switch(props: SwitchProps) {
   return (
     <FormControlLabel
       control={
-        <MSwitch checked={props.checked} onChange={(_, value) => props.onChange?.(value)} />
+        <MSwitch size="small" checked={props.checked} onChange={(_, value) => props.onChange?.(value)} />
       }
       label={props.label}
     />

@@ -9,7 +9,7 @@ function Page() {
   return (
     <>
       <div className="my-first-step flex justify-between mt-[30px]">
-        <span className="my-other-step text-2xl text-primary font-bold">{t('Latest Scriptions')}</span>
+        <span className="my-other-step text-xl sm:text-2xl text-primary font-bold">{t('Latest Scriptions')}</span>
         <Refresh />
       </div>
       <DataGridScriptions />

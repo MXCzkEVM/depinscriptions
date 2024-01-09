@@ -66,7 +66,7 @@ function MyOrder() {
 
   return (
     <>
-      <div className="flex flex-wrap items-center justify-between gap-6 mb-5">
+      <div className="flex flex-wrap items-center justify-between gap-6 mb-5 text-sm sm:text-base">
         <div className="flex items-center">
           <Switch label={t('USD Denominated')} checked={denominated} onChange={setDenominated} />
           <Switch label={t('All Markets')} checked={allMarkets} onChange={setAllMarkets} />

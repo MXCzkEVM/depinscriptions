@@ -57,7 +57,7 @@ export function DataTable<T extends GridValidRowModel>(props: DataTableProps<T>)
       if (col.hidden?.(row) === true)
         return null
       return (
-        <div className="text-sm flex flex-col" key={index}>
+        <div className="text-[15px] flex flex-col" key={index}>
           <Condition is={col.hiddenHeaderName !== true}>
             <div className="text-[#bbbbbb] mb-[6px]">{col.headerName}</div>
           </Condition>
