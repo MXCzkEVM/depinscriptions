@@ -9,6 +9,8 @@ import { LoadingButton } from '@mui/lab'
 import { toast } from 'react-hot-toast'
 import { delay } from '@hairy/utils'
 import { WaitIndexDialog } from '../dialog'
+import { Condition } from '../utils'
+import { LocationForHexagon } from '../data-display'
 import CardDefault from './CardDefault'
 import { Flag } from './Flag'
 import { Price } from './Price'
@@ -36,6 +38,7 @@ export function CardOrder(props: CardOrderProps) {
 
   const mxc = mode === 'unit' ? unitPrice : limitPrice
   const usd = BigNum(mxc).multipliedBy(config.price).toFixed(4)
+  const signature = JSON.parse(props.data.json)
 
   const { sendTransactionAsync } = useSendTransaction({
     mode: 'recklesslyUnprepared',
@@ -44,16 +47,15 @@ export function CardOrder(props: CardOrderProps) {
   const [loading, purchase] = useAsyncCallback(async () => {
     const contract = getMarketContractWithSinger(chainId, address!)
     const singer = getProviderBySinger(chainId, address!)
-    const { r, s, v } = JSON.parse(props.data.json)
     const preTransaction = await contract.populateTransaction.purchase(
       props.data.hash,
       props.data.tick,
       props.data.maker,
       props.data.amount,
       props.data.price,
-      r,
-      s,
-      v,
+      signature.r,
+      signature.s,
+      signature.v,
     )
     const transaction = await singer.populateTransaction({
       value: props.data.price,
@@ -94,9 +96,16 @@ export function CardOrder(props: CardOrderProps) {
   return (
     <CardDefault footer={renderFooter()}>
       {holderWaitingMl}
-      <div className="flex items-center">
-        <span>{props.data.tick}</span>
-        <Flag text={false} find={props.data.tick} />
+      <div className="flex justify-between items-center">
+        <div className="flex items-center">
+          <span className="mr-2">{props.data.tick}</span>
+          <Flag text={false} find={props.data.tick} />
+        </div>
+        <Condition is={signature.hex}>
+          <div className="w-50% text-xs">
+            <LocationForHexagon hexagon={signature.hex} />
+          </div>
+        </Condition>
       </div>
       <div className="my-2 sm:mt-3 sm:mb-4 flex justify-center items-center text-lg font-bold">
         {thousandBitSeparator(props.data.amount)}

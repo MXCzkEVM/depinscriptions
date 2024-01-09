@@ -20,6 +20,7 @@ function MyOrder() {
 
   const columns = useColumnsByOrders({
     hideExplorerIcon: true,
+    hideHexagon: true,
     denominated,
     extendRows: [{
       renderCell: params => renderColumnByAction(params.row),

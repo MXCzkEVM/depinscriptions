@@ -8,7 +8,7 @@ import { ArrowRedoCircleOutline } from '@ricons/ionicons5'
 import MarketContext from '../Context'
 import { ExplorerButton } from '../components'
 import { Order } from '@/api/index.type'
-import { ChainLink, Condition, DataTableColDef, Flag, Icon, Price } from '@/components'
+import { ChainLink, Condition, DataTableColDef, Flag, Icon, LocationForHexagon, Price } from '@/components'
 import { BigNum, formatEther } from '@/utils'
 import store from '@/store'
 
@@ -16,6 +16,7 @@ export interface UseColumnsByOrdersOptions {
   extendRows?: GridColDef<Order>[]
   denominated?: boolean
   hideExplorerIcon?: boolean
+  hideHexagon?: boolean
 }
 
 export function useColumnsByOrders(options: UseColumnsByOrdersOptions = {}) {
@@ -84,7 +85,7 @@ export function useColumnsByOrders(options: UseColumnsByOrdersOptions = {}) {
     {
       field: 'maker',
       headerName: t('From'),
-      minWidth: 180,
+      minWidth: 140,
       flex: 1,
       renderCell(params) {
         const address = params.row.status === 1
@@ -96,7 +97,7 @@ export function useColumnsByOrders(options: UseColumnsByOrdersOptions = {}) {
     {
       field: 'buyer',
       headerName: t('To'),
-      minWidth: 180,
+      minWidth: 140,
       flex: 1,
       renderCell(params) {
         const address = params.row.status === 1
@@ -108,6 +109,21 @@ export function useColumnsByOrders(options: UseColumnsByOrdersOptions = {}) {
       },
       hidden: (row) => {
         return !(row.status === 1 ? row.maker : row.buyer)
+      },
+    },
+    {
+      field: 'hex',
+      headerName: t('Location'),
+      hidden: row => options.hideHexagon || row.status !== 0,
+      minWidth: 140,
+      flex: 1,
+      renderCell(params) {
+        const hexagon = JSON.parse(params.row.json || '{}')?.hex
+        return (
+          <Condition is={hexagon} else="-">
+            <LocationForHexagon hexagon={hexagon} />
+          </Condition>
+        )
       },
     },
     {
@@ -124,6 +140,7 @@ export function useColumnsByOrders(options: UseColumnsByOrdersOptions = {}) {
         )
       },
     },
+
   ]
 
   const cols = [...columns, ...extendRows]

@@ -70,6 +70,7 @@ model OrderRecord {
   // 0:listing | 1:sold | 2:cancelled | 3:expired
   status     Int      @default(0)
   time       DateTime @default(now())
+  json       String
   expiration DateTime
 }
 

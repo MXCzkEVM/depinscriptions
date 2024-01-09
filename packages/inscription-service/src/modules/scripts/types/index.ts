@@ -25,6 +25,7 @@ export interface ScanListJSON {
   amt: string
   pre: string
   exp: string
+  hex: string
   r: string
   s: string
   v: number
