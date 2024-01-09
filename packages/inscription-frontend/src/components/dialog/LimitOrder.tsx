@@ -51,14 +51,19 @@ export function LimitOrderDialog(props: LimitOrderDialogProps) {
     }
     const contract = getMarketContractWithSinger(chainId, address!)
     const singer = getProviderBySinger(chainId, address!)
-    const data = orders.map(o => ({
-      ...JSON.parse(o.json),
-      id: o.hash,
-      tick: o.tick,
-      maker: o.maker,
-      amount: o.amount,
-      price: o.price,
-    }))
+    const data = orders.map((o) => {
+      const sign = JSON.parse(o.json)
+      return {
+        id: o.hash,
+        tick: o.tick,
+        maker: o.maker,
+        amount: o.amount,
+        price: o.price,
+        s: sign.s,
+        r: sign.r,
+        v: sign.v,
+      }
+    })
 
     const preTransaction = await contract.populateTransaction.purchases(data)
     const transaction = await singer.populateTransaction({

@@ -1,9 +1,16 @@
+import { latLngToCell } from 'h3-js'
+
 export function noop(): any {}
 
-export function getCurrentPosition() {
-  return new Promise<GeolocationPosition>((resolve, reject) => {
+export async function getCurrentHexagon() {
+  const position = await new Promise<GeolocationPosition>((resolve, reject) => {
     navigator.geolocation.getCurrentPosition(resolve, reject)
   })
+  return latLngToCell(
+    position.coords.latitude,
+    position.coords.longitude,
+    7,
+  )
 }
 
 export function ejectBlankPage(url: string) {

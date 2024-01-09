@@ -207,7 +207,7 @@ export class ScriptsService {
       hash: transaction.hash,
       maker: transaction.from,
       expiration: new Date(Date.now() + Number(inscription.exp)),
-      json: JSON.stringify({ r, s, v }),
+      json: JSON.stringify({ r, s, v, hex: inscription.hex }),
       status: 0,
     })
 

@@ -1,6 +1,6 @@
 import dayjs from 'dayjs'
 import { useRouter } from 'next/router'
-import Block from './CardDefault'
+import CardDefault from './CardDefault'
 import { Inscription } from '@/api/index.type'
 import { cover } from '@/utils'
 
@@ -28,7 +28,7 @@ export function CardScription(props: { data: Inscription }) {
     )
   }
   return (
-    <Block className="cursor-pointer" footer={renderFooter()} onClick={() => router.push(`/inscriptions/${props.data.hash}`)}>
+    <CardDefault className="cursor-pointer" footer={renderFooter()} onClick={() => router.push(`/inscriptions/${props.data.hash}`)}>
       <pre className="text-sm break-all whitespace-pre-wrap">
         {JSON.stringify(JSON.parse(props.data.json), null, 1)
           .replace('{', '')
@@ -37,6 +37,6 @@ export function CardScription(props: { data: Inscription }) {
           .replace(/,/g, '')
           .trim()}
       </pre>
-    </Block>
+    </CardDefault>
   )
 }

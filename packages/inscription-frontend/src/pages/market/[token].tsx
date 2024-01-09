@@ -7,7 +7,7 @@ import { useInjectHolder } from '@overlays/react'
 import { useAsyncFn } from 'react-use'
 import { useSnapshot } from 'valtio'
 import { utils } from 'ethers'
-import { Empty, Flag, Icon, ListDialog, ListDialogProps, ListDialogResolved, Price, WaitIndexDialog } from '@/components'
+import { Empty, Flag, Icon, ListDialog, ListDialogProps, ListDialogResolved, LocationDialog, Price, WaitIndexDialog } from '@/components'
 import { Layout } from '@/layout'
 
 import { useEventBus, useRouterQuery, useWhenever } from '@/hooks'
@@ -16,7 +16,7 @@ import Activities from '@/ui/market/Activities'
 import MyOrder from '@/ui/market/MyOrder'
 import { getMarketId } from '@/api'
 import store from '@/store'
-import { BigNum } from '@/utils'
+import { BigNum, getCurrentHexagon } from '@/utils'
 
 import MarketContext from '@/ui/market/Context'
 
@@ -37,6 +37,7 @@ function Page() {
   const [tab, setTab] = useState('listed')
   const [perMint, setPerMint] = useState(true)
   const [{ value: data, loading }, reload] = useAsyncFn(async () => token && getMarketId({ id: token || '' }), [token])
+  const [holderLocationMl, openLocationDialog] = useInjectHolder(LocationDialog)
 
   useWhenever(token, reload)
 
@@ -53,7 +54,14 @@ function Page() {
   async function list() {
     if (!data)
       return
-    const { hash } = await openListModal({ data })
+    await openLocationDialog()
+    const hexagon = await getCurrentHexagon()
+
+    const { hash } = await openListModal({
+      data,
+      hexagon,
+    })
+
     await openWaitIndexDialog({ hash })
     await reload()
     reloadPage()
@@ -68,8 +76,9 @@ function Page() {
     >
       {holderListMl}
       {holderWaitingMl}
+      {holderLocationMl}
       <div
-        className="flex items-center mt-[3.125rem] mb-[2.25rem] gap-2 cursor-pointer"
+        className="flex items-center mt-4 mb-4 sm:mt-[3.125rem] sm:mb-[2.25rem] gap-2 cursor-pointer"
         onClick={() => router.replace('/market')}
       >
         <Icon>

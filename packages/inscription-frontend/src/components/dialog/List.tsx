@@ -21,6 +21,7 @@ const yearTimestamp = 24 * 3600 * 1000 * 365
 
 export interface ListDialogProps {
   data: MarketDetail
+  hexagon: string
 }
 export interface ListDialogResolved {
   hash: string
@@ -62,6 +63,7 @@ export function ListDialog(props: ListDialogProps) {
       tick: props.data.tick,
       pre: mxcRevenue.multipliedBy(10 ** 18).toFixed(0),
       amt: amount,
+      hex: props.hexagon,
       exp: expiration === 'month'
         ? monthTimestamp
         : yearTimestamp,
@@ -137,7 +139,7 @@ export function ListDialog(props: ListDialogProps) {
               {t('Floor price')}
               {' '}
               <Link className="cursor-pointer" onClick={() => setMxcMint(limitPrice)}>
-                {limitPrice}
+                {BigNum(limitPrice).toFixed(2)}
                 {' '}
                 MXC
               </Link>
@@ -166,9 +168,9 @@ export function ListDialog(props: ListDialogProps) {
             <Field label="Service Fee">2%</Field>
             <Field label="Total Revenue">
               <div className="flex gap-2 items-center">
-                <Price symbol="mxc" value={mxcRevenue.toFixed()} />
-                <span>|</span>
-                <Price symbol="usd" value={usdRevenue.toFixed()} />
+                <Price className="hidden sm:inline-flex" symbol="mxc" decimal={4} value={mxcRevenue.toFixed()} />
+                <span className="hidden sm:inline-block">|</span>
+                <Price symbol="usd" value={usdRevenue.toFixed()} decimal={4} />
               </div>
             </Field>
           </div>

@@ -19,3 +19,18 @@
     cursor: pointer;
   }
 }
+
+.data-grid-with-hidden-footer {
+  .MuiDataGrid-footerContainer {
+    display: none !important;
+  }
+}
+
+.table-pagination-with-hidden-select {
+  .MuiTablePagination-selectLabel {
+    display: none !important;
+  }
+  .MuiTablePagination-input {
+    display: none !important;
+  }
+}

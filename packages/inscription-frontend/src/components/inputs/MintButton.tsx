@@ -7,7 +7,7 @@ import { LocationDialog, WaitIndexDialog } from '../dialog'
 
 import { Token } from '@/api/index.type'
 import { useEventBus, useSendSatsTransaction } from '@/hooks'
-import { getCurrentPosition } from '@/utils'
+import { getCurrentHexagon } from '@/utils'
 
 export interface MintButtonProps {
   token?: Token
@@ -39,12 +39,7 @@ export function MintButton(props: MintButtonProps) {
   })
 
   async function authorize() {
-    const position = await getCurrentPosition()
-    const hexagon = latLngToCell(
-      position.coords.latitude,
-      position.coords.longitude,
-      7,
-    )
+    const hexagon = await getCurrentHexagon()
     setHexagon(hexagon)
   }
 

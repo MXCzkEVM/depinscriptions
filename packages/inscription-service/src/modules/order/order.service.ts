@@ -79,7 +79,7 @@ export class OrderService {
   async record(data: Order) {
     await this.prisma.orderRecord.create({
       data: {
-        ...omit(data, ['lastTime', 'time', 'json', 'finalHash']),
+        ...omit(data, ['lastTime', 'time', 'finalHash']),
         hash: data.finalHash || data.hash,
       },
     })

@@ -1,17 +1,16 @@
 import { ReactElement, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Card, CardContent, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 import { useSnapshot } from 'valtio'
-import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import { useRouter } from 'next/router'
 import { useMount } from 'react-use'
 import { utils } from 'ethers'
 import { Layout } from '@/layout'
-import { Condition, Empty, Flag, Price, TextFieldSearch } from '@/components'
+import { DataTable, DataTableColDef, Flag, Price, TextFieldSearch } from '@/components'
 import store from '@/store'
 import { BigNum, thousandBitSeparator } from '@/utils'
 import { useGridPaginationFields, useServerPagination } from '@/hooks'
-import { getMarket, getToken } from '@/api'
+import { getMarket } from '@/api'
 import { MarketRaw } from '@/api/index.type'
 
 function Page() {
@@ -19,14 +18,15 @@ function Page() {
   const config = useSnapshot(store.config)
   const router = useRouter()
 
-  const columns: GridColDef<MarketRaw>[] = [
+  const columns: DataTableColDef<MarketRaw>[] = [
     {
       field: 'tick',
       headerName: t('Token'),
+      hiddenHeaderName: true,
       minWidth: 90,
       flex: 1,
       renderCell(params) {
-        return <Flag find={params.row.tick} />
+        return <Flag className="text-base" find={params.row.tick} />
       },
     },
     {
@@ -131,36 +131,36 @@ function Page() {
 
   const marketCap = BigNum(utils.formatEther(price)).multipliedBy(config.price).toFixed(4)
 
+  function renderToolbar() {
+    return (
+      <div className="flex flex-wrap justify-between gap-2">
+        <Typography className="text-center w-full mb-2 sm:mb-0 sm:w-auto sm:text-left" variant="h6">{t('Trending Tokens')}</Typography>
+        <TextFieldSearch
+          value={keyword}
+          onChange={event => setKeyword(event.target.value)}
+          placeholder={t('Token')}
+        />
+      </div>
+    )
+  }
+
   return (
     <>
       <div className="mx-auto mt-9 mb-14 w-full text-center">
-        <span className="md:text-3xl text-center mt-[41px] mp:mb-[18px] select-none text-[#6300ff]">
+        <span className="text-2xl md:text-3xl text-center select-none text-[#6300ff]">
           {t('Total MXC-20 Market Cap', { price: thousandBitSeparator(marketCap) })}
         </span>
       </div>
-      <Card style={{ background: 'rgb(22 21 21 / 20%)' }}>
-        <CardContent className="token_page_step_0_5">
-          <div className="mb-4 flex justify-between items-center">
-            <Typography variant="h6">{t('Trending Tokens')}</Typography>
-            <TextFieldSearch
-              value={keyword}
-              onChange={event => setKeyword(event.target.value)}
-              placeholder={t('Token')}
-            />
-          </div>
-          <Condition is={state.value.length} else={<Empty loading={state.loading} />}>
-            <DataGrid
-              className="border-none data-grid-with-row-pointer"
-              {...gridPaginationFields}
-              loading={state.loading}
-              getRowId={row => row.tick}
-              rows={state.value}
-              columns={columns}
-              onRowClick={({ row }) => router.push(`/market/${row.tick}`)}
-            />
-          </Condition>
-        </CardContent>
-      </Card>
+      <DataTable
+        {...gridPaginationFields}
+        contentClass="token_page_step_0_5"
+        toolbar={renderToolbar()}
+        loading={state.loading}
+        getRowId={row => row.tick}
+        rows={state.value}
+        columns={columns}
+        onRowClick={({ row }) => router.push(`/market/${row.tick}`)}
+      />
     </>
   )
 }

@@ -19,8 +19,9 @@ export function TextFieldTick(props: TextFieldTickProps) {
   }, [props.defaultValue])
   return (
     <>
-      <div className="mx-auto mt-9 mb-14 w-full text-center">
-        <span className="md:text-3xl text-center mt-[41px] mp:mb-[18px] select-none text-[#6300ff]">
+      <div className="mx-auto mt-6 mb-8 sm:mt-9 sm:mb-14 w-full text-center">
+
+        <span className="text-2xl md:text-3xl text-center select-none text-[#6300ff]">
           {t('Check out msc-20 balance of the address')}
         </span>
       </div>
@@ -41,7 +42,7 @@ export function TextFieldTick(props: TextFieldTickProps) {
           </Icon>
         </div>
       </div>
-      <div className="text-center my-10 select-none">
+      <div className="text-center my-6 sm:my-10 select-none">
         {' '}
         {t('Token List Desc')}
         {' '}
