@@ -1,5 +1,6 @@
 import { HardhatUserConfig, task } from 'hardhat/config'
 import '@nomicfoundation/hardhat-toolbox'
+import '@nomicfoundation/hardhat-verify'
 import '@openzeppelin/hardhat-upgrades'
 import 'hardhat-deploy'
 import 'dotenv/config'
@@ -34,6 +35,9 @@ const config: HardhatUserConfig = {
       accounts: [OWNER_PRIVATE_KEY_TESTNET, VERIFIER_PRIVATE_KEY_TESTNET],
       saveDeployments: true,
       allowUnlimitedContractSize: true,
+      verify: {
+        etherscan: { apiUrl: 'https://wannsee-explorer-v1.mxc.com', apiKey: '' },
+      },
     },
     mainnet: {
       url: 'http://207.246.101.30:8545',
@@ -43,7 +47,34 @@ const config: HardhatUserConfig = {
       allowUnlimitedContractSize: true,
       gas: 'auto',
       gasPrice: 'auto',
+      verify: {
+        etherscan: { apiUrl: 'https://explorer-v1.mxc.com', apiKey: '' },
+      },
     },
+  },
+  etherscan: {
+    apiKey: {
+      mainnet: ' ',
+      testnet: ' ',
+    },
+    customChains: [
+      {
+        chainId: 18686,
+        network: 'mainnet',
+        urls: {
+          apiURL: 'https://explorer-v1.mxc.com/api',
+          browserURL: 'https://explorer.mxc.com',
+        },
+      },
+      {
+        chainId: 5167003,
+        network: 'testnet',
+        urls: {
+          apiURL: 'https://wannsee-explorer-v1.mxc.com/api',
+          browserURL: 'https://wannsee-explorer.mxc.com',
+        },
+      },
+    ],
   },
 }
 
