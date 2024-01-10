@@ -17,7 +17,7 @@ export function DataGridScriptions(props: DataGridScriptionsProps) {
   useWhenever(props.address, reload)
   useMount(reload)
   return (
-    <Condition is={state.value.length} else={<Empty loading={state.loading} />}>
+    <Condition is={state.value.length && !state.loading} else={<Empty loading={state.loading} />}>
       <InfiniteScroll
         next={next}
         loaded={state.loaded}

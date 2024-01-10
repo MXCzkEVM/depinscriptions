@@ -134,7 +134,7 @@ function Page() {
               onSearch={controls.reload}
             />
           </div>
-          <Condition is={state.value.length} else={<Empty loading={state.loading} />}>
+          <Condition is={state.value.length && !state.loading} else={<Empty loading={state.loading} />}>
             <DataGrid
               className="border-none data-grid-with-row-pointer"
               {...gridPaginationFields}
