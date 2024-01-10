@@ -18,7 +18,7 @@ import { BigNum, cover, getMarketContractWithSinger, getProviderBySinger, thousa
 import store from '@/store'
 import { Order } from '@/api/index.type'
 import MarketContext from '@/ui/market/Context'
-import { useAsyncCallback, useEventBus } from '@/hooks'
+import { useAsyncCallback, useBalance, useEventBus } from '@/hooks'
 
 export interface CardOrderProps {
   data: Order
@@ -30,6 +30,8 @@ export function CardOrder(props: CardOrderProps) {
   const { t } = useTranslation()
   const { limit, mode } = useContext(MarketContext)
   const { address } = useAccount()
+  const { value: balance = '0' } = useBalance()
+
   const [holderWaitingMl, openWaitIndexDialog] = useInjectHolder(WaitIndexDialog)
   const { emit: reloadPage } = useEventBus('reload:page')
 
@@ -39,12 +41,15 @@ export function CardOrder(props: CardOrderProps) {
   const mxc = mode === 'unit' ? unitPrice : limitPrice
   const usd = BigNum(mxc).multipliedBy(config.price).toFixed(4)
   const signature = JSON.parse(props.data.json)
-
   const { sendTransactionAsync } = useSendTransaction({
     mode: 'recklesslyUnprepared',
   })
 
   const [loading, purchase] = useAsyncCallback(async () => {
+    if (BigNum(balance).lt(props.data.price)) {
+      toast.error(t('Insufficient Balance'), { position: 'top-center' })
+      return
+    }
     const contract = getMarketContractWithSinger(chainId, address!)
     const singer = getProviderBySinger(chainId, address!)
     const preTransaction = await contract.populateTransaction.purchase(

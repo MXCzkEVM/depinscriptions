@@ -5,12 +5,12 @@ import { useAsync, useAsyncFn } from 'react-use'
 import { useSnapshot } from 'valtio'
 import { DetailedHTMLProps, HTMLAttributes, ReactNode, useCallback } from 'react'
 import { LoadingButton } from '@mui/lab'
-import { useAccount, useBalance, useChainId, useSendTransaction } from 'wagmi'
+import { useAccount, useChainId, useSendTransaction } from 'wagmi'
 import toast from 'react-hot-toast'
 import { HelpCircleOutline } from '@ricons/ionicons5'
 import { Flag, Price } from '../surfaces'
 import { Condition, Icon } from '../utils'
-import { useAsyncCallback, useDebounce, useNumberState, useWatch, useWhenever } from '@/hooks'
+import { useAsyncCallback, useBalance, useDebounce, useNumberState, useWatch, useWhenever } from '@/hooks'
 import { getOrderBelow } from '@/api'
 import { BigNum, formatEther, getMarketContractWithSinger, getProviderBySinger } from '@/utils'
 import store from '@/store'
@@ -29,9 +29,8 @@ export function LimitOrderDialog(props: LimitOrderDialogProps) {
 
   const [price, setPrice] = useNumberState('')
   const [state, fetch] = useAsyncFn(_fetch, [price, props.token])
-  const { value: balance = '0' } = useAsync(async () => {
-    return getProviderBySinger(chainId, address!).getBalance().then(toString)
-  }, [chainId, address])
+
+  const { value: balance = '0' } = useBalance()
 
   const debouncePrice = useDebounce(price, 500)
 
