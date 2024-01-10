@@ -35,9 +35,6 @@ importers:
       '@nomicfoundation/hardhat-verify':
         specifier: ^2.0.3
         version: 2.0.3(hardhat@2.19.4)
-      '@nomiclabs/hardhat-etherscan':
-        specifier: ^3.1.8
-        version: 3.1.8(hardhat@2.19.4)
       '@openzeppelin/contracts':
         specifier: ^5.0.1
         version: 5.0.1
@@ -3378,27 +3375,6 @@ packages:
       '@nomicfoundation/solidity-analyzer-win32-arm64-msvc': 0.1.1
       '@nomicfoundation/solidity-analyzer-win32-ia32-msvc': 0.1.1
       '@nomicfoundation/solidity-analyzer-win32-x64-msvc': 0.1.1
-
-  /@nomiclabs/hardhat-etherscan@3.1.8(hardhat@2.19.4):
-    resolution: {integrity: sha512-v5F6IzQhrsjHh6kQz4uNrym49brK9K5bYCq2zQZ729RYRaifI9hHbtmK+KkIVevfhut7huQFEQ77JLRMAzWYjQ==}
-    deprecated: The @nomiclabs/hardhat-etherscan package is deprecated, please use @nomicfoundation/hardhat-verify instead
-    peerDependencies:
-      hardhat: ^2.0.4
-    dependencies:
-      '@ethersproject/abi': 5.7.0
-      '@ethersproject/address': 5.7.0
-      cbor: 8.1.0
-      chalk: 2.4.2
-      debug: 4.3.4(supports-color@8.1.1)
-      fs-extra: 7.0.1
-      hardhat: 2.19.4(ts-node@10.9.2)(typescript@5.3.3)
-      lodash: 4.17.21
-      semver: 6.3.1
-      table: 6.8.1
-      undici: 5.28.2
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
 
   /@nuxtjs/opencollective@0.3.2:
     resolution: {integrity: sha512-um0xL3fO7Mf4fDxcqx9KryrB7zgRM5JSlvGN5AGkP6JLM5XEKyjeAiPbNxdXVXQ16isuAhYpvP88NgL2BGd6aA==}
