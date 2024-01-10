@@ -8,11 +8,12 @@ export function Decimal(props: DecimalProps) {
   const [integer = '0', decimal = ''] = String(props.value).split('.')
 
   function renderSubDecimal() {
+    const fastZeroEndIndex = findZeroIndex(decimal)
     return (
       <>
         0
-        <sub>{decimal.length - 4}</sub>
-        {decimal.slice(decimal.length - 4, decimal.length)}
+        <sub>{fastZeroEndIndex}</sub>
+        {decimal.slice(fastZeroEndIndex + 1, fastZeroEndIndex + 5)}
       </>
     )
   }
@@ -25,12 +26,21 @@ export function Decimal(props: DecimalProps) {
         isRenderDecimal && (
           <>
             .
-            {decimal.length > 4
+            {decimal.startsWith('0000')
               ? renderSubDecimal()
-              : decimal}
+              : decimal.substring(0, 4)}
           </>
         )
       }
     </span>
   )
+}
+
+function findZeroIndex(n: string) {
+  let lastIndex = -1
+  for (let i = 0; i < n.length; i++) {
+    if (n[i] === '0')
+      lastIndex = i
+  }
+  return lastIndex
 }
