@@ -49,7 +49,7 @@ export class MarketService {
     if (!tick)
       throw new NotFoundException(`Not found Tick [${id}]`)
     const { _sum: { price: volume } } = await this.prisma.order.aggregate({
-      where: { tick: id, status: { in: [1] } },
+      where: { tick: id, status: 1 },
       _sum: { price: true },
     })
     const { _count: { hash: sales } } = await this.prisma.order.aggregate({
