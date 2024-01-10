@@ -1,9 +1,10 @@
+/* eslint-disable ts/ban-ts-comment */
 import { createClient } from 'wagmi'
 import { goerli } from 'wagmi/chains'
 import type { Chain } from '@wagmi/core'
 import { InjectedConnector, configureChains } from '@wagmi/core'
 import { jsonRpcProvider } from '@wagmi/core/providers/jsonRpc'
-
+import { cloneDeep } from 'lodash'
 import { connectorsForWallets } from '@rainbow-me/rainbowkit'
 import { metaMaskWallet } from '@rainbow-me/rainbowkit/wallets'
 import { chains as CHAINS } from '@/config'
@@ -18,7 +19,7 @@ const providers = [
   }),
 ]
 
-const { chains, provider, webSocketProvider } = configureChains(defaultChains, providers)
+const { chains, provider: getProvider, webSocketProvider } = configureChains(defaultChains, providers)
 
 const connectors = connectorsForWallets([
   {
@@ -30,13 +31,21 @@ const connectors = connectorsForWallets([
   },
 ])
 
+function extendsGetProvider(opt: any) {
+  const provider = getProvider(opt)
+  const clone = cloneDeep(provider)
+  // fix request balance error
+  // @ts-expect-error
+  clone.connection.url = provider.chains?.[0].rpcUrls.public.http[0]
+  return clone
+}
 const client = createClient({
   logger: {
     warn: message => console.warn(message),
   },
   autoConnect: true,
   connectors,
-  provider,
+  provider: extendsGetProvider,
   webSocketProvider,
 })
 
@@ -56,5 +65,4 @@ function AXSWallet({ chains }) {
     },
   }
 }
-
 export { chains, client }

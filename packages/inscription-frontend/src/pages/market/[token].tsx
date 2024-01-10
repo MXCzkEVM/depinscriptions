@@ -29,7 +29,7 @@ function Page() {
   const router = useRouter()
   const token = useRouterQuery('token')
   const config = useSnapshot(store.config)
-  const { emit: reloadPage } = useEventBus('reload:page')
+  const { emit: reloadPage, on: onReloadPage } = useEventBus('reload:page')
 
   const { t } = useTranslation()
   const [holderListMl, openListModal] = useInjectHolder<ListDialogProps, ListDialogResolved>(ListDialog)
@@ -40,6 +40,7 @@ function Page() {
   const [holderLocationMl, openLocationDialog] = useInjectHolder(LocationDialog)
 
   useWhenever(token, reload)
+  onReloadPage(() => reload())
 
   if (!data)
     return <Empty loading={loading} />
