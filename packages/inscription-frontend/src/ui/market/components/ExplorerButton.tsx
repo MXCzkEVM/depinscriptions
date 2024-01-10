@@ -14,7 +14,7 @@ const EXPLORER_URL = process.env.NEXT_PUBLIC_EXPLORER!
 export function ExplorerButton(props: ExplorerButtonProps) {
   return (
     <Condition is={props.hidden !== true}>
-      <Link className="hidden sm:inline-block" color="inherit" target="_blank" href={`${EXPLORER_URL}/tx/${props.row.hash}`}>
+      <Link className="hidden sm:inline-flex items-center" color="inherit" target="_blank" href={`${EXPLORER_URL}/tx/${props.row.hash}`}>
         <Icon className="cursor-pointer">
           <ArrowRedoCircleOutline />
         </Icon>

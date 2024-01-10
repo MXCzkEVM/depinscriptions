@@ -5,6 +5,8 @@ import { useSnapshot } from 'valtio'
 import Link from 'next/link'
 import dayjs from 'dayjs'
 import { ArrowRedoCircleOutline } from '@ricons/ionicons5'
+import { GridBaseColDef } from '@mui/x-data-grid/internals'
+import { useAccount } from 'wagmi'
 import MarketContext from '../Context'
 import { ExplorerButton } from '../components'
 import { Order } from '@/api/index.type'
@@ -15,21 +17,46 @@ import store from '@/store'
 export interface UseColumnsByOrdersOptions {
   extendRows?: GridColDef<Order>[]
   denominated?: boolean
-  hideExplorerIcon?: boolean
-  hideHexagon?: boolean
+  personal?: boolean
 }
 
 export function useColumnsByOrders(options: UseColumnsByOrdersOptions = {}) {
-  const { denominated, extendRows = [] } = options
-  const { t } = useTranslation()
+  const { denominated, extendRows = [], personal } = options
   const { limit, mode } = useContext(MarketContext)
-  const symbol = denominated ? 'usd' : 'mxc'
+  const { t } = useTranslation()
+  const { address } = useAccount()
   const config = useSnapshot(store.config)
+  const symbol = denominated ? 'usd' : 'mxc'
+
+  const timColumn: DataTableColDef<Order> = {
+    field: 'time',
+    headerName: t('Time'),
+    minWidth: 110,
+    flex: 1,
+    renderCell(params) {
+      return <span>{dayjs(params.row.time).format('MM-DD HH:mm:ss')}</span>
+    },
+  }
+  const hexColumn: DataTableColDef<Order> = {
+    field: 'hex',
+    headerName: t('Location'),
+    hidden: row => row.status !== 0,
+    minWidth: 100,
+    renderCell(params) {
+      const hexagon = JSON.parse(params.row.json || '{}')?.hex
+      return (
+        <Condition is={params.row.status === 0 && hexagon} else="-">
+          <LocationForHexagon hexagon={hexagon} />
+        </Condition>
+      )
+    },
+  }
 
   const columns: DataTableColDef<Order>[] = [
     {
       field: 'number',
       headerName: 'No.',
+      width: 50,
       renderCell(params) {
         return `#${params.row.number}`
       },
@@ -37,10 +64,13 @@ export function useColumnsByOrders(options: UseColumnsByOrdersOptions = {}) {
     {
       field: 'status',
       headerName: t('Event'),
+      width: 70,
       renderCell(params) {
+        const isBuyer
+        = personal && params.row.buyer === address
         const mappings = {
           0: <span style={{ color: 'rgb(134,239,172)' }}>{t('Listing')}</span>,
-          1: <span style={{ color: 'rgb(252,165,165)' }}>{t('Sold')}</span>,
+          1: <span style={{ color: 'rgb(252,165,165)' }}>{isBuyer ? t('Purchased') : t('Sold')}</span>,
           2: <span style={{ color: 'rgb(100,116,139)' }}>{t('Cancelled')}</span>,
         }
         return mappings[params.row.status]
@@ -49,6 +79,8 @@ export function useColumnsByOrders(options: UseColumnsByOrdersOptions = {}) {
     {
       field: 'tick',
       headerName: t('Token'),
+      flex: 1,
+      maxWidth: 110,
       renderCell(params) {
         return <Flag find={params.row.tick} />
       },
@@ -56,6 +88,7 @@ export function useColumnsByOrders(options: UseColumnsByOrdersOptions = {}) {
     {
       field: 'price',
       headerName: t('Price'),
+      flex: 1,
       renderCell(params) {
         const unitPrice = formatEther(params.row.price).div(params.row.amount)
         const limitPrice = BigNum(limit).multipliedBy(unitPrice)
@@ -74,6 +107,7 @@ export function useColumnsByOrders(options: UseColumnsByOrdersOptions = {}) {
     {
       field: 'total',
       headerName: t('Total'),
+      flex: 1,
       renderCell(params) {
         const mxcPrice = formatEther(params.row.price)
         const usdPrice = BigNum(mxcPrice).multipliedBy(config.price)
@@ -83,8 +117,8 @@ export function useColumnsByOrders(options: UseColumnsByOrdersOptions = {}) {
     {
       field: 'maker',
       headerName: t('From'),
-      minWidth: 140,
       flex: 1,
+      minWidth: 60,
       renderCell(params) {
         const address = params.row.status === 1
           ? params.row.buyer
@@ -95,8 +129,8 @@ export function useColumnsByOrders(options: UseColumnsByOrdersOptions = {}) {
     {
       field: 'buyer',
       headerName: t('To'),
-      minWidth: 140,
       flex: 1,
+      minWidth: 60,
       renderCell(params) {
         const address = params.row.status === 1
           ? params.row.maker
@@ -109,41 +143,30 @@ export function useColumnsByOrders(options: UseColumnsByOrdersOptions = {}) {
         return !(row.status === 1 ? row.maker : row.buyer)
       },
     },
-    ...options.hideHexagon !== true
-      ? [{
-          field: 'hex',
-          headerName: t('Location'),
-          hidden: row => row.status !== 0,
-          minWidth: 100,
-          flex: 1,
-          renderCell(params) {
-            const hexagon = JSON.parse(params.row.json || '{}')?.hex
-            return (
-              <Condition is={hexagon} else="-">
-                <LocationForHexagon hexagon={hexagon} />
-              </Condition>
-            )
-          },
-        }]
-      : [],
-    {
-      field: 'time',
-      headerName: t('Time'),
-      minWidth: 120,
-      flex: 1,
-      renderCell(params) {
-        return (
-          <div className="w-full flex justify-between">
-            <span>{dayjs(params.row.time).format('MM-DD HH:mm:ss')}</span>
-            <ExplorerButton hidden={options.hideExplorerIcon} row={params.row} />
-          </div>
-        )
-      },
-    },
-
   ]
 
-  const cols = [...columns, ...extendRows]
+  const defaultColumns = [
+    ...columns,
+    !personal && hexColumn,
+    timColumn,
+    ...extendRows,
+  ].filter(Boolean) as GridBaseColDef<Order, any, any>[]
 
-  return cols
+  const souColumn = defaultColumns[defaultColumns.length - 1]
+  const othColumns = defaultColumns.slice(0, defaultColumns.length - 1)
+
+  const lasColumn: GridBaseColDef<Order, any, any> = {
+    ...souColumn,
+    minWidth: (souColumn.minWidth || 0) + 40,
+    renderCell(params) {
+      return (
+        <div className="w-full flex items-center justify-between">
+          {souColumn.renderCell?.(params) || params.row[souColumn.field]}
+          <ExplorerButton row={params.row} />
+        </div>
+      )
+    },
+  }
+
+  return [...othColumns, lasColumn]
 }

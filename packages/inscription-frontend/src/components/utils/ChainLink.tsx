@@ -4,12 +4,14 @@ import { useCopyToClipboard } from 'react-use'
 import { toast } from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { useEnsName } from 'wagmi'
+import classNames from 'classnames'
 import { Icon } from './Icon'
 import { cover } from '@/utils'
 
 const EXPLORER_URL = process.env.NEXT_PUBLIC_EXPLORER!
 
 export interface ChainLinkProps extends TypographyOwnProps {
+  linkClass?: string
   type: 'hash' | 'address'
   href?: string
 }
@@ -32,8 +34,8 @@ export function ChainLink(props: ChainLinkProps) {
     toast.success(t('Copy Success'), { position: 'top-center' })
   }
   return (
-    <div className="flex items-center w-full text-xs sm:text-base">
-      <Link className="truncate" color="inherit" {...props} href={href}>
+    <div className="inline-flex w-full items-center text-xs sm:text-base">
+      <Link className={classNames(['truncate', props.linkClass])} color="inherit" {...props} href={href}>
         {props.children || (
           props.type === 'address'
             ? data || cover(props.href, [4, 3, 4])
