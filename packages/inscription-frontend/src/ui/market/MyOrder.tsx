@@ -45,8 +45,9 @@ function MyOrder() {
 
   function renderColumnByAction(row: Order) {
     return (
-      <CancelButton data={row} onCancelled={controls.reload} />
-
+      <Condition is={row.status === 0} else="-">
+        <CancelButton data={row} onCancelled={controls.reload} />
+      </Condition>
     )
   }
 
