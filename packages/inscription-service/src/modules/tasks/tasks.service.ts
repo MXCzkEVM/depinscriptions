@@ -27,7 +27,6 @@ export class TasksService {
     if (this.locked)
       return
     this.locked = true
-
     try {
       const lastBlockNumber = await this.provider.getLastBlockNumber()
       const startBlockNumber = await getIndexerLastBlock()
