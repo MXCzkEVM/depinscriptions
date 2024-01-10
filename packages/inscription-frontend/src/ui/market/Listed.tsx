@@ -51,7 +51,7 @@ function Listed() {
           {t('Limit Order')}
         </Button>
       </div>
-      <Condition is={state.value.length} else={<Empty loading={state.loading} />}>
+      <Condition is={state.value.length && !state.loading} else={<Empty loading={state.loading} />}>
         <InfiniteScroll
           next={next}
           loaded={state.loaded}
