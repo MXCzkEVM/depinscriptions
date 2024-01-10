@@ -49,7 +49,7 @@ function Page() {
       flex: 1,
       renderCell(params) {
         const mxc = utils.formatEther(params.row.volume)
-        return <Price symbol="mxc" value={mxc} />
+        return <Price symbol="mxc" value={mxc} decimal={2} />
       },
     },
     {
@@ -77,7 +77,7 @@ function Page() {
       flex: 1,
       renderCell(params) {
         const mxc = utils.formatEther(params.row.totalVolume)
-        return <Price symbol="mxc" value={mxc} />
+        return <Price symbol="mxc" value={mxc} decimal={2} />
       },
     },
     {
