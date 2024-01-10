@@ -2,6 +2,7 @@ import { MenuItem } from '@mui/material'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { useAccount } from 'wagmi'
 import { CancelButton, ExplorerButton, Select, Switch } from './components'
 
 import { useColumnsByOrders } from './hooks'
@@ -17,6 +18,7 @@ function MyOrder() {
   const [denominated, setDenominated] = useState(false)
   const [allMarkets, setAllMarkets] = useState(false)
   const [status, setStatus] = useState<any[]>([0, 1, 2])
+  const { address } = useAccount()
 
   const columns = useColumnsByOrders({
     personal: true,
@@ -32,6 +34,7 @@ function MyOrder() {
   const [state, controls] = useServerPagination({
     resolve: model => getOrder({
       ...model,
+      owner: address,
       tick: allMarkets ? '' : tick,
       status,
     }),
