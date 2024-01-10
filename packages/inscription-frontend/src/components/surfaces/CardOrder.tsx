@@ -96,13 +96,13 @@ export function CardOrder(props: CardOrderProps) {
   return (
     <CardDefault footer={renderFooter()}>
       {holderWaitingMl}
-      <div className="flex justify-between items-center">
-        <div className="flex items-center">
+      <div className="flex justify-between items-center gap-5">
+        <div className="flex items-center flex-shrink-0">
           <span className="mr-2">{props.data.tick}</span>
           <Flag text={false} find={props.data.tick} />
         </div>
         <Condition is={signature.hex}>
-          <div className="w-50% text-xs">
+          <div className="max-w-50% text-xs overflow-hidden">
             <LocationForHexagon hexagon={signature.hex} />
           </div>
         </Condition>
