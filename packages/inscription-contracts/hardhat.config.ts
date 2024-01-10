@@ -36,7 +36,10 @@ const config: HardhatUserConfig = {
       saveDeployments: true,
       allowUnlimitedContractSize: true,
       verify: {
-        etherscan: { apiUrl: 'https://wannsee-explorer-v1.mxc.com', apiKey: '' },
+        etherscan: {
+          apiUrl: 'https://wannsee-explorer-v1.mxc.com/',
+          apiKey: '',
+        },
       },
     },
     mainnet: {
@@ -59,22 +62,25 @@ const config: HardhatUserConfig = {
     },
     customChains: [
       {
-        chainId: 18686,
         network: 'mainnet',
+        chainId: 18686,
         urls: {
           apiURL: 'https://explorer-v1.mxc.com/api',
           browserURL: 'https://explorer.mxc.com',
         },
       },
       {
-        chainId: 5167003,
         network: 'testnet',
+        chainId: 5167003,
         urls: {
           apiURL: 'https://wannsee-explorer-v1.mxc.com/api',
           browserURL: 'https://wannsee-explorer.mxc.com',
         },
       },
     ],
+  },
+  sourcify: {
+    enabled: false,
   },
 }
 
