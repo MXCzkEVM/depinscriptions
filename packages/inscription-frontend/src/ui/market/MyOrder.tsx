@@ -19,15 +19,13 @@ function MyOrder() {
   const [status, setStatus] = useState<any[]>([0, 1, 2])
 
   const columns = useColumnsByOrders({
-    hideExplorerIcon: true,
-    hideHexagon: true,
+    personal: true,
     denominated,
     extendRows: [{
       renderCell: params => renderColumnByAction(params.row),
       field: 'action',
       headerName: t('Action'),
-      minWidth: 120,
-      flex: 1,
+      minWidth: 80,
     }],
   })
 
@@ -46,17 +44,9 @@ function MyOrder() {
   })
 
   function renderColumnByAction(row: Order) {
-    if (row.status === 3)
-      return '-'
     return (
-      <div className="w-full flex justify-between">
-        <div className="flex-1">
-          <Condition is={row.status === 0} else="-">
-            <CancelButton data={row} onCancelled={controls.reload} />
-          </Condition>
-        </div>
-        <ExplorerButton row={row} />
-      </div>
+      <CancelButton data={row} onCancelled={controls.reload} />
+
     )
   }
 

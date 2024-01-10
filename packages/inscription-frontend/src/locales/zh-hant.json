@@ -128,7 +128,7 @@
   "Order total amount should be greater than 10": "訂單總金額應大於 10 美元",
   "You dont have enough tick": "您沒有足夠的 {{token}}。",
   "Sold": "售出",
-  "Listing": "上架中",
+  "Listing": "上架",
   "Cancelled": "取消",
   "Action": "操作",
   "Refund": "退回",
