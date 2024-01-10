@@ -2,15 +2,15 @@
   "manifestVersion": "3.2",
   "proxies": [
     {
-      "address": "0x3B7BAd2f2d59106395161A208AE62d96c16cF239",
-      "txHash": "0x80a86178229e4120344b322c127cab9663b20e837103f70222d786e106c4fc28",
+      "address": "0x396B3f2F0b83738dDbE1CA5aA96292C73DBC5542",
+      "txHash": "0x01b976d8d96334c9cb30781f6b577209d327040df307c9b50621073555cc8258",
       "kind": "uups"
     }
   ],
   "impls": {
-    "354e7b6e08bd6603839d0ba93f42171c611779682a1d06696245393fa9fc814c": {
-      "address": "0xB5A2fA3C3756952ED5A066398c3C432C574145cb",
-      "txHash": "0x1fa9f702642d0da14ffd69220bc15d057a5f9de76a167bbf2dd500ed18685b0f",
+    "bd02553ffeaa49c25c34da3ff2600d2f4077be494c6146845971be2ffa5425ef": {
+      "address": "0x80Ffd86296cF48b890Fdae5577072b1cD54eaD1c",
+      "txHash": "0x4f3bff8f62e7377e274a072713a5071c5a10994f441e4e6d3470d00ab3cdff7c",
       "layout": {
         "solcVersion": "0.8.20",
         "storage": [
@@ -20,7 +20,7 @@
             "slot": "0",
             "type": "t_address",
             "contract": "MSC20Market",
-            "src": "contracts\\MSC20Market.sol:41"
+            "src": "src\\MSC20Market.sol:41"
           },
           {
             "label": "verifier",
@@ -28,7 +28,7 @@
             "slot": "1",
             "type": "t_address",
             "contract": "MSC20Market",
-            "src": "contracts\\MSC20Market.sol:42"
+            "src": "src\\MSC20Market.sol:42"
           },
           {
             "label": "feeBps",
@@ -36,7 +36,7 @@
             "slot": "1",
             "type": "t_uint96",
             "contract": "MSC20Market",
-            "src": "contracts\\MSC20Market.sol:43"
+            "src": "src\\MSC20Market.sol:43"
           },
           {
             "label": "filleds",
@@ -44,7 +44,7 @@
             "slot": "2",
             "type": "t_mapping(t_string_memory_ptr,t_bool)",
             "contract": "MSC20Market",
-            "src": "contracts\\MSC20Market.sol:44"
+            "src": "src\\MSC20Market.sol:44"
           },
           {
             "label": "featureIsEnabled",
@@ -52,7 +52,7 @@
             "slot": "3",
             "type": "t_mapping(t_string_memory_ptr,t_bool)",
             "contract": "MSC20Market",
-            "src": "contracts\\MSC20Market.sol:45"
+            "src": "src\\MSC20Market.sol:45"
           }
         ],
         "types": {
