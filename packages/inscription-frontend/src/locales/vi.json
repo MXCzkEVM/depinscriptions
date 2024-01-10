@@ -82,7 +82,7 @@
   "root_step_3": "Ví của bạn sẽ hiển thị số tiền và khoản nắm giữ ghi chú của bạn, bạn có thể liệt kê và chuyển chúng đến đó.",
   "root_step_4": "Giao dịch chúng trên thị trường DePINscription",
   "root_step_1_5": "Xem các tập lệnh được lập chỉ mục tại đây",
-  "Tutorial": "Tài liệu hướng dẫn",
+  "Tutorial": "Hướng dẫn",
   "Last": "Cuối cùng",
   "Finish": "Hoàn thành",
   "token_page_step_1": "Nhấp vào chi tiết của từng mã để tham gia vào quá trình đúc.",
@@ -155,5 +155,6 @@
   "market_detail_step_2": "để mua chữ khắc riêng lẻ. \nChỉ cần nhấp vào 'Mua' cho mỗi dòng chữ bạn muốn mua.",
   "market_detail_step_3": "mua nhiều chữ khắc một cách hiệu quả bằng cách sử dụng lệnh giới hạn, cho phép bạn có được tất cả các chữ khắc mong muốn cùng một lúc.",
   "market_detail_step_4": "bạn có thể có cơ hội liệt kê các bản khắc đúc của mình để bán, đặt mức giá ưa thích của bạn bằng $ MXC",
-  "market_detail_step_5": "có thể xem và giám sát tất cả các dòng chữ được liệt kê của bạn, cùng với lịch sử giá cả và mua hàng của chúng."
+  "market_detail_step_5": "có thể xem và giám sát tất cả các dòng chữ được liệt kê của bạn, cùng với lịch sử giá cả và mua hàng của chúng.",
+  "Docs": "Tài liệu"
 }

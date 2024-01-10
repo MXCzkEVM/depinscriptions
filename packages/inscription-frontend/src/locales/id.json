@@ -82,7 +82,7 @@
   "root_step_3": "Dompet Andalah yang menunjukkan kepemilikan dan jumlah prasasti Anda, Anda dapat membuat daftar dan mentransfernya ke sana.",
   "root_step_4": "Perdagangkan di pasar DePINscription",
   "root_step_1_5": "Lihat skrip yang diindeks di sini",
-  "Tutorial": "Dokumen Tutorial",
+  "Tutorial": "tutorial",
   "Last": "Terakhir",
   "Finish": "Menyelesaikan",
   "token_page_step_1": "Klik detail setiap kode untuk berpartisipasi dalam proses pembuatan.",
@@ -155,5 +155,6 @@
   "market_detail_step_2": "untuk membeli prasasti satu per satu. \nCukup klik 'Beli' untuk setiap prasasti yang ingin Anda peroleh.",
   "market_detail_step_3": "secara efisien membeli beberapa prasasti sekaligus menggunakan pesanan terbatas, memungkinkan Anda memperoleh semua prasasti yang diinginkan secara bersamaan.",
   "market_detail_step_4": "Anda berkesempatan untuk mencantumkan prasasti yang Anda cetak untuk dijual, dengan menetapkan harga pilihan Anda dalam $MXC",
-  "market_detail_step_5": "dapat melihat dan memantau semua prasasti yang Anda daftarkan, beserta harga dan riwayat pembeliannya."
+  "market_detail_step_5": "dapat melihat dan memantau semua prasasti yang Anda daftarkan, beserta harga dan riwayat pembeliannya.",
+  "Docs": "dokumen"
 }

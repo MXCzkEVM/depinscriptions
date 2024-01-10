@@ -7,6 +7,7 @@ import { useNavbarContext } from 'flowbite-react/lib/cjs/components/Navbar/Navba
 import classNames from 'classnames'
 import Language from './Language'
 import { useEventBus } from '@/hooks'
+import { ejectBlankPage } from '@/utils'
 
 const CollapseSource = Navbar.Collapse
 Navbar.Locale = Language
@@ -38,6 +39,7 @@ const LayoutNavbar: React.FC = () => {
         <Navbar.Item className="root_step_2" path="/tokens?tab=all">{t('Token')}</Navbar.Item>
         <Navbar.Item className="root_step_3" path="/personal">{t('Wallet')}</Navbar.Item>
         <Navbar.Item className="root_step_4" path="/market">{t('Marketplace')}</Navbar.Item>
+        <Navbar.Item className="root_step_4" onClick={() => ejectBlankPage(`https://doc.mxc.com/docs/Designs/Hexagons`)}>{t('Docs')}</Navbar.Item>
         <Navbar.Item className="root_step_4" onClick={reloadGuide}>{t('Tutorial')}</Navbar.Item>
       </Navbar.Collapse>
     </>

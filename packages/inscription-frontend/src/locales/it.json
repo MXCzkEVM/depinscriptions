@@ -82,7 +82,7 @@
   "root_step_3": "È il tuo portafoglio che mostra le partecipazioni e gli importi delle tue iscrizioni, puoi elencarli e trasferirli lì.",
   "root_step_4": "Scambiali sul mercato DePINscription",
   "root_step_1_5": "Visualizza gli script indicizzati qui",
-  "Tutorial": "Documenti tutorial",
+  "Tutorial": "Esercitazione",
   "Last": "Scorso",
   "Finish": "Fine",
   "token_page_step_1": "Fai clic sui dettagli di ciascun codice per partecipare al processo di conio.",
@@ -155,5 +155,6 @@
   "market_detail_step_2": "per acquistare le iscrizioni singolarmente. \nBasta fare clic su \"Acquista\" per ciascuna iscrizione che desideri acquisire.",
   "market_detail_step_3": "acquistare in modo efficiente più iscrizioni in una volta sola utilizzando un ordine limite, consentendoti di acquisire tutte le iscrizioni desiderate contemporaneamente.",
   "market_detail_step_4": "puoi avere l'opportunità di mettere in vendita le tue iscrizioni coniate, impostando i tuoi prezzi preferiti in $ MXC",
-  "market_detail_step_5": "può visualizzare e monitorare tutte le iscrizioni elencate, insieme ai relativi prezzi e alla cronologia degli acquisti."
+  "market_detail_step_5": "può visualizzare e monitorare tutte le iscrizioni elencate, insieme ai relativi prezzi e alla cronologia degli acquisti.",
+  "Docs": "Documenti"
 }

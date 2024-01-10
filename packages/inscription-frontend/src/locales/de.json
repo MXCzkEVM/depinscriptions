@@ -82,7 +82,7 @@
   "root_step_3": "In Ihrem Wallet werden Ihre Inschriftenbestände und Beträge angezeigt, Sie können diese dort auflisten und übertragen.",
   "root_step_4": "Handeln Sie sie auf dem DePINscription-Marktplatz",
   "root_step_1_5": "Sehen Sie sich hier indizierte Skripte an",
-  "Tutorial": "Tutorial-Dokumente",
+  "Tutorial": "Lernprogramm",
   "Last": "Zuletzt",
   "Finish": "Beenden",
   "token_page_step_1": "Klicken Sie auf die Details jedes Codes, um am Prägungsprozess teilzunehmen.",
@@ -155,5 +155,6 @@
   "market_detail_step_2": "Inschriften einzeln zu erwerben. \nKlicken Sie einfach für jede Inschrift, die Sie erwerben möchten, auf „Kaufen“.",
   "market_detail_step_3": "Kaufen Sie effizient mehrere Inschriften auf einmal mit einer Limitbestellung, sodass Sie alle gewünschten Inschriften gleichzeitig erwerben können.",
   "market_detail_step_4": "Sie haben die Möglichkeit, Ihre geprägten Inschriften zum Verkauf anzubieten und Ihre bevorzugten Preise in MXC festzulegen",
-  "market_detail_step_5": "Sie können alle Ihre aufgelisteten Inschriften zusammen mit deren Preis und Kaufhistorie anzeigen und überwachen."
+  "market_detail_step_5": "Sie können alle Ihre aufgelisteten Inschriften zusammen mit deren Preis und Kaufhistorie anzeigen und überwachen.",
+  "Docs": "Dokumente"
 }

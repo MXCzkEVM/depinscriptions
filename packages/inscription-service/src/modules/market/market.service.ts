@@ -49,23 +49,19 @@ export class MarketService {
     if (!tick)
       throw new NotFoundException(`Not found Tick [${id}]`)
     const { _sum: { price: volume } } = await this.prisma.order.aggregate({
-      where: { tick: id, status: { in: [0, 1] } },
-      _sum: {
-        price: true,
-      },
+      where: { tick: id, status: { in: [1] } },
+      _sum: { price: true },
     })
     const { _count: { hash: sales } } = await this.prisma.order.aggregate({
       where: { tick: id, status: 1 },
-      _count: {
-        hash: true,
-      },
+      _count: { hash: true },
     })
 
     const [order] = await this.prisma.$queryRaw<Order[]>`
       SELECT * FROM  \`Order\` 
       WHERE tick = ${id} AND status = 0
-      ORDER BY 
-        (price - amount) DESC 
+      ORDER BY
+        (price / amount) ASC 
       LIMIT 1;
     `
     const price = order

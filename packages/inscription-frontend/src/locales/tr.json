@@ -82,7 +82,7 @@
   "root_step_3": "Yazılı varlıklarınızı ve tutarlarınızı gösteren cüzdanınızdır, bunları listeleyebilir ve oraya aktarabilirsiniz.",
   "root_step_4": "Bunları DePINscription pazarında takas edin",
   "root_step_1_5": "Dizine eklenen komut dosyalarını burada görüntüleyin",
-  "Tutorial": "Eğitim Dokümanları",
+  "Tutorial": "öğretici",
   "Last": "Son",
   "Finish": "Sona ermek",
   "token_page_step_1": "Basım sürecine katılmak için her kodun ayrıntılarına tıklayın.",
@@ -155,5 +155,6 @@
   "market_detail_step_2": "yazıtları ayrı ayrı satın almak için. \nAlmak istediğiniz her yazıt için 'Satın Al'a tıklamanız yeterlidir.",
   "market_detail_step_3": "Bir limit emri kullanarak tek seferde birden fazla yazıtı verimli bir şekilde satın alarak istediğiniz tüm yazıları aynı anda elde edebilirsiniz.",
   "market_detail_step_4": "Tercih ettiğiniz fiyatları $MXC cinsinden belirleyerek, basılmış yazılarınızı satılık olarak listeleme fırsatını yakalayabilirsiniz.",
-  "market_detail_step_5": "listelenen tüm yazılarınızı fiyatlandırma ve satın alma geçmişleriyle birlikte görüntüleyebilir ve izleyebilirsiniz."
+  "market_detail_step_5": "listelenen tüm yazılarınızı fiyatlandırma ve satın alma geçmişleriyle birlikte görüntüleyebilir ve izleyebilirsiniz.",
+  "Docs": "Dokümanlar"
 }
