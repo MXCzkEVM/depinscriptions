@@ -1,0 +1,86 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "mysql"
+  url      = env("PRISMA_DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Tick {
+  number        Int       @id @default(autoincrement())
+  tick          String    @unique
+  minted        BigInt    @default(0)
+  total         BigInt    @default(0)
+  holders       Int       @default(0)
+  limit         BigInt
+  creator       String
+  deployHash    String    @unique
+  deployTime    DateTime
+  lastTime      DateTime  @updatedAt
+  completedTime DateTime?
+  market        Boolean   @default(false)
+  trxs          BigInt    @default(0)
+}
+
+model Hexagon {
+  id  Int    @id @default(autoincrement())
+  hex String
+  tik String
+  mit BigInt @default(0)
+}
+
+model Holder {
+  id     Int    @id @default(autoincrement())
+  number Int
+  value  BigInt
+  tick   String
+  owner  String
+}
+
+model Order {
+  number     Int      @id @default(autoincrement())
+  hash       String   @unique
+  finalHash  String?
+  buyer      String?
+  maker      String
+  tick       String
+  amount     BigInt
+  price      Decimal  @db.Decimal(65, 0)
+  // 0:listing | 1:sold | 2:cancelled | 3:expired
+  status     Int      @default(0)
+  time       DateTime @default(now())
+  lastTime   DateTime @updatedAt
+  expiration DateTime
+  json       String
+}
+
+model OrderRecord {
+  id         Int      @id @default(autoincrement())
+  number     Int      
+  hash       String
+  buyer      String?
+  tick       String
+  maker      String
+  amount     BigInt
+  price      Decimal  @db.Decimal(65, 0)
+  // 0:listing | 1:sold | 2:cancelled | 3:expired
+  status     Int      @default(0)
+  time       DateTime @default(now())
+  json       String
+  expiration DateTime
+}
+
+model Inscription {
+  number Int      @id @default(autoincrement())
+  hash   String   @unique
+  op     String
+  tick   String
+  json   String
+  from   String
+  to     String
+  time   DateTime @default(now())
+}

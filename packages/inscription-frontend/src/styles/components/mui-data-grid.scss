@@ -1,0 +1,36 @@
+.MuiDataGrid-cell:focus-within,
+.MuiDataGrid-cell:focus {
+  outline: none !important
+}
+
+.MuiDataGrid-virtualScroller::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  background: transparent;
+}
+.MuiDataGrid-row.Mui-selected {
+  background-color: transparent !important;
+}
+.MuiDataGrid-row:hover {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+.data-grid-with-row-pointer {
+  .MuiDataGrid-row {
+    cursor: pointer;
+  }
+}
+
+.data-grid-with-hidden-footer {
+  .MuiDataGrid-footerContainer {
+    display: none !important;
+  }
+}
+
+.table-pagination-with-hidden-select {
+  .MuiTablePagination-selectLabel {
+    display: none !important;
+  }
+  .MuiTablePagination-input {
+    display: none !important;
+  }
+}

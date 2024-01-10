@@ -1,3 +1,4 @@
 packages:
-  - packages/server
-  - packages/client
+  - packages/inscription-contracts
+  - packages/inscription-frontend
+  - packages/inscription-service
