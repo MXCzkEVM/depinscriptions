@@ -35,7 +35,7 @@ export class OrderService {
     return this.prisma.$queryRaw<Order[]>`
       SELECT * FROM  \`Order\`
       WHERE tick = ${params.tick} AND status = 0
-      ORDER BY (price - amount) DESC
+      ORDER BY (price / amount) ASC
       LIMIT ${params.limit} OFFSET ${(params.page - 1) * params.limit};
     `
   }

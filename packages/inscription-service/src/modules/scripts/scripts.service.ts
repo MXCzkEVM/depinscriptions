@@ -3,6 +3,7 @@ import { AbiCoder, EventLog, Signature, TransactionResponse, solidityPackedKecca
 import { bgWhite, cyan, reset, yellow } from 'chalk'
 import { ConfigService } from '@nestjs/config'
 import { Order } from '@prisma/client'
+import BigNumber from 'bignumber.js'
 import { HolderService } from '../holder'
 import { TokenService } from '../token'
 import { HexagonService } from '../hexagon'
@@ -210,7 +211,6 @@ export class ScriptsService {
       json: JSON.stringify({ r, s, v, hex: inscription.hex }),
       status: 0,
     })
-
     this.log('listed', {
       desc: `list`,
       amount: `${inscription.amt} ${token.tick}`,
