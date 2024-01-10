@@ -8,7 +8,7 @@ import { Hexagon, Token } from '@/api/index.type'
 import { getHexagon } from '@/api'
 import { useEventBus, useGridPaginationFields, useServerPagination, useWhenever } from '@/hooks'
 
-const EXPLORER_URL = process.env.NEXT_PUBLIC_EXPLORER!
+// const EXPLORER_URL = process.env.NEXT_PUBLIC_EXPLORER!
 
 export interface DataTableHexagonsProps {
   token?: Token
@@ -66,7 +66,7 @@ export function DataTableHexagons(props: DataTableHexagonsProps) {
         getRowId={row => row.hex}
         rows={state.value}
         columns={columns}
-        onRowClick={() => ejectBlankPage(`${EXPLORER_URL}/mapper`)}
+        onRowClick={() => ejectBlankPage(`https://doc.mxc.com/docs/Designs/Hexagons`)}
       />
     </Condition>
   )
