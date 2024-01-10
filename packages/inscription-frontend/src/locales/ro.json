@@ -82,7 +82,7 @@
   "root_step_3": "Portofelul dvs. este cel care vă arată deținerile și sumele de înscriere, le puteți lista și transfera acolo.",
   "root_step_4": "Comercializați-le pe piața DePINscription",
   "root_step_1_5": "Vizualizați scripturile indexate aici",
-  "Tutorial": "Tutorial Docs",
+  "Tutorial": "Tutorial",
   "Last": "Ultimul",
   "Finish": "finalizarea",
   "token_page_step_1": "Faceți clic pe detaliile fiecărui cod pentru a participa la procesul de batere.",
@@ -155,5 +155,6 @@
   "market_detail_step_2": "pentru a cumpăra inscripții individual. \nPur și simplu faceți clic pe „Cumpărați” pentru fiecare inscripție pe care doriți să o achiziționați.",
   "market_detail_step_3": "achiziționați eficient mai multe inscripții dintr-o singură mișcare folosind un ordin limită, permițându-vă să achiziționați toate inscripțiile dorite simultan.",
   "market_detail_step_4": "aveți ocazia să vă listați inscripțiile batate pentru vânzare, stabilind prețurile preferate în $MXC",
-  "market_detail_step_5": "poate vizualiza și monitoriza toate inscripțiile listate, împreună cu prețurile și istoricul achizițiilor."
+  "market_detail_step_5": "poate vizualiza și monitoriza toate inscripțiile listate, împreună cu prețurile și istoricul achizițiilor.",
+  "Docs": "Docs"
 }

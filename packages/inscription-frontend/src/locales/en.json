@@ -82,7 +82,7 @@
   "root_step_3": "It is your wallet which shows your inscription holdings and amounts, you can list and transfer them there.",
   "root_step_4": "Trade them on the DePINscription marketplace",
   "root_step_1_5": "View indexed scripts here",
-  "Tutorial": "Tutorial Docs",
+  "Tutorial": "Tutorial",
   "Last": "Last",
   "Finish": "Finish",
   "token_page_step_1": "Click details of each code to participate in the minting process.",
@@ -155,5 +155,6 @@
   "market_detail_step_2": "to purchase inscriptions individually. Simply click on 'Buy' for each inscription you wish to acquire.",
   "market_detail_step_3": "efficiently purchase multiple inscriptions in one go using a limit order, allowing you to acquire all the desired inscriptions simultaneously.",
   "market_detail_step_4": "you can the opportunity to list your minted inscriptions for sale, setting your preferred prices in $MXC",
-  "market_detail_step_5": "can view and monitor all your listed inscriptions, along with their pricing and purchase history."
+  "market_detail_step_5": "can view and monitor all your listed inscriptions, along with their pricing and purchase history.",
+  "Docs": "Docs"
 }

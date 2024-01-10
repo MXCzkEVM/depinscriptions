@@ -82,7 +82,7 @@
   "root_step_3": "C'est votre portefeuille qui affiche vos avoirs et montants d'inscription, vous pouvez y lister et les transférer.",
   "root_step_4": "Échangez-les sur le marché DePINscription",
   "root_step_1_5": "Afficher les scripts indexés ici",
-  "Tutorial": "Documents didactiques",
+  "Tutorial": "Didacticiel",
   "Last": "Dernier",
   "Finish": "Finition",
   "token_page_step_1": "Cliquez sur les détails de chaque code pour participer au processus de frappe.",
@@ -155,5 +155,6 @@
   "market_detail_step_2": "pour acheter des inscriptions individuellement. \nCliquez simplement sur 'Acheter' pour chaque inscription que vous souhaitez acquérir.",
   "market_detail_step_3": "achetez efficacement plusieurs inscriptions en une seule fois en utilisant un ordre limité, vous permettant d'acquérir simultanément toutes les inscriptions souhaitées.",
   "market_detail_step_4": "vous avez la possibilité de mettre en vente vos inscriptions frappées, en définissant vos prix préférés en $ MXC",
-  "market_detail_step_5": "peut afficher et surveiller toutes vos inscriptions répertoriées, ainsi que leurs prix et leur historique d'achat."
+  "market_detail_step_5": "peut afficher et surveiller toutes vos inscriptions répertoriées, ainsi que leurs prix et leur historique d'achat.",
+  "Docs": "Documents"
 }

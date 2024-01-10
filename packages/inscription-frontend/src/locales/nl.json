@@ -82,7 +82,7 @@
   "root_step_3": "Het is uw portemonnee waarin uw inschrijvingsbezittingen en bedragen worden weergegeven. U kunt ze daar vermelden en overboeken.",
   "root_step_4": "Ruil ze in op de DePINscription-marktplaats",
   "root_step_1_5": "Bekijk hier geïndexeerde scripts",
-  "Tutorial": "Tutorialdocumenten",
+  "Tutorial": "Handleiding",
   "Last": "Laatst",
   "Finish": "Finish",
   "token_page_step_1": "Klik op de details van elke code om deel te nemen aan het muntproces.",
@@ -155,5 +155,6 @@
   "market_detail_step_2": "om inscripties afzonderlijk te kopen. \nKlik eenvoudig op 'Kopen' voor elke inschrijving die u wilt aanschaffen.",
   "market_detail_step_3": "efficiënt meerdere inscripties in één keer kopen met behulp van een limietorder, waardoor u alle gewenste inscripties tegelijkertijd kunt verkrijgen.",
   "market_detail_step_4": "u kunt uw geslagen inscripties te koop aanbieden, waarbij u uw voorkeursprijzen in $ MXC instelt",
-  "market_detail_step_5": "kan al uw vermelde inschrijvingen bekijken en volgen, samen met hun prijzen en aankoopgeschiedenis."
+  "market_detail_step_5": "kan al uw vermelde inschrijvingen bekijken en volgen, samen met hun prijzen en aankoopgeschiedenis.",
+  "Docs": "Documenten"
 }

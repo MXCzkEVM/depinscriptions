@@ -82,7 +82,7 @@
   "root_step_3": "Es su billetera la que muestra las tenencias y montos de sus inscripciones, puede enumerarlos y transferirlos allí.",
   "root_step_4": "Cambielos en el mercado de DePINscription",
   "root_step_1_5": "Ver scripts indexados aquí",
-  "Tutorial": "Documentos tutoriales",
+  "Tutorial": "Tutorial",
   "Last": "Último",
   "Finish": "Finalizar",
   "token_page_step_1": "Haga clic en los detalles de cada código para participar en el proceso de acuñación.",
@@ -155,5 +155,6 @@
   "market_detail_step_2": "para adquirir inscripciones individualmente. \nSimplemente haz clic en 'Comprar' por cada inscripción que desees adquirir.",
   "market_detail_step_3": "compre eficientemente varias inscripciones de una sola vez utilizando una orden limitada, lo que le permitirá adquirir todas las inscripciones deseadas simultáneamente.",
   "market_detail_step_4": "Tienes la oportunidad de poner a la venta tus inscripciones acuñadas, estableciendo tus precios preferidos en $MXC.",
-  "market_detail_step_5": "Puede ver y monitorear todas las inscripciones listadas, junto con sus precios e historial de compras."
+  "market_detail_step_5": "Puede ver y monitorear todas las inscripciones listadas, junto con sus precios e historial de compras.",
+  "Docs": "Documentos"
 }

@@ -82,7 +82,7 @@
   "root_step_3": "É a sua carteira que mostra os seus acervos e valores de inscrições, você pode listá-los e transferi-los para lá.",
   "root_step_4": "Negocie-os no mercado DePINscription",
   "root_step_1_5": "Veja scripts indexados aqui",
-  "Tutorial": "Documentos do tutorial",
+  "Tutorial": "Tutorial",
   "Last": "Durar",
   "Finish": "Terminar",
   "token_page_step_1": "Clique nos detalhes de cada código para participar do processo de cunhagem.",
@@ -155,5 +155,6 @@
   "market_detail_step_2": "para comprar inscrições individualmente. \nBasta clicar em 'Comprar' para cada inscrição que deseja adquirir.",
   "market_detail_step_3": "compre com eficiência várias inscrições de uma só vez usando um pedido com limite, permitindo adquirir todas as inscrições desejadas simultaneamente.",
   "market_detail_step_4": "você tem a oportunidade de listar suas inscrições cunhadas para venda, definindo seus preços preferidos em $MXC",
-  "market_detail_step_5": "pode visualizar e monitorar todas as suas inscrições listadas, juntamente com seus preços e histórico de compras."
+  "market_detail_step_5": "pode visualizar e monitorar todas as suas inscrições listadas, juntamente com seus preços e histórico de compras.",
+  "Docs": "Documentos"
 }
