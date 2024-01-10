@@ -41,6 +41,8 @@ const config: HardhatUserConfig = {
       accounts: [OWNER_PRIVATE_KEY_MAINNET, VERIFIER_PRIVATE_KEY_MAINNET],
       saveDeployments: true,
       allowUnlimitedContractSize: true,
+      gas: 'auto',
+      gasPrice: 'auto',
     },
   },
 }

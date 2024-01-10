@@ -10,6 +10,7 @@
     "deploy:local": "hardhat run scripts/deploy.ts --network localhost",
     "deploy:testnet": "hardhat run scripts/deploy.ts --network testnet",
     "deploy:mainnet": "hardhat run scripts/deploy.ts --network mainnet",
+    "deploy:hepler": "hardhat run scripts/hepler.ts --network mainnet",
     "node": "hardhat node"
   },
   "peerDependencies": {},
