@@ -9,6 +9,8 @@ import { useInjectHolder } from '@overlays/react'
 import { useTranslation } from 'react-i18next'
 import { Search } from '@ricons/ionicons5'
 import { Deferred } from '@hairy/utils'
+import { useAccount, useConnect } from 'wagmi'
+import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { Condition, DeployDialog, Empty, Flag, Icon, LinearProgressWithLabel, Refresh, TextFieldSearch, TextFieldTick, WaitIndexDialog } from '@/components'
 import { Layout } from '@/layout'
 import { Token } from '@/api/index.type'
@@ -20,6 +22,8 @@ import { useEventBus, useGridPaginationFields, useRouterParams, useServerPaginat
 // Retrieve tokens deployed by a user
 function Page() {
   const router = useRouter()
+  const { openConnectModal } = useConnectModal()
+  const { isConnected } = useAccount()
   const { t } = useTranslation()
   const [tab, setTab] = useRouterParams('tab', { default: 'all' })
 
@@ -92,6 +96,8 @@ function Page() {
   })
 
   async function deploy() {
+    if (!isConnected)
+      return openConnectModal?.()
     const instance = openDeployModal()
     const { hash } = await instance
     await openWaitIndexDialog({ hash })

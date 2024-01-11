@@ -32,6 +32,7 @@ export function useServerPagination<T>(options: UseServerPaginationOptions<T>) {
   const [page, setPage] = useState(1)
   const [limit, setLimit] = useState(options.limit || 15)
   const [loading, setLoading] = useState(false)
+  const [reloading, setReloading] = useState(false)
   const [error, setError] = useState<Error>()
 
   async function load(modal: Partial<PaginationModel>) {
@@ -62,7 +63,14 @@ export function useServerPagination<T>(options: UseServerPaginationOptions<T>) {
   }
 
   async function next() {
-    await load({ page: page + 1, limit })
+    try {
+      setReloading(true)
+      await load({ page: page + 1, limit })
+      setReloading(false)
+    }
+    catch (error) {
+      setReloading(false)
+    }
   }
   async function prev() {
     await load({ page: page - 1, limit })
@@ -89,6 +97,7 @@ export function useServerPagination<T>(options: UseServerPaginationOptions<T>) {
     value,
     loading,
     error,
+    reloading,
   }
 
   const controls = {

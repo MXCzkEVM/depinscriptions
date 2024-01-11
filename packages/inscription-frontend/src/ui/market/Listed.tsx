@@ -3,6 +3,8 @@ import { Button } from '@mui/material'
 import { useInjectHolder } from '@overlays/react'
 import toast from 'react-hot-toast'
 import { delay } from '@hairy/utils'
+import { useAccount } from 'wagmi'
+import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { getOrderListed } from '@/api'
 import { CardContainer, CardOrder, Condition, Empty, InfiniteScroll, LimitOrderDialog, Refresh, WaitIndexDialog } from '@/components'
 import { useEventBus, useRouterQuery, useServerPaginationConcat, useWhenever } from '@/hooks'
@@ -10,6 +12,8 @@ import { useEventBus, useRouterQuery, useServerPaginationConcat, useWhenever } f
 function Listed() {
   const tick = useRouterQuery('token')
   const { t } = useTranslation()
+  const { isConnected } = useAccount()
+  const { openConnectModal } = useConnectModal()
 
   const [limitOrderHolder, openLimitOrderDialog] = useInjectHolder<any, any>(LimitOrderDialog)
   const [holderWaitIndex, openWaitIndexDialog] = useInjectHolder(WaitIndexDialog)
@@ -20,6 +24,8 @@ function Listed() {
   })
 
   async function purchases() {
+    if (!isConnected)
+      return openConnectModal?.()
     const { hash } = await openLimitOrderDialog({ token: tick })
     await openWaitIndexDialog({ hash })
     toast.success(t('Purchase successful'), { position: 'top-center' })
