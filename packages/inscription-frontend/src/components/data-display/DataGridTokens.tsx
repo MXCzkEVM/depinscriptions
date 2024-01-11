@@ -35,7 +35,7 @@ export function DataGridTokens(props: DataGridTokensProps) {
 
   return (
     <Condition
-      is={state.value.length && !state.loading}
+      is={state.value.length && !state.reloading}
       else={showExample
         ? (
           <CardContainer>
