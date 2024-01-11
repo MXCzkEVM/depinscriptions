@@ -11,6 +11,7 @@ export function useServerPaginationConcat<T extends Array<unknown>>(options: Use
   const [total, setTotal] = useState(options.total || 0)
   const [limit, setLimit] = useState(options.limit || 15)
   const [loading, setLoading] = useState(false)
+  const [reloading, setReloading] = useState(false)
   const [error, setError] = useState<Error>()
   const [loaded, setLoaded] = useState(false)
 
@@ -50,7 +51,14 @@ export function useServerPaginationConcat<T extends Array<unknown>>(options: Use
   }
 
   async function reload() {
-    await load({ page: 1, reload: true })
+    try {
+      setReloading(true)
+      await load({ page: 1, reload: true })
+      setReloading(false)
+    }
+    catch (error) {
+      setReloading(false)
+    }
   }
 
   async function next() {
@@ -76,6 +84,7 @@ export function useServerPaginationConcat<T extends Array<unknown>>(options: Use
     pagination,
     loading,
     error,
+    reloading,
   }
 
   const controls = {
