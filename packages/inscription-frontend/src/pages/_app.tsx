@@ -23,7 +23,6 @@ import store from '@/store'
 dayjs.extend(relativeTime)
 
 export default function App({ Component, pageProps }: any) {
-  const { isConnected } = useAccount()
   const mounted = useMounted()
 
   const layout = Component.layout ?? (page => page)
@@ -54,9 +53,7 @@ export default function App({ Component, pageProps }: any) {
           { component: I18nextProvider, props: { i18n } },
         ]}
         >
-          {isConnected
-            ? (mounted && layout(<Component {...pageProps} />))
-            : <PleaseConnectWallet />}
+          {mounted && layout(<Component {...pageProps} />)}
         </MountsProvider>
       </div>
     </>
