@@ -49,21 +49,27 @@ export class MarketService {
     if (!tick)
       throw new NotFoundException(`Not found Tick [${id}]`)
     const [{ volume, sales }] = await this.prisma.$queryRaw<any>`
-      SELECT tick, SUM(price) AS volume, COUNT(*) as sales FROM \`Order\` WHERE status = 1 GROUP BY tick
+      SELECT tick, SUM(price) as volume, COUNT(*) as sales
+      FROM \`Order\` 
+      WHERE status = 1 AND tick = ${id} 
+      GROUP BY tick
     `
 
     const [order] = await this.prisma.$queryRaw<Order[]>`
       SELECT * FROM  \`Order\` 
       WHERE tick = ${id} AND status = 0
-      ORDER BY
-        (price / amount) ASC 
+      ORDER BY (price / amount) ASC 
       LIMIT 1;
     `
     const price = order
-      ? new BigNumber(order.price.toString()).div(order.amount.toString()).toFixed(0)
+      ? new BigNumber(order.price.toString())
+        .div(order.amount.toString())
+        .toFixed(0)
       : '0'
 
-    const limitPrice = new BigNumber(tick.limit.toString()).multipliedBy(price.toString()).toFixed(0)
+    const limitPrice = new BigNumber(tick.limit.toString())
+      .multipliedBy(price.toString())
+      .toFixed(0)
 
     return {
       tick: tick.tick,
