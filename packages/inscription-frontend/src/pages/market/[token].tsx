@@ -7,6 +7,8 @@ import { useInjectHolder } from '@overlays/react'
 import { useAsyncFn } from 'react-use'
 import { useSnapshot } from 'valtio'
 import { utils } from 'ethers'
+import { useAccount } from 'wagmi'
+import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { Empty, Flag, Icon, ListDialog, ListDialogProps, ListDialogResolved, LocationDialog, Price, WaitIndexDialog } from '@/components'
 import { Layout } from '@/layout'
 
@@ -29,6 +31,8 @@ function Page() {
   const router = useRouter()
   const token = useRouterQuery('token')
   const config = useSnapshot(store.config)
+  const { isConnected } = useAccount()
+  const { openConnectModal } = useConnectModal()
   const { emit: reloadPage, on: onReloadPage } = useEventBus('reload:page')
 
   const { t } = useTranslation()
@@ -53,6 +57,8 @@ function Page() {
   const usdMintPrice = BigNum(limitPrice).multipliedBy(config.price).toFixed(4)
 
   async function list() {
+    if (!isConnected)
+      return openConnectModal?.()
     if (!data)
       return
     await openLocationDialog()

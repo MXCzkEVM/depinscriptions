@@ -7,7 +7,7 @@ function Page() {
   const { address } = useAccount()
   return (
     <div className="mt-6">
-      <SearchByAddress address={address} />
+      <SearchByAddress address={address || '0x'} />
     </div>
   )
 }

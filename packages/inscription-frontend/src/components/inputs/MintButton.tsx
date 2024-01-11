@@ -3,6 +3,8 @@ import { useInjectHolder } from '@overlays/react'
 import { latLngToCell } from 'h3-js'
 import { LoadingButton } from '@mui/lab'
 import { useTranslation } from 'react-i18next'
+import { useAccount } from 'wagmi'
+import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { LocationDialog, WaitIndexDialog } from '../dialog'
 
 import { Token } from '@/api/index.type'
@@ -18,6 +20,8 @@ export function MintButton(props: MintButtonProps) {
   const [hexagon, setHexagon] = useState('')
   const locked = useRef(false)
   const { t } = useTranslation()
+  const { openConnectModal } = useConnectModal()
+  const { isConnected } = useAccount()
 
   const [holderLocationMl, openLocationDialog] = useInjectHolder(LocationDialog)
   const [holderWaitingMl, openWaitIndexDialog] = useInjectHolder(WaitIndexDialog)
@@ -44,6 +48,8 @@ export function MintButton(props: MintButtonProps) {
   }
 
   async function mint() {
+    if (!isConnected)
+      return openConnectModal?.()
     await openLocationDialog()
     if (!hexagon)
       await authorize()
