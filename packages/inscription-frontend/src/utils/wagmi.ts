@@ -27,6 +27,7 @@ const connectors = connectorsForWallets([
     wallets: [
       AXSWallet({ chains }),
       metaMaskWallet({ chains }),
+      OKXWallet({ chains }),
     ],
   },
 ])
@@ -56,6 +57,22 @@ function AXSWallet({ chains }) {
     iconUrl: '/wallet.png',
     iconBackground: '#FFFFFF',
     description: 'AXS wallet web3 provider.',
+    createConnector: () => {
+      const connector = new InjectedConnector({
+        chains,
+      })
+      // connector.connect()
+      return { connector }
+    },
+  }
+}
+function OKXWallet({ chains }) {
+  return {
+    id: 'okx',
+    name: 'OKX Wallet',
+    iconUrl: 'https://logosandtypes.com/wp-content/uploads/2022/04/okx.svg',
+    iconBackground: '#FFFFFF',
+    description: 'OKX wallet web3 provider.',
     createConnector: () => {
       const connector = new InjectedConnector({
         chains,

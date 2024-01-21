@@ -17,7 +17,7 @@ import { FetchResponseInterceptFn, fetchResponseIntercept, i18n } from '@/plugin
 import { MountsProvider, NoSSR } from '@/components'
 import { darkTheme, fontInter } from '@/config'
 import { helperGetSimplePrice } from '@/service'
-import { PleaseConnectWallet } from '@/ui/app'
+
 import store from '@/store'
 
 dayjs.extend(relativeTime)

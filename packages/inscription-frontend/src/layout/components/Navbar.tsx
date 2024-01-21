@@ -28,7 +28,7 @@ const LayoutNavbar: React.FC = () => {
       </Navbar.Brand>
       <div className="flex gap-2 md:order-2">
         <div className="scale-[0.85] -mx-2 md:mx-0 ml-6 md:scale-90">
-          <ConnectButton showBalance={true} accountStatus="full" />
+          <ConnectButton showBalance={true} accountStatus="avatar" />
         </div>
         <Navbar.Toggle className="root_step_1 scale-[0.85] sm:scale-100 text-[rgba(255,255,255,0.6)] hover:bg-transparent" />
         <Navbar.Locale className="scale-[0.85] sm:scale-100" />
