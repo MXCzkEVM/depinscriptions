@@ -29,8 +29,8 @@ export default function App({ Component, pageProps }: any) {
 
   useFetchResponseIntercept(async (response) => {
     const data = await response.clone().json()
-    if (data.error)
-      throw new Error(data.message)
+    if (data?.error)
+      throw new Error(data?.message)
     return response
   })
   useMount(async () => {
