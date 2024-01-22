@@ -21,9 +21,18 @@ export function LocationForHexagon(props: LocationForHexProps) {
     const [lat, lon] = cellToLatLng(hexagon)
     const params = { lat: String(lat), lon: String(lon), zoom: '18', format: 'jsonv2' }
     const suffix = `?${new URLSearchParams(Object.entries(params)).toString()}`
-    const response = await fetch(`${baseURL}${suffix}`)
-    const location = await response.json() as LocationDetail
-    mappings[hexagon] = `${location.address.state || location.address.city}, ${location.address.country}`
+    try {
+      const response = await fetch(`${baseURL}${suffix}`)
+      const location = await response.json() as LocationDetail
+      const addresses = [
+        location.address.state || location.address.city,
+        location.address.country,
+      ]
+      mappings[hexagon] = addresses.filter(Boolean).join(', ')
+    }
+    catch (error) {
+      mappings[hexagon] = hexagon
+    }
   })
 
   useEffect(() => {
