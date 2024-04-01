@@ -1,8 +1,8 @@
 import { Chain } from 'wagmi'
 
 export const chains: Record<string, Chain> = {
-  5167003: {
-    id: 5167003,
+  5167004: {
+    id: 5167004,
     name: 'Wannsee MXC zkEVM',
     network: 'Wannsee',
     nativeCurrency: {
@@ -11,8 +11,8 @@ export const chains: Record<string, Chain> = {
       symbol: 'MXC',
     },
     rpcUrls: {
-      public: { http: ['https://wannsee-rpc.mxc.com'] },
-      default: { http: ['https://wannsee-rpc.mxc.com'] },
+      public: { http: ['https://geneva-rpc.moonchain.com'] },
+      default: { http: ['https://geneva-rpc.moonchain.com'] },
     },
     blockExplorers: {
       etherscan: { name: 'etherscan', url: 'https://wannsee-explorer.mxc.com' },
