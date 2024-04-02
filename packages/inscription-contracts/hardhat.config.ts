@@ -31,7 +31,7 @@ const config: HardhatUserConfig = {
     },
     testnet: {
       url: 'http://144.202.111.198:8545',
-      chainId: 5167003,
+      chainId: 5167004,
       accounts: [OWNER_PRIVATE_KEY_TESTNET, VERIFIER_PRIVATE_KEY_TESTNET],
       saveDeployments: true,
       allowUnlimitedContractSize: true,
@@ -71,7 +71,7 @@ const config: HardhatUserConfig = {
       },
       {
         network: 'testnet',
-        chainId: 5167003,
+        chainId: 5167004,
         urls: {
           apiURL: 'https://wannsee-explorer-v1.mxc.com/api',
           browserURL: 'https://wannsee-explorer.mxc.com',
