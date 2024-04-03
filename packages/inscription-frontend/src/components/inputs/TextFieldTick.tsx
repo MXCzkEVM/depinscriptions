@@ -21,7 +21,7 @@ export function TextFieldTick(props: TextFieldTickProps) {
     <>
       <div className="mx-auto mt-6 mb-8 sm:mt-9 sm:mb-14 w-full text-center">
 
-        <span className="text-2xl md:text-3xl text-center select-none text-[#6300ff]">
+        <span className="text-2xl md:text-3xl text-center select-none text-[#2196F3]">
           {t('Check out msc-20 balance of the address')}
         </span>
       </div>

@@ -147,7 +147,7 @@ function Page() {
   return (
     <>
       <div className="mx-auto mt-9 mb-14 w-full text-center">
-        <span className="text-2xl md:text-3xl text-center select-none text-[#6300ff]">
+        <span className="text-2xl md:text-3xl text-center select-none text-[#2196F3]">
           {t('Total MSC-20 Market Cap', { price: thousandBitSeparator(marketCap) })}
         </span>
       </div>
