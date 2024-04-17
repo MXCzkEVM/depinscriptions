@@ -21,7 +21,7 @@ const providers = [
 
 const { chains, provider: getProvider, webSocketProvider } = configureChains(defaultChains, providers)
 
-const connectors = connectorsForWallets([
+const _connectors = connectorsForWallets([
   {
     groupName: 'Popular',
     wallets: [
@@ -31,6 +31,12 @@ const connectors = connectorsForWallets([
     ],
   },
 ])
+
+export function connectors() {
+  const cs = _connectors() as any[]
+  cs.forEach(c => c.ready = true)
+  return cs
+}
 
 function extendsGetProvider(opt: any) {
   const provider = getProvider(opt)
@@ -64,6 +70,7 @@ function AXSWallet({ chains }) {
       // connector.connect()
       return { connector }
     },
+    installed: true,
   }
 }
 function OKXWallet({ chains }) {
@@ -80,6 +87,7 @@ function OKXWallet({ chains }) {
       // connector.connect()
       return { connector }
     },
+    installed: true,
   }
 }
 export { chains, client }
