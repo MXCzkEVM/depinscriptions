@@ -26,7 +26,7 @@ const _connectors = connectorsForWallets([
     groupName: 'Popular',
     wallets: [
       AXSWallet({ chains }),
-      metaMaskWallet({ chains }),
+      MetamaskWallet({ chains }),
       OKXWallet({ chains }),
     ],
   },
@@ -64,11 +64,7 @@ function AXSWallet({ chains }) {
     iconBackground: '#FFFFFF',
     description: 'AXS wallet web3 provider.',
     createConnector: () => {
-      const connector = new InjectedConnector({
-        chains,
-      })
-      // connector.connect()
-      return { connector }
+      return { connector: new InjectedConnector({ chains }) }
     },
     installed: true,
   }
@@ -81,11 +77,23 @@ function OKXWallet({ chains }) {
     iconBackground: '#FFFFFF',
     description: 'OKX wallet web3 provider.',
     createConnector: () => {
-      const connector = new InjectedConnector({
-        chains,
-      })
-      // connector.connect()
-      return { connector }
+      return { connector: new InjectedConnector({ chains }) }
+    },
+    installed: true,
+  }
+}
+function MetamaskWallet({ chains }) {
+  const source = metaMaskWallet({ chains })
+  return {
+    id: source.id,
+    name: source.name,
+    iconUrl: source.iconUrl,
+    iconBackground: source.iconBackground,
+    downloadUrls: source.downloadUrls,
+    iconAccent: source.iconAccent,
+    shortName: source.shortName,
+    createConnector: () => {
+      return { connector: new InjectedConnector({ chains }) }
     },
     installed: true,
   }
