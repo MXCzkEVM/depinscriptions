@@ -122,7 +122,7 @@ export const ReactJoyride = forwardRef((props: ReactJoyrideProps, ref) => {
   return (
     <>
       <BaseReactJoyride
-        styles={{ options: { primaryColor: '#6300ff', backgroundColor: '#121212', arrowColor: '#383838', zIndex: 10000 } }}
+        styles={{ options: { primaryColor: '#2196F3', backgroundColor: '#121212', arrowColor: '#383838', zIndex: 10000 } }}
         run={run}
         stepIndex={index}
         showProgress

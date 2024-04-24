@@ -21,16 +21,22 @@ const providers = [
 
 const { chains, provider: getProvider, webSocketProvider } = configureChains(defaultChains, providers)
 
-const connectors = connectorsForWallets([
+const _connectors = connectorsForWallets([
   {
     groupName: 'Popular',
     wallets: [
       AXSWallet({ chains }),
-      metaMaskWallet({ chains }),
+      MetamaskWallet({ chains }),
       OKXWallet({ chains }),
     ],
   },
 ])
+
+export function connectors() {
+  const cs = _connectors() as any[]
+  cs.forEach(c => c.ready = true)
+  return cs
+}
 
 function extendsGetProvider(opt: any) {
   const provider = getProvider(opt)
@@ -58,12 +64,9 @@ function AXSWallet({ chains }) {
     iconBackground: '#FFFFFF',
     description: 'AXS wallet web3 provider.',
     createConnector: () => {
-      const connector = new InjectedConnector({
-        chains,
-      })
-      // connector.connect()
-      return { connector }
+      return { connector: new InjectedConnector({ chains }) }
     },
+    installed: true,
   }
 }
 function OKXWallet({ chains }) {
@@ -74,12 +77,25 @@ function OKXWallet({ chains }) {
     iconBackground: '#FFFFFF',
     description: 'OKX wallet web3 provider.',
     createConnector: () => {
-      const connector = new InjectedConnector({
-        chains,
-      })
-      // connector.connect()
-      return { connector }
+      return { connector: new InjectedConnector({ chains }) }
     },
+    installed: true,
+  }
+}
+function MetamaskWallet({ chains }) {
+  const source = metaMaskWallet({ chains })
+  return {
+    id: source.id,
+    name: source.name,
+    iconUrl: source.iconUrl,
+    iconBackground: source.iconBackground,
+    downloadUrls: source.downloadUrls,
+    iconAccent: source.iconAccent,
+    shortName: source.shortName,
+    createConnector: () => {
+      return { connector: new InjectedConnector({ chains }) }
+    },
+    installed: true,
   }
 }
 export { chains, client }

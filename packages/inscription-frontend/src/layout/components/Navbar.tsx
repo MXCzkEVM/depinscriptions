@@ -23,7 +23,7 @@ const LayoutNavbar: React.FC = () => {
   return (
     <>
       <Navbar.Brand href="/">
-        <img className="h-[38px] sm:h-[43px]" src="https://assets-global.website-files.com/6253d5b96f29fe54ae351282/6287440e15c1ce566364ee5c_mxc-mini-version (1).svg " alt="" />
+        <img className="h-[38px] sm:h-[43px]" src="https://raw.githubusercontent.com/MXCzkEVM/metadata/main/logo-circle.svg " alt="" />
         <span className="hidden sm:inline-block ml-2 font-bold text-base md:text-lg mr-6">DePINscription</span>
       </Navbar.Brand>
       <div className="flex gap-2 md:order-2">

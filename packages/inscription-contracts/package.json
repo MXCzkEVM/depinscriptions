@@ -10,7 +10,7 @@
     "deploy:local": "hardhat run scripts/deploy.ts --network localhost",
     "deploy:testnet": "hardhat run scripts/deploy.ts --network testnet",
     "deploy:mainnet": "hardhat run scripts/deploy.ts --network mainnet",
-    "verify:testnet": "hardhat verify --network testnet 0x3B7BAd2f2d59106395161A208AE62d96c16cF239",
+    "verify:testnet": "hardhat verify --network testnet 0xf9E9d2a82A15B477Be541518CAE6cB4318712a6C",
     "verify:mainnet": "hardhat verify --network mainnet 0x396B3f2F0b83738dDbE1CA5aA96292C73DBC5542",
     "node": "hardhat node"
   },
