@@ -26,14 +26,12 @@ export class TasksService {
   async indexer() {
     if (this.locked)
       return
-    console.log('start ---')
     this.locked = true
     try {
       const lastBlockNumber = await this.provider.getLastBlockNumber()
       const startBlockNumber = await getIndexerLastBlock()
       const endBlockNumber = Math.min(startBlockNumber + 10, lastBlockNumber)
 
-      console.log('end ---', { startBlockNumber, endBlockNumber })
       if (startBlockNumber > endBlockNumber) {
         this.locked = false
         return
