@@ -66,7 +66,7 @@ const config: HardhatUserConfig = {
         chainId: 18686,
         urls: {
           apiURL: 'https://explorer-v1.mxc.com/api',
-          browserURL: 'https://explorer.mxc.com',
+          browserURL: 'https://explorer.moonchain.com',
         },
       },
       {
@@ -74,7 +74,7 @@ const config: HardhatUserConfig = {
         chainId: 5167004,
         urls: {
           apiURL: 'https://wannsee-explorer-v1.mxc.com/api',
-          browserURL: 'https://wannsee-explorer.mxc.com',
+          browserURL: 'https://wannsee-explorer.moonchain.com',
         },
       },
     ],
