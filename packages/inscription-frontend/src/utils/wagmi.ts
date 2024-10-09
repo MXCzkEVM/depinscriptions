@@ -25,7 +25,7 @@ const _connectors = connectorsForWallets([
   {
     groupName: 'Popular',
     wallets: [
-      AXSWallet({ chains }),
+      MoonBaseWallet({ chains }),
       MetamaskWallet({ chains }),
       OKXWallet({ chains }),
     ],
@@ -56,13 +56,13 @@ const client = createClient({
   webSocketProvider,
 })
 
-function AXSWallet({ chains }) {
+function MoonBaseWallet({ chains }) {
   return {
-    id: 'axs',
-    name: 'AXS Wallet',
-    iconUrl: '/wallet.png',
+    id: 'moon_base',
+    name: 'MoonBase',
+    iconUrl: 'https://raw.githubusercontent.com/MXCzkEVM/metadata/main/logo-circle.svg',
     iconBackground: '#FFFFFF',
-    description: 'AXS wallet web3 provider.',
+    description: 'MoonBase wallet web3 provider.',
     createConnector: () => {
       return { connector: new InjectedConnector({ chains }) }
     },

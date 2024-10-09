@@ -15,8 +15,8 @@ export const chains: Record<string, Chain> = {
       default: { http: ['https://geneva-rpc.moonchain.com'] },
     },
     blockExplorers: {
-      etherscan: { name: 'etherscan', url: 'https://wannsee-explorer.mxc.com' },
-      default: { name: 'etherscan', url: 'https://wannsee-explorer.mxc.com' },
+      etherscan: { name: 'etherscan', url: 'https://wannsee-explorer.moonchain.com' },
+      default: { name: 'etherscan', url: 'https://wannsee-explorer.moonchain.com' },
     },
   },
   18686: {
@@ -33,8 +33,8 @@ export const chains: Record<string, Chain> = {
       default: { http: ['https://rpc.mxc.com'] },
     },
     blockExplorers: {
-      etherscan: { name: 'etherscan', url: 'https://explorer.mxc.com' },
-      default: { name: 'etherscan', url: 'https://explorer.mxc.com' },
+      etherscan: { name: 'etherscan', url: 'https://explorer.moonchain.com' },
+      default: { name: 'etherscan', url: 'https://explorer.moonchain.com' },
     },
   },
 }
