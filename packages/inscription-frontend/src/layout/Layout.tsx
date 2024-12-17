@@ -26,8 +26,8 @@ const Layout: React.FC<Props> = ({ children }: Props) => {
           {children}
         </div>
         <div className="w-full mt-8 mb-6 py-8 flex gap-8 h-[24px] justify-center items-center text-[#ddd]">
-          <Link className="underline -mt-1" color="inherit" href="https://www.mxc.org/axs-app">
-            <img className="h-[28px]" src="https://assets-global.website-files.com/6253d5b96f29fe54ae351282/6287440e15c1ce566364ee5c_mxc-mini-version (1).svg " alt="" />
+          <Link className="underline -mt-1" color="inherit" href="https://moonchain.com/">
+            <img className="h-[28px]" src="https://raw.githubusercontent.com/MXCzkEVM/metadata/main/logo-circle.svg " alt="" />
           </Link>
           <Link href="https://t.me/mxcfoundation">
             <Icon size={28}>
